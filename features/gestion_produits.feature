@@ -5,13 +5,24 @@ Feature: manage produits
 
   Background:
     Given an user exists
-      And another user exists with role: "admin"
+      And another user exists with username: "bob", password: "hidden"
+      And a role exists
+      And another role exists with name: "guest"
+      And an assignment exists with user: the first user, role: the first role
+      And another assignment exists with user: the 2nd user, role: the 2nd role
 
   Scenario: show edit produit as admin
-    Given I am logged in as "admin" with password "secret"
+    Given I am logged in as "fred" with password "secret"
       And a produit exists
-    When I go to the produit's show page
-    Then i should see "Modifier"
+    When I go to the produit's page
+    Then I should see "Edit"
+
+@wip
+  Scenario: hide edit produit link as guest
+    Given I am logged in as "bob" with password "hidden"
+      And a produit exists
+    When I go to the produit's page
+    Then I should not see "Edit"
 
   Scenario: create a produit
     Given I am on the homepage
