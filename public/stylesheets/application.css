@@ -19,12 +19,14 @@ a {
 }
 
 #container {
+  float: left;
   width: 75%;
-  margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 10px;
 }
 
 #flash_notice, #flash_error {
@@ -81,6 +83,10 @@ a {
 }
 
 div#user_nav {
-  float: right;
+  background-color: #FFF;
+  padding: 5px 10px;
+  border: solid 1px black;
+  float: left;
   font-size: 0.9em;
+  margin-top: 20px;
 }

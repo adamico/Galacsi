@@ -6,7 +6,11 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_produit_path(@produit) %> |
-  <%= link_to "Destroy", @produit, :confirm => 'Are you sure?', :method => :delete %> |
+  <% if permitted_to? :edit, @produit %>
+    <%= link_to "Edit", edit_produit_path(@produit) %> |
+  <% end %>
+  <% if permitted_to? :destroy, @produit %>
+    <%= link_to "Destroy", @produit, :confirm => 'Are you sure?', :method => :delete %> |
+  <% end %>
   <%= link_to "View All", produits_path %>
 </p>

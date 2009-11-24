@@ -10,6 +10,8 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'RedCloth', :lib => 'redcloth'
   config.gem "authlogic"
+  config.gem "declarative_authorization", :source => "http://gemcutter.org"
+
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.

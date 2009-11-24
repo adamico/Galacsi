@@ -1,0 +1,10 @@
+<% title "Users" %>
+
+<% @users.each do |u| %>
+<table>
+  <tr>
+    <td><%= u.username %></td>
+    <td><%= link_to "Edit profile", edit_user_path(u) %>
+  </tr>
+</table>
+<% end %>

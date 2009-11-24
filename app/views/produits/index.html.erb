@@ -6,12 +6,11 @@
   </tr>
   <% for produit in @produits %>
     <tr>
-      <td><%=h produit.name %></td>
-      <td><%= link_to "Show", produit %></td>
-      <td><%= link_to "Edit", edit_produit_path(produit) %></td>
-      <td><%= link_to "Destroy", produit, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to h(produit.name), produit %></td>
+        <td><%= link_to "Edit", edit_produit_path(produit) if permitted_to? :edit, @produit %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Produit", new_produit_path %></p>
+  <p><%= link_to "New Produit", new_produit_path if permitted_to? :new, @produit %></p>
+<p><%= link_to "Accueil", root_path %></p>

@@ -1,4 +1,15 @@
 class UsersController < ApplicationController
+  filter_resource_access
+
+  def index
+    @users = User.all
+  
+    respond_to do |wants|
+      wants.html # index.html.erb
+      wants.xml  { render :xml => @userss }
+    end
+  end
+
   def new
     @user = User.new
   end
