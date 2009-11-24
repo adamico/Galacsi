@@ -4,13 +4,9 @@
   <tr>
     <th>Name</th>
   </tr>
-  <% for produit in @produits %>
-    <tr>
-      <td><%= link_to h(produit.name), produit %></td>
-        <td><%= link_to "Edit", edit_produit_path(produit) if permitted_to? :edit, @produit %></td>
-    </tr>
-  <% end %>
+  <%= render :partial => @produits %>
 </table>
 
-  <p><%= link_to "New Produit", new_produit_path if permitted_to? :new, @produit %></p>
+<p><%= link_to "New Produit", new_produit_path if permitted_to? :new, @produit %></p>
+<p><%= link_to "Produits non validés", nonvalidated_produits_path if permitted_to? :nonvalidated, :produits %></p>
 <p><%= link_to "Accueil", root_path %></p>

@@ -1,19 +1,31 @@
 class ProduitsController < ApplicationController
   filter_resource_access
+
+  filter_resource_access :additional_collection =>  [:nonvalidated, :index],
+      :additional_member => {:validate => :update}
+
+  def validate
+    #@produit = Produit.find(params[:id])
+    @produit.update_attribute :validation, 1
+    flash[:notice] = "Successfully validated produit."
+    redirect_to nonvalidated_produits_path
+  end
+
+  def nonvalidated
+    @produits = Produit.all(:conditions => "validation = 0")
+  end
+
   def index
-    @produits = Produit.all
+    @produits = Produit.all(:conditions => "validation = 1")
   end
   
   def show
-    @produit = Produit.find(params[:id])
   end
   
   def new
-    @produit = Produit.new
   end
   
   def create
-    @produit = Produit.new(params[:produit])
     if @produit.save
       flash[:notice] = "Successfully created produit."
       redirect_to @produit
@@ -23,11 +35,9 @@ class ProduitsController < ApplicationController
   end
   
   def edit
-    @produit = Produit.find(params[:id])
   end
   
   def update
-    @produit = Produit.find(params[:id])
     if @produit.update_attributes(params[:produit])
       flash[:notice] = "Successfully updated produit."
       redirect_to @produit
@@ -37,7 +47,6 @@ class ProduitsController < ApplicationController
   end
   
   def destroy
-    @produit = Produit.find(params[:id])
     @produit.destroy
     flash[:notice] = "Successfully destroyed produit."
     redirect_to produits_url

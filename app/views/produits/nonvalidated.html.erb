@@ -1,0 +1,13 @@
+<% if @produits.empty? %>
+  <h2>Tous les produits ont étés validés.</h2>
+<% else %>
+  <% title ( "Produits à valider (" + h(@produits.count.to_s) + ")" ) %>
+  <table>
+    <tr>
+      <th>Nom</th>
+    </tr>
+    <%= render :partial => @produits %>
+  </table>
+<% end %>
+<p><%= link_to "New Produit", new_produit_path if permitted_to? :new, @produit %></p>
+<p><%= link_to "Accueil", root_path %></p>

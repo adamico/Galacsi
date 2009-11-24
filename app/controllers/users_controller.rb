@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  filter_resource_access
+  filter_access_to :all
+  filter_access_to :edit, :update, :attribute_check => true
 
   def index
     @users = User.all
@@ -15,8 +16,8 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
     if @user.save
+      @user = User.new(params[:user])
       flash[:notice] = "Successfully created user."
       redirect_to root_url
     else
