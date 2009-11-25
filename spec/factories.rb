@@ -1,5 +1,6 @@
 Factory.define(:produit) do |p|
   p.name 'tartampionate de sodium'
+  p.validation '0'
 end
 
 Factory.define(:user) do |u|

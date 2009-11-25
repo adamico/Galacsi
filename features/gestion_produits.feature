@@ -9,23 +9,23 @@ Feature: manage produits
   Scenario: show edit produit as admin
     Given I am logged in as a user in the admin role
     When I go to the produit's page
-    Then I should see "Edit"
+    Then I should see "Modifier"
 
   Scenario: hide edit produit link as guest
     When I go to the produit's page
-    Then I should not see "Edit"
+    Then I should not see "Modifier"
 
   Scenario: create a produit
     Given I am logged in as a user in the admin role
       And I am on the produits page
-    When I follow "New Produit"
-      And I fill in "name" with "lamotrigine"
+    When I follow "Nouveau produit"
+      And I fill in "nom" with "lamotrigine"
       And I press "Sauvegarder"
     Then I should see "lamotrigine"
 
   Scenario: update a produit
     Given I am logged in as a user in the admin role
     When I go to the produit's edit page
-      And I fill in "name" with "lamotrigina"
+      And I fill in "nom" with "lamotrigina"
       And I press "Sauvegarder"
     Then I should see "lamotrigina"
