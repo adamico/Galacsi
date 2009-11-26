@@ -5,7 +5,6 @@ class ProduitsController < ApplicationController
       :additional_member => {:validate => :update}
 
   def validate
-    #@produit = Produit.find(params[:id])
     @produit.update_attribute :validation, 1
     flash[:notice] = "Successfully validated produit."
     redirect_to nonvalidated_produits_path
