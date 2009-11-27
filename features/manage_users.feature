@@ -6,7 +6,7 @@ Feature: admin can create and modify users and roles
   Background:
     Given an admin
       And the following roles exist
-        | name    |
+        | name          |
         | contributeur  |
         | saisisseur    |
         | valideur      |
