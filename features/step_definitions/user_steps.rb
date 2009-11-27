@@ -31,3 +31,7 @@ end
 When /(\d+) non validated produits exist$/ do |number|
   Then "#{number} produits exist with validation: \"0\""
 end
+
+When /^an (.*)$/ do |role|
+  Then "I log in as a user in the #{role} role"
+end
