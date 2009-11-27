@@ -4,15 +4,15 @@
   <%= f.error_messages %>
   <ol class="formList">
     <li>
-      <%= f.label :username %>
+      <%= f.label :username, "Utilisateur" %>
       <%= f.text_field :username %>
     </li>
     <li>
-      <%= f.label :password %>
+      <%= f.label :password, "Mot de passe" %>
       <%= f.password_field :password %>
     </li>
     <li>
-      <%= f.submit "Log in" %>
+      <%= f.submit "Se connecter" %>
     </li>
   </ol>
 <% end -%>

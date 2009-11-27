@@ -21,6 +21,9 @@ authorization do
     has_permission_on [:produits], :to => [:destroy, :validate, :nonvalidated]
   end
 
+  role :saisisseur do
+    includes :valideur
+  end
 end
 
 privileges do
