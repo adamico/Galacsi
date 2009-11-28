@@ -1,5 +1,8 @@
 <% title "Produits" %>
 
+<% unless params[:search].nil? %>
+  <h2><%= @produits.count %> résultats</h2>
+<% end %>
 <table>
   <tr>
     <th>Name</th>

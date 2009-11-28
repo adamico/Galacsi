@@ -15,7 +15,8 @@ class ProduitsController < ApplicationController
   end
 
   def index
-    @produits = Produit.all(:conditions => "validation = 1")
+    @search = Produit.search(params[:search])
+    @produits = @search.all(:conditions => "validation = 1")
   end
   
   def show
