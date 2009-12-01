@@ -1,14 +1,16 @@
 <% title "Produits" %>
 
-<% unless params[:search].nil? %>
-  <h2><%= @produits.count %> résultats</h2>
+<% if @produits_count > 0 %>
+  <h2><%= pluralize(@produits_count, 'résultat') %> </h2>
+  <table>
+    <tr>
+      <th><%= order @search, :by => :name, :as => "Nom" %></th>
+    </tr>
+    <%= render :partial => @produits %>
+  </table>
+<% else %>
+  Aucun résultat
 <% end %>
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-  <%= render :partial => @produits %>
-</table>
 
 <p><%= link_to "Nouveau produit", new_produit_path if permitted_to? :new, @produit %></p>
 <p><%= link_to "Produits non validés", nonvalidated_produits_path if permitted_to? :nonvalidated, :produits %></p>
