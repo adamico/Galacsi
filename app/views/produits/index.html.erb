@@ -1,7 +1,7 @@
 <% title "Produits" %>
 
-<% if @produits_count > 0 %>
-  <h2><%= pluralize(@produits_count, 'résultat') %> </h2>
+<% if @produits.count > 0 %>
+  <h2><%= pluralize(@produits.count, 'résultat') %> </h2>
   <table>
     <tr>
       <th><%= order @search, :by => :name, :as => "Nom" %></th>
@@ -9,7 +9,7 @@
     <%= render :partial => @produits %>
   </table>
 <% else %>
-  Aucun résultat
+  Aucun produit n'a été trouvé
 <% end %>
 
 <p><%= link_to "Nouveau produit", new_produit_path if permitted_to? :new, @produit %></p>

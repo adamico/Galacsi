@@ -16,7 +16,7 @@ class ProduitsController < ApplicationController
 
   def index
     @search = Produit.search(params[:search])
-    @produits, @produits_count = @search.all(:conditions => "validation = 1"), @search.count
+    @produits = @search.all(:conditions => "validation = 1")
   end
   
   def show

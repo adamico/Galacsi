@@ -16,10 +16,10 @@ Feature: search for produits by multiple criteria
     When I go to the homepage
       And I fill in "search[name_like]" with "<pattern>"
       And I press "Rechercher"
-    Then I should see "<count> résultats"
+    Then I should see "<count_result>"
     Scenarios:
-      | pattern | count |
-      | ine     | 3     |
-      | lam     | 1     |
-      | tar     | 0     |
-      | cas     | 0     |
+      | pattern | count_result                  |
+      | ine     | 3 résultats                   |
+      | lam     | 1 résultat                    |
+      | tar     | Aucun produit n'a été trouvé  |
+      | cas     | Aucun produit n'a été trouvé  |
