@@ -10,7 +10,7 @@ Feature: validate produits
     Given I have 5 non validated produits
     When I go to the homepage
       And I follow "Valider un produit"
-    Then I should see "Produits à valider (5)"
+    Then I should see "Produits à valider"
 
   Scenario: validate a produit
     Given I have 5 non validated produits
