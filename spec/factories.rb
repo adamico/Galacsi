@@ -1,5 +1,5 @@
 Factory.define(:produit) do |p|
-  p.name 'tartampionate de sodium'
+  p.sequence(:name) {|n| "produit#{n}" }
   p.validation '0'
 end
 

@@ -9,5 +9,8 @@
   <%= link_to "Produits", produits_path %>
 </p>
 <p>
+  <%= link_to "Valider un produit", nonvalidated_produits_path %>
+</p>
+<p>
   <%= link_to "Users", users_path if permitted_to? :index, :users %>
 </p>

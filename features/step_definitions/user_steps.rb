@@ -20,18 +20,6 @@ When /be allowed to modify it$/ do
   Then "I should see \"Modifier\""
 end
 
-When /non validated produit exists$/ do
-  Then "a produit exists with validation: \"0\""
-end
-
-When /have 1 validated produit$/ do
-  Then "a produit should exist with validation: \"1\""
-end
-
-When /(\d+) non validated produits exist$/ do |number|
-  Then "#{number} produits exist with validation: \"0\""
-end
-
 When /^an (.*)$/ do |role|
   Then "I log in as a user in the #{role} role"
 end
