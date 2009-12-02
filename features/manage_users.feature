@@ -8,7 +8,8 @@ Feature: admin can create and modify users and roles
 
   Scenario: list users
     When I go to the homepage
-    Then I should see "Users"
+      And I follow "Users"
+    Then I should be on the users page
 
   Scenario: create user
     When I go to the users page
@@ -22,7 +23,11 @@ Feature: admin can create and modify users and roles
     Then a user should exist with username: "pinco"
 
   Scenario: edit users profiles
-    Given a user exists
-    When I go to the user page
-      And I follow "Edit profile"
-    Then show me the page
+    Given a user exists with username: "test", email: "test@test.com"
+    When I go to the user's edit page
+      And I fill in the following:
+        | username              | testino |
+        | password              | test    |
+        | Password confirmation | test    |
+      And I press "Submit"
+    Then a user should exist with username: "testino", email: "test@test.com"
