@@ -1,13 +1,13 @@
-<% title "Users" %>
+<% title "Utilisateurs" %>
 
 <% @users.each do |u| %>
 <table>
   <tr>
     <td><%= u.username %></td>
-    <td>( <%= u.role_names %> )</td>
-    <td><%= link_to "Edit profile", edit_user_path(u) %>
+    <td>(<%= u.role_names %>)</td>
+    <td><%= link_to "Modifier", edit_user_path(u) %>
   </tr>
 </table>
 <% end %>
-<p><%= link_to "New user", new_user_path %></p>
+<p><%= link_to "Nouvel utilisateur", new_user_path %></p>
 <p><%= link_to "Accueil", root_path %></p>

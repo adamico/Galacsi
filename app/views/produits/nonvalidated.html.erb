@@ -9,5 +9,5 @@
     <%= render :partial => @produits %>
   </table>
 <% end %>
-<p><%= link_to "New Produit", new_produit_path if permitted_to? :new, @produit %></p>
+<p><%= link_to "Nouveau produit", new_produit_path if permitted_to? :new, @produit %></p>
 <p><%= link_to "Accueil", root_path %></p>

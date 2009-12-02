@@ -6,7 +6,7 @@ class ProduitsController < ApplicationController
 
   def validate
     @produit.update_attribute :validation, 1
-    flash[:notice] = "Successfully validated produit."
+    flash[:notice] = "Le produit a été validé."
     redirect_to nonvalidated_produits_path
   end
 
@@ -27,7 +27,7 @@ class ProduitsController < ApplicationController
   
   def create
     if @produit.save
-      flash[:notice] = "Successfully created produit."
+      flash[:notice] = "Le produit a été créé."
       redirect_to @produit
     else
       render :action => 'new'
@@ -39,7 +39,7 @@ class ProduitsController < ApplicationController
   
   def update
     if @produit.update_attributes(params[:produit])
-      flash[:notice] = "Successfully updated produit."
+      flash[:notice] = "Le produit a été mis à jour."
       redirect_to @produit
     else
       render :action => 'edit'
@@ -48,7 +48,7 @@ class ProduitsController < ApplicationController
   
   def destroy
     @produit.destroy
-    flash[:notice] = "Successfully destroyed produit."
+    flash[:notice] = "Le produit a été détruit."
     redirect_to produits_url
   end
 end

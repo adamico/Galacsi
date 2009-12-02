@@ -21,10 +21,10 @@ Feature: user besides guest must authenticate
   Scenario: log in
     When I login
     Then I should see an authentication success message
-      And I should see "Logout"
+      And I should see "Déconnection"
 
   Scenario: log out
     Given I am logged in
-    When I follow "Logout"
-    Then I should see "Successfully logged out."
-      And I should see "Log in"
+    When I follow "Déconnection"
+    Then I should see "Vous étes déconnectés."
+      And I should see "Connection"

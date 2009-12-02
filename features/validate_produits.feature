@@ -16,7 +16,7 @@ Feature: validate produits
     Given I have 5 non validated produits
     When I go to the first produit's page
       And I follow "Valider"
-    Then I should see "Successfully validated produit."
+    Then I should see "Le produit a été validé."
       And I should have 1 validated produit
       And I should have 4 nonvalidated produits
 

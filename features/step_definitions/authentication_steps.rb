@@ -5,8 +5,8 @@ end
 def login
   user
   visit root_url
-  response.should contain("Log in")
-  click_link "Log in"
+  response.should contain("Connection")
+  click_link "Connection"
   fill_in "Utilisateur", :with => user.username
   fill_in "Mot de passe", :with => user.password
   click_button "Se connecter"

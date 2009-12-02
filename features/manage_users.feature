@@ -8,26 +8,26 @@ Feature: admin can create and modify users and roles
 
   Scenario: list users
     When I go to the homepage
-      And I follow "Users"
+      And I follow "Utilisateurs"
     Then I should be on the users page
 
   Scenario: create user
     When I go to the users page
-      And I follow "New user"
+      And I follow "Nouvel utilisateur"
       And I fill in the following:
-        | username              | pinco         |
-        | email                 | pinco@ad.com  |
-        | password              | pallino       |
-        | Password confirmation | pallino       |
-      And I press "Submit"
+        | nom d'utilisateur         | pinco         |
+        | email                     | pinco@ad.com  |
+        | mot de passe              | pallino       |
+        | confirmer le mot de passe | pallino       |
+      And I press "Sauvegarder"
     Then a user should exist with username: "pinco"
 
   Scenario: edit users profiles
     Given a user exists with username: "test", email: "test@test.com"
     When I go to the user's edit page
       And I fill in the following:
-        | username              | testino |
-        | password              | test    |
-        | Password confirmation | test    |
-      And I press "Submit"
+        | nom d'utilisateur         | testino |
+        | mot de passe              | test    |
+        | confirmer le mot de passe | test    |
+      And I press "Sauvegarder"
     Then a user should exist with username: "testino", email: "test@test.com"

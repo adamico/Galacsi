@@ -3,6 +3,14 @@ Feature: initialize produits
   As an authorized user
   I want to be able to initialize produits
 
+  Scenario: create a produit
+    When I am logged in as a contributeur
+      And I go to the produits page
+      And I follow "Nouveau produit"
+      And I fill in "nom" with "lamotrigine"
+      And I press "Sauvegarder"
+    Then a produit should exist
+
   Scenario Outline: show edit produit link when authorized
     Given a produit exists
     When I am logged in as a <role>
@@ -20,14 +28,6 @@ Feature: initialize produits
     Given a produit exists
     When I go to the produit's page
     Then I should not see "Modifier"
-
-  Scenario: create a produit
-    When I am logged in as a contributeur
-      And I go to the produits page
-      And I follow "Nouveau produit"
-      And I fill in "nom" with "lamotrigine"
-      And I press "Sauvegarder"
-    Then a produit should exist
 
   Scenario: update a produit
     Given a produit exists with name: "lamotrigine"

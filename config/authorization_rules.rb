@@ -5,20 +5,20 @@ authorization do
   end
 
   role :guest do
-    has_permission_on [:produits], :to => [:index, :show]
+    has_permission_on [:produits], :to => :read
   end
 
   role :contributeur do
     includes :guest
-    has_permission_on [:produits], :to => [:new, :create]
-    has_permission_on [:produits], :to => [:edit, :update] do
+    has_permission_on [:produits], :to => :create
+    has_permission_on [:produits], :to => :update do
       if_attribute :user => is { user }
     end
   end
 
   role :valideur do
-    includes :contributeur
-    has_permission_on [:produits], :to => [:destroy, :validate, :nonvalidated]
+    has_permission_on [:produits], :to => :manage
+    has_permission_on [:produits], :to => [:validate, :nonvalidated]
   end
 
   role :saisisseur do
