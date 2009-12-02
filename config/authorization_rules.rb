@@ -10,7 +10,7 @@ authorization do
 
   role :contributeur do
     includes :guest
-    has_permission_on [:produits], :to => :create
+    has_permission_on [:produits], :to => [:create, :nonvalidated]
     has_permission_on [:produits], :to => :update do
       if_attribute :user => is { user }
     end

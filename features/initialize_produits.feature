@@ -3,6 +3,11 @@ Feature: initialize produits
   As an authorized user
   I want to be able to initialize produits
 
+  Scenario: list non validated produits
+    When I am logged in as a contributeur
+      And I go to the produits page
+    Then I should see "Produits non validés"
+
   Scenario: create a produit
     When I am logged in as a contributeur
       And I go to the produits page

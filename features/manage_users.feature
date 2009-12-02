@@ -31,3 +31,4 @@ Feature: admin can create and modify users and roles
         | confirmer le mot de passe | test    |
       And I press "Sauvegarder"
     Then a user should exist with username: "testino", email: "test@test.com"
+

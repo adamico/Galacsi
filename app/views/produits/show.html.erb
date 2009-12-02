@@ -7,7 +7,7 @@
 
 <p>
   <%= link_to "Modifier", edit_produit_path(@produit) if permitted_to? :edit, @produit %> |
-    <%= link_to "Détruire", @produit, :confirm => 'Etes-vous sûr?', :method => :delete if permitted_to? :destroy, @produit %> |
+    <%= link_to "Détruire", @produit, :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :destroy, @produit %> |
   <% unless @produit.validation == 1 %>
     <%= link_to "Valider", validate_produit_path(@produit), :method => :put if permitted_to? :validate, @produit %> |
   <% end %>
