@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   
     respond_to do |wants|
       wants.html # index.html.erb
-      wants.xml  { render :xml => @userss }
+      wants.xml  { render :xml => @users }
     end
   end
 
@@ -27,11 +27,11 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
   
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated profile."
       redirect_to root_url

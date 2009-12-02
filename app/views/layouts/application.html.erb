@@ -20,7 +20,6 @@
     </div>
     <div id="user_nav">
       <% if current_user %>
-        <p><%= link_to "Edit profile", edit_user_path(:current) %></p>
         <p><%= link_to "Logout", logout_path %></p>
       <% else %>
         <p><%= link_to "Log in", login_path %></p>

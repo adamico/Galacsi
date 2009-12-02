@@ -5,17 +5,11 @@ Feature: admin can create and modify users and roles
 
   Background:
     Given an admin
-      And the following roles exist
-        | name          |
-        | contributeur  |
-        | saisisseur    |
-        | valideur      |
 
   Scenario: list users
     When I go to the homepage
     Then I should see "Users"
 
-  @focus
   Scenario: create user
     When I go to the users page
       And I follow "New user"
@@ -27,3 +21,8 @@ Feature: admin can create and modify users and roles
       And I press "Submit"
     Then a user should exist with username: "pinco"
 
+  Scenario: edit users profiles
+    Given a user exists
+    When I go to the user page
+      And I follow "Edit profile"
+    Then show me the page

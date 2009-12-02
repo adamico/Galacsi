@@ -8,4 +8,11 @@ class User < ActiveRecord::Base
       role.name.underscore.to_sym
     end
   end
+
+  def role_names
+    names = roles.map do |role|
+      role.name
+    end
+    names.to_sentence
+  end
 end
