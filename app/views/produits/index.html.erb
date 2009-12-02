@@ -9,7 +9,7 @@
     <%= render :partial => @produits %>
   </table>
 <% else %>
-  Aucun produit n'a été trouvé
+  <h2>Aucun produit n'a été trouvé</h2>
 <% end %>
 
 <p><%= link_to "Nouveau produit", new_produit_path if permitted_to? :new, @produit %></p>

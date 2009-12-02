@@ -11,7 +11,7 @@ class ProduitsController < ApplicationController
   end
 
   def nonvalidated
-    @produits = Produit.all(:conditions => "validation = 0")
+    @produits = Produit.all(:conditions => "validation = 0", :order => "name ASC")
   end
 
   def index

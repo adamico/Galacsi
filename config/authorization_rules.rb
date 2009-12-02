@@ -19,10 +19,7 @@ authorization do
   role :valideur do
     has_permission_on [:produits], :to => :manage
     has_permission_on [:produits], :to => [:validate, :nonvalidated]
-  end
-
-  role :saisisseur do
-    includes :valideur
+    has_permission_on [:users], :to => [:create, :read, :update]
   end
 end
 
