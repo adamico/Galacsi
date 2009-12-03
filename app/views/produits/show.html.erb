@@ -6,11 +6,24 @@
 </p>
 
 <p>
-  <%= link_to "Modifier", edit_produit_path(@produit) if permitted_to? :edit, @produit %> |
-    <%= link_to "Détruire", @produit, :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :destroy, @produit %> |
-  <% unless @produit.validation == 1 %>
-    <%= link_to "Valider", validate_produit_path(@produit), :method => :put if permitted_to? :validate, @produit %> |
-  <% end %>
-  <%= link_to "Produits", produits_path %> |
-  <%= link_to "Produits non validés", nonvalidated_produits_path if permitted_to? :nonvalidated, :produits %>
+  <strong>Validation:</strong> 
+  <%= h @produit.validation %>
+</p>
+
+<p>
+  <%= link_to "Modifier", edit_produit_path(@produit) if permitted_to? :edit, @produit %>
+</p>
+<p>
+  <%= link_to "Détruire", @produit, :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :destroy, @produit %>
+</p>
+<% unless @produit.validation == 2 %>
+  <p>
+    <%= link_to "Valider", validate_produit_path(@produit), :method => :put if permitted_to? :validate, @produit %>
+  </p>
+<% end %>
+<p>
+  <%= link_to "Retour à la liste", produits_path %>
+</p>
+<p>
+  <%= link_to "Accueil", root_path %>
 </p>
