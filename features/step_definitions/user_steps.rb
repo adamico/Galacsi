@@ -12,6 +12,12 @@ When /^I log in as a user in the (.*) role$/ do |role|
   response.body.should =~ /Success/m
 end
 
+When /^I walk to the produits page$/ do
+  with_user @role do
+    visit produits_url
+  end
+end
+
 When /logged in as an? (.*)$/ do |role|
   Then "I log in as a user in the #{role} role"
 end
