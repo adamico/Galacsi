@@ -16,10 +16,6 @@ When /logged in as an? (.*)$/ do |role|
   Then "I log in as a user in the #{role} role"
 end
 
-When /be allowed to modify it$/ do
-  Then "I should see \"Modifier\""
-end
-
 When /^an (.*)$/ do |role|
   Then "I log in as a user in the #{role} role"
 end

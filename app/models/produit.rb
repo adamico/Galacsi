@@ -4,6 +4,6 @@ class Produit < ActiveRecord::Base
   #TODO créer un attribute "date_de_validation" qui correspond à la date à laquelle les infos ont été révérifiées (avec ou sans modifications)
   #TODO créer soit un lookup avec les type de validations, soit une association
 
-  #TODO rajouter 3 niveaux de validation supplémentaires (initialisé, brouillon, gelé)
+  # 0 => brouillon, 1 => à_valider, 2 => validé, 3 => gelé)
   attr_accessible :validation
 end
