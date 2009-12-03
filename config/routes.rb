@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :users
-  map.resources :produits, :collection => { :nonvalidated => :get }, :member => { :validate => :put }
+  map.resources :produits, :member => { :validate => :put }
 
   map.root :controller => 'welcome'
 

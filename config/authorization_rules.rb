@@ -1,21 +1,24 @@
 authorization do
   role :admin do
     has_permission_on [:produits, :users], :to => :manage
-    has_permission_on :produits, :to => [:validate, :nonvalidated]
+    has_permission_on :produits, :to => :validate
     has_permission_on :authorization_rules, :to => :read
     has_permission_on :authorization_usages, :to => :read
   end
 
   role :guest do
     has_permission_on :produits, :to => :read do
-      if_attribute :validation => 2 # validated produit
+      if_attribute :validation => 2 # validated produits only
     end
     has_permission_on :authorization_rules, :to => :read
     has_permission_on :authorization_usages, :to => :read
   end
 
   role :contributeur do
-    has_permission_on :produits, :to => [:read, :create, :nonvalidated]
+    has_permission_on :produits, :to => :create
+    has_permission_on :produits, :to => :read do
+      if_attribute :validation => [0, 1, 2]
+    end
     has_permission_on :produits, :to => :update do
       if_attribute :validation => [0, 1] # draft, to_be_validated produit
     end
