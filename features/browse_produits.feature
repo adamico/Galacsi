@@ -5,11 +5,11 @@ Feature: browse produits according to permissions
 
   Background:
     Given the following produits exist
-    | validation |
-    | 0          |
-    | 1          |
-    | 2          |
-    | 3          |
+    | state     |
+    | brouillon |
+    | a_valider |
+    | valide    |
+    | gele      |
 
   Scenario Outline: show produits list according to user role permissions
     When I am logged in as a <role>

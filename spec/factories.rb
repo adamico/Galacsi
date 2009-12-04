@@ -1,6 +1,7 @@
 Factory.define(:produit) do |p|
   p.sequence(:name) {|n| "produit#{n}" }
-  p.validation '0'
+  #p.validation '0'
+  p.state 'brouillon'
 end
 
 Factory.define(:user) do |u|

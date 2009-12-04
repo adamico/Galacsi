@@ -8,7 +8,7 @@ authorization do
 
   role :guest do
     has_permission_on :produits, :to => :read do
-      if_attribute :validation => 2 # validated produits only
+      if_attribute :state => "valide"
     end
     has_permission_on :authorization_rules, :to => :read
     has_permission_on :authorization_usages, :to => :read
@@ -17,26 +17,26 @@ authorization do
   role :contributeur do
     has_permission_on :produits, :to => :create
     has_permission_on :produits, :to => :read do
-      if_attribute :validation => [0, 1, 2]
+      if_attribute :state => ["brouillon", "a_valider", "valide"]
     end
     has_permission_on :produits, :to => :update do
-      if_attribute :validation => [0, 1] # draft, to_be_validated produit
+      if_attribute :state => ["brouillon", "a_valider"]
     end
     has_permission_on :produits, :to => :validate do
-      if_attribute :validation => 0
+      if_attribute :state => "brouillon"
     end
   end
 
   role :valideur do
     has_permission_on :produits, :to => :manage
     has_permission_on :produits, :to => :validate do
-      if_attribute :validation => [0, 1]
+      if_attribute :state => ["brouillon", "a_valider"]
     end
     has_permission_on :produits, :to => :freeze do
-      if_attribute :validation => 2
+      if_attribute :state => "valide"
     end
     has_permission_on :produits, :to => :thaw do
-      if_attribute :validation => 3
+      if_attribute :state => "gele"
     end
     has_permission_on :users, :to => [:create, :read, :update]
   end

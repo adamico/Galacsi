@@ -5,11 +5,11 @@ Feature: validate produits
 
   Background:
     Given the following produits exist
-      | validation |
-      | 0          |
-      | 1          |
-      | 2          |
-      | 3          |
+      | state     |
+      | brouillon |
+      | a_valider |
+      | valide    |
+      | gele      |
 
   Scenario Outline: hide validation link if guest
     When I go to the <position> produit's page
