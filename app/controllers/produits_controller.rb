@@ -2,13 +2,23 @@ class ProduitsController < ApplicationController
   filter_resource_access
   filter_resource_access :additional_member => { :validate => :update }
 
-  #TODO créer une action pour mettre à jour l'attribute "date_validation" avec la date du jour
   #TODO créer une action pour montrer la liste des molécules non vérifiées depuis une certaine date
 
-  #TODO créer une action pour passer à l'étape de validation suivante
-  def validate
-    @produit.update_attribute :validation, 2
+  def initialiser
+    @produit.initialiser!
+    flash[:notice] = "Le produit a été initialisé."
+    redirect_to produits_path
+  end
+
+  def valider
+    @produit.valider!
     flash[:notice] = "Le produit a été validé."
+    redirect_to produits_path
+  end
+
+  def geler
+    @produit.geler!
+    flash[:notice] = "Le produit a été gélé."
     redirect_to produits_path
   end
 

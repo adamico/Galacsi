@@ -1,5 +1,5 @@
 <tr>
   <td><%= link_to h(produit.name), produit %></td>
-  <td><%= link_to h(produit.validation), produit %></td>
+  <td><%= h produit.state %></td>
   <td><%= link_to "Modifier", edit_produit_path(produit) if permitted_to? :edit, produit %></td>
 </tr>

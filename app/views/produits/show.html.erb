@@ -7,7 +7,7 @@
 
 <p>
   <strong>Validation:</strong> 
-  <%= h @produit.validation %>
+  <%= h @produit.state %>
 </p>
 
 <p>
@@ -16,17 +16,17 @@
 <p>
   <%= link_to "Détruire", @produit, :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :destroy, @produit %>
 </p>
-<% if @produit.state == "a_valider" && permitted_to?(:validate, @produit) %>
+<% if @produit.state == "brouillon" && permitted_to?(:initialiser) %>
   <p>
-    <%= link_to "Valider", validate_produit_path(@produit), :method => :put %>
+    <%= link_to "Initialiser", initialiser_produit_path(@produit), :method => :put %>
   </p>
-<% elsif @produit.state == "valide" && permitted_to?(:freeze, @produit) %>
+<% elsif (@produit.state == "a_valider" || @produit.state == "gele") && permitted_to?(:valider, @produit) %>
   <p>
-    <%= link_to "Geler", freeze_produit_path(@produit), :method => :put %>
+    <%= link_to "Valider", valider_produit_path(@produit), :method => :put %>
   </p>
-<%elsif @produit.state == "gele" && permitted_to?(:thaw, @produit)%>
+<% elsif @produit.state == "valide" && permitted_to?(:geler, @produit) %>
   <p>
-    <%= link_to "Revalider", thaw_produit_path(@produit), :method => :put %>
+    <%= link_to "Geler", geler_produit_path(@produit), :method => :put %>
   </p>
 <% end %>
 

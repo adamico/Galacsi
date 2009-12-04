@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091204153720) do
+ActiveRecord::Schema.define(:version => 20091204210957) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(:version => 20091204153720) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "validation", :default => 0
     t.string   "state"
   end
 

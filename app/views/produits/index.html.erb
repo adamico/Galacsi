@@ -5,7 +5,7 @@
   <table>
     <tr>
       <th><%= order @search, :by => :name, :as => "Nom" %></th>
-      <th><%= order @search, :by => :validation, :as => "Validation" %></th>
+      <th><%= order @search, :by => :state, :as => "Validation" %></th>
     </tr>
     <%= render :partial => @produits %>
   </table>
