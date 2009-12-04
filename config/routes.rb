@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :produits, :member => { :validate => :put }
+  map.resources :produits, :member => { :freeze => :put }
+  map.resources :produits, :member => { :thaw => :put }
 
   map.root :controller => 'welcome'
 

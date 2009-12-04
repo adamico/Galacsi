@@ -19,7 +19,7 @@ Feature: browse produits according to permissions
       | role          | count |
       | valideur      | 4     |
       | admin         | 4     |
-    #| contributeur  | 3     |
+      | contributeur  | 3     |
 
   Scenario: show only validated produits as guest
     When I go to the produits page

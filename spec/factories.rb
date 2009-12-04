@@ -12,6 +12,6 @@ Factory.define(:user) do |u|
 end
 
 Factory.define(:role) do |r|
-  r.name "admin"
+  r.name "contributeur"
 end
 
