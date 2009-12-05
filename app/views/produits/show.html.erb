@@ -12,7 +12,7 @@
 
 <p>
   <strong>Décision :</strong> 
-  <%= h @produit.decision.name %>
+  <%= h @produit.decision.name rescue "Non renseignée" %>
 </p>
 
 <p>
