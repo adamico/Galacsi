@@ -1,8 +1,9 @@
-<% form_for @produit do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :name, "Nom" %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p><%= f.submit "Sauvegarder" %></p>
+<% semantic_form_for @produit do |f| %>
+  <% f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :decision %>
+  <% end %>
+  <% f.buttons do %>
+    <%= f.commit_button "Sauvegarder" %>
+  <% end %>
 <% end %>

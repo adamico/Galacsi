@@ -23,3 +23,8 @@ Feature: browse produits according to permissions
   Scenario: show only validated produits as guest
     When I go to the produits page
     Then I should see "1 résultat"
+
+  Scenario: hide validation field for guest users
+    When I go to the produits page
+    Then I should not see "Validation"
+      And I should not see "valide"

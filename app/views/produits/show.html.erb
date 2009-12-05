@@ -1,13 +1,18 @@
 <% title "Produit" %>
 
 <p>
-  <strong>Nom:</strong>
+  <strong>Nom :</strong>
   <%=h @produit.name %>
 </p>
 
 <p>
-  <strong>Validation:</strong> 
+  <strong>Validation :</strong> 
   <%= h @produit.state %>
+</p>
+
+<p>
+  <strong>Décision :</strong> 
+  <%= h @produit.decision.name %>
 </p>
 
 <p>

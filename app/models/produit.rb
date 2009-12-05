@@ -1,11 +1,12 @@
 class Produit < ActiveRecord::Base
+  attr_accessible :name, :decision_id
+  belongs_to :decision
   validates_presence_of :name
   validates_uniqueness_of :name
 
   include AASM
   #TODO créer un attribute "date_de_validation" qui correspond à la date à laquelle les infos ont été révérifiées (avec ou sans modifications)
 
-  attr_accessible :name
 
   # AASM stuff
   aasm_column :state

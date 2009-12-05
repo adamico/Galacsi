@@ -5,7 +5,10 @@
   <table>
     <tr>
       <th><%= order @search, :by => :name, :as => "Nom" %></th>
-      <th><%= order @search, :by => :state, :as => "Validation" %></th>
+      <th><%= order @search, :by => :decision_name, :as => "Décision" %></th>
+      <% if permitted_to? :update, :produits %>
+        <th><%= order @search, :by => :state, :as => "Validation" %></th>
+      <% end %>
     </tr>
     <%= render :partial => @produits %>
   </table>
