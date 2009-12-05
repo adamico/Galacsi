@@ -1,6 +1,5 @@
 class ProduitsController < ApplicationController
   filter_resource_access
-  filter_resource_access :additional_member => { :validate => :update }
 
   #TODO créer une action pour montrer la liste des molécules non vérifiées depuis une certaine date
 
