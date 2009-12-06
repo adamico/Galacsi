@@ -1,20 +1,20 @@
 - title "Produit"
 %p<
   %strong Nom :
-  = h @produit.name
+  = " #{@produit.name}"
 %p<
   %strong Validation :
-  = h @produit.state
+  = " #{@produit.state.humanize}"
 %p<
   %strong Décision :
-  = h @produit.decision.name rescue "Non renseignée"
+  = " #{@produit.decision.name}" rescue " A renseigner"
 %p= link_to "Modifier", edit_produit_path(@produit) if permitted_to? :edit, @produit
 %p= link_to "Détruire", @produit, :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :destroy, @produit
 - if @produit.state == "brouillon" && permitted_to?(:initialiser)
   %p= link_to "Initialiser", initialiser_produit_path(@produit), :method => :put
-- elsif (@produit.state == "a_valider" || @produit.state == "gele") && permitted_to?(:valider, @produit)
+- elsif (@produit.state == "a_valider" || @produit.state == "en_attente") && permitted_to?(:valider, @produit)
   %p= link_to "Valider", valider_produit_path(@produit), :method => :put
-- elsif @produit.state == "valide" && permitted_to?(:geler, @produit)
-  %p= link_to "Geler", geler_produit_path(@produit), :method => :put
+- elsif @produit.state == "valide" && permitted_to?(:invalider, @produit)
+  %p= link_to "Invalider", invalider_produit_path(@produit), :method => :put
 %p= link_to "Retour à la liste", produits_path
 %p= link_to "Accueil", root_path

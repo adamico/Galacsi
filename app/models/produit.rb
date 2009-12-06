@@ -15,18 +15,18 @@ class Produit < ActiveRecord::Base
   aasm_state :brouillon
   aasm_state :a_valider#, :enter => :some_stuf, :exit => :some_other_stuf
   aasm_state :valide, :enter => :set_validation_date
-  aasm_state :gele, :enter => :blank_validation_date, :exit => :set_validation_date
+  aasm_state :en_attente, :enter => :blank_validation_date, :exit => :set_validation_date
 
   aasm_event :initialiser do
     transitions :to => :a_valider, :from => [:brouillon]
   end
 
   aasm_event :valider do
-    transitions :to => :valide, :from => [:a_valider, :gele]
+    transitions :to => :valide, :from => [:a_valider, :en_attente]
   end
 
-  aasm_event :geler do
-    transitions :to => :gele, :from => [:valide]
+  aasm_event :invalider do
+    transitions :to => :en_attente, :from => [:valide]
   end
 
   def set_validation_date; end

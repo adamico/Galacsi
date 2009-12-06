@@ -28,9 +28,9 @@ authorization do
     includes :contributeur
     has_permission_on :produits, :to => [:update, :delete]
     has_permission_on :produits, :to => :valider do
-      if_attribute :state => ["gele", "a_valider"]
+      if_attribute :state => ["en_attente", "a_valider"]
     end
-    has_permission_on :produits, :to => :geler do
+    has_permission_on :produits, :to => :invalider do
       if_attribute :state => "valide"
     end
     has_permission_on :users, :to => [:create, :read, :update]

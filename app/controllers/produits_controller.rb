@@ -15,9 +15,9 @@ class ProduitsController < ApplicationController
     redirect_to produits_path
   end
 
-  def geler
-    @produit.geler!
-    flash[:notice] = "Le produit a été gélé."
+  def invalider
+    @produit.invalider!
+    flash[:notice] = "Le produit a été mis en attente."
     redirect_to produits_path
   end
 

@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :produits, :member => { :initialiser => :put }
   map.resources :produits, :member => { :valider => :put }
-  map.resources :produits, :member => { :geler => :put }
+  map.resources :produits, :member => { :invalider => :put }
 
   map.root :controller => 'welcome'
 
