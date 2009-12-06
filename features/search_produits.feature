@@ -5,14 +5,15 @@ Feature: search for produits by multiple criteria
 
   Background:
     Given the following produits exist
-      | name         | validation |
-      | lamotrigine  | 1          |
-      | azathioprine | 1          |
-      | amoxicilline | 1          |
-      | tartampionat | 0          |
-      | castorama    | 0          |
+      | name         | state      |
+      | lamotrigine  | valide     |
+      | azathioprine | valide     |
+      | amoxicilline | valide     |
+      | tartampionat | a_valider  |
+      | castorama    | brouillon  |
+      | blablabla    | en_attente |
 
-  Scenario Outline: search validated produit by name
+  Scenario Outline: guests search produits by name
     When I go to the homepage
       And I fill in "search[name_like]" with "<pattern>"
       And I press "Rechercher"
@@ -23,3 +24,5 @@ Feature: search for produits by multiple criteria
       | lam     | 1 résultat                    |
       | tar     | Aucun produit n'a été trouvé  |
       | cas     | Aucun produit n'a été trouvé  |
+
+  Scenario: authenticated users search produits by name

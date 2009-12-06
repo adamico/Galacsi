@@ -32,7 +32,8 @@ Feature: contribute produits
     Then a produit should exist with name: "lamotrigina"
 
   Scenario: push "brouillon" to "à_valider"
-    When I go to the first produit's page
+    Given a produit exists with state: "brouillon"
+    When I go to the produit's page
     Then I should see "Initialiser"
 
   Scenario Outline: contributeurs shouldn't see "valider" or "geler" link

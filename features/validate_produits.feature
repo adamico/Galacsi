@@ -9,7 +9,7 @@ Feature: validate produits
       | brouillon |
       | a_valider |
       | valide    |
-      | gele      |
+      | en_attente|
     And I am logged in as a valideur
 
   Scenario Outline: valideurs can "initialiser", "valider" and "geler"
@@ -19,5 +19,5 @@ Feature: validate produits
       | position | action               |
       | first    | see "Initialiser"    |
       | 2nd      | see "Valider"        |
-      | 3th      | see "Geler"          |
+      | 3th      | see "Invalider"      |
       | 4th      | see "Valider"        |

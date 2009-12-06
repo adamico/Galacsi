@@ -26,5 +26,5 @@ Feature: user besides guest must authenticate
   Scenario: log out
     Given I am logged in
     When I follow "Déconnection"
-    Then I should see "Vous étes déconnectés."
+    Then I should see "Déconnection effectuée avec succès."
       And I should see "Connection"

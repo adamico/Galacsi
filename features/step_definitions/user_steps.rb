@@ -9,7 +9,7 @@ When /^I log in as a user in the (.*) role$/ do |role|
   fill_in "Utilisateur", :with => "user"
   fill_in "Mot de passe", :with => "password"
   click_button "Se connecter"
-  response.body.should =~ /Success/m
+  response.body.should =~ /succès/m
 end
 
 When /^I walk to the produits page$/ do

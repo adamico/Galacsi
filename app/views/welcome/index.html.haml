@@ -5,5 +5,7 @@
   = text_field_tag "search[name_like]", params[:search][:name_like]
   = submit_tag "Rechercher", :name => nil
 
-%p= link_to "Produits", produits_path
-%p= link_to "Utilisateurs", users_path if permitted_to?(:read, :users)
+-#TODO move these links to a nav_bar partial
+#nav_bar
+  %p= link_to "Produits", produits_path
+  %p= link_to "Utilisateurs", users_path if has_role?(:admin)
