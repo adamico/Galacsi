@@ -1,0 +1,15 @@
+- title "Produits"
+
+- if @produits.count > 0
+  %h2= pluralize(@produits.count, 'résultat')
+  %table
+    %tr
+      %th= order @search, :by => :name, :as => "Nom"
+      %th= order @search, :by => :decision_name, :as => "Décision"
+      - if permitted_to? :update, :produits
+        %th= order @search, :by => :state, :as => "Validation"
+    = render :partial => @produits
+- else
+  %h2 Aucun produit n'a été trouvé
+%p= link_to "Nouveau produit", new_produit_path if permitted_to? :new, @produit
+%p= link_to "Accueil", root_path
