@@ -1,0 +1,24 @@
+- form_for @user do |f|
+  = f.error_messages
+  %p
+    = f.label :username, "Nom d'utilisateur"
+    %br/
+    = f.text_field :username
+  %p
+    = f.label :email
+    %br/
+    = f.text_field :email
+  %p
+    = f.label :password, "Mot de passe"
+    %br/
+    = f.password_field :password
+  %p
+    = f.label :password_confirmation, "Confirmer le mot de passe"
+    %br/
+    = f.password_field :password_confirmation
+  - roles = has_role?(:admin) ? Role.all : Role.all[1..-1]
+  - for role in roles
+    #roles
+      = check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role)
+      = label_tag "#{role.name}"
+  %p= f.submit "Sauvegarder"
