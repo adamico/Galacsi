@@ -25,3 +25,11 @@ end
 Given /^I don't have any produits$/ do
   Produit.destroy_all
 end
+
+When /^a produit exists which has been validated today$/ do
+  Then "a produit exists with validation_date: \"#{Time.now.to_date}\""
+end
+
+When /(.*) the validation date$/ do |action|
+  Then "#{action} \"#{Time.now.strftime("%d/%m/%Y")}\""
+end

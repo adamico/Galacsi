@@ -6,19 +6,26 @@ class ProduitsController < ApplicationController
   def initialiser
     @produit.initialiser!
     flash[:notice] = "Le produit a été initialisé."
-    redirect_to produits_path
+    redirect_to @produit
   end
 
   def valider
     @produit.valider!
+    @produit.update_attribute :validation_date, Time.now.to_date
     flash[:notice] = "Le produit a été validé."
-    redirect_to produits_path
+    redirect_to @produit
   end
 
   def invalider
     @produit.invalider!
     flash[:notice] = "Le produit a été mis en attente."
-    redirect_to produits_path
+    redirect_to @produit
+  end
+
+  def maj_date
+    @produit.update_attribute :validation_date, Time.now.to_date
+    flash[:notice] = "La date de validation a été mise à jour avec succès."
+    redirect_to @produit
   end
 
   def index

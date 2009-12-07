@@ -30,7 +30,7 @@ authorization do
     has_permission_on :produits, :to => :valider do
       if_attribute :state => ["en_attente", "a_valider"]
     end
-    has_permission_on :produits, :to => :invalider do
+    has_permission_on :produits, :to => [:invalider, :maj_date] do
       if_attribute :state => "valide"
     end
     has_permission_on :users, :to => [:create, :read, :update]

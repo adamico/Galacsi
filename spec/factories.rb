@@ -1,6 +1,7 @@
 Factory.define(:produit) do |p|
   p.sequence(:name) {|n| "produit#{n}" }
   p.state 'brouillon'
+  p.validation_date "#{Time.now.to_date}"
   p.association :decision
 end
 
