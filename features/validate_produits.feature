@@ -57,6 +57,7 @@ Feature: validate produits
       And I follow "Mettre à jour"
     Then I should see the validation date
 
+@focus
   Scenario: hide update validation date link when it's been done today
     Given a produit exists which has been validated today
     When I go to that produit's page

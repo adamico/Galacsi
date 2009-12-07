@@ -27,7 +27,7 @@ Given /^I don't have any produits$/ do
 end
 
 When /^a produit exists which has been validated today$/ do
-  Then "a produit exists with validation_date: \"#{Time.now.to_date}\""
+  Then "a produit exists with state: \"valide\", validation_date: \"#{Time.now.to_date}\""
 end
 
 When /(.*) the validation date$/ do |action|
