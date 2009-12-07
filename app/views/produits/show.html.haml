@@ -1,12 +1,21 @@
 - title "Produit"
+
 %p<
   %strong Nom :
   = " #{@produit.name}"
-%p<
-  %strong Validation :
-  = " #{@produit.state.humanize}"
-  - if @produit.state == "valide"
-    = " (MAJ le " + l(@produit.validation_date) + ")" unless @produit.validation_date.blank?
+
+- if has_role? :guest
+  %p<
+    %small
+      (Informations validées il y a
+      %em= time_ago_in_words(@produit.validation_date) rescue ""
+      )
+- else
+  %p<
+    %strong Validation :
+    = " #{@produit.state.humanize}"
+    - if @produit.state == "valide"
+      = " (MAJ le " + l(@produit.validation_date) + ")" unless @produit.validation_date.blank?
 -#TODO demander à AG si elle préfère avoir ça:
   %p<
     %strong Validation :
@@ -19,16 +28,22 @@
   %strong Décision :
   = " #{@produit.decision.name}" rescue " A renseigner"
 
-%p= link_to "Modifier", edit_produit_path(@produit) if permitted_to? :edit, @produit
-%p= link_to "Détruire", @produit, :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :destroy, @produit
+#produit_actions
+  #modify
+    %p= link_to "Modifier", edit_produit_path(@produit) if permitted_to? :edit, @produit
+    %p= link_to "Détruire", @produit, :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :destroy, @produit
 
-- if @produit.state == "brouillon" && permitted_to?(:initialiser)
-  %p= link_to "Initialiser", initialiser_produit_path(@produit), :method => :put
-- elsif (@produit.state == "a_valider" || @produit.state == "en_attente") && permitted_to?(:valider, @produit)
-  %p= link_to "Valider", valider_produit_path(@produit), :method => :put
-- elsif @produit.state == "valide" && permitted_to?(:invalider, @produit)
-  %p= link_to "Mettre à jour", maj_date_produit_path(@produit), :method => :put unless @produit.validation_date == Time.now.to_date
-  %p= link_to "Invalider", invalider_produit_path(@produit), :method => :put
+  #validate
+    - if @produit.state == "brouillon" && permitted_to?(:initialiser)
+      %p= link_to "Initialiser", initialiser_produit_path(@produit), :method => :put
+    - elsif (@produit.state == "a_valider" || @produit.state == "en_attente") && permitted_to?(:valider, @produit)
+      %p= link_to "Valider", valider_produit_path(@produit), :method => :put
+    - elsif @produit.state == "valide" && permitted_to?(:invalider, @produit)
+      %p= link_to "Mettre à jour", maj_date_produit_path(@produit), :method => :put unless @produit.validation_date == Time.now.to_date
+      %p= link_to "Invalider", invalider_produit_path(@produit), :method => :put
 
-%p= link_to "Retour à la liste", produits_path
-%p= link_to "Accueil", root_path
+#nav_bar
+  %p
+    = link_to "Retour à la liste", produits_path
+    = " | "
+    = link_to "Accueil", root_path
