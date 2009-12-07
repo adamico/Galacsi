@@ -4,7 +4,7 @@
   = " #{@produit.name}"
 %p<
   %strong Validation :
-  = " #{@produit.state.humanize}"
+  = " #{@produit.state.humanize}" rescue ""
 %p<
   %strong Décision :
   = " #{@produit.decision.name}" rescue " A renseigner"

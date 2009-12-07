@@ -1,3 +1,4 @@
+@list @produits
 Feature: browse produits according to permissions
   In order to show correct information for drug use during breastfeeding
   As a user
@@ -5,25 +6,32 @@ Feature: browse produits according to permissions
 
   Background:
     Given the following produits exist
-    | state     |
-    | brouillon |
-    | a_valider |
-    | valide    |
-    | gele      |
+    | name      | state     |
+    | brou      | brouillon |
+    | aval      | a_valider |
+    | vali      | valide    |
+    | enat      | en_attente|
+
+  Scenario: show correct message if no produits found
+    Given I don't have any produits
+    When I go to the produits page
+    Then I should see "Aucun produit n'a été trouvé"
 
   Scenario Outline: show produits list according to user role permissions
     When I am logged in as a <role>
       And I go to the produits page
-    Then I should see "<count> résultats"
+    Then I should see "Produits (<count>)"
     Scenarios:
       | role          | count |
       | valideur      | 4     |
       | contributeur  | 4     |
 
+@guest
   Scenario: show only validated produits as guest
     When I go to the produits page
-    Then I should see "1 résultat"
+    Then I should see "Produits (1)"
 
+@guest
   Scenario: hide validation field for guest users
     When I go to the produits page
     Then I should not see "Validation"

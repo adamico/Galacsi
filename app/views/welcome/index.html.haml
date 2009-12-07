@@ -8,4 +8,4 @@
 -#TODO move these links to a nav_bar partial
 #nav_bar
   %p= link_to "Produits", produits_path
-  %p= link_to "Utilisateurs", users_path if has_role?(:admin)
+  %p= link_to "Utilisateurs", users_path if permitted_to? :read, :users

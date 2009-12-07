@@ -1,3 +1,4 @@
+@valideur @validate @produits
 Feature: validate produits
   As a valideur
   I want to move up produits in the validation workflow

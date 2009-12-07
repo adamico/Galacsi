@@ -2,5 +2,5 @@
   %td= link_to h(produit.name), produit
   %td= h produit.decision.name rescue ""
   - if permitted_to? :update, :produits
-    %td= h produit.state.humanize
+    %td= h produit.state.humanize rescue ""
   %td= link_to "Modifier", edit_produit_path(produit) if permitted_to? :edit, produit

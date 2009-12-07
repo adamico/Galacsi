@@ -21,3 +21,7 @@ end
 When /I should have (\d+) nonvalidated produits$/ do |number|
   Then "#{number} produits should exist with validation: \"0\""
 end
+
+Given /^I don't have any produits$/ do
+  Produit.destroy_all
+end

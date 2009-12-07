@@ -1,3 +1,4 @@
+@auth
 Feature: user besides guest must authenticate
   In order to restrict write access to authorized users
   A user
