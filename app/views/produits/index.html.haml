@@ -2,7 +2,6 @@
 
 -#TODO add filters for authenticated users (by validation state)
 - if @produits.count > 0
-  %h2= pluralize(@produits.count, 'résultat') unless params[:search].blank?
   %table
     %tr
       %th= order @search, :by => :name, :as => "Nom"

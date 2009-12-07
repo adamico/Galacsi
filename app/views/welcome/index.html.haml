@@ -1,6 +1,6 @@
 - title "Galacsi"
 
-- form_tag produits_path, :method => :get do
+- form_tag search_produits_path, :method => :get do
   = label_tag :search, "Nom du produit : "
   = text_field_tag "search[name_like]", params[:search][:name_like]
   = submit_tag "Rechercher", :name => nil

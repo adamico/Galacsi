@@ -14,18 +14,18 @@ Feature: search for produits by multiple criteria
       | castorama    | brouillon  |
       | blablabla    | en_attente |
 
-@guest
+@guest @focus
   Scenario Outline: guests search produits by name
     When I go to the homepage
       And I fill in "search[name_like]" with "<pattern>"
       And I press "Rechercher"
     Then I should see "<count_result>"
     Scenarios:
-      | pattern | count_result                  |
-      | ine     | 3 résultats                   |
-      | lam     | 1 résultat                    |
-      | tar     | Aucun produit n'a été trouvé  |
-      | cas     | Aucun produit n'a été trouvé  |
+      | pattern | count_result    |
+      | ine     | 3 résultats     |
+      | lam     | 1 résultat      |
+      | tar     | Aucun résultat. |
+      | cas     | Aucun résultat. |
 
 @contributeur @valideur
   Scenario Outline: authenticated users search produits by name

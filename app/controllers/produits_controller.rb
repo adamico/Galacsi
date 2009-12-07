@@ -1,6 +1,6 @@
 class ProduitsController < ApplicationController
   filter_resource_access
-
+  filter_resource_access :additional_collection => { :search, :index }
   #TODO créer une action pour montrer la liste des molécules non vérifiées depuis une certaine date
 
   def initialiser
@@ -33,6 +33,12 @@ class ProduitsController < ApplicationController
     @produits = @search.all
   end
   
+  def search
+    @search = Produit.with_permissions_to(:read).search(params[:search])
+    @produits = @search.all
+  end
+
+
   def show
   end
   
