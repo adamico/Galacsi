@@ -39,7 +39,7 @@ Feature: admin can create and modify users and roles
     When I go to the user's edit page
       And I fill in the following:
         | nom d'utilisateur         | testino |
-        | mot de passe              | test    |
+        | changer le mot de passe   | test    |
         | confirmer le mot de passe | test    |
       And I press "Sauvegarder"
     Then a user should exist with username: "testino", email: "test@test.com"

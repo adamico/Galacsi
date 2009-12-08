@@ -19,4 +19,16 @@ module LayoutHelper
   def javascript(*args)
     content_for(:head) { javascript_include_tag(*args) }
   end
+
+  def user_navlinks
+    haml_tag :div, {:id => "user_nav"} do
+      haml_tag :p do
+        if current_user
+          haml_concat(link_to "Déconnection", logout_path)
+        else
+          haml_concat(link_to "Connection", login_path)
+        end
+      end
+    end
+  end
 end
