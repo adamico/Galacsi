@@ -1,23 +1,31 @@
 module ProduitsHelper
   def validation
-    if has_role? :guest
-      if @produit.validation_date.blank?
-        return ''
+    haml_tag :p do
+      if has_role? :guest
+        if @produit.validation_date.blank?
+          nil
+        else
+          haml_tag :small do
+            haml_concat("(Informations validées il y a ")
+            haml_tag :em do
+              haml_concat(time_ago_in_words(@produit.validation_date))
+            end
+            haml_concat(")")
+          end
+        end
       else
-        html = "<p><small>(Informations validées il y a <em>" +
-        time_ago_in_words(@produit.validation_date) +
-        "</em>)</small></p>"
+        haml_tag :strong, "Validation : "
+        haml_concat(@produit.state.humanize)
+        if @produit.state == "valide"
+          haml_concat(" (MAJ le")
+          haml_concat(l(@produit.validation_date))
+          haml_concat(")")
+        end
       end
-      html
-    else
-      html = "<p><strong>Validation : </strong>" +
-        @produit.state.humanize
-      html << " (MAJ le " + l(@produit.validation_date) + ")" if @produit.state == "valide"
-      html << "</p>"
-      html
     end
   end
 
+  #TODO refactor validate_actions for haml
   def validate_actions
     if @produit.state == "brouillon" && permitted_to?(:initialiser)
       html = "<p>"

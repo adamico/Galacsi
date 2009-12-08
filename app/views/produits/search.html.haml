@@ -3,9 +3,7 @@
 - if @produits.empty?
   %h2 Aucun résultat.
 - else
-  %h2
-    = pluralize(@produits.count, 'résultat')
-
+  %h2= pluralize(@produits.count, 'résultat')
   - if has_role? :admin
     %p
       %small
