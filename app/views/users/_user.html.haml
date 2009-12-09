@@ -14,7 +14,6 @@
     = f.label :password_confirmation, "Confirmer le mot de passe"
     = f.password_field :password_confirmation
   %h3 Roles
-  :erb
-    <%= roles_checkbox %>
+  - roles_checkbox
   %br/
   = f.submit "Sauvegarder"
