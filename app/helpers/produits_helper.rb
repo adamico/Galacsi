@@ -1,5 +1,5 @@
 module ProduitsHelper
-  def validation
+  def validation_state_and_date
     haml_tag :p do
       if has_role? :guest
         if @produit.validation_date.blank?
@@ -25,26 +25,22 @@ module ProduitsHelper
     end
   end
 
-  #TODO refactor validate_actions for haml
-  def validate_actions
+  def validate_actions_buttons
     if @produit.state == "brouillon" && permitted_to?(:initialiser)
-      html = "<p>"
-      html << link_to("Initialiser", initialiser_produit_path(@produit), :method => :put)
-      html << "</p>"
-      html
+      haml_tag :p do
+        haml_concat(link_to("Initialiser", initialiser_produit_path(@produit), :method => :put))
+      end#p
     elsif (@produit.state == "a_valider" || @produit.state == "en_attente") && permitted_to?(:valider, @produit)
-      html = "<p>"
-      html << link_to("Valider", valider_produit_path(@produit), :method => :put)
-      html << "</p>"
-      html
+      haml_tag :p do
+        haml_concat(link_to("Valider", valider_produit_path(@produit), :method => :put))
+      end#p
     elsif @produit.state == "valide" && permitted_to?(:invalider, @produit)
-      html = "<p>"
-      html << link_to("Mettre à jour", maj_date_produit_path(@produit), :method => :put) unless @produit.validation_date == Time.now.to_date
-      html << "</p>"
-      html << "<p>"
-      html << link_to("Invalider", invalider_produit_path(@produit), :method => :put)
-      html << "</p>"
-      html
+      haml_tag :p do
+        haml_concat(link_to("Mettre à jour", maj_date_produit_path(@produit), :method => :put)) unless @produit.validation_date == Time.now.to_date
+      end
+      haml_tag :p do
+        haml_concat(link_to("Invalider", invalider_produit_path(@produit), :method => :put))
+      end
     end
   end
 end

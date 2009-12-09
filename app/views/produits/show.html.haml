@@ -4,7 +4,7 @@
   %strong Nom :
   = " #{@produit.name}"
 
-- validation
+- validation_state_and_date
 
 -#TODO demander à AG si elle préfère avoir ça:
   %p<
@@ -24,8 +24,7 @@
     %p= link_to "Détruire", @produit, :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :destroy, @produit
 
   #validate
-    :erb
-      <%= validate_actions %>
+    - validate_actions_buttons
 
 #nav_bar
   %p
