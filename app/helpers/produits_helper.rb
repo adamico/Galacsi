@@ -1,4 +1,12 @@
 module ProduitsHelper
+  #TODO demander à AG si elle préfère avoir ça:
+  # %p<
+  #   %strong Validation :
+  #   = " #{@produit.state.humanize}" rescue ""
+  # - if @produit.state == "valide"
+  #   %p<
+  #     %strong Date de MAJ :
+  #     = " " + l(@produit.validation_date) rescue " A renseigner"
   def validation_state_and_date
     haml_tag :p do
       if has_role? :guest
