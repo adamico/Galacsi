@@ -1,4 +1,8 @@
 class Produit < ActiveRecord::Base
+  def to_param 
+    require 'unicode'
+    "#{id}" + Unicode::normalize_KD("-"+name+"-").downcase.gsub(/[^a-z0-9\s_-]+/,'').gsub(/[\s_-]+/,'-')[0..-2] 
+  end
   attr_accessible :name, :decision_id
   belongs_to :decision
   validates_presence_of :name
