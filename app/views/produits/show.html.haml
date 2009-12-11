@@ -10,7 +10,7 @@
               %img{:src => "/images/Edit.png", :width => "32", :alt => "Modifier"}
         %td
           - if permitted_to? :destroy, @produit
-            - link_to (@produit, {:confirm => 'Etes-vous sûr ?', :method => :delete}) do
+            - link_to(@produit, {:confirm => 'Etes-vous sûr ?', :method => :delete}) do
               %img{:src => "/images/Delete.png", :width => "32", :alt => "Détruire"}
       %tr
         %td
@@ -23,6 +23,10 @@
 %p
   %strong Décision :
   = " #{@produit.decision.name}" rescue " A renseigner"
+
+.comment
+  %strong Commentaire :
+  = @produit.try(:commentaire)
 
 
 #nav_bar

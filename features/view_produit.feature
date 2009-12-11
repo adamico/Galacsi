@@ -16,8 +16,13 @@ Feature: viewing a produit
     When I walk to its page
     Then I should see "Décision"
 
-  @focus
   Scenario: show produit name as title helper
     Given a produit exists with state: "valide", name: "tartampion"
     When I go to the produit's page
     Then I should see "Tartampion" within "h1"
+
+  @focus
+  Scenario: show free text description for produit
+    Given a produit exists with state: "valide", commentaire: "blabla"
+    When I go to the produit's page
+    Then I should see "blabla" within ".comment"
