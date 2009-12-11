@@ -2,13 +2,21 @@
 
 #produit_actions
   #modify
-    %p
-      - if permitted_to? :edit, @produit
-        - link_to edit_produit_path(@produit) do
-          %img{:src => "/images/Edit.png", :width => "32", :alt => "Modifier"}
-      - if permitted_to? :destroy, @produit
-        - link_to (@produit, {:confirm => 'Etes-vous sûr ?', :method => :delete}) do
-          %img{:src => "/images/Delete.png", :width => "32", :alt => "Détruire"}
+    %table
+      %tr
+        %td
+          - if permitted_to? :edit, @produit
+            - link_to edit_produit_path(@produit) do
+              %img{:src => "/images/Edit.png", :width => "32", :alt => "Modifier"}
+        %td
+          - if permitted_to? :destroy, @produit
+            - link_to (@produit, {:confirm => 'Etes-vous sûr ?', :method => :delete}) do
+              %img{:src => "/images/Delete.png", :width => "32", :alt => "Détruire"}
+      %tr
+        %td
+          %small="Modifier" if permitted_to? :edit, @produit
+        %td
+          %small="Détruire" if permitted_to? :destroy, @produit
 
 - validation_state_and_actions
 
