@@ -32,7 +32,19 @@ Feature: admin can create and modify users and roles
       | valideur  |
       | admin     |
 
-@admin @edit
+@admin @edit @valider
+  Scenario: change user role
+    Given a user exists with username: "test", email: "test@test.com"
+      And I am logged in as a admin
+    When I go to the user's edit page
+      And I fill in the following:
+        | nom d'utilisateur         | testino |
+        | changer le mot de passe   | test    |
+        | confirmer le mot de passe | test    |
+      And I press "Sauvegarder"
+    Then a user should exist with username: "testino", email: "test@test.com"
+
+@admin @edit @valider
   Scenario: edit users profiles
     Given a user exists with username: "test", email: "test@test.com"
       And I am logged in as a admin

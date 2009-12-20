@@ -4,7 +4,7 @@
   - @users.each do |u|
     %tr
       %td= u.username
-      %td (#{u.role_names})
+      %td= u.role
       %td= link_to "Modifier", edit_user_path(u)
       %td= link_to "Détruire", u, :confirm => 'Etes-vous sûrs ?', :method => :delete if permitted_to? :destroy, u
 %p= link_to "Nouvel utilisateur", new_user_path

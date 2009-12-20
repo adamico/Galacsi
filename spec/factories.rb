@@ -15,12 +15,5 @@ Factory.define(:user) do |u|
   u.email { |a| "#{a.username}@example.com".downcase }
   u.password "secret"
   u.password_confirmation { |user| user.password }
-  u.roles {|roles| [roles.association(:role)]}
+  u.role "contributeur"
 end
-
-
-
-Factory.define(:role) do |r|
-  r.name "contributeur"
-end
-
