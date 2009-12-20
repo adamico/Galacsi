@@ -1,3 +1,4 @@
+# encoding: utf-8
 When /^I log in as a user in the (.*) role$/ do |role|
   @user = Factory(:user,
                  :username => "user",
