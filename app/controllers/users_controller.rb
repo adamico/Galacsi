@@ -1,3 +1,4 @@
+# encoding: utf-8
 class UsersController < ApplicationController
   filter_access_to :all
   filter_access_to :edit, :update, :attribute_check => true
