@@ -14,8 +14,7 @@ authorization do
   end
 
   role :contributeur do
-    has_permission_on :produits, :to => :create
-    has_permission_on :produits, :to => :read
+    has_permission_on :produits, :to => [:create, :read]
     has_permission_on :produits, :to => :update do
       if_attribute :state => ["brouillon", "a_valider"]
     end

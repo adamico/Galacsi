@@ -34,7 +34,7 @@ Feature: admin can create and modify users and roles
 
 @admin @edit @valider
   Scenario: change user role
-    Given a user exists with username: "test", email: "test@test.com"
+    Given a user exists
       And I am logged in as a admin
     When I go to the user's edit page
       And I fill in the following:

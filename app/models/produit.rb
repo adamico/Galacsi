@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: produits
+#
+#  id              :integer         not null, primary key
+#  name            :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  state           :string(255)
+#  decision_id     :integer
+#  validation_date :date
+#  commentaire     :text
+#
+
 class Produit < ActiveRecord::Base
   # pretty urls prefixed by id-
   def to_param 
@@ -33,3 +47,4 @@ class Produit < ActiveRecord::Base
   end
 
 end
+
