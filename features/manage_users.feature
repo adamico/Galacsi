@@ -44,7 +44,7 @@ Feature: admin can create and modify users and roles
       And I press "Sauvegarder"
     Then a user should exist with username: "testino", email: "test@test.com"
 
-  Scenario: list user roles choices
+  Scenario: list user roles choices for admin
     Given I am logged in as a admin
       And a user exists
     When I go to the user's edit page
