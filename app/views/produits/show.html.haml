@@ -24,9 +24,10 @@
   %strong Décision :
   = " #{@produit.decision.name}" rescue " A renseigner"
 
-.comment
-  %strong Commentaire :
-  = @produit.try(:commentaire)
+- if permitted_to?(:initialiser, :produits)
+  .comment
+    %strong Commentaire :
+    = @produit.try(:commentaire)
 
 
 #nav_bar
