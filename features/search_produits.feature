@@ -14,7 +14,7 @@ Feature: search for produits by multiple criteria
       | castorama    | brouillon  |
       | blablabla    | en_attente |
 
-@guest @focus
+@guest
   Scenario Outline: guests search produits by name
     When I go to the homepage
       And I fill in "search[name_like]" with "<pattern>"

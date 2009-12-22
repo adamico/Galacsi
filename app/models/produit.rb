@@ -13,12 +13,6 @@
 #
 
 class Produit < ActiveRecord::Base
-  # pretty urls prefixed by id-
-  require 'unicode_utils'
-  def to_param 
-    require 'unicode_utils/nfkd'
-    "#{id}" + UnicodeUtils.nfkd("-"+name+"-").downcase.gsub(/[^a-z0-9\s_-]+/,'').gsub(/[\s_-]+/,'-')[0..-2] 
-  end
 
   attr_accessible :name, :decision_id, :commentaire
   belongs_to :decision
