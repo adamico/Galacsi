@@ -13,7 +13,9 @@
   %li
     = f.label :password_confirmation, "Confirmer le mot de passe"
     = f.password_field :password_confirmation
-  %h3 Roles
-  - roles_checkbox
+  %li
+    = f.label :role, "Role : "
+    - roles = has_role?(:admin) ? User::ROLES : User::ROLES[1..-1]
+    = f.collection_select :role, roles, :to_s, :humanize
   %br/
   = f.submit "Sauvegarder"

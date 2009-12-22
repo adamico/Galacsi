@@ -1,18 +1,25 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                :integer         not null, primary key
+#  username          :string(255)
+#  email             :string(255)
+#  crypted_password  :string(255)
+#  password_salt     :string(255)
+#  persistence_token :string(255)
+#  created_at        :datetime
+#  updated_at        :datetime
+#  role              :string(255)
+#
+
 class User < ActiveRecord::Base
   acts_as_authentic
-  has_many :assignments
-  has_many :roles, :through => :assignments
+
+  ROLES = %w[admin valideur contributeur]
 
   def role_symbols
-    roles.map do |role|
-      role.name.underscore.to_sym
-    end
-  end
-
-  def role_names
-    names = roles.map do |role|
-      role.name
-    end
-    names.to_sentence
+    [role.to_sym]
   end
 end
+

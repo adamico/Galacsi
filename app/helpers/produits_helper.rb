@@ -1,4 +1,4 @@
-# encoding:utf-8
+# encoding: utf-8
 module ProduitsHelper
   #TODO demander à AG si elle préfère avoir ça:
   # %p<

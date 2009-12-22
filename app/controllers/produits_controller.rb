@@ -1,4 +1,4 @@
-# encoding:utf-8
+# encoding: utf-8
 class ProduitsController < ApplicationController
   filter_resource_access
   filter_resource_access :additional_collection => { :search => :index }

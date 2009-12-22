@@ -1,11 +1,10 @@
-# encoding:utf-8
+# encoding: utf-8
 When /^I log in as a user in the (.*) role$/ do |role|
   @user = Factory(:user,
                  :username => "user",
                  :password => "password",
-                 :password_confirmation => "password")
-  @role = Factory(:role, :name => role)
-  @user.roles << @role
+                 :password_confirmation => "password",
+                 :role => role)
   visit login_url
   fill_in "Utilisateur", :with => "user"
   fill_in "Mot de passe", :with => "password"

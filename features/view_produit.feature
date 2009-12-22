@@ -11,18 +11,22 @@ Feature: viewing a produit
       And I should see when it's been updated last
       But I should not see "MAJ le"
 
-  Scenario: show decision
-    Given I have a validated produit
-    When I walk to its page
-    Then I should see "Décision"
-
   Scenario: show produit name as title helper
     Given a produit exists with state: "valide", name: "tartampion"
     When I go to the produit's page
     Then I should see "Tartampion" within "h1"
 
-  @focus
-  Scenario: show free text description for produit
+  Scenario: show brief intro for produit
+
+  Scenario: show detailed decision for produit
+
+  Scenario: show free text description for produit if non guest
     Given a produit exists with state: "valide", commentaire: "blabla"
+      And I am logged in as a contributeur
     When I go to the produit's page
     Then I should see "blabla" within ".comment"
+
+  Scenario: hide commentaire field for guest users
+    Given a produit exists with state: "valide", commentaire: "blabla"
+    When I go to the produit's page
+    Then I should not see "Commentaire"
