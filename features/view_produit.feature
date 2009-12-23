@@ -1,3 +1,4 @@
+@focus
 @produits @guest
 Feature: viewing a produit
   In order to get correct info on drugs use during breastfeeding
@@ -30,3 +31,16 @@ Feature: viewing a produit
     Given a produit exists with state: "valide", commentaire: "blabla"
     When I go to the produit's page
     Then I should not see "Commentaire"
+
+  Scenario: add relationships to produits
+    Given the following produits exist:
+      | name | state |
+      | pr1  | valide|
+      | pr2  | valide|
+      | pr3  | valide|
+      | pr4  | valide|
+    When I go to the first produit's edit page
+      And I select "pr2" from "Relation #1"
+      And I press "Sauvegarder"
+    Then I should see "Voir aussi : "
+      And I should see "produit2"
