@@ -12,30 +12,30 @@ def login
   click_button "Se connecter"
 end
 
-When /user authentication page$/ do
+When(/user authentication page$/) do
   visit new_user_session_url
 end
 
-When /enter the username "(.*)"$/ do |name|
+When(/enter the username "(.*)"$/) do |name|
   Then "I fill in \"Utilisateur\" with \"#{name}\""
 end
 
-When /enter the password "(.*)"$/ do |password|
+When(/enter the password "(.*)"$/) do |password|
   Then "I fill in \"Mot de passe\" with \"#{password}\""
 end
 
-When /press the authenticate button$/ do
+When(/press the authenticate button$/) do
   Then "I press \"Se connecter\""
 end
 
-When /see an authentication success message$/ do
+When(/see an authentication success message$/) do
   have_selector("#authenticated_session_header")
 end
 
-When /^I login$/ do
+When(/^I login$/) do
   login
 end
 
-When /^I am logged in$/ do
+When(/^I am logged in$/) do
   login
 end

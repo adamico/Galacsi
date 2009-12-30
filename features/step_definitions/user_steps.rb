@@ -1,13 +1,9 @@
 # encoding: utf-8
 When(/^I log in as a user in the (.*) role$/) do |role|
-  @user = Factory(:user,
-                 :username => "user",
-                 :password => "password",
-                 :password_confirmation => "password",
-                 :role => role)
+  a_user = Factory(:user, :role => role.to_s)
   visit login_url
-  fill_in "Utilisateur", :with => "user"
-  fill_in "Mot de passe", :with => "password"
+  fill_in "Utilisateur", :with => a_user.username
+  fill_in "Mot de passe", :with => a_user.password
   click_button "Se connecter"
   response.body.should =~ /succès/m
 end

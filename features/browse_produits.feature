@@ -17,8 +17,8 @@ Feature: browse produits according to permissions
     Then I should see "Aucun produit n'a été trouvé"
 
   Scenario Outline: show produits list according to user role permissions
-    When I am logged in as a <role>
-      And I go to the produits page
+    Given I am logged in as a <role>
+    When I go to the produits page
     Then I should see "Produits (<count>)"
     Scenarios:
       | role          | count |
