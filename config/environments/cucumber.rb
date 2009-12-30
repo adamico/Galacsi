@@ -27,3 +27,4 @@ config.gem 'webrat',           :lib => false, :version => '>=0.6.0' unless File.
 config.gem 'rspec',            :lib => false, :version => '>=1.2.9' unless File.directory?(File.join(Rails.root, 'vendor/plugins/rspec'))
 config.gem 'rspec-rails',      :lib => false, :version => '>=1.2.9' unless File.directory?(File.join(Rails.root, 'vendor/plugins/rspec-rails'))
 
+config.gem 'spork',            :lib => false, :version => '>=0.7.4' unless File.directory?(File.join(Rails.root, 'vendor/plugins/spork'))

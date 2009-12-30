@@ -1,5 +1,5 @@
 # encoding: utf-8
-When /^I log in as a user in the (.*) role$/ do |role|
+When(/^I log in as a user in the (.*) role$/) do |role|
   @user = Factory(:user,
                  :username => "user",
                  :password => "password",
@@ -12,16 +12,10 @@ When /^I log in as a user in the (.*) role$/ do |role|
   response.body.should =~ /succès/m
 end
 
-When /^I walk to the produits page$/ do
-  with_user @role do
-    visit produits_url
-  end
-end
-
-When /logged in as an? (.*)$/ do |role|
+When(/logged in as an? (.*)$/) do |role|
   Then "I log in as a user in the #{role} role"
 end
 
-When /^an (.*)$/ do |role|
+When(/^an (.*)$/) do |role|
   Then "I log in as a user in the #{role} role"
 end
