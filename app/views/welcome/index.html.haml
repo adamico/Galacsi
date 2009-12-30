@@ -7,5 +7,5 @@
 
 -#TODO move these links to a nav_bar partial
 #nav_bar
-  %p= link_to "Produits", produits_path
-  %p= link_to "Utilisateurs", users_path if permitted_to? :read, :users
+  %p= link_to "Liste des produits", produits_path
+  %p= link_to "Liste des utilisateurs", users_path if permitted_to? :read, :users

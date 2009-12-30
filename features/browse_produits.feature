@@ -11,14 +11,9 @@ Feature: browse produits according to permissions
     | vali      | valide    |
     | enat      | en_attente|
 
-  Scenario: hide produits list link for guest users
-    When I go to the produits page
-    Then I should not see "Produits"
-
   Scenario: hide validation field for guest users
     When I go to the produits page
     Then I should not see "Validation"
       And I should not see "valide"
 
   Scenario: browse produits
-    
