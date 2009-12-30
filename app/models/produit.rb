@@ -16,6 +16,9 @@ class Produit < ActiveRecord::Base
 
   attr_accessible :name, :decision_id, :commentaire
   belongs_to :decision
+  has_many :relationships
+  has_many :relations, :through => :relationships
+  
   validates_presence_of :name
   validates_uniqueness_of :name
 

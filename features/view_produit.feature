@@ -15,10 +15,6 @@ Feature: viewing a produit
     When I go to the produit's page
     Then I should see "Tartampion" within "h1"
 
-  Scenario: show brief intro for produit
-
-  Scenario: show detailed decision for produit
-
   Scenario: show free text description for produit if non guest
     Given a produit exists with state: "valide", commentaire: "blabla"
       And I am logged in as a contributeur
@@ -31,14 +27,7 @@ Feature: viewing a produit
     Then I should not see "Commentaire"
 
   Scenario: add relationships to produits
-    Given the following produits exist:
-      | name | state |
-      | pr1  | valide|
-      | pr2  | valide|
-      | pr3  | valide|
-      | pr4  | valide|
-    When I go to the first produit's edit page
-      And I select "pr2" from "Relation #1"
-      And I press "Sauvegarder"
-    Then I should see "Voir aussi : "
-      And I should see "produit2"
+
+  Scenario: show brief intro for produit
+
+  Scenario: show detailed decision for produit

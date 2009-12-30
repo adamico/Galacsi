@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :produits, :member => { :valider => :put }
   map.resources :produits, :member => { :invalider => :put }
   map.resources :produits, :member => { :maj_date => :put }
+  map.resources :relationships
 
   map.root :controller => 'welcome'
 

@@ -3,7 +3,5 @@
     = f.input :name
     = f.input :decision
     = f.input :commentaire
-  -#TODO create join table relationships and associations
-  - f.inputs :name => 'Relation #%i', :for => :links, :as => :select
   - f.buttons do
     = f.commit_button "Sauvegarder"
