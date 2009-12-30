@@ -11,25 +11,14 @@ Feature: browse produits according to permissions
     | vali      | valide    |
     | enat      | en_attente|
 
-  Scenario: show correct message if no produits found
-    Given I don't have any produits
+  Scenario: hide produits list link for guest users
     When I go to the produits page
-    Then I should see "Aucun produit n'a été trouvé"
-
-  Scenario Outline: show produits list according to user role permissions
-    Given I am logged in as a <role>
-    When I go to the produits page
-    Then I should see "Produits (<count>)"
-    Scenarios:
-      | role          | count |
-      | valideur      | 4     |
-      | contributeur  | 4     |
-
-  Scenario: show only validated produits as guest
-    When I go to the produits page
-    Then I should see "Produits (1)"
+    Then I should not see "Produits"
 
   Scenario: hide validation field for guest users
     When I go to the produits page
     Then I should not see "Validation"
       And I should not see "valide"
+
+  Scenario: browse produits
+    
