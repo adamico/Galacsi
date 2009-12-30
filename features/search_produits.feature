@@ -1,4 +1,3 @@
-@search @produits
 Feature: search for produits by multiple criteria
   In order to know if drugs may be taken while breastfeeding
   As a user
@@ -14,7 +13,6 @@ Feature: search for produits by multiple criteria
       | castorama    | brouillon  |
       | blablabla    | en_attente |
 
-@guest
   Scenario Outline: guests search produits by name
     When I go to the homepage
       And I fill in "search[name_like]" with "<pattern>"
@@ -26,17 +24,3 @@ Feature: search for produits by multiple criteria
       | lam     | 1 résultat      |
       | tar     | Aucun résultat. |
       | cas     | Aucun résultat. |
-
-@contributeur @valideur
-  Scenario Outline: authenticated users search produits by name
-    Given I am logged in as a <role>
-    When I go to the homepage
-      And I fill in "search[name_like]" with "<pattern>"
-      And I press "Rechercher"
-    Then I should see "<count_result>"
-    Scenarios:
-      | role          | pattern | count_result |
-      | contributeur  | tar     | 1 résultat   |
-      | valideur      | tar     | 1 résultat   |
-      | contributeur  | cas     | 1 résultat   |
-      | valideur      | cas     | 1 résultat   |

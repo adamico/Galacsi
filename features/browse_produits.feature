@@ -1,4 +1,3 @@
-@list @produits
 Feature: browse produits according to permissions
   In order to show correct information for drug use during breastfeeding
   As a user
@@ -26,12 +25,10 @@ Feature: browse produits according to permissions
       | valideur      | 4     |
       | contributeur  | 4     |
 
-@guest
   Scenario: show only validated produits as guest
     When I go to the produits page
     Then I should see "Produits (1)"
 
-@guest
   Scenario: hide validation field for guest users
     When I go to the produits page
     Then I should not see "Validation"

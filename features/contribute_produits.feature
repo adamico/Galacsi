@@ -1,4 +1,3 @@
-@contrib @produits
 Feature: contribute produits
   In order to assess drugs safety during breastfeeding
   As an authorized user
@@ -7,7 +6,6 @@ Feature: contribute produits
   Background:
     Given I am logged in as a contributeur
 
-@create
   Scenario: new produit has state "brouillon" by default
     When I go to the produits page
       And I follow "Nouveau produit"
@@ -15,7 +13,6 @@ Feature: contribute produits
       And I press "Sauvegarder"
     Then a produit should exist with state: "brouillon"
 
-@show
   Scenario Outline: show edit link unless "valide" or "gele"
     Given a produit exists with state: "<state>"
     When I go to the produit's page
@@ -27,7 +24,6 @@ Feature: contribute produits
       | valide    | not see |
       | gele      | not see |
 
-@edit
   Scenario: update a produit
     Given a produit exists with state: "brouillon"
     When I go to the produit's edit page
@@ -35,13 +31,11 @@ Feature: contribute produits
       And I press "Sauvegarder"
     Then a produit should exist with name: "lamotrigina"
 
-@validate
   Scenario: push "brouillon" to "à_valider"
     Given a produit exists with state: "brouillon"
     When I go to the produit's page
     Then I should see "Initialiser"
 
-@forbidden
   Scenario Outline: contributeurs shouldn't see "valider" or "geler" link
     Given a produit exists with state: "<state>"
     When I go to the produit's page
