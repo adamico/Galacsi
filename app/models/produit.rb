@@ -45,4 +45,3 @@ class Produit < ActiveRecord::Base
   end
 
 end
-
