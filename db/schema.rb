@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091230162129) do
+ActiveRecord::Schema.define(:version => 20100208161127) do
 
   create_table "decisions", :force => true do |t|
     t.string   "name"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20091230162129) do
     t.datetime "updated_at"
   end
 
-  create_table "produits", :force => true do |t|
+  create_table "fiches", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -28,11 +28,17 @@ ActiveRecord::Schema.define(:version => 20091230162129) do
     t.text     "commentaire"
   end
 
-  add_index "produits", ["decision_id"], :name => "index_produits_on_decision_id"
+  add_index "fiches", ["decision_id"], :name => "index_produits_on_decision_id"
 
   create_table "relationships", :force => true do |t|
-    t.integer  "produit_id"
+    t.integer  "fiche_id"
     t.integer  "relation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "specialites", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

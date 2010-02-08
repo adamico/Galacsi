@@ -1,0 +1,12 @@
+- title "Specialite"
+
+%p
+  %strong Name:
+  =h @specialite.name
+
+%p
+  = link_to "Edit", edit_specialite_path(@specialite)
+  |
+  = link_to "Destroy", @specialite, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", specialites_path
