@@ -1,10 +1,10 @@
-Feature: search for produits by multiple criteria
+Feature: search for fiches by multiple criteria
   In order to know if drugs may be taken while breastfeeding
   As a user
-  I want to search for produits by different criteria
+  I want to search for fiches by different criteria
 
   Background:
-    Given the following produits exist
+    Given the following fiches exist
       | name         | state      |
       | lamotrigine  | valide     |
       | azathioprine | valide     |
@@ -13,7 +13,7 @@ Feature: search for produits by multiple criteria
       | castorama    | brouillon  |
       | blablabla    | en_attente |
 
-  Scenario Outline: guests search produits by name
+  Scenario Outline: guests search fiches by name
     When I go to the homepage
       And I fill in "search[name_like]" with "<pattern>"
       And I press "Rechercher"

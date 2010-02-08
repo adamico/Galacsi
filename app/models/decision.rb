@@ -10,6 +10,6 @@
 #
 
 class Decision < ActiveRecord::Base
-  has_many :produits
+  has_many :fiches
 end
 

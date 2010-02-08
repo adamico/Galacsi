@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: produits
+# Table name: fiches
 #
 #  id              :integer         not null, primary key
 #  name            :string(255)
@@ -14,9 +14,9 @@
 
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe Produit do
+describe Fiche do
   it "should be valid" do
-    Produit.new.should be_valid
+    Fiche.new.should be_valid
   end
 end
 

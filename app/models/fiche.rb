@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: produits
+# Table name: fiches
 #
 #  id              :integer         not null, primary key
 #  name            :string(255)
@@ -12,7 +12,7 @@
 #  commentaire     :text
 #
 
-class Produit < ActiveRecord::Base
+class Fiche < ActiveRecord::Base
 
   attr_accessible :name, :decision_id, :commentaire
   belongs_to :decision

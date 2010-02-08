@@ -1,10 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :users
-  map.resources :produits, :collection => { :search => :get }
-  map.resources :produits, :member => { :initialiser => :put }
-  map.resources :produits, :member => { :valider => :put }
-  map.resources :produits, :member => { :invalider => :put }
-  map.resources :produits, :member => { :maj_date => :put }
+  map.resources :fiches, :collection => { :search => :get }
+  map.resources :fiches, :member => { :initialiser => :put }
+  map.resources :fiches, :member => { :valider => :put }
+  map.resources :fiches, :member => { :invalider => :put }
+  map.resources :fiches, :member => { :maj_date => :put }
   map.resources :relationships
 
   map.root :controller => 'welcome'

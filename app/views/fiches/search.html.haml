@@ -1,0 +1,18 @@
+- title "Recherche de fiches"
+
+- if @fiches.empty?
+  %h2 Aucun résultat.
+- else
+  %h2= pluralize(@fiches.count, 'résultat')
+  - if has_role? :admin
+    %p
+      %small
+        = "Paramètres de recherche : "
+        = params[:search].to_param
+
+  %table
+    %tr
+      %th Nom
+    = render :partial => @fiches
+%p= link_to "Nouvelle fiche", new_fiche_path if permitted_to? :new, @fiche
+%p= link_to "Accueil", root_path

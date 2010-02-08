@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 include Authorization::TestHelper
 include Authorization::AuthorizationHelper
 
-describe ProduitsHelper do
+describe FichesHelper do
   
   before(:each) do
     helper.extend Haml
@@ -12,10 +12,10 @@ describe ProduitsHelper do
     UserSession.create Factory(:user)
   end
 
-  it "should display produit's validation date" do
+  it "should display fiche's validation date" do
     pending
-    @produit = Factory(:produit)
-    @produit.validation_date = Time.now.to_date
+    @fiche = Factory(:fiche)
+    @fiche.validation_date = Time.now.to_date
     helper.capture_haml{
       helper.validation
     }.should =~ /<p><small>(Informations validées il y a <em>environ 16 heures<\/em>)<\/small><\/p>/

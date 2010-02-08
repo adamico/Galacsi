@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
  
-describe ProduitsController do
+describe FichesController do
   fixtures :all
   integrate_views
   
@@ -10,7 +10,7 @@ describe ProduitsController do
   end
   
   it "show action should render show template" do
-    get :show, :id => Produit.first
+    get :show, :id => Fiche.first
     response.should render_template(:show)
   end
   
@@ -20,38 +20,38 @@ describe ProduitsController do
   end
   
   it "create action should render new template when model is invalid" do
-    Produit.any_instance.stubs(:valid?).returns(false)
+    Fiche.any_instance.stubs(:valid?).returns(false)
     post :create
     response.should render_template(:new)
   end
   
   it "create action should redirect when model is valid" do
-    Produit.any_instance.stubs(:valid?).returns(true)
+    Fiche.any_instance.stubs(:valid?).returns(true)
     post :create
-    response.should redirect_to(produit_url(assigns[:produit]))
+    response.should redirect_to(fiche_url(assigns[:fiche]))
   end
   
   it "edit action should render edit template" do
-    get :edit, :id => Produit.first
+    get :edit, :id => Fiche.first
     response.should render_template(:edit)
   end
   
   it "update action should render edit template when model is invalid" do
-    Produit.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => Produit.first
+    Fiche.any_instance.stubs(:valid?).returns(false)
+    put :update, :id => Fiche.first
     response.should render_template(:edit)
   end
   
   it "update action should redirect when model is valid" do
-    Produit.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => Produit.first
-    response.should redirect_to(produit_url(assigns[:produit]))
+    Fiche.any_instance.stubs(:valid?).returns(true)
+    put :update, :id => Fiche.first
+    response.should redirect_to(fiche_url(assigns[:fiche]))
   end
   
   it "destroy action should destroy model and redirect to index action" do
-    produit = Produit.first
-    delete :destroy, :id => produit
-    response.should redirect_to(produits_url)
-    Produit.exists?(produit.id).should be_false
+    fiche = Fiche.first
+    delete :destroy, :id => fiche
+    response.should redirect_to(fiches_url)
+    Fiche.exists?(fiche.id).should be_false
   end
 end

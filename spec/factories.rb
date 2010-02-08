@@ -1,5 +1,5 @@
-Factory.define :produit do |p|
-  p.sequence(:name) {|n| "produit#{n}" }
+Factory.define :fiche do |p|
+  p.sequence(:name) {|n| "fiche#{n}" }
   p.state 'brouillon'
   p.validation_date "#{Time.now.to_date}"
   p.commentaire 'blabla'

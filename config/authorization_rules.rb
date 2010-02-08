@@ -1,12 +1,12 @@
 authorization do
   role :admin do
-    has_permission_on [:produits, :users], :to => :manage
+    has_permission_on [:fiches, :users], :to => :manage
     has_permission_on :authorization_rules, :to => :read
     has_permission_on :authorization_usages, :to => :read
   end
 
   role :guest do
-    has_permission_on :produits, :to => :read do
+    has_permission_on :fiches, :to => :read do
       if_attribute :state => "valide"
     end
     has_permission_on :authorization_rules, :to => :read
@@ -14,22 +14,22 @@ authorization do
   end
 
   role :contributeur do
-    has_permission_on :produits, :to => [:create, :read]
-    has_permission_on :produits, :to => :update do
+    has_permission_on :fiches, :to => [:create, :read]
+    has_permission_on :fiches, :to => :update do
       if_attribute :state => ["brouillon", "a_valider"]
     end
-    has_permission_on :produits, :to => :initialiser do
+    has_permission_on :fiches, :to => :initialiser do
       if_attribute :state => "brouillon"
     end
   end
 
   role :valideur do
     includes :contributeur
-    has_permission_on :produits, :to => [:update, :delete]
-    has_permission_on :produits, :to => :valider do
+    has_permission_on :fiches, :to => [:update, :delete]
+    has_permission_on :fiches, :to => :valider do
       if_attribute :state => ["en_attente", "a_valider"]
     end
-    has_permission_on :produits, :to => [:invalider, :maj_date] do
+    has_permission_on :fiches, :to => [:invalider, :maj_date] do
       if_attribute :state => "valide"
     end
     has_permission_on :users, :to => [:create, :read, :update]

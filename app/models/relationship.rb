@@ -1,6 +1,6 @@
 class Relationship < ActiveRecord::Base
-  belongs_to :produit
-  belongs_to :relation, :class_name => 'Produit'
+  belongs_to :fiche
+  belongs_to :relation, :class_name => 'Fiche'
 end
 
 

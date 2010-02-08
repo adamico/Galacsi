@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: produits
+# Table name: fiches
 #
 #  id              :integer         not null, primary key
 #  name            :string(255)
