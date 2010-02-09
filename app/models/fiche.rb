@@ -13,7 +13,6 @@
 #
 
 class Fiche < ActiveRecord::Base
-
   attr_accessible :name, :decision_id, :commentaire
   belongs_to :decision
   has_many :relationships
