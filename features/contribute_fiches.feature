@@ -8,7 +8,7 @@ Feature: contribute fiches
 
   Scenario: new fiche has state "brouillon" by default
     When I go to the fiches page
-      And I follow "Nouveau fiche"
+      And I follow "Nouvelle fiche"
       And I fill in "nom" with "lamotrigine"
       And I press "Sauvegarder"
     Then a fiche should exist with state: "brouillon"

@@ -139,7 +139,7 @@ fr:
 
   formtastic:
     labels:
-      produit:
+      fiche:
         name: "Nom"
         state: "Validation"
         decision: "Décision"
