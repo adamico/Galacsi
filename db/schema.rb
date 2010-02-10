@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100208161127) do
+ActiveRecord::Schema.define(:version => 20100210160821) do
+
+  create_table "dcis", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "decisions", :force => true do |t|
     t.string   "name"
@@ -26,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20100208161127) do
     t.integer  "decision_id"
     t.date     "validation_date"
     t.text     "commentaire"
+    t.text     "distinction"
+    t.text     "distinction_type"
   end
 
   add_index "fiches", ["decision_id"], :name => "index_produits_on_decision_id"

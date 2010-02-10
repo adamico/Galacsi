@@ -1,23 +1,11 @@
-# == Schema Information
-#
-# Table name: fiches
-#
-#  id              :integer         not null, primary key
-#  name            :string(255)
-#  created_at      :datetime
-#  updated_at      :datetime
-#  state           :string(255)
-#  decision_id     :integer
-#  validation_date :date
-#  commentaire     :text
-#
-
+#encoding: utf-8
 class Fiche < ActiveRecord::Base
-  attr_accessible :name, :decision_id, :commentaire
+  attr_accessible :name, :distinction, :distinction_type, :decision_id, :commentaire
   belongs_to :decision
   has_many :relationships
   has_many :relations, :through => :relationships
-  
+
+  DISTINCTIONS = %w[Indication Voie Dosage]
   validates_presence_of :name
   validates_uniqueness_of :name
 
@@ -44,3 +32,20 @@ class Fiche < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: fiches
+#
+#  id               :integer         not null, primary key
+#  name             :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  state            :string(255)
+#  decision_id      :integer
+#  validation_date  :date
+#  commentaire      :text
+#  distinction      :text
+#  distinction_type :text
+#
+

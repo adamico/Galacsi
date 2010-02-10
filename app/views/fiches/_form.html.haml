@@ -1,6 +1,10 @@
+-#encoding: utf-8
 - semantic_form_for @fiche do |f|
   - f.inputs do
-    = f.input :name
+    %li.select.optional#fiche_decision_type_input
+      = f.label :distinction_type, "Sous-type fiche"
+      = f.select(:distinction_type, Fiche::DISTINCTIONS, {:include_blank => true})
+      = f.text_field :distinction
     = f.input :decision
     = f.input :commentaire
   - f.buttons do

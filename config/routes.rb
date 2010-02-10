@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :dcis
+
   map.resources :users
   map.resources :fiches, :collection => { :search => :get }
   map.resources :fiches, :member => { :initialiser => :put }

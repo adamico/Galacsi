@@ -1,9 +1,13 @@
 Factory.define :fiche do |p|
-  p.sequence(:name) {|n| "fiche#{n}" }
   p.state 'brouillon'
   p.validation_date "#{Time.now.to_date}"
   p.commentaire 'blabla'
   p.association :decision
+  p.association :dci
+end
+
+Factory.define :dci do |f|
+  f.sequence(:name) {|n| "dci#{n}" }
 end
 
 Factory.define :decision do |d|

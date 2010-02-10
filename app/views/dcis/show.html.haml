@@ -1,0 +1,15 @@
+- title "Dci"
+
+%p
+  %strong Name:
+  =h @dci.name
+
+%p
+  = link_to "Nouvelle Fiche", new_fiche_path(@fiche)
+  
+%p
+  = link_to "Edit", edit_dci_path(@dci)
+  |
+  = link_to "Destroy", @dci, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", dcis_path
