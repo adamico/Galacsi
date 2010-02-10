@@ -36,12 +36,12 @@ Feature: contribute fiches
     When I go to the fiche's page
     Then I should see "Initialiser"
 
-  Scenario Outline: contributeurs shouldn't see "valider" or "geler" link
+  Scenario Outline: contributeurs shouldn't see "valider" or "invalider" link
     Given a fiche exists with state: "<state>"
     When I go to the fiche's page
     Then I should not see "<action>"
     Examples:
       | state     | action  |
       | a_valider | Valider |
-      | valide    | Geler   |
-      | gele      | Valider |
+      | valide    | Invalider   |
+      | en_attente      | Valider |
