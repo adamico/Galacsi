@@ -2,7 +2,7 @@ class Dci < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
   
-  has_many :fiches
+  has_many :fiches, :dependent => :destroy
   has_many :compositions, :dependent => :destroy
   has_many :specialites, :through => :compositions
 

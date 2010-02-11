@@ -1,13 +1,11 @@
 - title "Recherche de produits"
 
 - if @dcis.empty?
-  %h2 Aucun résultat.
+  %h2= "Aucun résultat pour #{params[:search].fetch(:name_like)}."
+  %p= link_to "Demander la création de cette DCI."
 
 - else
   %h2= pluralize(@dcis.count, 'résultat')
-  -if has_role? :admin
-    %p
-      %small="Paramètres de recherche : #{params[:search].to_param}"
   - @dcis.each do |dci|
     %p= link_to h(dci.name), dci
 %hr

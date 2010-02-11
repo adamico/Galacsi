@@ -1,10 +1,14 @@
-- title "#{@dci.name.humanize} (#{@dci.commercial_names})"
+- if !@dci.commercial_names.blank?
+  - title "#{@dci.name.humanize} (#{@dci.commercial_names})"
+- else
+  - title "#{@dci.name.humanize}"
 
 - if !@dci.fiches.blank?
   #fiches
     = render :partial => @dci.fiches
 - else
-  %p Pas de fiche d'évaluation pour cette dci.
+  %p Aucune fiche d'évaluation a été crée pour cette DCI.
+  %p= link_to "Demander la création d'une fiche"
 
 %p
   = link_to "Nouvelle Fiche", new_dci_fiche_path(@dci) if permitted_to? :create, @dci.fiches
