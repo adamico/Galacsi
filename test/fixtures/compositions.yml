@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  dci_id: 1
+  specialite_id: 1
+
+two:
+  dci_id: 1
+  specialite_id: 1
+
+# == Schema Information
+#
+# Table name: compositions
+#
+#  id            :integer         not null, primary key
+#  dci_id        :integer
+#  specialite_id :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

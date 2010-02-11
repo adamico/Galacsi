@@ -15,7 +15,8 @@ authorization do
   end
 
   role :contributeur do
-    has_permission_on [:dcis, :fiches], :to => [:create, :read]
+    has_permission_on :dcis, :to => [:create, :read, :update]
+    has_permission_on :fiches, :to => [:create, :read]
     has_permission_on :fiches, :to => :update do
       if_attribute :state => ["brouillon", "a_valider"]
     end

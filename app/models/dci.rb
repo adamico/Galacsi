@@ -3,6 +3,24 @@ class Dci < ActiveRecord::Base
   validates_uniqueness_of :name
   
   has_many :fiches
+  has_many :compositions, :dependent => :destroy
+  has_many :specialites, :through => :compositions
+
+  attr_writer :commercial_names
+  after_save :assign_commercial_names
+
+  def commercial_names
+    @commercial_names || specialites.map(&:name).join(', ')
+  end
+
+  private
+  def assign_commercial_names
+    if @commercial_names
+      self.specialites = @commercial_names.split(', ').map do |name|
+        Specialite.find_or_create_by_name(name)
+      end
+    end
+  end
   
 end
 

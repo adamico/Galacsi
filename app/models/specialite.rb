@@ -1,5 +1,6 @@
 class Specialite < ActiveRecord::Base
-  attr_accessible :name
+  has_many :specialites, :dependent => :destroy
+  has_many :dcis, :through => :compositions
 end
 
 # == Schema Information

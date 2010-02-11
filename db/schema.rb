@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100211094005) do
+ActiveRecord::Schema.define(:version => 20100211140758) do
+
+  create_table "compositions", :force => true do |t|
+    t.integer  "dci_id"
+    t.integer  "specialite_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "dcis", :force => true do |t|
     t.string   "name"
