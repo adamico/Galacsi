@@ -1,8 +1,8 @@
-- title "Edit Dci"
+- title "Modification de la DCI : #{@dci.name}"
 
 = render :partial => 'form'
 
 %p
-  = link_to "Show", dci_path(@dci)
+  = link_to "Annuler", dci_path(@dci)
   |
-  = link_to "View All", dcis_path
+  = link_to "Retour à la liste des DCI", dcis_path

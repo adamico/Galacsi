@@ -4,7 +4,7 @@
   - for dci in @dcis
     %tr
       %td= link_to(h(dci.name.humanize), dci)
-      %td= link_to 'Edit', edit_dci_path(dci)
-      %td= link_to 'Destroy', dci, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Modifier', edit_dci_path(dci) if permitted_to? :edit, @dci
+      %td= link_to 'Détruire', dci, :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :delete, @dci
 
-%p= link_to "New Dci", new_dci_path
+%p= link_to "Nouvelle DCI", new_dci_path if permitted_to? :new, @dci

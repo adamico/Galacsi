@@ -2,15 +2,27 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
     %title= h(yield(:title) || "Untitled")
-    = stylesheet_link_tag 'application'
+    = stylesheet_link_tag 'style'
     = stylesheet_link_tag "formtastic"
     = stylesheet_link_tag "formtastic_changes"
     = yield(:head)
   %body
-    #container
-      - flash.each do |name, msg|
-        = content_tag :div, msg, :id => "flash_#{name}"
-      - if show_title?
-        %h1=h yield(:title)
-      = yield
-    -user_navlinks
+    #header
+      %h1= link_to "GalacSI", root_path
+      #menu
+        %ul#nav
+          %li= link_to "DCI", dcis_path
+          %li= link_to "Utilisateurs", users_path if permitted_to? :read, :users
+    #content
+      #right
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}"
+        - if show_title?
+          %h1=h yield(:title)
+        = yield
+      #left
+        .box
+          -user_navlinks
+        .box
+          Design by
+          =link_to "Minimalistic Design", "http://www.minimalistic-design.net"

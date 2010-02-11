@@ -1,0 +1,14 @@
+- title "Recherche de produits"
+
+- if @dcis.empty?
+  %h2 Aucun résultat.
+
+- else
+  %h2= pluralize(@dcis.count, 'résultat')
+  -if has_role? :admin
+    %p
+      %small="Paramètres de recherche : #{params[:search].to_param}"
+  - @dcis.each do |dci|
+    %p= link_to h(dci.name), dci
+%hr
+%p= link_to "Accueil", root_path
