@@ -1,12 +1,9 @@
-- title "Dcis"
+- title "Liste des DCI"
 
 %table
-  %tr
-    %th Name
   - for dci in @dcis
     %tr
-      %td= h dci.name
-      %td= link_to 'Show', dci
+      %td= link_to(h(dci.name.humanize), dci)
       %td= link_to 'Edit', edit_dci_path(dci)
       %td= link_to 'Destroy', dci, :confirm => 'Are you sure?', :method => :delete
 

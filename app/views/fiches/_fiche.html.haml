@@ -1,5 +1,7 @@
 #fiche
+  %h2
+    = link_to "#{fiche.distinction_type} : #{fiche.distinction}", dci_fiche_path(fiche.dci, fiche) unless fiche.distinction_type.blank?
+    = "(#{fiche.state.humanize})" if permitted_to? :update, :fiches
   %p= h fiche.decision.name rescue ""
-  %p= h fiche.state.humanize rescue "" if permitted_to? :update, :fiches
   %p= link_to "Modifier", edit_dci_fiche_path(fiche.dci, fiche) if permitted_to? :edit, fiche
   %p= link_to "Détruire", [fiche.dci, fiche], :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :delete, fiche

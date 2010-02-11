@@ -1,5 +1,5 @@
 body {
-  background-color: #4B7399;
+  background-color: #003;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
@@ -89,4 +89,16 @@ div#user_nav {
   float: left;
   font-size: 0.9em;
   margin-top: 20px;
+}
+
+div#fiche {
+  background-color: #222;
+  color: white;
+  border: solid 1px black;
+  padding-left: 5px;
+  margin-bottom: 5px;
+}
+
+div#fiche a {
+  color: #00DDFF
 }

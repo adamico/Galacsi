@@ -1,5 +1,5 @@
-- title "Modification de la fiche##{@fiche.id} de #{@dci.name}"
+- title "Modification de la fiche pour #{@dci.name}"
 
 = render :partial => 'form'
 
-%p= link_to "Annuler modifications", @fiche
+%p= link_to "Retour", dci_path(@fiche.dci)
