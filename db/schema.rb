@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100210160821) do
+ActiveRecord::Schema.define(:version => 20100211094005) do
 
   create_table "dcis", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20100210160821) do
     t.text     "commentaire"
     t.text     "distinction"
     t.text     "distinction_type"
+    t.integer  "dci_id"
   end
 
   add_index "fiches", ["decision_id"], :name => "index_produits_on_decision_id"
@@ -47,20 +48,6 @@ ActiveRecord::Schema.define(:version => 20100210160821) do
 
   create_table "specialites", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "typus_users", :force => true do |t|
-    t.string   "first_name",       :default => "",    :null => false
-    t.string   "last_name",        :default => "",    :null => false
-    t.string   "role",                                :null => false
-    t.string   "email",                               :null => false
-    t.boolean  "status",           :default => false
-    t.string   "token",                               :null => false
-    t.string   "salt",                                :null => false
-    t.string   "crypted_password",                    :null => false
-    t.string   "preferences"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

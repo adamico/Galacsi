@@ -1,11 +1,12 @@
 - title "Galacsi"
 
-- form_tag search_fiches_path, :method => :get do
-  = label_tag :search, "Nom du fiche : "
-  = text_field_tag "search[name_like]", params[:search][:name_like]
-  = submit_tag "Rechercher", :name => nil
+-#
+  - form_tag search_fiches_path, :method => :get do
+    = label_tag :search, "Nom du fiche : "
+    = text_field_tag "search[name_like]", params[:search][:name_like]
+    = submit_tag "Rechercher", :name => nil
 
--#TODO move these links to a nav_bar partial
+-#TODO move to a nav_bar partial
 #nav_bar
-  %p= link_to "Liste des fiches", fiches_path
+  %p= link_to "Liste des dcis", dcis_path
   %p= link_to "Liste des utilisateurs", users_path if permitted_to? :read, :users

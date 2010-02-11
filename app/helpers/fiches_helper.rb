@@ -38,18 +38,18 @@ module FichesHelper
   def validate_actions_buttons
     if @fiche.state == "brouillon" && permitted_to?(:initialiser)
       haml_tag :span, {:class => 'val_actions'} do
-        haml_concat(link_to("Initialiser", initialiser_fiche_path(@fiche), :method => :put))
+        haml_concat(link_to("Initialiser", initialiser_dci_fiche_path(@fiche.dci, @fiche), :method => :put))
       end
     elsif (@fiche.state == "a_valider" || @fiche.state == "en_attente") && permitted_to?(:valider, @fiche)
       haml_tag :span, {:class => 'val_actions'} do
-        haml_concat(link_to("Valider", valider_fiche_path(@fiche), :method => :put))
+        haml_concat(link_to("Valider", valider_dci_fiche_path(@fiche.dci, @fiche), :method => :put))
       end
     elsif @fiche.state == "valide" && permitted_to?(:invalider, @fiche)
       haml_tag :span, {:class => 'val_actions'} do
-        haml_concat(link_to("Mettre à jour", maj_date_fiche_path(@fiche), :method => :put)) unless @fiche.validation_date == Time.now.to_date
+        haml_concat(link_to("Mettre à jour", maj_date_dci_fiche_path(@fiche.dci, @fiche), :method => :put)) unless @fiche.validation_date == Time.now.to_date
       end
       haml_tag :span, {:class => 'val_actions'} do
-        haml_concat(link_to("Invalider", invalider_fiche_path(@fiche), :method => :put))
+        haml_concat(link_to("Invalider", invalider_dci_fiche_path(@fiche.dci, @fiche), :method => :put))
       end
     end
   end

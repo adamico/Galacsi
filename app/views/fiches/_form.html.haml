@@ -1,5 +1,5 @@
 -#encoding: utf-8
-- semantic_form_for @fiche do |f|
+- semantic_form_for([@fiche.dci, @fiche]) do |f|
   - f.inputs do
     %li.select.optional#fiche_decision_type_input
       = f.label :distinction_type, "Sous-type fiche"

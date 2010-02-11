@@ -5,6 +5,7 @@ two:
   name: MyString
 
 
+
 # == Schema Information
 #
 # Table name: fiches
@@ -19,5 +20,6 @@ two:
 #  commentaire      :text
 #  distinction      :text
 #  distinction_type :text
+#  dci_id           :integer
 #
 

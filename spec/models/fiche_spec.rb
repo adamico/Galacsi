@@ -7,6 +7,7 @@ describe Fiche do
 end
 
 
+
 # == Schema Information
 #
 # Table name: fiches
@@ -21,5 +22,6 @@ end
 #  commentaire      :text
 #  distinction      :text
 #  distinction_type :text
+#  dci_id           :integer
 #
 

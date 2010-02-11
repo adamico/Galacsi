@@ -1,18 +1,21 @@
 class DcisController < ApplicationController
+  #TODO créer une action pour montrer la liste des molécules non vérifiées depuis une certaine date
+  filter_resource_access
+
   def index
-    @dcis = Dci.all
+    @dcis = Dci.with_permissions_to(:read)
   end
   
   def show
-    @dci = Dci.find(params[:id])
+    # @dci is loaded in before_filter
   end
   
   def new
-    @dci = Dci.new
+    # @dci is created in before_filter
   end
   
   def create
-    @dci = Dci.new(params[:dci])
+    # @dci is created in before_filter
     if @dci.save
       flash[:notice] = "Successfully created dci."
       redirect_to @dci
@@ -22,11 +25,11 @@ class DcisController < ApplicationController
   end
   
   def edit
-    @dci = Dci.find(params[:id])
+    # @dci is loaded in before_filter
   end
   
   def update
-    @dci = Dci.find(params[:id])
+    # @dci is loaded in before_filter
     if @dci.update_attributes(params[:dci])
       flash[:notice] = "Successfully updated dci."
       redirect_to @dci
@@ -36,9 +39,12 @@ class DcisController < ApplicationController
   end
   
   def destroy
-    @dci = Dci.find(params[:id])
+    # @dci is loaded in before_filter
     @dci.destroy
     flash[:notice] = "Successfully destroyed dci."
     redirect_to dcis_url
   end
+
+  protected
+
 end

@@ -1,4 +1,4 @@
-- title @fiche.name.humanize
+- title "Fiche##{@fiche.id} de #{@dci.name}"
 
 #fiche_actions
   #modify
@@ -6,11 +6,11 @@
       %tr
         %td
           - if permitted_to? :edit, @fiche
-            - link_to edit_fiche_path(@fiche) do
+            - link_to edit_dci_fiche_path(@fiche.dci, @fiche) do
               %img{:src => "/images/Edit.png", :width => "32", :alt => "Modifier"}
         %td
           - if permitted_to? :destroy, @fiche
-            - link_to(@fiche, {:confirm => 'Etes-vous sûr ?', :method => :delete}) do
+            - link_to([@fiche.dci, @fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) do
               %img{:src => "/images/Delete.png", :width => "32", :alt => "Détruire"}
       %tr
         %td
@@ -32,6 +32,4 @@
 
 #nav_bar
   %p
-    = link_to "Retour à la liste", fiches_path
-    = " | "
     = link_to "Accueil", root_path

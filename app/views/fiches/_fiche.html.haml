@@ -1,5 +1,5 @@
-%tr
-  %td= link_to h(fiche.name), fiche
-  %td= h fiche.decision.name rescue ""
-  %td= h fiche.state.humanize rescue "" if permitted_to? :update, :fiches
-  %td= link_to "Modifier", edit_fiche_path(fiche) if permitted_to? :edit, fiche
+#fiche
+  %p= h fiche.decision.name rescue ""
+  %p= h fiche.state.humanize rescue "" if permitted_to? :update, :fiches
+  %p= link_to "Modifier", edit_dci_fiche_path(fiche.dci, fiche) if permitted_to? :edit, fiche
+  %p= link_to "Détruire", [fiche.dci, fiche], :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :delete, fiche

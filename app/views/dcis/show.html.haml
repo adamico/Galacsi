@@ -1,15 +1,19 @@
-- title "Dci"
+-# encoding: utf-8
+- title @dci.name
+
+- if !@dci.fiches.blank?
+  %h2 Fiches
+  #fiches
+    = render :partial => @dci.fiches
+- else
+  %p Pas de fiche d'évaluation pour cette dci.
 
 %p
-  %strong Name:
-  =h @dci.name
+  = link_to "Nouvelle Fiche", new_dci_fiche_path(@dci) if permitted_to? :create, @dci.fiches
 
 %p
-  = link_to "Nouvelle Fiche", new_fiche_path(@fiche)
-  
-%p
-  = link_to "Edit", edit_dci_path(@dci)
+  = link_to "Modifier cette dci", edit_dci_path(@dci) if permitted_to? :edit, @dci
   |
-  = link_to "Destroy", @dci, :confirm => 'Are you sure?', :method => :delete
+  = link_to "Détruire cette dci", @dci, :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :delete, @dci
   |
-  = link_to "View All", dcis_path
+  = link_to "Retour à la liste", dcis_path

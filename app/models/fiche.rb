@@ -1,13 +1,12 @@
 #encoding: utf-8
 class Fiche < ActiveRecord::Base
-  attr_accessible :name, :distinction, :distinction_type, :decision_id, :commentaire
+  attr_accessible :distinction, :distinction_type, :decision_id, :commentaire
   belongs_to :decision
+  belongs_to :dci
   has_many :relationships
   has_many :relations, :through => :relationships
 
   DISTINCTIONS = %w[Indication Voie Dosage]
-  validates_presence_of :name
-  validates_uniqueness_of :name
 
   # AASM stuff
   include AASM
@@ -33,6 +32,7 @@ class Fiche < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: fiches
@@ -47,5 +47,6 @@ end
 #  commentaire      :text
 #  distinction      :text
 #  distinction_type :text
+#  dci_id           :integer
 #
 
