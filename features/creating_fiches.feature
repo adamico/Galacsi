@@ -16,15 +16,13 @@ Feature: Creating fiches for dci
     Given a dci exists with name: "lamotrigine"
     When I go to the dci's page
       And I follow "Nouvelle Fiche"
-      And I select <dist_type> from "Sous-type fiche"
-      And I fill in "fiche[distinction]" with <distinction>
+      And I select "<dist_type>" from "Sous-type fiche"
+      And I fill in "fiche[distinction]" with "<distinction>"
       And I press "Sauvegarder"
     Then I should see "Lamotrigine"
-      And I should see <preposition>
-      And I should see <article>
-      And I should see <dist_type>
-      And I should see <distinction>
+      And I should see "<dist_type> : <distinction>"
     Examples:
-      | preposition | article | dist_type   | distinction |
-      | "dans"      | "l'"    | "indication"| "épilepsie" |
-      | "par"       | ""      | "voie"      | "intraveineuse" |
+      | dist_type | distinction   |
+      | indication| épilepsie     |
+      | voie      | intraveineuse |
+      | dosage    | faible |
