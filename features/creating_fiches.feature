@@ -12,11 +12,19 @@ Feature: Creating fiches for dci
       And I follow "Nouvelle Fiche"
     Then I should see "Nouvelle fiche pour lamotrigine"
 
-  Scenario: creating a fiche for an existing dci
-    Given a dci exists
+  Scenario Outline: creating fiches with various distinctions
+    Given a dci exists with name: "lamotrigine"
     When I go to the dci's page
       And I follow "Nouvelle Fiche"
-      And I select "Indication" from "Sous-type fiche"
-      And I fill in "fiche[distinction]" with "épilepsie"
+      And I select <dist_type> from "Sous-type fiche"
+      And I fill in "fiche[distinction]" with <distinction>
       And I press "Sauvegarder"
-    Then a fiche should exist
+    Then I should see "Lamotrigine"
+      And I should see <preposition>
+      And I should see <article>
+      And I should see <dist_type>
+      And I should see <distinction>
+    Examples:
+      | preposition | article | dist_type   | distinction |
+      | "dans"      | "l'"    | "indication"| "épilepsie" |
+      | "par"       | ""      | "voie"      | "intraveineuse" |

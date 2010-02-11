@@ -6,7 +6,7 @@ class Fiche < ActiveRecord::Base
   has_many :relationships
   has_many :relations, :through => :relationships
 
-  DISTINCTIONS = %w[Indication Voie Dosage]
+  DISTINCTIONS = %w[indication voie dosage]
 
   # AASM stuff
   include AASM
