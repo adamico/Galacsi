@@ -1,10 +1,19 @@
 - title "Liste des DCI"
 
 %table
+  %tr
+    %th Nom
+    %th Fiche
+    %th Validation
+
   - for dci in @dcis
     %tr
       %td= link_to(h(dci.name.humanize), dci)
-      %td= link_to 'Modifier', edit_dci_path(dci) if permitted_to? :edit, @dci
-      %td= link_to 'Détruire', dci, :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :delete, @dci
+    - if dci.fiches.count > 1
+      - for fiche in dci.fiches
+        %tr
+          %td
+          %td= link_to "#{fiche.distinction_type} : #{fiche.distinction}", dci_fiche_path(fiche.dci, fiche) unless fiche.distinction_type.blank?
+          %td= fiche.state
 
 %p= link_to "Nouvelle DCI", new_dci_path if permitted_to? :new, @dci

@@ -7,8 +7,7 @@
   #fiches
     = render :partial => @dci.fiches
 - else
-  %p Aucune fiche d'évaluation a été crée pour cette DCI.
-  %p= link_to "Demander la création d'une fiche"
+  %p Aucune fiche d'évaluation n'a été crée pour cette DCI.
 
 %p
   = link_to "Nouvelle Fiche", new_dci_fiche_path(@dci) if permitted_to? :create, @dci.fiches

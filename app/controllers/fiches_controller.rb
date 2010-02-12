@@ -42,12 +42,6 @@ class FichesController < ApplicationController
   def index
     @fiches = @dci.fiches
   end
-  
-  #def search
-    #@search = Fiche.with_permissions_to(:read).search(params[:search])
-    #@fiches = @search.all
-  #end
-
 
   def show
   end

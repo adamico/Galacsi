@@ -1,0 +1,15 @@
+- title "Demandes"
+
+%table
+  %tr
+    %th Type
+    %th Name
+  - for demande in @demandes
+    %tr
+      %td= h demande.type
+      %td= h demande.name
+      %td= link_to 'Show', demande
+      %td= link_to 'Edit', edit_demande_path(demande)
+      %td= link_to 'Destroy', demande, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Demande", new_demande_path

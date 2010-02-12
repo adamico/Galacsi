@@ -3,15 +3,6 @@ Feature: contribute fiches
   As an authorized user
   I want to be able to create fiches
 
-  Background:
-    Given I am logged in as a contributeur
-
-  Scenario: new fiche has state "brouillon" by default
-    When I go to the fiches page
-      And I follow "Nouvelle fiche"
-      And I fill in "nom" with "lamotrigine"
-      And I press "Sauvegarder"
-    Then a fiche should exist with state: "brouillon"
 
   Scenario Outline: show edit link unless "valide" or "gele"
     Given a fiche exists with state: "<state>"

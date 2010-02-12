@@ -1,0 +1,8 @@
+- form_for @demande do |f|
+  = f.error_messages
+  %p
+    = f.label :name, "Nom"
+    %br
+    = f.text_field :name
+  %p
+    = f.submit "Enregistrer"

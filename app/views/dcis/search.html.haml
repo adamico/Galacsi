@@ -1,8 +1,8 @@
 - title "Recherche de produits"
 
 - if @dcis.empty?
-  %h2= "Aucun résultat pour #{params[:search].fetch(:name_like)}."
-  %p= link_to "Demander la création de cette DCI."
+  %h2= "Aucun résultat pour #{params[:search][:name_like]}."
+  %p= link_to "Demander la création de cette DCI.", new_demande_path
 
 - else
   %h2= pluralize(@dcis.count, 'résultat')

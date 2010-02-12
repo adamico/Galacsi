@@ -1,0 +1,15 @@
+- title "Demande"
+
+%p
+  %strong Type:
+  =h @demande.type
+%p
+  %strong Name:
+  =h @demande.name
+
+%p
+  = link_to "Edit", edit_demande_path(@demande)
+  |
+  = link_to "Destroy", @demande, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", demandes_path
