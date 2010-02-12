@@ -63,3 +63,10 @@ Feature: validate fiches
       And I follow "Mettre à jour"
     Then I should see "La date de validation a été mise à jour avec succès."
     Then I should see the validation date
+
+  Scenario: show expired validation fiches
+    Given a dci exists with name: "questa"
+      And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction_type: "indication", distinction: "nuova"
+    When I go to the homepage
+    Then I should see "1 fiche a vérifier"
+      And I should see "Questa (indication : nuova)"

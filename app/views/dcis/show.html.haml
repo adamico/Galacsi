@@ -1,7 +1,7 @@
-- if !@dci.commercial_names.blank?
-  - title "#{@dci.name.humanize} (#{@dci.commercial_names})"
-- else
-  - title "#{@dci.name.humanize}"
+- title "#{@dci.name.humanize}"
+
+- unless @dci.commercial_names.blank?
+  %h2= "(#{@dci.commercial_names})"
 
 - if !@dci.fiches.blank?
   #fiches

@@ -1,12 +1,17 @@
 #encoding: utf-8
 class Fiche < ActiveRecord::Base
-  attr_accessible :distinction, :distinction_type, :decision_id, :commentaire
+  attr_accessible :distinction, :distinction_type, :decision_id, :commentaire, :suivi, :revalider_le
   belongs_to :decision
   belongs_to :dci
   has_many :relationships
   has_many :relations, :through => :relationships
 
+  validates_presence_of :dci_id
+
   DISTINCTIONS = %w[indication voie dosage]
+  SUIVIS = %w[oui non]
+
+  alias_scope :expired, lambda { revalider_le_before(Time.now.to_date)}
 
   # AASM stuff
   include AASM
@@ -33,6 +38,8 @@ class Fiche < ActiveRecord::Base
 end
 
 
+
+
 # == Schema Information
 #
 # Table name: fiches
@@ -48,5 +55,7 @@ end
 #  distinction      :text
 #  distinction_type :text
 #  dci_id           :integer
+#  suivi            :string(255)
+#  revalider_le     :date
 #
 

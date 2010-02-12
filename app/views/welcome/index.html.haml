@@ -4,3 +4,11 @@
   = label_tag :search, "Rechercher un médicament par DCI : "
   = text_field_tag "search[name_like]", params[:search][:name_like]
   = submit_tag "Rechercher", :name => nil
+
+%p
+  = "Attention vous avez : " + pluralize(@expirees.count, 'fiche') + " a vérifier"
+%ul
+  - @expirees.each do |fiche|
+    %li
+      = "#{fiche.dci.name.humanize} (#{fiche.distinction_type} : #{fiche.distinction})"
+

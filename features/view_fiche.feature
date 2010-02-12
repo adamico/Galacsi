@@ -1,7 +1,7 @@
-Feature: viewing a fiche
+Feature: viewing fiches for a dci
   In order to get correct info on drugs use during breastfeeding
   As a guest
-  I want to get detailed informations on fiches
+  I want to see infos for fiches in the dci
 
   Background:
     Given a dci exists
@@ -14,8 +14,7 @@ Feature: viewing a fiche
       But I should not see "MAJ le"
 
   Scenario: hide validation field for guest users
-    Given a dci exists
-      And a fiche exists with dci: the dci, state: "brouillon"
+    Given a fiche exists with dci: the dci, state: "brouillon"
     When I go to the dci's fiche page
     Then I should not see "Validation"
 

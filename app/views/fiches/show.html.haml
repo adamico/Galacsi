@@ -1,7 +1,6 @@
-- if !@fiche.distinction_type.blank?
-  - title "#{@dci.name.humanize} (#{@fiche.distinction_type} : #{@fiche.distinction})"
-- else
-  - title "#{@dci.name.humanize}"
+- title "#{@dci.name.humanize}"
+- unless @fiche.distinction_type.blank?
+  %h2= "(#{@fiche.distinction_type} : #{@fiche.distinction})"
 
 #fiche_actions
   #modify
@@ -32,7 +31,11 @@
     %strong Commentaire :
     = @fiche.try(:commentaire)
 
+%p
+  %strong Suivi souhaité :
+  = " #{@fiche.suivi}" rescue " A renseigner"
 
+%hr
 #nav_bar
   %p
     = link_to "Toutes les fiches pour #{@fiche.dci.name}", dci_path(@fiche.dci)

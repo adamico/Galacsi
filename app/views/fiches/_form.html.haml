@@ -5,7 +5,28 @@
       = f.label :distinction_type, "Sous-type fiche"
       = f.select(:distinction_type, Fiche::DISTINCTIONS, {:include_blank => true})
       = f.text_field :distinction
-    = f.input :decision
+    %li.select.optional#fiche_decision_type_input
+      = f.label :suivi, "Suivi"
+      = f.select(:suivi, Fiche::SUIVIS, {:include_blank => true})
+    %li.radio.optional#fiche_revalider_le_input
+      %fieldset
+        %legend
+          %span.label
+            A revalider dans
+        %ol
+          %li
+            %label{ :for => "revalider_le_3mois"}
+              = f.radio_button :revalider_le, 3.months.from_now.to_date
+              3 mois
+          %li
+            %label{ :for => "revalider_le_6mois"}
+              = f.radio_button :revalider_le, 6.months.from_now.to_date
+              6 mois
+          %li
+            %label{ :for => "revalider_le_12mois"}
+              = f.radio_button :revalider_le, 12.months.from_now.to_date
+              1 an
+    = f.input :decision, :as => :radio
     = f.input :commentaire
   - f.buttons do
     = f.commit_button "Sauvegarder"

@@ -9,6 +9,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: fiches
@@ -24,5 +26,7 @@ end
 #  distinction      :text
 #  distinction_type :text
 #  dci_id           :integer
+#  suivi            :string(255)
+#  revalider_le     :date
 #
 

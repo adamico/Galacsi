@@ -5,7 +5,7 @@ Feature: contribute fiches
 
   Background:
     Given I am logged in as a contributeur
-    Given a dci exists
+      And a dci exists
 
   Scenario Outline: show edit link unless "valide" or "en_attente"
     Given a fiche exists with dci: the dci, state: "<state>"

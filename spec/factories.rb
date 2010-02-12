@@ -1,9 +1,11 @@
 Factory.define :fiche do |p|
   p.state 'brouillon'
   p.validation_date "#{Time.now.to_date}"
+  p.revalider_le "#{Time.now.advance(:months => -4).to_date}"
   p.commentaire 'blabla'
   p.association :decision
   p.association :dci
+  p.suivi 'oui'
 end
 
 Factory.define :dci do |f|
