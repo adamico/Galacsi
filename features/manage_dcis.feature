@@ -9,7 +9,7 @@ Feature: managing dcis
       And I fill in "Nom" with "aNom"
       And I press "Enregistrer"
     Then 1 dcis should exist
-    
+
   Scenario: adding commercial names for dcis
     Given a dci exists
       And I am logged in as a contributeur

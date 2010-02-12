@@ -25,4 +25,4 @@ Feature: Creating fiches for dci
       | dist_type | distinction   |
       | indication| épilepsie     |
       | voie      | intraveineuse |
-      | dosage    | faible |
+      | dosage    | faible        |
