@@ -1,19 +1,45 @@
 -#encoding: utf-8
 - semantic_form_for([@fiche.dci, @fiche]) do |f|
   - f.inputs do
-    = f.input :decision, :as => :radio
-    = f.input :ei, :label => "EI avérés et/ou potentiels chez l'enfant"
-    = f.input :conditions
-    = f.input :surveillance
-    = f.label :alternative_names, "Alternatives"
-    = f.text_field :alternative_names
-    %li.select.optional#fiche_decision_type_input
+    %li.select.optional#fiche_distinction_type_input
       = f.label :distinction_type, "Sous-type fiche"
       = f.select(:distinction_type, Fiche::DISTINCTIONS, {:include_blank => true})
       = f.text_field :distinction
-    %li.select.optional#fiche_decision_type_input
+    = f.input :decision, :as => :radio
+    = f.input :ei, :label => "EI avérés et/ou potentiels chez l'enfant", :input_html => {:rows => "2x50"}
+    = f.input :conditions, :input_html => {:rows => "2x50"}
+    = f.input :surveillance, :input_html => {:rows => "2x50"}
+    %li.textfield.optional#fiche_alternative_names_input
+      = f.label :alternative_names, "Alternatives"
+      = f.text_field :alternative_names, :size => "44"
+    %li.select.optional#fiche_suivi_input
       = f.label :suivi, "Suivi"
       = f.select(:suivi, Fiche::SUIVIS, {:include_blank => true})
+  - f.inputs :name => "Argumentaire", :id => "argumentaire" do
+    = f.input :biodisponibilite, :label => "Biodisponibilité"
+    = f.input :dose_ingeree, :label => "Dose ingérée par BB"
+    %li.select.optional#fiche_dose_ingeree_par_rapport_input
+      = f.label :dose_ingeree_par_rapport, "de la"
+      = f.select(:dose_ingeree_par_rapport, Fiche::DIPR, {:include_blank => true})
+    = f.input :liaison_pp, :label => "Liaison aux protéines plasmatiques"
+    = f.input :vol_dist, :label => "Volume de distribution"
+    = f.input :tmax, :label => "Tmax"
+    = f.input :thalf, :label => "T1/2"
+    = f.input :pm, :label => "Poids moléculaire"
+    %li.select.optional#fiche_passage_lait_input
+      = f.label :passage_lait, "Passage dans le lait"
+      = f.select(:passage_lait, Fiche::PASSAGE, {:include_blank => true})
+    %li.select.optional#fiche_rapport_lp_input
+      = f.label :rapport_lp, "Rapport Lait/Plasma"
+      = f.select(:rapport_lp, Fiche::RLP, {:include_blank => true})
+    = f.input :poso_pedia, :label => "Posologie pédiatrique"
+    = f.input :poso_pedia_des, :label => "à partir de"
+    = f.input :metabolites_actifs, :label => "Métabolites actifs"
+    = f.input :risque_accumulation, :label => "Risque d'accumulation dans le lait"
+    = f.input :risque_dim_lactation, :label => "Risque théorique de diminution de la lactation"
+    = f.input :arg_autre, :label => "Autres"
+
+  - f.inputs do
     %li.radio.optional#fiche_revalider_le_input
       %fieldset
         %legend
@@ -32,6 +58,7 @@
             %label{ :for => "revalider_le_12mois"}
               = f.radio_button :revalider_le, 12.months.from_now.to_date
               1 an
+  - f.inputs do
     = f.input :commentaire
   - f.buttons do
     = f.commit_button "Sauvegarder"

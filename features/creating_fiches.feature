@@ -34,6 +34,25 @@ Feature: Creating fiches for dci
       And I should see "cétirizine"
       And I should see "ampicilline"
 
+  Scenario: adding argumentaire details for fiches
+    When I go to the dci's new fiche page
+      And I fill in "Biodisponibilité" with "100"
+      And I fill in "Dose ingérée par BB" with "4"
+      And I select "DMAP" from "de la"
+      And I fill in "Liaison aux protéines plasmatiques" with "90"
+      And I fill in "Volume de distribution" with "5,4"
+      And I fill in "Tmax" with "1,5"
+      And I fill in "T1/2" with "14"
+      And I fill in "Poids moléculaire" with "important (2000-8000)"
+      And I select "dose dépendant" from "Passage dans le lait"
+      And I select ">1" from "Rapport Lait/Plasma"
+      And I check "Posologie pédiatrique"
+      And I fill in "à partir de" with "6 mois"
+      And I check "Métabolites actifs"
+      And I check "Risque d'accumulation dans le lait"
+      And I check "Risque théorique de diminution de la lactation"
+      And I fill in "Autres" with "passage systémique quasi nul"
+
   Scenario: creating detailed fiches
     When I go to the dci's new fiche page
       And I select "indication" from "Sous-type fiche"

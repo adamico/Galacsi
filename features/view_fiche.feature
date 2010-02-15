@@ -18,11 +18,5 @@ Feature: viewing fiches for a dci
     When I go to the dci's fiche page
     Then I should not see "Validation"
 
-  @wip
-  Scenario: add relationships to fiches
-
-  @wip
-  Scenario: show brief intro for fiche
-
-  @wip
+  @focus
   Scenario: show detailed decision for fiche
