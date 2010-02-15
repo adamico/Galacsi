@@ -12,6 +12,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: fiches
@@ -30,5 +32,7 @@ end
 #  suivi            :string(255)
 #  revalider_le     :date
 #  ei               :text
+#  conditions       :text
+#  surveillance     :text
 #
 

@@ -30,4 +30,7 @@ Feature: Creating fiches for dci
       And I select "indication" from "Sous-type fiche"
       And I fill in "fiche[distinction]" with "épilepsie"
       And I fill in "fiche[ei]" with "1 cas d'acidose métabolique"
+      And I fill in "Conditions" with "si pas d'alternative utilisable"
+      And I fill in "fiche[surveillance]" with "l'apparition de troubles digestifs"
       And I press "Sauvegarder"
+    Then 1 fiches should exist

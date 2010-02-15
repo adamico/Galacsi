@@ -9,6 +9,8 @@ two:
 
 
 
+
+
 # == Schema Information
 #
 # Table name: fiches
@@ -27,5 +29,7 @@ two:
 #  suivi            :string(255)
 #  revalider_le     :date
 #  ei               :text
+#  conditions       :text
+#  surveillance     :text
 #
 
