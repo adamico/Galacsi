@@ -12,5 +12,11 @@
     %p
       = "Suivi souhaité : "
       = h fiche.suivi rescue ""
-    %p= link_to "Modifier", edit_dci_fiche_path(fiche.dci, fiche) if permitted_to? :edit, fiche
-    %p= link_to "Détruire", [fiche.dci, fiche], :confirm => 'Etes-vous sûr ?', :method => :delete if permitted_to? :delete, fiche
+    %p.alternatives
+      - unless fiche.alternatives.blank?
+        = "Alternatives : "
+        %ul
+        - fiche.alternatives.each do |a|
+          - link = !a.commercial_names.blank? ? "#{a.name} (#{a.commercial_names})" : "#{a.name}"
+          %li
+            = link_to link, dci_path(a)

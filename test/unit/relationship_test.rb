@@ -8,12 +8,13 @@ class RelationshipTest < ActiveSupport::TestCase
 end
 
 
+
 # == Schema Information
 #
 # Table name: relationships
 #
 #  id          :integer         not null, primary key
-#  fiche_id    :integer
+#  dci_id      :integer
 #  relation_id :integer
 #  created_at  :datetime
 #  updated_at  :datetime

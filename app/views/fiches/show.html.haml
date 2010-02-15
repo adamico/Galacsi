@@ -26,14 +26,31 @@
   %strong Décision :
   = " #{@fiche.decision.name}" rescue " A renseigner"
 
+%p
+  %strong Suivi souhaité :
+  = " #{@fiche.suivi}" rescue " A renseigner"
+
+%p
+  %strong Conditions :
+  = " #{@fiche.conditions}" rescue " A renseigner"
+
+%p
+  %strong Surveiller :
+  = " #{@fiche.surveillance}" rescue " A renseigner"
+
+%p.alternatives
+  - unless @fiche.alternatives.blank?
+    %strong Alternatives :
+    %ul
+    - @fiche.alternatives.each do |a|
+      - link = !a.commercial_names.blank? ? "#{a.name} (#{a.commercial_names})" : "#{a.name}"
+      %li
+        = link_to link, dci_path(a)
+
 - if permitted_to?(:initialiser, :fiches)
   .comment
     %strong Commentaire :
     = @fiche.try(:commentaire)
-
-%p
-  %strong Suivi souhaité :
-  = " #{@fiche.suivi}" rescue " A renseigner"
 
 %hr
 #nav_bar

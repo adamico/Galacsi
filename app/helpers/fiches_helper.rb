@@ -28,6 +28,7 @@ module FichesHelper
   end
 
   def validate_actions_buttons
+    haml_concat(" => ")
     if @fiche.state == "brouillon" && permitted_to?(:initialiser)
       haml_tag :span, {:class => 'val_actions'} do
         haml_concat(link_to("Initialiser", initialiser_dci_fiche_path(@fiche.dci, @fiche), :method => :put))

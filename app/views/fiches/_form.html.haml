@@ -5,6 +5,8 @@
     = f.input :ei, :label => "EI avérés et/ou potentiels chez l'enfant"
     = f.input :conditions
     = f.input :surveillance
+    = f.label :alternative_names, "Alternatives"
+    = f.text_field :alternative_names
     %li.select.optional#fiche_decision_type_input
       = f.label :distinction_type, "Sous-type fiche"
       = f.select(:distinction_type, Fiche::DISTINCTIONS, {:include_blank => true})

@@ -1,8 +1,9 @@
 class Dci < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
-  
+
   has_many :fiches, :dependent => :destroy
+
   has_many :compositions, :dependent => :destroy
   has_many :specialites, :through => :compositions
 
@@ -10,7 +11,7 @@ class Dci < ActiveRecord::Base
   after_save :assign_commercial_names
 
   def commercial_names
-    @commercial_names || specialites.map(&:name).join(', ')
+    @commercial_names || specialites.map(&:name).map(&:humanize).join(', ')
   end
 
   private

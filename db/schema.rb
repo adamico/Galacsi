@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100215131530) do
+ActiveRecord::Schema.define(:version => 20100215142308) do
+
+  create_table "alternativeships", :force => true do |t|
+    t.integer  "fiche_id"
+    t.integer  "alternative_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "compositions", :force => true do |t|
     t.integer  "dci_id"
@@ -59,7 +66,7 @@ ActiveRecord::Schema.define(:version => 20100215131530) do
   add_index "fiches", ["decision_id"], :name => "index_produits_on_decision_id"
 
   create_table "relationships", :force => true do |t|
-    t.integer  "fiche_id"
+    t.integer  "dci_id"
     t.integer  "relation_id"
     t.datetime "created_at"
     t.datetime "updated_at"

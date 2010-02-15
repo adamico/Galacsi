@@ -1,12 +1,17 @@
 #encoding: utf-8
 class Fiche < ActiveRecord::Base
-  attr_accessible :distinction, :distinction_type, :decision_id, :commentaire, :suivi, :revalider_le
+  validates_presence_of :dci_id
   belongs_to :decision
   belongs_to :dci
-  has_many :relationships
-  has_many :relations, :through => :relationships
+  has_many :alternativeships, :dependent => :destroy
+  has_many :alternatives, :through => :alternativeships
 
-  validates_presence_of :dci_id
+  attr_writer :alternative_names
+  after_save :assign_alternative_names
+
+  def alternative_names
+    @alternative_names || alternatives.map(&:name).(&:humanize).join(', ')
+  end
 
   DISTINCTIONS = %w[indication voie dosage]
   SUIVIS = %w[oui non]
@@ -35,6 +40,14 @@ class Fiche < ActiveRecord::Base
     transitions :to => :en_attente, :from => [:valide]
   end
 
+  private
+  def assign_alternative_names
+    if @alternative_names
+      self.alternatives = @alternative_names.split(', ').map do |name|
+        Dci.find_or_create_by_name(name)
+      end
+    end
+  end
 end
 
 

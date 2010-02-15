@@ -25,6 +25,12 @@ Feature: Creating fiches for dci
       | voie      | intraveineuse |
       | dosage    | faible        |
 
+  Scenario: adding alternatives to fiches
+    When I go to the dci's new fiche page
+      And I fill in "Alternatives" with "desloratadine, cétirizine, ampicilline"
+      And I press "Sauvegarder"
+    Then I should see "Alternatives : desloratadine, cétirizine, ampicilline"
+
   Scenario: creating detailed fiches
     When I go to the dci's new fiche page
       And I select "indication" from "Sous-type fiche"
@@ -32,5 +38,6 @@ Feature: Creating fiches for dci
       And I fill in "fiche[ei]" with "1 cas d'acidose métabolique"
       And I fill in "Conditions" with "si pas d'alternative utilisable"
       And I fill in "fiche[surveillance]" with "l'apparition de troubles digestifs"
+      And I fill in "Alternatives" with "desloratadine, cétirizine, ampicilline"
       And I press "Sauvegarder"
     Then 1 fiches should exist
