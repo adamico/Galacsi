@@ -29,7 +29,10 @@ Feature: Creating fiches for dci
     When I go to the dci's new fiche page
       And I fill in "Alternatives" with "desloratadine, cétirizine, ampicilline"
       And I press "Sauvegarder"
-    Then I should see "Alternatives : desloratadine, cétirizine, ampicilline"
+    Then I should see "Alternatives :"
+      And I should see "desloratadine"
+      And I should see "cétirizine"
+      And I should see "ampicilline"
 
   Scenario: creating detailed fiches
     When I go to the dci's new fiche page

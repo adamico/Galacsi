@@ -6,6 +6,8 @@
         = "(#{fiche.state.humanize})"
       - else
         = "#{fiche.distinction_type} : #{fiche.distinction}"
+    %p.validation_date
+      = "(Informations validées il y a #{time_ago_in_words(fiche.validation_date)})"
     %p
       = "Décision : "
       = h fiche.decision.name rescue ""
