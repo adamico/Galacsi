@@ -5,6 +5,7 @@
 log/*.log
 tmp/**/*
 nbproject/*
+coverage/*
 config/database.yml
 db/*.sqlite3
 rerun.txt

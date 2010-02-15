@@ -1,6 +1,8 @@
 -#encoding: utf-8
 - semantic_form_for([@fiche.dci, @fiche]) do |f|
   - f.inputs do
+    = f.input :decision, :as => :radio
+    = f.input :ei, :label => "EI avérés et/ou potentiels chez l'enfant"
     %li.select.optional#fiche_decision_type_input
       = f.label :distinction_type, "Sous-type fiche"
       = f.select(:distinction_type, Fiche::DISTINCTIONS, {:include_blank => true})
@@ -26,7 +28,6 @@
             %label{ :for => "revalider_le_12mois"}
               = f.radio_button :revalider_le, 12.months.from_now.to_date
               1 an
-    = f.input :decision, :as => :radio
     = f.input :commentaire
   - f.buttons do
     = f.commit_button "Sauvegarder"

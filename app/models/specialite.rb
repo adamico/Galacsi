@@ -1,5 +1,5 @@
 class Specialite < ActiveRecord::Base
-  has_many :specialites, :dependent => :destroy
+  has_many :compositions, :dependent => :destroy
   has_many :dcis, :through => :compositions
 end
 

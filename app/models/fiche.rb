@@ -40,6 +40,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: fiches
@@ -57,5 +58,6 @@ end
 #  dci_id           :integer
 #  suivi            :string(255)
 #  revalider_le     :date
+#  ei               :text
 #
 

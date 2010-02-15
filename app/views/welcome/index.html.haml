@@ -10,5 +10,4 @@
 %ul
   - @expirees.each do |fiche|
     %li
-      = "#{fiche.dci.name.humanize} (#{fiche.distinction_type} : #{fiche.distinction})"
-
+      = link_to "#{fiche.dci.name.humanize} (#{fiche.distinction_type} : #{fiche.distinction})", dci_fiche_path(fiche.dci, fiche)

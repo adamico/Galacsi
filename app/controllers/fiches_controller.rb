@@ -39,10 +39,6 @@ class FichesController < ApplicationController
     redirect_to([@fiche.dci, @fiche])
   end
 
-  def index
-    @fiches = @dci.fiches
-  end
-
   def show
   end
   

@@ -1,3 +1,3 @@
 When(/^I submit$/) do
-  /^I press "Sauvegarder"/
+  /^I press "Enregistrer"/
 end

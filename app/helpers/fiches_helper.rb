@@ -1,13 +1,5 @@
 # encoding: utf-8
 module FichesHelper
-  #TODO demander à AG si elle préfère avoir ça:
-  # %p<
-  #   %strong Validation :
-  #   = " #{@fiche.state.humanize}" rescue ""
-  # - if @fiche.state == "valide"
-  #   %p<
-  #     %strong Date de MAJ :
-  #     = " " + l(@fiche.validation_date) rescue " A renseigner"
   def validation_state_and_actions
     haml_tag :p do
       if has_role? :guest

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100212142236) do
+ActiveRecord::Schema.define(:version => 20100215104330) do
 
   create_table "compositions", :force => true do |t|
     t.integer  "dci_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20100212142236) do
     t.integer  "dci_id"
     t.string   "suivi"
     t.date     "revalider_le"
+    t.text     "ei"
   end
 
   add_index "fiches", ["decision_id"], :name => "index_produits_on_decision_id"
