@@ -1,12 +1,13 @@
 - title "Bienvenue!"
 
-- form_tag search_dcis_path, :method => :get do
-  = label_tag :search, "Rechercher un médicament par DCI : "
-  = text_field_tag "search[name_like]", params[:search][:name_like]
-  = submit_tag "Rechercher", :name => nil
+.search
+  - form_tag search_dcis_path, :method => :get do
+    = label_tag :search, "Rechercher un médicament par DCI : "
+    = text_field_tag "search[name_like]", params[:search][:name_like]
+    = submit_tag "Go", :name => nil, :class => "search_submit"
 
 %p
-  = "Attention vous avez : " + pluralize(@expirees.count, 'fiche') + " a vérifier"
+  = "Attention vous avez : " + pluralize(@expirees.count, 'fiche') + " à vérifier"
 %ul
   - @expirees.each do |fiche|
     %li
