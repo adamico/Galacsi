@@ -1,5 +1,7 @@
+#encoding: utf-8
 class Demande < ActiveRecord::Base
-  attr_accessible :type, :name
+  validates_presence_of :name
+  validates_uniqueness_of :name, :on => :create, :message => " : une demande avec ce nom existe déjà"
 end
 
 # == Schema Information
