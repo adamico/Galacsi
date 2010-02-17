@@ -150,7 +150,7 @@ ul.fiche_nav a:hover { text-decoration: underline;  }
 #argumentaire dt:after { content: " : ";}
 #argumentaire dd { float:left; margin-left: .5em;}
 
-#decision_1 { color: red;} /* contre-indiqué */
-#decision_2 { color: orange;} /* à discuter */
-#decision_3 { color: green;} /* compatible */
-#decision_4 { color: yellow;} /* compatible 2e intention */
+#decision_1 { padding: 0 .5em; background:black; color: #ff2200;} /* contre-indiqué */
+#decision_2 { padding: 0 .5em; background:black; color: orange;} /* à discuter */
+#decision_3 { padding: 0 .5em; background:black; color: lime;} /* compatible */
+#decision_4 { padding: 0 .5em; background:black; color: yellow;} /* compatible 2e intention */

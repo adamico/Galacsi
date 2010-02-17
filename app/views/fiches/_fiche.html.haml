@@ -24,8 +24,8 @@
     - unless fiche.ei.blank?
       = textilize(fiche.ei)
 
-    - unless fiche.suivi.blank?
-      %p= "Un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur." if fiche.suivi?
+    - if fiche.suivi == "oui"
+      %p= "Un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur."
 
     - unless fiche.alternatives.blank?
       %p.alternatives

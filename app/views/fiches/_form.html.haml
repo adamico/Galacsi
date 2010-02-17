@@ -33,7 +33,7 @@
     %li.select.optional#fiche_rapport_lp_input
       = f.label :rapport_lp, "Rapport Lait/Plasma"
       = f.select(:rapport_lp, Fiche::RLP, {:include_blank => true})
-    = f.input :poso_pedia, :label => "Posologie pédiatrique", :as => :select
+    = f.input :poso_pedia, :label => "Posologie pédiatrique"
     = f.input :poso_pedia_des, :label => "à partir de", :hint => "si oui dans le champ précédent"
     = f.input :metabolites_actifs, :label => "Métabolites actifs"
     = f.input :risque_accumulation, :label => "Risque d'accumulation dans le lait"

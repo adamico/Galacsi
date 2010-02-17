@@ -1,6 +1,5 @@
 #encoding: utf-8
 class Fiche < ActiveRecord::Base
-  validates_presence_of :dci_id
   belongs_to :decision
   belongs_to :dci
   belongs_to :distinction
