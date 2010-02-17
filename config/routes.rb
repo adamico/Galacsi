@@ -1,11 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :sources
+  map.resources :decisions
 
-  map.resources :sources
-
-  map.resources :distinctions
-
-  map.resources :demandes, :specialites
+  map.resources :demandes, :specialites, :distinctions, :sources
 
   map.resources :dcis, :collection => { :search => :get }
   map.resources :dcis do |dci|

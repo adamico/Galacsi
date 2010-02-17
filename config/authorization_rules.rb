@@ -1,6 +1,6 @@
 authorization do
   role :admin do
-    has_permission_on [:fiches, :users, :dcis], :to => :manage
+    has_permission_on [:dcis, :decisions, :demandes, :distinctions, :fiches, :sources, :specialites, :users], :to => :manage
     has_permission_on :authorization_rules, :to => :read
     has_permission_on :authorization_usages, :to => :read
   end
@@ -9,13 +9,12 @@ authorization do
     has_permission_on :fiches, :to => :read do
       if_attribute :state => ["en_attente", "valide"]
     end
-    has_permission_on :dcis, :to => :read
-    has_permission_on :authorization_rules, :to => :read
-    has_permission_on :authorization_usages, :to => :read
+    has_permission_on [:dcis, :specialites], :to => :read
+    has_permission_on :demandes, :to => [:create, :read]
   end
 
   role :contributeur do
-    has_permission_on :dcis, :to => [:create, :read, :update]
+    has_permission_on [ :dcis, :demandes, :specialites ], :to => [:create, :read, :update]
     has_permission_on :fiches, :to => [:create, :read]
     has_permission_on :fiches, :to => :update do
       if_attribute :state => ["brouillon", "a_valider"]
@@ -27,7 +26,8 @@ authorization do
 
   role :valideur do
     includes :contributeur
-    has_permission_on [:dcis, :fiches], :to => [:update, :delete]
+    has_permission_on [:dcis, :fiches, :demandes, :specialites], :to => [:update, :delete]
+    has_permission_on [:decisions, :distinctions, :sources], :to => :manage
     has_permission_on :fiches, :to => :valider do
       if_attribute :state => ["en_attente", "a_valider"]
     end
