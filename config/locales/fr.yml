@@ -138,6 +138,7 @@ fr:
         even: "doit être pair"
 
   formtastic:
+    required: "obligatoire"
     labels:
       fiche:
         name: "Nom"

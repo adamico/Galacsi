@@ -6,10 +6,13 @@
     = text_field_tag "search[name_like]", params[:search][:name_like]
     = submit_tag "Go", :name => nil, :class => "search_submit"
 
-- unless @expirees.count < 1
+- unless @expired_fiches.count < 1
   %p
-    = "Attention vous avez : " + pluralize(@expirees.count, 'fiche') + " a vérifier"
+    = "Attention vous avez : " + pluralize(@expired_fiches.count, 'fiche') + " a vérifier"
   %ul
-    - @expirees.each do |fiche|
+    - @expired_fiches.each do |fiche|
       %li
-        = link_to "#{fiche.dci.name.humanize} (#{fiche.distinction_type} : #{fiche.distinction})", dci_fiche_path(fiche.dci, fiche)
+        - if fiche.distinction_id?
+          = link_to "#{fiche.dci.name.humanize} (#{fiche.distinction.name} : #{fiche.distinction_name})", dci_fiche_path(fiche.dci, fiche)
+        - else
+          = link_to "#{fiche.dci.name.humanize}", dci_fiche_path(fiche.dci, fiche)

@@ -9,21 +9,26 @@ Feature: Creating fiches for dci
 
   Scenario: fiche is a nested resource of dci
     When I go to the dci's page
-      And I follow "Nouvelle Fiche"
+      And I follow "Rajouter une fiche"
     Then I should be at the new dci's fiche page
 
   Scenario Outline: creating fiches with various distinctions
+    Given the following distinctions exist:
+      | name      |
+      | indication|
+      | voie      |
+      | dosage    |
     When I go to the dci's new fiche page
       And I select "<dist_type>" from "Sous-type fiche"
-      And I fill in "fiche[distinction]" with "<distinction>"
+      And I fill in "fiche[distinction_name]" with "<distinction>"
       And I press "Sauvegarder"
     Then I should be at the dci page
       And I should see "<dist_type> : <distinction>"
     Examples:
-      | dist_type | distinction   |
-      | indication| épilepsie     |
-      | voie      | intraveineuse |
-      | dosage    | faible        |
+      | dist_type   | distinction   |
+      | indication  | épilepsie     |
+      | voie        | intraveineuse |
+      | dosage      | faible        |
 
   Scenario: adding alternatives to fiches
     When I go to the dci's new fiche page
@@ -54,9 +59,10 @@ Feature: Creating fiches for dci
       And I fill in "Autres" with "passage systémique quasi nul"
 
   Scenario: creating detailed fiches
+    Given a distinction exists with name: "indication"
     When I go to the dci's new fiche page
       And I select "indication" from "Sous-type fiche"
-      And I fill in "fiche[distinction]" with "épilepsie"
+      And I fill in "fiche[distinction_name]" with "épilepsie"
       And I fill in "fiche[ei]" with "1 cas d'acidose métabolique"
       And I fill in "Conditions" with "si pas d'alternative utilisable"
       And I fill in "fiche[surveillance]" with "l'apparition de troubles digestifs"

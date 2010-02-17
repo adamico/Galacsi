@@ -66,14 +66,16 @@ Feature: validate fiches
 
   Scenario: show expired validation fiches
     Given a dci exists with name: "questa"
-      And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction_type: "indication", distinction: "nuova"
+      And a distinction exist with name: "indication"
+      And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction: the distinction, distinction_name: "nuova"
     When I go to the homepage
     Then I should see "1 fiche a vérifier"
       And I should see "Questa (indication : nuova)"
 
   Scenario: show link to expired validation fiches
     Given a dci exists with name: "questa"
-      And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction_type: "indication", distinction: "nuova"
+      And a distinction exist with name: "indication"
+      And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction: the distinction, distinction_name: "nuova"
       And I go to the homepage
     When I follow "Questa (indication : nuova)"
     Then I should be at the dci's fiche page

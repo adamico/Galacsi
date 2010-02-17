@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100215174533) do
+ActiveRecord::Schema.define(:version => 20100217100708) do
 
   create_table "alternativeships", :force => true do |t|
     t.integer  "fiche_id"
@@ -45,6 +45,12 @@ ActiveRecord::Schema.define(:version => 20100215174533) do
     t.datetime "updated_at"
   end
 
+  create_table "distinctions", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "fiches", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -53,8 +59,7 @@ ActiveRecord::Schema.define(:version => 20100215174533) do
     t.integer  "decision_id"
     t.date     "validation_date"
     t.text     "commentaire"
-    t.text     "distinction"
-    t.text     "distinction_type"
+    t.text     "distinction_name"
     t.integer  "dci_id"
     t.string   "suivi"
     t.date     "revalider_le"
@@ -77,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20100215174533) do
     t.boolean  "risque_dim_lactation"
     t.string   "poso_pedia_des"
     t.text     "arg_autre"
+    t.integer  "distinction_id"
   end
 
   add_index "fiches", ["decision_id"], :name => "index_produits_on_decision_id"
@@ -90,20 +96,6 @@ ActiveRecord::Schema.define(:version => 20100215174533) do
 
   create_table "specialites", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "typus_users", :force => true do |t|
-    t.string   "first_name",       :default => "",    :null => false
-    t.string   "last_name",        :default => "",    :null => false
-    t.string   "role",                                :null => false
-    t.string   "email",                               :null => false
-    t.boolean  "status",           :default => false
-    t.string   "token",                               :null => false
-    t.string   "salt",                                :null => false
-    t.string   "crypted_password",                    :null => false
-    t.string   "preferences"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

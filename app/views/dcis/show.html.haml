@@ -3,6 +3,12 @@
 - unless @dci.commercial_names.blank?
   %h2= "(#{@dci.commercial_names})"
 
+%ul.dci_nav
+  - if permitted_to? :edit, @dci
+    %li= link_to "Modifier cette DCI", edit_dci_path(@dci)
+  - if permitted_to? :delete, @dci
+    %li= link_to "Détruire cette DCI", @dci, :confirm => 'Etes-vous sûr ?', :method => :delete
+
 - if !@dci.fiches.blank?
   #fiches
     = render :partial => @dci.fiches
@@ -10,13 +16,4 @@
   %p Aucune fiche d'évaluation n'a été crée pour cette DCI.
 
 %p
-  = link_to "Nouvelle Fiche", new_dci_fiche_path(@dci) if permitted_to? :create, @dci.fiches
-
-%p
-  - if permitted_to? :edit, @dci
-    = link_to "Modifier cette DCI", edit_dci_path(@dci)
-    |
-  - if permitted_to? :delete, @dci
-    = link_to "Détruire cette DCI", @dci, :confirm => 'Etes-vous sûr ?', :method => :delete
-    |
-  = link_to "Retour à la liste des DCI", dcis_path
+  = link_to "Rajouter une fiche", new_dci_fiche_path(@dci) if permitted_to? :create, @dci.fiches

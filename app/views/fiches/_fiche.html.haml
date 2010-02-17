@@ -1,11 +1,9 @@
 -if permitted_to? :read, fiche
   #fiche
     %h2
+      = "#{fiche.distinction.name} : #{fiche.distinction_name}" if fiche.distinction_id?
       - if permitted_to? :update, :fiches
-        = link_to "#{fiche.distinction_type} : #{fiche.distinction}", dci_fiche_path(fiche.dci, fiche) unless fiche.distinction_type.blank?
         = "(#{fiche.state.humanize})"
-      - else
-        = "#{fiche.distinction_type} : #{fiche.distinction}"
     - if fiche.validation_date?
       %p.validation_date
         = "(Informations validées il y a #{time_ago_in_words(fiche.validation_date)})"

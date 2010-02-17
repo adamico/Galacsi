@@ -19,10 +19,18 @@ Feature: managing dcis
       And I press "Enregistrer"
     Then I should see "Name n'est pas disponible"
 
-  Scenario: adding commercial names for dcis
+  Scenario: adding 1 commercial name for dcis
     Given a dci exists
     When I go to the dci's edit page
       And I fill in "Spécialités" with "nomcommercial"
       And I press "Enregistrer"
     Then 1 specialites should exist
-      And I should see "(nomcommercial)"
+      And I should see "(Nomcommercial)"
+
+  Scenario: adding multiple commercial names for dcis
+    Given a dci exists
+    When I go to the dci's edit page
+      And I fill in "Spécialités" with "nomcommercial, unautre"
+      And I press "Enregistrer"
+    Then 2 specialites should exist
+      And I should see "(Nomcommercial, Unautre)"

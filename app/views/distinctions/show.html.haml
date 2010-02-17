@@ -1,0 +1,15 @@
+- title "Distinction"
+
+%p
+  %strong Name:
+  =h @distinction.name
+%p
+  %strong Fiche:
+  =h @distinction.fiche_id
+
+%p
+  = link_to "Edit", edit_distinction_path(@distinction)
+  |
+  = link_to "Destroy", @distinction, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", distinctions_path

@@ -3,9 +3,15 @@ Factory.define :fiche do |p|
   p.validation_date "#{Time.now.to_date}"
   p.revalider_le "#{Time.now.advance(:months => -4).to_date}"
   p.commentaire 'blabla'
+  p.distinction_name 'hta'
   p.association :decision
   p.association :dci
+  p.association :distinction
   p.suivi 'oui'
+end
+
+Factory.define(:distinction) do |d|
+  d.name "indication"
 end
 
 Factory.define :dci do |f|

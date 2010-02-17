@@ -14,13 +14,13 @@
           %li= link_to "DCI", dcis_path
           %li= link_to "Utilisateurs", users_path if permitted_to? :read, :users
     #content
-      #right
+      #left
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
         - if show_title?
           %h1=h yield(:title)
         = yield
-      #left
+      #right
         .box
           -user_navlinks
         .box

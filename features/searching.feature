@@ -16,7 +16,7 @@ Feature: search for fiches by multiple criteria
   Scenario Outline: guests search dcis by name
     When I go to the homepage
       And I fill in "search[name_like]" with "<pattern>"
-      And I press "Rechercher"
+      And I press "Go"
     Then I should see "<count_result>"
     Scenarios:
       | pattern | count_result    |

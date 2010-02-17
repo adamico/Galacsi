@@ -1,0 +1,19 @@
+one:
+  name: MyString
+  fiche_id: 1
+
+two:
+  name: MyString
+  fiche_id: 1
+
+
+# == Schema Information
+#
+# Table name: distinctions
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

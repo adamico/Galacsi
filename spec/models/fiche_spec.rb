@@ -15,6 +15,9 @@ end
 
 
 
+
+
+
 # == Schema Information
 #
 # Table name: fiches
@@ -27,8 +30,7 @@ end
 #  decision_id              :integer
 #  validation_date          :date
 #  commentaire              :text
-#  distinction              :text
-#  distinction_type         :text
+#  distinction_name         :text
 #  dci_id                   :integer
 #  suivi                    :string(255)
 #  revalider_le             :date
@@ -51,5 +53,6 @@ end
 #  risque_dim_lactation     :boolean
 #  poso_pedia_des           :string(255)
 #  arg_autre                :text
+#  distinction_id           :integer
 #
 

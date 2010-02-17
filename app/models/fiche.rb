@@ -3,6 +3,7 @@ class Fiche < ActiveRecord::Base
   validates_presence_of :dci_id
   belongs_to :decision
   belongs_to :dci
+  belongs_to :distinction
   has_many :alternativeships, :dependent => :destroy
   has_many :alternatives, :through => :alternativeships
 
@@ -13,7 +14,6 @@ class Fiche < ActiveRecord::Base
     @alternative_names || alternatives.map(&:name).join(', ')
   end
 
-  DISTINCTIONS = %w[indication voie dosage]
   SUIVIS = %w[oui non]
   DIPR = ["DMAP", "dose pédiatrique"]
   PASSAGE = ["dose dépendant", "inconnu", "faible"]
@@ -54,13 +54,6 @@ class Fiche < ActiveRecord::Base
 end
 
 
-
-
-
-
-
-
-
 # == Schema Information
 #
 # Table name: fiches
@@ -73,8 +66,7 @@ end
 #  decision_id              :integer
 #  validation_date          :date
 #  commentaire              :text
-#  distinction              :text
-#  distinction_type         :text
+#  distinction_name         :text
 #  dci_id                   :integer
 #  suivi                    :string(255)
 #  revalider_le             :date
@@ -97,5 +89,6 @@ end
 #  risque_dim_lactation     :boolean
 #  poso_pedia_des           :string(255)
 #  arg_autre                :text
+#  distinction_id           :integer
 #
 

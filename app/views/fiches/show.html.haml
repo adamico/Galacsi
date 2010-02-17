@@ -1,6 +1,6 @@
 - title "#{@dci.name.humanize}"
-- unless @fiche.distinction_type.blank?
-  %h2= "(#{@fiche.distinction_type} : #{@fiche.distinction})"
+- if @fiche.distinction_id?
+  %h2= "(#{@fiche.distinction.name} : #{@fiche.distinction_name})"
 
 %table.fiche_actions
   %tr

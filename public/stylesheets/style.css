@@ -16,26 +16,25 @@ ul#nav a{float:left;width: 95px;padding: 5px 0;background: #E7F1F8;text-decorati
 ul#nav a:hover{background: #fff;color: #000}
 ul#nav li.activelink a,ul#nav li.activelink a:hover{background: #FFF;color: #003}
 
-#right {
-	float: left;
-	width: 76%;
-	padding: 1em;
-	margin-bottom: 1.2em;
-	background: #eee;
-	text-align: justify;
-}
-
 #left {
-	float: right;
-	width: 20%;
-	margin: 0 0 10px 0;
-	
+  float: left;
+  width: 76%;
+  padding: 1em;
+  margin-bottom: 1.2em;
+  background: #eee;
+  text-align: justify;
 }
 
-#left .box {
-	padding: 1em;
-	margin: 0 0 1em 0;
-	background : #FFF6BF;
+#right {
+  float: right;
+  width: 20%;
+  margin: 0 0 10px 0;
+}
+
+#right .box {
+  padding: 1em;
+  margin: 0 0 1em 0;
+  background : #FFF6BF;
 }
 
 
@@ -108,15 +107,21 @@ li { list-style-type: none;}
   list-style: disc;
 }
 
-div#fiche {
-  background-color: #222;
-  color: white;
-  border: solid 1px black;
-  padding-left: 5px;
-  margin-bottom: 5px;
-  margin-top: 10px;
-}
+/* My personalizations */
 
-div#fiche a {
-  color: #00DDFF
-}
+div#fiches { clear:both; }
+
+div#fiche { background-color: #fff; color: black; border: solid 1px black; padding: 1em; margin-bottom: 5px; margin-top: 10px; }
+div#fiche a:hover { color: black; }
+
+.search form label { line-height: 2em; }
+.search form input { border: 1px solid #00c; background: #ebebeb; margin: 0 .5em; padding: 2px 4px; }
+.search input:focus { background: #fff; }
+.search input.search_submit { background: #00c; border: 0; color: #fff; cursor: pointer; font-size: .9em; font-weight: bold; letter-spacing: .1em; padding: 2px 8px; text-transform: uppercase; }
+
+abbr { cursor: help; }
+
+ul.dci_nav { width: auto; float: left; margin: 0; margin-bottom: 1em; background: black; color: white; }
+ul.dci_nav a { color: white; padding-left: .5em; padding-right: .5em;}
+ul.dci_nav a:hover { color: black; background: white; }
+ul.dci_nav li { float:left; border-right: 1px solid white;}

@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   def index
     params[:search] ||= {}
-    @expirees = Fiche.expired
+    @expired_fiches = Fiche.expired
   end
 
 end

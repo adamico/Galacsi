@@ -14,18 +14,18 @@ module FichesHelper
       haml_tag :tr do
         haml_tag :th do
         end
-        haml_tag :td do
-          if @fiche.state == "valide"
+        if @fiche.state == "valide"
+          haml_tag :td do
             haml_concat(" (MAJ ")
             haml_concat(l(@fiche.validation_date))
             haml_concat(")")
           end
-        end
-        haml_tag :td do
-          haml_concat(" => ")
-        end
-        haml_tag :td do
-          haml_concat(link_to("Mettre à jour", maj_date_dci_fiche_path(@fiche.dci, @fiche), :method => :put)) unless @fiche.validation_date == Time.now.to_date
+          haml_tag :td do
+            haml_concat(" => ")
+          end
+          haml_tag :td do
+            haml_concat(link_to("Mettre à jour", maj_date_dci_fiche_path(@fiche.dci, @fiche), :method => :put)) unless @fiche.validation_date == Time.now.to_date
+          end
         end
       end
     end

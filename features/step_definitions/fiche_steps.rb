@@ -6,6 +6,10 @@ When(/^a fiche exists which has been validated today$/) do
   Then "a fiche exists with dci: the dci, state: \"valide\", validation_date: \"#{today}\""
 end
 
+Then(/^the validation date should be today$/) do
+  Then "I should see \"MAJ #{Time.now.strftime("%d/%m/%Y")}\""
+end
+
 When(/(.*) the validation date$/) do |action|
   Then "#{action} \"#{Time.now.strftime("%d/%m/%Y")}\""
 end
