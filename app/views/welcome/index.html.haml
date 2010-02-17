@@ -5,9 +5,10 @@
   = text_field_tag "search[name_like]", params[:search][:name_like]
   = submit_tag "Rechercher", :name => nil
 
-%p
-  = "Attention vous avez : " + pluralize(@expirees.count, 'fiche') + " a vérifier"
-%ul
-  - @expirees.each do |fiche|
-    %li
-      = link_to "#{fiche.dci.name.humanize} (#{fiche.distinction_type} : #{fiche.distinction})", dci_fiche_path(fiche.dci, fiche)
+- unless @expirees.count < 1
+  %p
+    = "Attention vous avez : " + pluralize(@expirees.count, 'fiche') + " a vérifier"
+  %ul
+    - @expirees.each do |fiche|
+      %li
+        = link_to "#{fiche.dci.name.humanize} (#{fiche.distinction_type} : #{fiche.distinction})", dci_fiche_path(fiche.dci, fiche)
