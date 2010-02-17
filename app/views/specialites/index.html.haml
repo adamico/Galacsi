@@ -1,13 +1,10 @@
 - title "Specialites"
 
 %table
-  %tr
-    %th Name
   - for specialite in @specialites
     %tr
-      %td= h specialite.name
-      %td= link_to 'Show', specialite
-      %td= link_to 'Edit', edit_specialite_path(specialite)
-      %td= link_to 'Destroy', specialite, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to h(specialite.name), specialite
+      %td= link_to 'Edit', edit_specialite_path(specialite) if permitted_to? :edit, :specialites
+      %td= link_to 'Destroy', specialite, :confirm => 'Are you sure?', :method => :delete if permitted_to? :delete, :specialites
 
-%p= link_to "New Specialite", new_specialite_path
+%p= link_to "New Specialite", new_specialite_path if permitted_to? :new, :specialites

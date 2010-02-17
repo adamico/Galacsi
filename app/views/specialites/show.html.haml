@@ -1,12 +1,17 @@
-- title "Specialite"
+- title @specialite.name
+
+- if !@specialite.dcis.blank?
+  %p Composition
+  - for dci in @specialite.dcis
+    = link_to h(dci.name), dci_path(dci)
+- else
+  Pas de DCIs pour cette spécialité
 
 %p
-  %strong Name:
-  =h @specialite.name
-
-%p
-  = link_to "Edit", edit_specialite_path(@specialite)
-  |
-  = link_to "Destroy", @specialite, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", specialites_path
+  - if permitted_to? :edit, :fiches
+    = link_to "Modifier", edit_specialite_path(@specialite)
+    |
+  - if permitted_to? :delete, :fiches
+    = link_to "Détruire", @specialite, :confirm => 'Are you sure?', :method => :delete
+    |
+  = link_to "Retour à la liste", specialites_path

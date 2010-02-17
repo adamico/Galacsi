@@ -1,16 +1,6 @@
-- form_for @source do |f|
-  = f.error_messages
-  %p
-    = f.label :name
-    %br
-    = f.text_field :name
-  %p
-    = f.label :type
-    %br
-    = f.text_field :type
-  %p
-    = f.label :url
-    %br
-    = f.text_field :url
-  %p
-    = f.submit "Submit"
+- semantic_form_for @source do |f|
+  - f.inputs do
+    = f.input :name
+    = f.input :type
+    = f.input :url
+    = f.commit_button "Sauvegarder"

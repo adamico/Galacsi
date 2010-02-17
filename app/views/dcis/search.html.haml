@@ -5,8 +5,17 @@
   %p= link_to "Demander la création de cette DCI.", new_demande_path
 
 - else
-  %h2= pluralize(@dcis.count, 'résultat')
   - @dcis.each do |dci|
-    %p= link_to h(dci.name), dci
-%hr
-%p= link_to "Accueil", root_path
+    - if permitted_to? :create, :fiches
+      %p= link_to h(dci.name), dci
+    - else
+      %p= link_to(h(dci.name), dci) if dci.fiches.validated.count > 0
+    - if dci.fiches.count > 1 && (permitted_to? :create, :fiches)
+      %td
+        %table
+          - for fiche in dci.fiches
+            %tr.even
+              %td
+              %td= "#{fiche.distinction.name} : #{fiche.distinction_name}" if fiche.distinction_id?
+
+%p= link_to "Nouvelle DCI", new_dci_path if permitted_to? :create, @dci
