@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :sources
+
+  map.resources :sources
+
   map.resources :distinctions
 
   map.resources :demandes, :specialites

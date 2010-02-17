@@ -1,0 +1,17 @@
+- title "Sources"
+
+%table
+  %tr
+    %th Name
+    %th Type
+    %th Url
+  - for source in @sources
+    %tr
+      %td= h source.name
+      %td= h source.type
+      %td= h source.url
+      %td= link_to 'Show', source
+      %td= link_to 'Edit', edit_source_path(source)
+      %td= link_to 'Destroy', source, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Source", new_source_path

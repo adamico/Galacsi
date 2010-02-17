@@ -105,11 +105,16 @@
                 = link_to "Valider", valider_dci_fiche_path(fiche.dci, fiche), :method => :put
 
         .clear
-      - if fiche.validation_date? && fiche.state == 'valide'
-        %dl
-          %dt Date de dernière MAJ
-          %dd
-            = l(fiche.validation_date)
-            = " => #{link_to("Mettre à jour", maj_date_dci_fiche_path(fiche.dci, fiche), :method => :put)}" unless fiche.validation_date == Time.now.to_date
+        - if fiche.validation_date? && fiche.state == 'valide'
+          %dl
+            %dt Date de dernière MAJ
+            %dd
+              = l(fiche.validation_date)
+              = " => #{link_to("Mettre à jour", maj_date_dci_fiche_path(fiche.dci, fiche), :method => :put)}" unless fiche.validation_date == Time.now.to_date
+        - unless fiche.sources.blank?
+          %dl
+            %dt Sources
+            %dd
+              = fiche.sources.map(&:name).join(', ')
 
       .clear

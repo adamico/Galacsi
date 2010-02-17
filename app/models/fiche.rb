@@ -6,6 +6,9 @@ class Fiche < ActiveRecord::Base
   belongs_to :distinction
   has_many :alternativeships, :dependent => :destroy
   has_many :alternatives, :through => :alternativeships
+  has_and_belongs_to_many :sources, :join_table => "fiches_sources"
+  accepts_nested_attributes_for :sources,
+    :reject_if => proc { |attrs| attrs[:name].blank? }, :allow_destroy => true
 
   attr_writer :alternative_names
   after_save :assign_alternative_names

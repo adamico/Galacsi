@@ -43,6 +43,7 @@ class FichesController < ApplicationController
   end
   
   def new
+    @fiche.sources.build
   end
   
   def create
@@ -55,6 +56,7 @@ class FichesController < ApplicationController
   end
   
   def edit
+    @fiche.sources.build
   end
   
   def update
