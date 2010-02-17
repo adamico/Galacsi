@@ -3,8 +3,8 @@
   - f.inputs do
     = f.input :distinction, :label => "Sous-type fiche"
     = f.input :distinction_name, :as => :string
-    = f.input :decision, :as => :radio
-    = f.input :ei, :label => "EI avérés et/ou potentiels chez l'enfant", :input_html => {:rows => "2x50"}
+    = f.input :decision
+    = f.input :ei, :label => "EI avérés et/ou potentiels chez l'enfant", :input_html => {:rows => "4x50"}
     = f.input :conditions, :input_html => {:rows => "2x50"}
     = f.input :surveillance, :input_html => {:rows => "2x50"}
     %li.textfield.optional#fiche_alternative_names_input
@@ -30,33 +30,18 @@
     %li.select.optional#fiche_rapport_lp_input
       = f.label :rapport_lp, "Rapport Lait/Plasma"
       = f.select(:rapport_lp, Fiche::RLP, {:include_blank => true})
-    = f.input :poso_pedia, :label => "Posologie pédiatrique"
-    = f.input :poso_pedia_des, :label => "à partir de"
+    = f.input :poso_pedia, :label => "Posologie pédiatrique", :as => :select
+    = f.input :poso_pedia_des, :label => "à partir de", :hint => "si oui dans le champ précédent"
     = f.input :metabolites_actifs, :label => "Métabolites actifs"
     = f.input :risque_accumulation, :label => "Risque d'accumulation dans le lait"
     = f.input :risque_dim_lactation, :label => "Risque théorique de diminution de la lactation"
-    = f.input :arg_autre, :label => "Autres"
+    = f.input :arg_autre, :label => "Autres", :input_html => {:rows => "2x50"}
 
   - f.inputs do
-    %li.radio.optional#fiche_revalider_le_input
-      %fieldset
-        %legend
-          %span.label
-            A revalider dans
-        %ol
-          %li
-            %label{ :for => "revalider_le_3mois"}
-              = f.radio_button :revalider_le, 3.months.from_now.to_date
-              3 mois
-          %li
-            %label{ :for => "revalider_le_6mois"}
-              = f.radio_button :revalider_le, 6.months.from_now.to_date
-              6 mois
-          %li
-            %label{ :for => "revalider_le_12mois"}
-              = f.radio_button :revalider_le, 12.months.from_now.to_date
-              1 an
+    %li.select.optional#fiche_dose_ingeree_par_rapport_input
+      = f.label :revalider_le, "A revalider dans"
+      = f.select(:revalider_le, [['3 mois', 3.months.from_now.to_date], ['6 mois', 6.months.from_now.to_date], ['1 an', 1.year.from_now.to_date]])
   - f.inputs do
-    = f.input :commentaire
+    = f.input :commentaire, :input_html => {:rows => "3x50"}
   - f.buttons do
     = f.commit_button "Sauvegarder"

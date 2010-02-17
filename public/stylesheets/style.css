@@ -139,6 +139,18 @@ ul.fiche_nav li { float:left; border-right: 1px solid white;}
 ul.fiche_nav a { color: black; padding-left: .5em; padding-right: .5em;}
 ul.fiche_nav a:hover { text-decoration: underline;  }
 
-#fiche dl dt { float:left; font-weight: bold;}
-#fiche dl dt:after { content: " : ";}
-#fiche dl dd { float:left; margin-left: .5em;}
+
+#validation dl { margin: .5em;}
+#validation dt { float:left; font-weight: bold; clear: left;}
+#validation dt:after { content: " : ";}
+#validation dd { float:left; margin-left: .5em;}
+
+#argumentaire dl { margin: .5em;}
+#argumentaire dt { float:left; font-weight: bold; clear: left;}
+#argumentaire dt:after { content: " : ";}
+#argumentaire dd { float:left; margin-left: .5em;}
+
+#decision_1 { color: red;} /* contre-indiqué */
+#decision_2 { color: orange;} /* à discuter */
+#decision_3 { color: green;} /* compatible */
+#decision_4 { color: yellow;} /* compatible 2e intention */

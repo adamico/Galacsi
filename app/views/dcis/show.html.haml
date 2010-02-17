@@ -9,6 +9,8 @@
   - if permitted_to? :delete, @dci
     %li= link_to "Détruire cette DCI", @dci, :confirm => 'Etes-vous sûr ?', :method => :delete
 
+.clear
+
 - if !@dci.fiches.blank?
   #fiches
     = render :partial => @dci.fiches
