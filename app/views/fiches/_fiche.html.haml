@@ -1,12 +1,16 @@
 -if permitted_to? :read, fiche
   #fiche
-    %h2
+    %h2.float_left
       = "#{fiche.distinction.name} : #{fiche.distinction_name}" if fiche.distinction_id?
-      - if permitted_to? :update, :fiches
-        = "(#{fiche.state.humanize})"
-    - if fiche.validation_date?
-      %p.validation_date
-        = "(Informations validées il y a #{time_ago_in_words(fiche.validation_date)})"
+
+    %ul.fiche_nav
+      %li
+        = link_to("Modifier", edit_dci_fiche_path(fiche.dci, fiche)) if permitted_to? :edit, fiche
+      %li
+        = link_to("Détruire", [fiche.dci, fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) if permitted_to? :destroy, fiche
+
+    .clear
+
     %p
       = "Décision : "
       = h fiche.decision.name rescue ""
@@ -21,3 +25,28 @@
           - link = !a.commercial_names.blank? ? "#{a.name} (#{a.commercial_names})" : "#{a.name}"
           %li
             = link_to link, dci_path(a)
+    %hr
+    
+    - if permitted_to? :update, :fiches
+      %dl
+        %dt Etat de validation
+        %dd
+          = fiche.state.humanize
+          %span
+            = " => "
+            - if fiche.state == "brouillon" && permitted_to?(:initialiser, :fiches)
+              = link_to "Initialiser", initialiser_dci_fiche_path(fiche.dci, fiche), :method => :put
+            - elsif fiche.state == "valide" && permitted_to?(:invalider, :fiches)
+              = link_to "Invalider", invalider_dci_fiche_path(fiche.dci, fiche), :method => :put
+            - elsif (fiche.state == "a_valider" || fiche.state == "en_attente") && permitted_to?(:valider, fiche)
+              = link_to "Valider", valider_dci_fiche_path(fiche.dci, fiche), :method => :put
+
+      .clear
+    - if fiche.validation_date? && fiche.state == 'valide'
+      %dl
+        %dt Date de dernière MAJ
+        %dd
+          = l(fiche.validation_date)
+          = " => #{link_to("Mettre à jour", maj_date_dci_fiche_path(fiche.dci, fiche), :method => :put)}" unless fiche.validation_date == Time.now.to_date
+
+    .clear

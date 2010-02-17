@@ -1,19 +1,21 @@
 - title "Liste des DCI"
 
 %table
-  %tr
-    %th Nom
-    %th Fiche
-    %th Validation
-
   - for dci in @dcis
     %tr
-      %td= link_to(h(dci.name.humanize), dci)
-    - if dci.fiches.count > 1
-      - for fiche in dci.fiches
-        %tr
-          %td
-          %td= "#{fiche.distinction.name} : #{fiche.distinction_name}" if fiche.distinction_id?
-          %td= fiche.state
+      - if permitted_to? :create, :fiches
+        %td= link_to h(dci.name.humanize), dci
+      - else
+        %td= link_to(h(dci.name.humanize), dci) if dci.fiches.validated.count > 0
+      - if dci.fiches.count > 1 && (permitted_to? :create, :fiches)
+        %td
+          %table
+            - for fiche in dci.fiches
+              %tr.even
+                %td
+                %td= "#{fiche.distinction.name} : #{fiche.distinction_name}" if fiche.distinction_id?
 
-%p= link_to "Nouvelle DCI", new_dci_path if permitted_to? :new, @dci
+- if @dcis_validated.count == 0 && !(permitted_to? :create, :fiches)
+  Aucune DCI n'existe avec des fiches validées.
+
+%p= link_to "Nouvelle DCI", new_dci_path if permitted_to? :create, @dci

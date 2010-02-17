@@ -1,7 +1,7 @@
 - title "#{@dci.name.humanize}"
 
 - unless @dci.commercial_names.blank?
-  %h2= "(#{@dci.commercial_names})"
+  %h2.float_left= "(#{@dci.commercial_names})"
 
 %ul.dci_nav
   - if permitted_to? :edit, @dci

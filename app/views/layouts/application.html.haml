@@ -13,6 +13,7 @@
         %ul#nav
           %li= link_to "DCI", dcis_path
           %li= link_to "Utilisateurs", users_path if permitted_to? :read, :users
+          %li= link_to "Distinctions", users_path if permitted_to? :read, :users
     #content
       #left
         - flash.each do |name, msg|

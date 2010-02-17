@@ -16,33 +16,3 @@ form.formtastic fieldset ol li.string input { width:40%; }
 form.formtastic fieldset ol li.password input { width:40%; }
 form.formtastic fieldset ol li.numeric input { width:40%; }
 
-.search form label {
-	line-height: 2em;
-}
-
-.search form input {
-	border: 1px solid #00c;
-	background: #ebebeb;
-	margin: 0 .5em;
-	padding: 2px 4px;
-}
-
-.search input:focus {
-	background: #fff;
-}
-
-.search input.search_submit {
-	background: #00c;
-	border: 0;
-	color: #fff;
-	cursor: pointer;
-	font-size: .9em;
-	font-weight: bold;
-	letter-spacing: .1em;
-	padding: 2px 8px;
-	text-transform: uppercase;
-}
-
-abbr {
-  cursor: help;
-}

@@ -109,6 +109,14 @@ li { list-style-type: none;}
 
 /* My personalizations */
 
+.float_left { float:left;}
+.float_right { float:right;}
+
+table { border-collapse:collapse;}
+
+.odd { background: #eee;}
+.even { background: #fff;}
+
 div#fiches { clear:both; }
 
 div#fiche { background-color: #fff; color: black; border: solid 1px black; padding: 1em; margin-bottom: 5px; margin-top: 10px; }
@@ -121,7 +129,16 @@ div#fiche a:hover { color: black; }
 
 abbr { cursor: help; }
 
-ul.dci_nav { width: auto; float: left; margin: 0; margin-bottom: 1em; background: black; color: white; }
+ul.dci_nav { width: auto; float: right; margin: 0; margin-bottom: 1em; background: black; color: white; }
+ul.dci_nav li { float:left; border-right: 1px solid white;}
 ul.dci_nav a { color: white; padding-left: .5em; padding-right: .5em;}
 ul.dci_nav a:hover { color: black; background: white; }
-ul.dci_nav li { float:left; border-right: 1px solid white;}
+
+ul.fiche_nav { float: right;}
+ul.fiche_nav li { float:left; border-right: 1px solid white;}
+ul.fiche_nav a { color: black; padding-left: .5em; padding-right: .5em;}
+ul.fiche_nav a:hover { text-decoration: underline;  }
+
+#fiche dl dt { float:left; font-weight: bold;}
+#fiche dl dt:after { content: " : ";}
+#fiche dl dd { float:left; margin-left: .5em;}

@@ -20,6 +20,7 @@ class Fiche < ActiveRecord::Base
   RLP = ["<1", ">1"]
 
   alias_scope :expired, lambda { revalider_le_before(Time.now.to_date)}
+  alias_scope :validated, lambda { state_is("valide")}
 
   # AASM stuff
   include AASM
