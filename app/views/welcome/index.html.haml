@@ -1,9 +1,10 @@
 - title "Bienvenue!"
 
-- form_tag search_dcis_path, :method => :get do
-  = label_tag :search, "Rechercher un médicament par DCI : "
-  = text_field_tag "search[name_like]", params[:search][:name_like]
-  = submit_tag "Rechercher", :name => nil
+.search
+  - form_tag search_dcis_path, :method => :get do
+    = label_tag :search, "Rechercher un médicament par DCI : "
+    = text_field_tag "search[name_like]", params[:search][:name_like]
+    = submit_tag "Go", :name => nil, :class => "search_submit"
 
 - unless @expirees.count < 1
   %p

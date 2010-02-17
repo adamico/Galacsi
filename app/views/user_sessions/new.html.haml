@@ -1,13 +1,6 @@
 - title "Log in"
-
-- form_for @user_session do |f|
-  = f.error_messages
-  %ol(class="formList")
-    %li
-      = f.label :username, "Utilisateur"
-      = f.text_field :username
-    %li
-      = f.label :password, "Mot de passe"
-      = f.password_field :password
-    %li
-      = f.submit "Se connecter"
+- semantic_form_for(@user_session) do |f|
+  - f.inputs do
+    = f.input :username, :label => 'Utilisateur'
+    = f.input :password, :label => 'Mot de passe'
+    = f.commit_button 'Se connecter'

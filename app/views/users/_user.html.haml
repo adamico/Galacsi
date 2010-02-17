@@ -1,21 +1,15 @@
-- form_for @user do |f|
-  = f.error_messages
-  %ol(class="formList")
-  %li
-    = f.label :username, "Nom d'utilisateur"
-    = f.text_field :username
-  %li
-    = f.label :email
-    = f.text_field :email
-  %li
-    = f.label :password, f.object.new_record? ? "Mot de passe" : "Changer le mot de passe"
-    = f.password_field :password
-  %li
-    = f.label :password_confirmation, "Confirmer le mot de passe"
-    = f.password_field :password_confirmation
-  %li
-    = f.label :role, "Role : "
-    - roles = has_role?(:admin) ? User::ROLES : User::ROLES[1..-1]
-    = f.collection_select :role, roles, :to_s, :humanize
-  %br/
-  = f.submit "Sauvegarder"
+- semantic_form_for(user) do |f|
+  - f.inputs do
+    = f.input :username, :label => "Nom d'utilisateur"
+    = f.input :email
+    %li.password
+      = f.label :password, f.object.new_record? ? "Mot de passe" : "Changer le mot de passe"
+      = f.password_field :password
+    %li.password
+      = f.label :password_confirmation, "Confirmer le mot de passe"
+      = f.password_field :password_confirmation
+    %li.select.optional  
+      = f.label :role, "Role"
+      - roles = has_role?(:admin) ? User::ROLES : User::ROLES[1..-1]
+      = f.collection_select :role, roles, :to_s, :humanize
+    = f.commit_button 'Sauvegarder'
