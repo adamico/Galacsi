@@ -10,7 +10,6 @@ authorization do
       if_attribute :state => ["en_attente", "valide"]
     end
     has_permission_on [:dcis, :specialites], :to => :read
-    has_permission_on :demandes, :to => [:create, :read]
   end
 
   role :contributeur do

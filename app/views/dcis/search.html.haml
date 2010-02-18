@@ -2,7 +2,6 @@
 
 - if @dcis.empty?
   %h2= "Aucun résultat pour #{params[:search][:name_like]}."
-  %p= link_to "Demander la création de cette DCI.", new_demande_path
 
 - else
   - @dcis.each do |dci|
