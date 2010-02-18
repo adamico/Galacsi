@@ -9,6 +9,7 @@ authorization do
     has_permission_on :fiches, :to => :read do
       if_attribute :state => ["en_attente", "valide"]
     end
+    has_permission_on :users, :to => :create
     has_permission_on [:dcis, :specialites], :to => :read
   end
 
