@@ -28,6 +28,7 @@ module LayoutHelper
           haml_concat(link_to "Déconnection", logout_path)
         else
           haml_concat(link_to "Connection", login_path)
+          haml_concat(link_to "Register", new_user_path)          
         end
       end
     end
