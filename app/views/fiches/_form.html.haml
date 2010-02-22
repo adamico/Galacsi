@@ -1,8 +1,9 @@
 -#encoding: utf-8
 - semantic_form_for([@fiche.dci, @fiche]) do |f|
   - f.semantic_fields_for :sources do |builder|
-    = render 'source_fields', :f => builder
-  %p= link_to_add_fields "Rajouter une source", f, :sources
+    - builder.inputs :name => "Sources" do
+      = render 'source_fields', :f => builder
+    %p.add_fields= link_to_add_fields "Rajouter une source", f, :sources
   - f.inputs do
     = f.input :distinction, :label => "Sous-type fiche"
     = f.input :distinction_name, :as => :string
@@ -12,7 +13,7 @@
     = f.input :surveillance, :input_html => {:rows => "2x50"}
     %li.textfield.optional#fiche_alternative_names_input
       = f.label :alternative_names, "Alternatives"
-      = f.text_field :alternative_names, :size => "44"
+      = f.text_field :alternative_names, :size => "50"
     %li.select.optional#fiche_suivi_input
       = f.label :suivi, "Suivi"
       = f.select(:suivi, Fiche::SUIVIS, {:include_blank => true})

@@ -22,5 +22,13 @@ Feature: search for fiches by multiple criteria
       | pattern | count_result    |
       | ine     | 3 résultats     |
       | lam     | 1 résultat      |
-      | tar     | 1 résultat |
-      | cas     | 1 résultat |
+      | tar     | 1 résultat      |
+      | cas     | 1 résultat      |
+
+  @focus
+  Scenario: searching with utf chars
+    Given a dci exists with name: "acétylsalicylique (acide)"
+    When I go to the homepage
+      And I fill in "search[name_like]" with "ace"
+      And I press "Go"
+    Then I should see "1 résultat"

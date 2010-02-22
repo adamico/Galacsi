@@ -56,7 +56,6 @@ class FichesController < ApplicationController
   end
   
   def edit
-    @fiche.sources.build
   end
   
   def update

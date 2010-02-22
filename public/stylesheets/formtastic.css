@@ -9,7 +9,7 @@ This stylesheet forms part of the Formtastic Rails Plugin
 
 --------------------------------------------------------------------------------------------------*/
 
-	
+
 /* NORMALIZE AND RESET - obviously inspired by Yahoo's reset.css, but scoped to just form.formtastic
 --------------------------------------------------------------------------------------------------*/
 form.formtastic, form.formtastic ul, form.formtastic ol, form.formtastic li, form.formtastic fieldset, form.formtastic legend, form.formtastic input, form.formtastic textarea, form.formtastic select, form.formtastic p { margin:0; padding:0; }

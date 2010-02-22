@@ -113,6 +113,7 @@ li { list-style-type: none;}
 .float_right { float:right;}
 
 table { border-collapse:collapse;}
+table td, table th { padding: 0 1em;}
 
 .odd { background: #eee;}
 .even { background: #fff;}
@@ -154,3 +155,5 @@ ul.fiche_nav a:hover { text-decoration: underline;  }
 #decision_2 { padding: 0 .5em; background:black; color: orange;} /* à discuter */
 #decision_3 { padding: 0 .5em; background:black; color: lime;} /* compatible */
 #decision_4 { padding: 0 .5em; background:black; color: yellow;} /* compatible 2e intention */
+
+.fields { border: 1px solid black;}

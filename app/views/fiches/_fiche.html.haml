@@ -41,7 +41,7 @@
       %dl
       - unless fiche.biodisponibilite.blank?
         %dt Biodisponibilité
-        %dd fiche.biodisponibilite
+        %dd= fiche.biodisponibilite
       - unless fiche.dose_ingeree.blank?
         %dt Dose ingérée par le bébé
         %dd= "#{fiche.dose_ingeree} de la #{fiche.dose_ingeree_par_rapport}"
@@ -71,7 +71,7 @@
 
     - if fiche.poso_pedia?
       %p
-        %b= "Posologie pediatrique a partir de #{fiche.poso_pedia_des}"
+        %b= "Posologie pédiatrique a partir de #{fiche.poso_pedia_des}"
     - if fiche.metabolites_actifs?
       %p
         %b Présence de métabolites actifs
@@ -83,7 +83,7 @@
         %b Risque de diminution de la lactation
     - unless fiche.arg_autre.blank?
       %p
-        %b= "Autre : #{fiche.arg_autre}"
+        = fiche.arg_autre
 
     .clear
 

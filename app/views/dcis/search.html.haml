@@ -4,6 +4,7 @@
   %h2= "Aucun résultat pour #{params[:search][:name_like]}."
 
 - else
+  %h2= pluralize(@dcis.count, 'résultat')
   - @dcis.each do |dci|
     - if permitted_to? :create, :fiches
       %p= link_to h(dci.name), dci
