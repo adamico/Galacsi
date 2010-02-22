@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100222104602) do
+ActiveRecord::Schema.define(:version => 20100222131328) do
 
   create_table "alternativeships", :force => true do |t|
     t.integer  "fiche_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20100222104602) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stripped_name"
   end
 
   create_table "decisions", :force => true do |t|

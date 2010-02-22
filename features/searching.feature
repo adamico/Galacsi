@@ -12,10 +12,11 @@ Feature: search for fiches by multiple criteria
       | tartampionat |
       | castorama    |
       | blablabla    |
+      | acétylsalicylique (acide)|
 
   Scenario Outline: guests search dcis by name
     When I go to the homepage
-      And I fill in "search[name_like]" with "<pattern>"
+      And I fill in "search[stripped_name_like]" with "<pattern>"
       And I press "Go"
     Then I should see "<count_result>"
     Scenarios:
@@ -24,11 +25,4 @@ Feature: search for fiches by multiple criteria
       | lam     | 1 résultat      |
       | tar     | 1 résultat      |
       | cas     | 1 résultat      |
-
-  @focus
-  Scenario: searching with utf chars
-    Given a dci exists with name: "acétylsalicylique (acide)"
-    When I go to the homepage
-      And I fill in "search[name_like]" with "ace"
-      And I press "Go"
-    Then I should see "1 résultat"
+      | ace     | 1 résultat      |
