@@ -2,9 +2,12 @@
 
 .search
   - form_tag search_dcis_path, :method => :get do
-    = label_tag :search, "Rechercher un médicament par DCI : "
-    = text_field_tag "search[stripped_name_like]", params[:search][:stripped_name_like]
-    = submit_tag "Go", :name => nil, :class => "search_submit"
+    %fieldset
+      %legend
+        Rechercher un médicament
+      = label_tag :search, "par DCI ou nom commercial: "
+      = text_field_tag "search[stripped_name_or_specialites_name_like]", params[:search][:stripped_name_or_specialites_name_like]
+      = submit_tag "Go", :name => nil, :class => "search_submit"
 
 - unless @expired_fiches.count < 1
   %p

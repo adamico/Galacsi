@@ -1,4 +1,4 @@
-- title "Specialites"
+- title "Specialités"
 
 %table
   - for specialite in @specialites
@@ -7,4 +7,4 @@
       %td= link_to 'Edit', edit_specialite_path(specialite) if permitted_to? :edit, :specialites
       %td= link_to 'Destroy', specialite, :confirm => 'Are you sure?', :method => :delete if permitted_to? :delete, :specialites
 
-%p= link_to "New Specialite", new_specialite_path if permitted_to? :new, :specialites
+%p= link_to "Nouvelle Specialité", new_specialite_path if permitted_to? :new, :specialites

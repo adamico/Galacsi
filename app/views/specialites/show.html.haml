@@ -1,9 +1,10 @@
 - title @specialite.name
 
 - if !@specialite.dcis.blank?
-  %p Composition
-  - for dci in @specialite.dcis
-    = link_to h(dci.name), dci_path(dci)
+  %h3 Liste de DCIs
+  %ol
+    - for dci in @specialite.dcis
+      %li= link_to h(dci.name), dci_path(dci)
 - else
   Pas de DCIs pour cette spécialité
 

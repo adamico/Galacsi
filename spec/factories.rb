@@ -1,43 +1,48 @@
-Factory.define :fiche do |p|
-  p.state 'brouillon'
-  p.validation_date "#{Time.now.to_date}"
-  p.revalider_le "#{Time.now.advance(:months => -4).to_date}"
-  p.commentaire 'blabla'
-  p.distinction_name 'hta'
-  p.association :decision
-  p.association :dci
-  p.association :distinction
-  p.suivi 'oui'
+Factory.define :fiche do |f|
+  f.state 'brouillon'
+  f.validation_date "#{Time.now.to_date}"
+  f.revalider_le "#{Time.now.advance(:months => -4).to_date}"
+  f.commentaire 'blabla'
+  f.distinction_name 'hta'
+  f.association :decision
+  f.association :dci
+  f.association :distinction
+  f.suivi 'oui'
 end
 
-Factory.define(:distinction) do |d|
-  d.name "indication"
+Factory.define(:distinction) do |f|
+  f.name "indication"
 end
 
 Factory.define :dci do |f|
   f.sequence(:name) {|n| "dci#{n}" }
+  f.specialites { |specialites| [specialites.association(:specialite)]}
 end
 
-Factory.define :decision do |d|
-  d.name "Compatible"
+Factory.define :decision do |f|
+  f.name "Compatible"
 end
 
-Factory.define :user do |u|
-  u.sequence(:username) {|n| "user#{n}"}
-  u.email { |a| "#{a.username}@example.com".downcase }
-  u.password "secret"
-  u.password_confirmation { |user| user.password }
-  u.role "contributeur"
+Factory.define(:specialite) do |f|
+  f.sequence(:name) {|n| "specialite#{n}"}
 end
 
-Factory.define :admin, :parent => :user do |a|
-  a.role "admin"
+Factory.define :user do |f|
+  f.sequence(:username) {|n| "user#{n}"}
+  f.email { |a| "#{a.username}@example.com".downcase }
+  f.password "secret"
+  f.password_confirmation { |user| user.password }
+  f.role "contributeur"
 end
 
-Factory.define :valideur, :parent => :user do |v|
-  v.role "valideur"
+Factory.define :admin, :parent => :user do |f|
+  f.role "admin"
 end
 
-Factory.define :contributeur, :parent => :user do |c|
-  c.role "contributeur"
+Factory.define :valideur, :parent => :user do |f|
+  f.role "valideur"
+end
+
+Factory.define :contributeur, :parent => :user do |f|
+  f.role "contributeur"
 end
