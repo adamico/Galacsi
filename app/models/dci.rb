@@ -2,6 +2,11 @@ class Dci < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
+  # use the "name" column as the basis of the friendly_id, and use slugs
+  has_friendly_id :name, :use_slug => true,
+    # remove accents and other diacritics from Western characters
+    :approximate_ascii => true
+
   has_many :fiches, :dependent => :destroy
 
   has_many :compositions, :dependent => :destroy
