@@ -12,7 +12,6 @@
     .clear
 
     %p
-      = "Décision : "
       %span[fiche.decision]= h fiche.decision.name rescue ""
 
     - unless fiche.conditions.blank?
@@ -42,24 +41,21 @@
       - unless fiche.biodisponibilite.blank?
         %dt Biodisponibilité
         %dd= fiche.biodisponibilite
-      - unless fiche.dose_ingeree.blank?
-        %dt Dose ingérée par le bébé
-        %dd= "#{fiche.dose_ingeree} de la #{fiche.dose_ingeree_par_rapport}"
+      - unless fiche.dose_par_rapport_dmap.blank?
+        %dt Dose ingérée par rapport à la dose maternelle
+        %dd= fiche.dose_par_rapport_dmap
+      - unless fiche.dose_par_rapport_dp.blank?
+        %dt Dose ingérée par rapport à la dose pédiatrique
+        %dd= fiche.dose_par_rapport_dp
       - unless fiche.liaison_pp.blank?
         %dt Liaison aux protéines plasmatiques
         %dd= fiche.liaison_pp
       - unless fiche.vol_dist.blank?
         %dt Volume de distribution
         %dd= fiche.vol_dist
-      - unless fiche.tmax.blank?
-        %dt Tmax
-        %dd= fiche.tmax
       - unless fiche.thalf.blank?
         %dt T1/2
         %dd= fiche.thalf
-      - unless fiche.pm.blank?
-        %dt Poids moléculaire
-        %dd= fiche.pm
       - unless fiche.passage_lait.blank?
         %dt Passage dans le lait
         %dd= fiche.passage_lait
@@ -69,9 +65,9 @@
 
     .clear
 
-    - if fiche.poso_pedia?
+    - if fiche.has_poso_pedia?
       %p
-        %b= "Posologie pédiatrique a partir de #{fiche.poso_pedia_des}"
+        %b= "Posologie pédiatrique : #{fiche.poso_pedia_dose} a partir de #{fiche.poso_pedia_des}"
     - if fiche.metabolites_actifs?
       %p
         %b Présence de métabolites actifs

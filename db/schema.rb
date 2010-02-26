@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100222131328) do
+ActiveRecord::Schema.define(:version => 20100226141149) do
 
   create_table "alternativeships", :force => true do |t|
     t.integer  "fiche_id"
@@ -68,8 +68,8 @@ ActiveRecord::Schema.define(:version => 20100222131328) do
     t.text     "conditions"
     t.text     "surveillance"
     t.string   "biodisponibilite"
-    t.string   "dose_ingeree"
-    t.string   "dose_ingeree_par_rapport"
+    t.string   "dose_par_rapport_dmap"
+    t.string   "dose_par_rapport_dp"
     t.string   "liaison_pp"
     t.string   "vol_dist"
     t.string   "tmax"
@@ -77,13 +77,17 @@ ActiveRecord::Schema.define(:version => 20100222131328) do
     t.string   "pm"
     t.string   "passage_lait"
     t.string   "rapport_lp"
-    t.boolean  "poso_pedia"
+    t.boolean  "has_poso_pedia"
     t.boolean  "metabolites_actifs"
     t.boolean  "risque_accumulation"
     t.boolean  "risque_dim_lactation"
     t.string   "poso_pedia_des"
     t.text     "arg_autre"
     t.integer  "distinction_id"
+    t.text     "ei_theoriques"
+    t.boolean  "de_choix"
+    t.string   "pic_lacte"
+    t.string   "poso_pedia_dose"
   end
 
   add_index "fiches", ["decision_id"], :name => "index_produits_on_decision_id"
