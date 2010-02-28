@@ -1,3 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+
+two:
+  name: MyString
+  description: MyText
+
+
 # == Schema Information
 #
 # Table name: decisions
@@ -8,14 +19,4 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  name: MyString
-  description: MyText
-
-two:
-  name: MyString
-  description: MyText
 

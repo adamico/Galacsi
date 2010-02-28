@@ -7,6 +7,7 @@ describe Distinction do
 end
 
 
+
 # == Schema Information
 #
 # Table name: distinctions

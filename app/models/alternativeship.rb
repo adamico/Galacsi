@@ -3,6 +3,7 @@ class Alternativeship < ActiveRecord::Base
   belongs_to :alternative, :class_name => 'Dci'
 end
 
+
 # == Schema Information
 #
 # Table name: alternativeships

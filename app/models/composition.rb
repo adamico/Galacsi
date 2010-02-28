@@ -3,6 +3,7 @@ class Composition < ActiveRecord::Base
   belongs_to :specialite
 end
 
+
 # == Schema Information
 #
 # Table name: compositions

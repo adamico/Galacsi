@@ -1,3 +1,8 @@
+class Decision < ActiveRecord::Base
+  has_many :fiches
+end
+
+
 # == Schema Information
 #
 # Table name: decisions
@@ -8,8 +13,4 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
-
-class Decision < ActiveRecord::Base
-  has_many :fiches
-end
 

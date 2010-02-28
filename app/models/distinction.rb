@@ -4,6 +4,7 @@ class Distinction < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: distinctions

@@ -6,6 +6,7 @@ describe Specialite do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: specialites

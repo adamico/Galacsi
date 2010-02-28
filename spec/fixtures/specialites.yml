@@ -4,6 +4,7 @@ one:
 two:
   name: MyString
 
+
 # == Schema Information
 #
 # Table name: specialites

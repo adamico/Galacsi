@@ -3,6 +3,8 @@ class Fiche < ActiveRecord::Base
   belongs_to :decision
   belongs_to :dci
   belongs_to :distinction
+  
+  
   has_many :alternativeships, :dependent => :destroy
   has_many :alternatives, :through => :alternativeships
   has_and_belongs_to_many :sources, :join_table => "fiches_sources"

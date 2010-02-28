@@ -1,3 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+
+
 # == Schema Information
 #
 # Table name: users
@@ -12,12 +21,4 @@
 #  updated_at        :datetime
 #  role              :string(255)
 #
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
 

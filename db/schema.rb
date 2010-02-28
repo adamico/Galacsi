@@ -9,11 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100226141149) do
+ActiveRecord::Schema.define(:version => 20100228134905) do
 
   create_table "alternativeships", :force => true do |t|
     t.integer  "fiche_id"
     t.integer  "alternative_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "classe_therapeutiques", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "classifications", :force => true do |t|
+    t.integer  "dci_id"
+    t.integer  "classe_therapeutique_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,13 +108,6 @@ ActiveRecord::Schema.define(:version => 20100226141149) do
   create_table "fiches_sources", :id => false, :force => true do |t|
     t.integer "fiche_id"
     t.integer "source_id"
-  end
-
-  create_table "relationships", :force => true do |t|
-    t.integer  "dci_id"
-    t.integer  "relation_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "slugs", :force => true do |t|

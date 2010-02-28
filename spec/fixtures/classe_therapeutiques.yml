@@ -1,12 +1,12 @@
-class Specialite < ActiveRecord::Base
-  has_many :compositions, :dependent => :destroy
-  has_many :dcis, :through => :compositions
-end
+one:
+  name: MyString
 
+two:
+  name: MyString
 
 # == Schema Information
 #
-# Table name: specialites
+# Table name: classe_therapeutiques
 #
 #  id         :integer         not null, primary key
 #  name       :string(255)

@@ -1,0 +1,2 @@
+module ClasseTherapeutiquesHelper
+end

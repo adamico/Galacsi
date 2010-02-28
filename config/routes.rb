@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :classe_therapeutiques
+
   map.resources :decisions
 
   map.resources :demandes, :specialites, :distinctions, :sources

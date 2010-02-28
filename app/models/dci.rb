@@ -10,6 +10,9 @@ class Dci < ActiveRecord::Base
 
   has_many :fiches, :dependent => :destroy
 
+  has_many :classifications, :dependent => :destroy
+  has_many :classe_therapeutiques, :through => :classifications
+
   has_many :compositions, :dependent => :destroy
   has_many :specialites, :through => :compositions
 
@@ -41,6 +44,7 @@ class Dci < ActiveRecord::Base
   end
 
 end
+
 
 
 # == Schema Information
