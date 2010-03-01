@@ -17,7 +17,7 @@ Feature: managing dcis
     When I go to the new dci page
       And I fill in "Nom" with "aNom"
       And I press "Enregistrer"
-    Then I should see "Name n'est pas disponible"
+    Then I should see "n'est pas disponible"
 
   Scenario: adding 1 commercial name for dcis
     Given a dci exists

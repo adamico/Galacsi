@@ -30,12 +30,12 @@ Feature: manage classes therapeutiques
   Scenario: adding multiple classes therapeutiques
     Given a dci exists
       And the following classe_therapeutiques exist:
-        | name    |
-        | classe1 |
-        | classe2 |
+        | name       |
+        | uneclasse1 |
+        | uneclasse2 |
     When I go to the dci's edit page
-      And I select "classe1" from "Classes thérapeutiques"
-      And I select "classe2" from "Classes thérapeutiques"
+      And I select "uneclasse1" from "Classes thérapeutiques"
+      And I select "uneclasse2" from "Classes thérapeutiques"
       And I press "Enregistrer"
     Then I should see "Classes thérapeutiques :"
-      And I should see "Classe2, Classe1"
+      And I should see "Uneclasse1, Uneclasse2"

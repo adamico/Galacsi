@@ -14,6 +14,7 @@ gem 'rubyist-aasm', '> 2.0.2', :require => 'aasm'
 gem 'justinfrench-formtastic'
 gem 'unicode_utils'
 gem 'haml'
+gem 'repeated_auto_complete'
 
 group :test do
   gem 'thoughtbot-factory_girl', :require => 'factory_girl'
