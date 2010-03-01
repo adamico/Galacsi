@@ -1,5 +1,6 @@
 class ClasseTherapeutique < ActiveRecord::Base
-  attr_accessible :name
+  validates_uniqueness_of :name
+  
   has_many :classifications, :dependent => :destroy
   has_many :dcis, :through => :classifications
 end

@@ -13,6 +13,7 @@
       #menu
         %ul#nav
           %li= link_to "DCI", dcis_path
+          %li= link_to "Classes", classe_therapeutiques_path
           %li= link_to "Spécialités", specialites_path
           %li= link_to "Decisions", decisions_path if permitted_to? :read, :decisions
           %li= link_to "Distinctions", distinctions_path if permitted_to? :read, :distinctions

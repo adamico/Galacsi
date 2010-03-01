@@ -1,9 +1,6 @@
 - title "#{@dci.name.humanize}"
 
-%h3= h @dci.stripped_name
-
-- unless @dci.commercial_names.blank?
-  %h2.float_left= "(#{@dci.commercial_names})"
+%h2.float_left= "(#{@dci.commercial_names})" unless @dci.commercial_names.blank?
 
 %ul.dci_nav
   - if permitted_to? :edit, @dci
@@ -12,6 +9,8 @@
     %li= link_to "Détruire cette DCI", @dci, :confirm => 'Etes-vous sûr ?', :method => :delete
 
 .clear
+
+%h2= "Classes thérapeutiques : #{@dci.classes_therapeutiques}" unless @dci.classes_therapeutiques.blank?
 
 - if !@dci.fiches.blank?
   #fiches

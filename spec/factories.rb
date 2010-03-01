@@ -17,6 +17,7 @@ end
 Factory.define :dci do |f|
   f.sequence(:name) {|n| "dci#{n}" }
   f.specialites { |specialites| [specialites.association(:specialite)]}
+  f.classe_therapeutiques { |classe_therapeutiques| [classe_therapeutiques.association(:classe_therapeutique)]}
 end
 
 Factory.define :decision do |f|
@@ -25,6 +26,10 @@ end
 
 Factory.define(:specialite) do |f|
   f.sequence(:name) {|n| "specialite#{n}"}
+end
+
+Factory.define :classe_therapeutique do |f|
+  f.sequence(:name) { |n| "classe#{n}" }
 end
 
 Factory.define :user do |f|

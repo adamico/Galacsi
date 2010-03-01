@@ -20,6 +20,10 @@ class Dci < ActiveRecord::Base
   attr_writer :commercial_names
   after_save :assign_commercial_names
 
+  def classes_therapeutiques
+    @classes_therapeutiques || classe_therapeutiques.map(&:name).map(&:humanize).join(', ')
+  end
+
   def commercial_names
     @commercial_names || specialites.map(&:name).map(&:humanize).join(', ')
   end
