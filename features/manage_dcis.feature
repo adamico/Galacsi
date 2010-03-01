@@ -24,7 +24,7 @@ Feature: managing dcis
     When I go to the dci's edit page
       And I fill in "Spécialités" with "nomcommercial"
       And I press "Enregistrer"
-    Then 1 specialites should exist
+    Then 1 specialites should exist with name: "nomcommercial"
       And I should see "(Nomcommercial)"
 
   Scenario: adding multiple commercial names for dcis
@@ -32,5 +32,4 @@ Feature: managing dcis
     When I go to the dci's edit page
       And I fill in "Spécialités" with "nomcommercial, unautre"
       And I press "Enregistrer"
-    Then 2 specialites should exist
-      And I should see "(Nomcommercial, Unautre)"
+    Then I should see "(Nomcommercial, Unautre)"

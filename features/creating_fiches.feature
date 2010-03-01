@@ -39,6 +39,7 @@ Feature: Creating fiches for dci
       And I should see "cétirizine"
       And I should see "ampicilline"
 
+  @wip
   Scenario: adding argumentaire details for fiches
     When I go to the dci's new fiche page
       And I fill in "Biodisponibilité" with "100"

@@ -69,6 +69,7 @@ Feature: browse dcis according to permissions
     Then I should not see "unaseconda"
     Then I should not see "altraseconda"
 
+  @wip
   Scenario: show validation date
     Given a fiche exists with dci: the dci, state: "valide", validation_date: "#{today}"
     When I go to the dci page

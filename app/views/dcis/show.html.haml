@@ -1,5 +1,7 @@
 - title "#{@dci.name.humanize}"
 
+%h3= h @dci.stripped_name
+
 - unless @dci.commercial_names.blank?
   %h2.float_left= "(#{@dci.commercial_names})"
 
