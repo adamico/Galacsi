@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Dci < ActiveRecord::Base
-  require 'unicode_utils/nfkd'
+  require 'activesupport'
   validates_presence_of :name
   validates_uniqueness_of :name
 
@@ -20,12 +20,15 @@ class Dci < ActiveRecord::Base
   attr_writer :commercial_names
   after_save :assign_commercial_names
 
+  before_validation :set_unicode_stripped_name
+
   def set_unicode_stripped_name
     self.stripped_name ||= strip_unicode(self.name) if self.name
   end
 
   def strip_unicode(string)
-    UnicodeUtils.nfkd(string).gsub(/[^\x00-\x7F]/, '').downcase.to_s
+    mb_string = ActiveSupport::Multibyte::Chars.new(string)
+    mb_string.normalize(:kd).gsub(/[^\x00-\x7F]/,'').to_s
   end
 
   def classes_therapeutiques
