@@ -20,6 +20,14 @@ class Dci < ActiveRecord::Base
   attr_writer :commercial_names
   after_save :assign_commercial_names
 
+  def set_unicode_stripped_name
+    self.stripped_name ||= strip_unicode(self.name) if self.name
+  end
+
+  def strip_unicode(string)
+    UnicodeUtils.nfkd(string).gsub(/[^\x00-\x7F]/, '').downcase.to_s
+  end
+
   def classes_therapeutiques
     @classes_therapeutiques || classe_therapeutiques.map(&:name).map(&:humanize).join(', ')
   end
