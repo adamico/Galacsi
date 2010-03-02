@@ -8,8 +8,7 @@
 
 - if !@classe_therapeutique.dcis.blank?
   %h2 Liste des DCIs
-  %ol
-    - for dci in @classe_therapeutique.dcis
-      %li= link_to h(dci.name), dci_path(dci)
+  %ul.dcis
+    = render :partial => "dcis/dci", :collection => @classe_therapeutique.dcis
 - else
   Il n'y a pas de DCIs pour cette classe

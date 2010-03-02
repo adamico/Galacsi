@@ -9,7 +9,6 @@
 - if !@specialite.dcis.blank?
   %h2 Composition :
   %ol
-    - for dci in @specialite.dcis
-      %li= link_to h(dci.name), dci_path(dci)
+    = render :partial => "dcis/dci", :collection => @specialite.dcis
 - else
   Cette possibilité ne doit pas exister... pas de spécialités sans DCI normalement

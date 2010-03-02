@@ -5,7 +5,6 @@ class DcisController < ApplicationController
   def index
     params[:search] ||= {}
     @dcis = Dci.with_permissions_to(:read)
-    @dcis_validated = Dci.fiches_validated
   end
   
   def search

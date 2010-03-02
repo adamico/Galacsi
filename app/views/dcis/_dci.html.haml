@@ -1,0 +1,9 @@
+- if permitted_to? :create, :fiches
+  %li= link_to h(dci.name.humanize), dci
+- else
+  %li= link_to(h(dci.name.humanize), dci) if dci.fiches.validated.count > 0
+- if dci.fiches.count > 1 && (permitted_to? :create, :fiches)
+  %li
+    %ol
+      - for fiche in dci.fiches
+        %li= "#{fiche.distinction.name} : #{fiche.distinction_name}" if fiche.distinction_id?
