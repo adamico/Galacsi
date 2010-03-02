@@ -1,7 +1,8 @@
+-# encoding: utf-8
 - title "Recherche de produits"
 
 - if @dcis.empty?
-  %h2= "Aucun résultat pour #{params[:search][:name_like]}."
+  %h2 Aucun résultat
 
 - else
   %h2= pluralize(@dcis.count, 'résultat')

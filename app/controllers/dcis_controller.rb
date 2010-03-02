@@ -1,5 +1,4 @@
 class DcisController < ApplicationController
-  #TODO créer une action pour montrer la liste des molécules non vérifiées depuis une certaine date
   filter_resource_access
   filter_resource_access :additional_collection => {:search => :index}
 
@@ -9,8 +8,8 @@ class DcisController < ApplicationController
   end
   
   def search
-    @search = Dci.with_permissions_to(:read).search(params[:search])
-    @dcis = @search.all
+    @search = Dci.search(params[:search])
+    @dcis = @search.all.uniq
   end
   
   def show
