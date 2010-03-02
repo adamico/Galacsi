@@ -4,4 +4,7 @@ class WelcomeController < ApplicationController
     @expired_fiches = Fiche.expired
   end
 
+  def admin
+  end
+
 end

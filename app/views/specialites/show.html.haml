@@ -1,18 +1,15 @@
 - title @specialite.name
 
+%ul.edit_actions
+  - if permitted_to? :edit, :specialites
+    %li= link_to "Modifier", edit_specialite_path(@specialite)
+  - if permitted_to? :delete, :specialites
+    %li= link_to "Détruire", @specialite, :confirm => 'Are you sure?', :method => :delete
+
 - if !@specialite.dcis.blank?
-  %h3 Liste de DCIs
+  %h2 Composition :
   %ol
     - for dci in @specialite.dcis
       %li= link_to h(dci.name), dci_path(dci)
 - else
-  Pas de DCIs pour cette spécialité
-
-%p
-  - if permitted_to? :edit, :fiches
-    = link_to "Modifier", edit_specialite_path(@specialite)
-    |
-  - if permitted_to? :delete, :fiches
-    = link_to "Détruire", @specialite, :confirm => 'Are you sure?', :method => :delete
-    |
-  = link_to "Retour à la liste", specialites_path
+  Cette possibilité ne doit pas exister... pas de spécialités sans DCI normalement

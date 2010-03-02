@@ -4,7 +4,9 @@
   - for distinction in @distinctions
     %tr
       %td= h distinction.name
-      %td= link_to 'Modifier', edit_distinction_path(distinction)
-      %td= link_to 'Détruire', distinction, :confirm => 'Are you sure?', :method => :delete
+      - if permitted_to? :update, :distinctions
+        %td= link_to 'Modifier', edit_distinction_path(distinction)
+      - if permitted_to? :delete, :distinctions
+        %td= link_to 'Détruire', distinction, :confirm => 'Are you sure?', :method => :delete
 
 %p= link_to "Rajouter une distinction", new_distinction_path

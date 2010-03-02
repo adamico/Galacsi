@@ -10,7 +10,9 @@
       %td= h source.name
       %td= h source.nature
       %td= h source.url
-      %td= link_to 'Edit', edit_source_path(source)
-      %td= link_to 'Destroy', source, :confirm => 'Are you sure?', :method => :delete
+      - if permitted_to? :update, :sources
+        %td= link_to 'Modifier', edit_source_path(source)
+      - if permitted_to? :delete, :sources
+        %td= link_to 'Détruire', source, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Source", new_source_path
+%p= link_to "Nouvelle Source", new_source_path if permitted_to? :create, :sources

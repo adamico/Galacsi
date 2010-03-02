@@ -1,14 +1,5 @@
 - title "Bienvenue!"
 
-.search
-  - form_tag search_dcis_path, :method => :get do
-    %fieldset
-      %legend
-        Rechercher un médicament
-      = label_tag :search, "par DCI, specialité ou classe : "
-      = text_field_tag "search[name_or_stripped_name_or_specialites_name_or_classe_therapeutiques_name_or_classe_therapeutiques_stripped_name_like]", params[:search][:name_or_stripped_name_or_specialites_name_or_classe_therapeutiques_name_or_classe_therapeutiques_stripped_name_like]
-      = submit_tag "Go", :name => nil, :class => "search_submit"
-
 - unless @expired_fiches.count < 1
   %p
     = "Attention vous avez : " + pluralize(@expired_fiches.count, 'fiche') + " a vérifier"

@@ -3,12 +3,14 @@ class DcisController < ApplicationController
   filter_resource_access :additional_collection => {:search => :index}
 
   def index
+    params[:search] ||= {}
     @dcis = Dci.with_permissions_to(:read)
     @dcis_validated = Dci.fiches_validated
   end
   
   def search
-    @search = Dci.search(params[:search])
+    params[:search] ||= {}
+    @search = Dci.with_permissions_to(:read).search(params[:search])
     @dcis = @search.all.uniq
   end
   

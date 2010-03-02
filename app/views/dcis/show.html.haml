@@ -2,11 +2,7 @@
 
 %h2.float_left= "(#{@dci.commercial_names})" unless @dci.commercial_names.blank?
 
-.clear
-
-%h3= "stripped name = #{@dci.stripped_name}" if has_role? :admin
-
-%ul.dci_nav
+%ul.edit_actions
   - if permitted_to? :edit, @dci
     %li= link_to "Modifier cette DCI", edit_dci_path(@dci)
   - if permitted_to? :delete, @dci

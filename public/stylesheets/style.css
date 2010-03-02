@@ -130,10 +130,10 @@ div#fiche a:hover { color: black; }
 
 abbr { cursor: help; }
 
-ul.dci_nav { width: auto; float: right; margin: 0; margin-bottom: 1em; background: black; color: white; }
-ul.dci_nav li { float:left; border-right: 1px solid white;}
-ul.dci_nav a { color: white; padding-left: .5em; padding-right: .5em;}
-ul.dci_nav a:hover { color: black; background: white; }
+ul.edit_actions { width: auto; float: right; margin: 0; margin-bottom: 1em; background: black; color: white; }
+ul.edit_actions li { float:left; border-right: 1px solid white;}
+ul.edit_actions a { color: white; padding-left: .5em; padding-right: .5em;}
+ul.edit_actions a:hover { color: black; background: white; }
 
 ul.fiche_nav { float: right;}
 ul.fiche_nav li { float:left; border-right: 1px solid white;}
@@ -161,4 +161,4 @@ ul.fiche_nav a:hover { text-decoration: underline;  }
 .fields { border: 1px solid black;}
 
 form p.inline-hints { color:#666; margin:0.5em 0 0 25%; }
-form fieldset { background: #E7F1F8; border: 1px solid #00c;}
+.search form fieldset { border: none}

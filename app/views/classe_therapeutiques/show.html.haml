@@ -1,17 +1,15 @@
-- title "Classe Therapeutique"
+- title @classe_therapeutique.name
 
-%p
-  %strong Name:
-  =h @classe_therapeutique.name
+%ul.edit_actions
+  - if permitted_to? :edit, :classe_therapeutiques
+    %li= link_to "Modifier cette classe", edit_classe_therapeutique_path(@classe_therapeutique)
+  - if permitted_to? :delete, @dci
+    %li= link_to "Détruire cette classe", @classe_therapeutique, :confirm => 'Are you sure?', :method => :delete
 
-- if has_role? :admin
-  %p
-    %strong Stripped Name:
-    =h @classe_therapeutique.stripped_name
-
-%p
-  = link_to "Edit", edit_classe_therapeutique_path(@classe_therapeutique)
-  |
-  = link_to "Destroy", @classe_therapeutique, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", classe_therapeutiques_path
+- if !@classe_therapeutique.dcis.blank?
+  %h2 Liste des DCIs
+  %ol
+    - for dci in @classe_therapeutique.dcis
+      %li= link_to h(dci.name), dci_path(dci)
+- else
+  Il n'y a pas de DCIs pour cette classe

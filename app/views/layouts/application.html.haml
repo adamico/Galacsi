@@ -15,7 +15,7 @@
           %li= link_to "DCI", dcis_path
           %li= link_to "Classes", classe_therapeutiques_path
           %li= link_to "Spécialités", specialites_path
-          %li= link_to "Decisions", decisions_path if permitted_to? :read, :decisions
+          %li= link_to "Décisions", decisions_path if permitted_to? :read, :decisions
           %li= link_to "Distinctions", distinctions_path if permitted_to? :read, :distinctions
           %li= link_to "Sources", sources_path if permitted_to? :read, :sources
           %li= link_to "Utilisateurs", users_path if permitted_to? :read, :users
@@ -28,7 +28,8 @@
         = yield
       #right
         .box
-          -user_navlinks
+          - user_navlinks
         .box
+          
           Design by
           =link_to "Minimalistic Design", "http://www.minimalistic-design.net"
