@@ -8,6 +8,7 @@ class DecisionTest < ActiveSupport::TestCase
 end
 
 
+
 # == Schema Information
 #
 # Table name: decisions
@@ -17,5 +18,6 @@ end
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  abbr        :string(255)
 #
 

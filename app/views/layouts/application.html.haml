@@ -12,13 +12,11 @@
       %h1= link_to "GalacSI", root_path
       #menu
         %ul#nav
+          %li= link_to "Recherche", search_path
           %li= link_to "DCI", dcis_path
           %li= link_to "Classes", classe_therapeutiques_path
           %li= link_to "Spécialités", specialites_path
-          %li= link_to "Décisions", decisions_path if permitted_to? :read, :decisions
-          %li= link_to "Distinctions", distinctions_path if permitted_to? :read, :distinctions
-          %li= link_to "Sources", sources_path if permitted_to? :read, :sources
-          %li= link_to "Utilisateurs", users_path if permitted_to? :read, :users
+          %li= link_to "Admin", admin_path if permitted_to? :read, :users
     #content
       #left
         - flash.each do |name, msg|

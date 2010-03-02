@@ -153,10 +153,10 @@ ul.fiche_nav a:hover { text-decoration: underline;  }
 
 .decision { text-transform:uppercase; font-weight:bold; padding: .25em; border: 2px solid;}
 
-#decision_1 { background:#ffa880; border-color:red} /* contre-indiqué */
-#decision_2 { background:#ffc860; border-color:rgb(255,153,51);} /* à discuter */
-#decision_3 { background:rgb(215,228,189); border-color:rgb(0,176,80);} /* compatible */
-#decision_4 { background:rgb(255,255,153); border-color:yellow;} /* sous conditions */
+#ci { background:#ffa880; border-color:red} /* contre-indiqué */
+#ad { background:#ffc860; border-color:rgb(255,153,51);} /* à discuter */
+#comp { background:rgb(215,228,189); border-color:rgb(0,176,80);} /* compatible */
+#sc { background:rgb(255,255,153); border-color:yellow;} /* sous conditions */
 
 .fields { border: 1px solid black;}
 

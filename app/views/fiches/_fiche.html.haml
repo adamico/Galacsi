@@ -12,7 +12,7 @@
     .clear
 
     %p
-      %span[fiche.decision]= h fiche.decision.name rescue ""
+      %span.decision{ :id  => fiche.decision.abbr}= h fiche.decision.name rescue ""
 
     - unless fiche.conditions.blank?
       = textilize(fiche.conditions)
