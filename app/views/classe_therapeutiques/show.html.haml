@@ -4,6 +4,11 @@
   %strong Name:
   =h @classe_therapeutique.name
 
+- if has_role? :admin
+  %p
+    %strong Stripped Name:
+    =h @classe_therapeutique.stripped_name
+
 %p
   = link_to "Edit", edit_classe_therapeutique_path(@classe_therapeutique)
   |
