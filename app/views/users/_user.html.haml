@@ -11,5 +11,5 @@
     %li.select.optional  
       = f.label :role, "Role"
       - roles = has_role?(:admin) ? User::ROLES : User::ROLES[1..-1]
-      = f.collection_select :role, roles, :to_s, :humanize
+      = f.collection_select :role, roles, :to_s, :to_s
     = f.commit_button 'Sauvegarder'

@@ -5,8 +5,7 @@ Feature: admin can create and modify users and roles
 
   Scenario Outline: valideur and admin can list users
     Given I am logged in as a <role>
-    When I go to the homepage
-      And I follow "Utilisateurs"
+    When I go to the users page
     Then I should be on the users page
     Scenarios:
       | role      |
@@ -44,20 +43,20 @@ Feature: admin can create and modify users and roles
     Given a user exists with username: "test", email: "test@test.com"
       And I am logged in as a admin
     When I go to the user's edit page
-    Then I should see "Valideur"
-    Then I should see "Contributeur"
-    Then I should see "Admin"
+    Then I should see "valideur"
+    Then I should see "contributeur"
+    Then I should see "admin"
 
   Scenario: hide admin role choice if not admin
     Given a user exists with username: "test", email: "test@test.com"
       And I am logged in as a valideur
     When I go to the user's edit page
-    Then I should not see "Admin"
+    Then I should not see "admin"
 
   Scenario: change user role
     Given a user exists with username: "test", email: "test@test.com"
       And I am logged in as a admin
     When I go to the user's edit page
-      And I select "Valideur" from "Role"
+      And I select "valideur" from "Role"
       And I press "Sauvegarder"
     Then a user should exist with role: "valideur"

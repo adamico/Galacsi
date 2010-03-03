@@ -38,37 +38,6 @@ Feature: browse dcis according to permissions
     When I go to the dcis page
     Then I should see "Aucune DCI n'existe avec des fiches validées."
 
-  Scenario: authenticated users should see list of fiches in dci list
-    Given I am logged in as a contributeur
-      And another dci exists
-      And a distinction exists
-      And the following fiches exist:
-        | dci           | distinction     | distinction_name | state     |
-        | the first dci | the distinction | unaprima         | valide    |
-        | the first dci | the distinction | altraprima       | valide    |
-        | the 2nd dci   | the distinction | unaseconda       | valide    |
-        | the 2nd dci   | the distinction | altraseconda     | valide    |
-    When I go to the dcis page
-    Then I should see "unaprima"
-    Then I should see "altraprima"
-    Then I should see "unaseconda"
-    Then I should see "altraseconda"
-
-  Scenario: a guest should not see the list of fiches in dci list
-    Given another dci exists
-      And a distinction exists
-      And the following fiches exist:
-        | dci           | distinction     | distinction_name | state     |
-        | the first dci | the distinction | unaprima         | valide    |
-        | the first dci | the distinction | altraprima       | valide    |
-        | the 2nd dci   | the distinction | unaseconda       | valide    |
-        | the 2nd dci   | the distinction | altraseconda     | valide    |
-    When I go to the dcis page
-    Then I should not see "unaprima"
-    Then I should not see "altraprima"
-    Then I should not see "unaseconda"
-    Then I should not see "altraseconda"
-
   @wip
   Scenario: show validation date
     Given a fiche exists with dci: the dci, state: "valide", validation_date: "#{today}"
@@ -79,6 +48,3 @@ Feature: browse dcis according to permissions
     Given a fiche exists with dci: the dci, state: "brouillon"
     When I go to the dci page
     Then I should not see "Validation"
-
-  @todo
-  Scenario: show detailed decision for fiche
