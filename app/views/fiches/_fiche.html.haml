@@ -1,124 +1,138 @@
 -if permitted_to? :read, fiche
-  #fiche
-    %h2.float_left
-      = "#{fiche.distinction.name} : #{fiche.distinction_name}" if fiche.distinction_id?
-
+  .fiche
     %ul.fiche_nav
       %li
         = link_to("Modifier cette fiche", edit_dci_fiche_path(fiche.dci, fiche)) if permitted_to? :edit, fiche
       %li
         = link_to("Détruire cette fiche", [fiche.dci, fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) if permitted_to? :destroy, fiche
 
+    .fiche_header
+      - if fiche.distinction_id?
+        %p.float_left
+          %b
+            = fiche.distinction.name.humanize
+            %span.distinction= " : #{fiche.distinction_name.humanize}"
+
+      - unless fiche.decision.blank?
+        %p.float_right
+          %b
+            = "Décision allaitement : "
+            %span.decision{ :id  => fiche.decision.abbr}= h fiche.decision.name
+
     .clear
-    
-    - unless fiche.decision.blank?
+
+    - if fiche.de_choix?
       %p
-        %span.decision{ :id  => fiche.decision.abbr}= h fiche.decision.name
+        %span.safe Molécule de choix pendant l'allaitement
 
-    - unless fiche.conditions.blank?
-      = textilize(fiche.conditions)
+    .resume
+      %h3 Résumé
 
-    - unless fiche.surveillance.blank?
-      = textilize(fiche.conditions)
+      %p.retrait
+        %b
+          Passage dans le lait :
+        = fiche.passage_lait
+        - if fiche.risque_accumulation?
+          = "- risque d'accumulation dans le lait"
+        - if fiche.risque_dim_lactation?
+          = "- risque théorique de diminution de la lactation"
 
-    - unless fiche.ei.blank?
+      %h4 Recul :
       = textilize(fiche.ei)
+      - if fiche.ei_theoriques?
+        = textilize(fiche.ei_theoriques)
 
-    - if fiche.suivi == "oui"
-      %p= "Un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur."
+      - if fiche.conditions?
+        %p.retrait
+          %b Allaitement possible si :
+          = fiche.conditions
 
-    - unless fiche.alternatives.blank?
-      %p.alternatives
-        = "Alternatives : "
+      - if fiche.surveillance?
+        %p.retrait
+          %b Surveillance :
+          = fiche.surveillance
+        %p.surveillance
+          La poursuite du traitement doit être reconsidérée et le CRPV prévenu si l'un des troubles cités est observé
+
+      - unless fiche.alternatives.blank?
+        %p.retrait
+          %b Alternatives :
         %ul
-        - fiche.alternatives.each do |a|
-          - link = !a.commercial_names.blank? ? "#{a.name} (#{a.commercial_names})" : "#{a.name}"
-          %li
-            = link_to link, dci_path(a)
+          - fiche.alternatives.each do |a|
+            - link = !a.commercial_names.blank? ? "#{a.name} (#{a.commercial_names})" : "#{a.name}"
+            %li
+              = link_to link, dci_path(a)
 
-    %h3 Argumentaire
-    #argumentaire
-      %dl
-      - unless fiche.biodisponibilite.blank?
-        %dt Biodisponibilité
-        %dd= fiche.biodisponibilite
-      - unless fiche.dose_par_rapport_dmap.blank?
-        %dt Dose ingérée par rapport à la dose maternelle
-        %dd= fiche.dose_par_rapport_dmap
-      - unless fiche.dose_par_rapport_dp.blank?
-        %dt Dose ingérée par rapport à la dose pédiatrique
-        %dd= fiche.dose_par_rapport_dp
-      - unless fiche.liaison_pp.blank?
-        %dt Liaison aux protéines plasmatiques
-        %dd= fiche.liaison_pp
-      - unless fiche.vol_dist.blank?
-        %dt Volume de distribution
-        %dd= fiche.vol_dist
-      - unless fiche.thalf.blank?
-        %dt T1/2
-        %dd= fiche.thalf
-      - unless fiche.passage_lait.blank?
-        %dt Passage dans le lait
-        %dd= fiche.passage_lait
-      - unless fiche.rapport_lp.blank?
-        %dt Rapport Lait/Plasma
-        %dd= fiche.rapport_lp
+      - if fiche.suivi == "oui"
+        %p.alert
+          %b Attention :
+          pour cette molécule un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur ou
+          %u mieux de la patiente concernée.
 
-    .clear
-
-    - if fiche.has_poso_pedia?
-      %p
-        %b= "Posologie pédiatrique : #{fiche.poso_pedia_dose} a partir de #{fiche.poso_pedia_des}"
-    - if fiche.metabolites_actifs?
-      %p
-        %b Présence de métabolites actifs
-    - if fiche.risque_accumulation?
-      %p
-        %b Risque d'accumulation dans le lait
-    - if fiche.risque_dim_lactation?
-      %p
-        %b Risque de diminution de la lactation
-    - unless fiche.arg_autre.blank?
-      %p
-        = fiche.arg_autre
-
-    .clear
+    .argumentaire
+      %h3 Données détaillées
+      %table
+        %tr
+          %th Biodisponibilité (PO)
+          %td= fiche.biodisponibilite
+          %th Vd
+          %td= fiche.vol_dist
+          %th Liaison aux PP
+          %td= fiche.liaison_pp
+          %th T1/2
+          %td= fiche.thalf
+        %tr
+          %th Métabolites actifs
+          %td
+            - unless fiche.metabolites_actifs.blank?
+              = fiche.metabolites_actifs? ? "Oui" : "Non"
+          %th Rapport lait/plasma
+          %td= fiche.rapport_lp
+          %th Pic lacté
+          %td= fiche.pic_lacte
+        %tr
+          %th Dose estimée ingérée par l'enfant
+          %td
+            = "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
+            - if fiche.dose_par_rapport_dp?
+              %br/
+              = "(#{fiche.dose_par_rapport_dp} de la posologie pédiatrique)"
+        %tr
+          %th Posologie pédiatrique
+          %td
+            = fiche.poso_pedia_dose
+            = "a partir de #{fiche.poso_pedia_des}" if fiche.poso_pedia_des?
+        %tr
+          %th Autres
+          %td= fiche.arg_autre
 
     %hr
+    - unless fiche.sources.blank?
+      %p
+        %b Sources :
+        = fiche.sources.map(&:name).join(', ')
 
     - if permitted_to? :update, :fiches
-      #validation
-        %dl
-          %dt Etat de validation
-          %dd
-            = fiche.state.humanize
-            %span
-              - if fiche.state == "brouillon" && permitted_to?(:initialiser, :fiches)
-                = " => "
-                = link_to "Initialiser", initialiser_dci_fiche_path(fiche.dci, fiche), :method => :put
-              - elsif fiche.state == "valide" && permitted_to?(:invalider, :fiches)
-                = link_to "Invalider", invalider_dci_fiche_path(fiche.dci, fiche), :method => :put
-              - elsif (fiche.state == "a_valider" || fiche.state == "en_attente") && permitted_to?(:valider, fiche)
-                = link_to "Valider", valider_dci_fiche_path(fiche.dci, fiche), :method => :put
+      .validation
+        %hr
+        %p
+          %b Etat de validation :
+          = fiche.state.humanize
+          - if fiche.state == "brouillon" && permitted_to?(:initialiser, :fiches)
+            = link_to "=> Initialiser", initialiser_dci_fiche_path(fiche.dci, fiche), :method => :put
+          - elsif fiche.state == "valide" && permitted_to?(:invalider, :fiches)
+            = link_to "=> Invalider", invalider_dci_fiche_path(fiche.dci, fiche), :method => :put
+          - elsif (fiche.state == "a_valider" || fiche.state == "en_attente") && permitted_to?(:valider, fiche)
+            = link_to "=> Valider", valider_dci_fiche_path(fiche.dci, fiche), :method => :put
 
-        .clear
         - if fiche.validation_date? && fiche.state == 'valide'
-          %dl
-            %dt Date de dernière MAJ
-            %dd
-              = l(fiche.validation_date)
-              - if permitted_to? :maj_date, :fiches
-                = " => #{link_to("Mettre à jour", maj_date_dci_fiche_path(fiche.dci, fiche), :method => :put)}" unless fiche.validation_date == Time.now.to_date
-        - unless fiche.sources.blank?
-          %dl
-            %dt Sources
-            %dd
-              = fiche.sources.map(&:name).join(', ')
+          %p
+            %b Date de dernière MAJ :
+            = l(fiche.validation_date)
+            - if permitted_to? :maj_date, :fiches
+              = " => #{link_to("Mettre à jour", maj_date_dci_fiche_path(fiche.dci, fiche), :method => :put)}" unless fiche.validation_date == Time.now.to_date
 
         - if fiche.user_id?
-          .clear
-          %dl
-            %dt Fiche crée par
-            %dd= "#{fiche.createur} (#{fiche.user.role})"
-
-      .clear
+          %p
+            %b Fiche crée par :
+            = "#{fiche.createur} (#{fiche.user.role})"

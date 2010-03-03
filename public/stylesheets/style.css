@@ -2,7 +2,7 @@ html,body{margin:0;padding:0}
 body{font: 85%/1.3 TrebuchetMS,Arial,sans-serif;
     text-align: left;background: #fff;padding-bottom:20px}
 a { color: #0066B3; background: inherit; text-decoration: none;}
-h1 { font: bold 2.1em Arial, Arial, Sans-Serif; color: #036DA7 }
+h1 { font: bold 2.1em Arial, Arial, Sans-Serif; color: #036DA7; margin-top: 0  }
 h2 { font: bold 1.1em Arial, Arial, Sans-Serif; padding: 0; margin: 0; }
 
 div#header{width:100%;overflow:hidden;background: #BBD9EE; }
@@ -23,7 +23,6 @@ ul#nav span.add_record a { width:1em;}
   padding: 1em;
   margin-bottom: 1.2em;
   background: #eee;
-  text-align: justify;
 }
 
 #right {
@@ -115,14 +114,16 @@ li { list-style-type: none;}
 
 table { border-collapse:collapse;}
 table td, table th { padding: 0 1em;}
+table td { background: #f0f0f0}
+table th { text-align: right;}
 
 .odd { background: #eee;}
 .even { background: #fff;}
 
 div#fiches { clear:both; }
 
-div#fiche { background-color: #fff; color: black; border: solid 1px black; padding: 1em; margin-bottom: 5px; margin-top: 10px; }
-div#fiche a:hover { color: black; }
+div.fiche { background-color: #fff; color: black; border: solid 2px #0066B3; padding: .5em; margin: 5px 0; }
+div.fiche_header { clear: both; margin: 1em}
 
 .search form label { line-height: 2em; }
 .search form input { border: 1px solid #00c; background: #ebebeb; margin: 0 .5em; padding: 2px 4px; }
@@ -141,18 +142,12 @@ ul.fiche_nav li { float:left; border-right: 1px solid white;}
 ul.fiche_nav a { color: black; padding-left: .5em; padding-right: .5em;}
 ul.fiche_nav a:hover { text-decoration: underline;  }
 
+dl { margin: 0; margin-top: 0.5em;padding-left: 1em;}
+dt { float:left; font-weight: bold; clear: left;}
+dt:after { content: " : ";}
+dd { float:left; margin-left: .5em; margin-bottom: .5em;}
 
-#validation dl { margin: .5em;}
-#validation dt { float:left; font-weight: bold; clear: left;}
-#validation dt:after { content: " : ";}
-#validation dd { float:left; margin-left: .5em;}
-
-#argumentaire dl { margin: .5em;}
-#argumentaire dt { float:left; font-weight: bold; clear: left;}
-#argumentaire dt:after { content: " : ";}
-#argumentaire dd { float:left; margin-left: .5em;}
-
-.decision { text-transform:uppercase; font-weight:bold; padding: .25em; border: 2px solid;}
+.decision { font-size: large; text-transform:uppercase; padding: .25em; border: 2px solid;}
 
 #ci { background:#ffa880; border-color:red} /* contre-indiqué */
 #ad { background:#ffc860; border-color:rgb(255,153,51);} /* à discuter */
@@ -163,3 +158,20 @@ ul.fiche_nav a:hover { text-decoration: underline;  }
 
 form p.inline-hints { color:#666; margin:0.5em 0 0 25%; }
 .search form fieldset { border: none}
+
+span.distinction { font-size: large;}
+
+.resume { background: #ddf0ee; padding: .5em; }
+.resume h3 { clear:both; margin: 0 .5em 0 0; padding:0;}
+.resume h4 { clear:both; margin:0; margin-top: 2px; margin-left: 1em}
+.resume b { }
+.resume p { margin:0; margin-left: 2em; margin-top: 2px}
+.resume p.surveillance { font-size: small; color: #777; font-weight:bold;}
+.resume p.retrait { margin-left: 1em;}
+.resume p.alert { margin-left: 0; color: red; font-size: small;}
+.resume ul { margin-left: 2em;} 
+.resume a { color: #036DA7}
+.resume a:hover { text-decoration: underline; }
+span.safe { font-weight: bold; color:green;}
+
+.argumentaire { font-size: 80%}
