@@ -47,6 +47,7 @@ class FichesController < ApplicationController
   end
   
   def create
+    @fiche.user = current_user
     if @fiche.save
       flash[:notice] = "La fiche a été créée."
       redirect_to @fiche.dci

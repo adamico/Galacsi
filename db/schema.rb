@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100302164132) do
+ActiveRecord::Schema.define(:version => 20100303095122) do
 
   create_table "alternativeships", :force => true do |t|
     t.integer  "fiche_id"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20100302164132) do
     t.boolean  "de_choix"
     t.string   "pic_lacte"
     t.string   "poso_pedia_dose"
+    t.integer  "user_id"
   end
 
   add_index "fiches", ["decision_id"], :name => "index_produits_on_decision_id"

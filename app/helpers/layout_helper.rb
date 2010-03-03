@@ -23,10 +23,17 @@ module LayoutHelper
 
   def user_navlinks
     haml_tag :div, {:id => "user_nav"} do
-      haml_tag :p do
-        if current_user
+      if current_user
+        haml_tag :p do
+          haml_concat("Bonjour, ")
+          haml_concat(current_user.username)
+          haml_concat("(#{current_user.role})")
+        end
+        haml_tag :p do
           haml_concat(link_to "Déconnection", logout_path)
-        else
+        end
+      else
+        haml_tag :p do
           haml_concat(link_to "Connection", login_path)
         end
       end

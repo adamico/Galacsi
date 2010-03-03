@@ -3,7 +3,7 @@ class Fiche < ActiveRecord::Base
   belongs_to :decision
   belongs_to :dci
   belongs_to :distinction
-  
+  belongs_to :user
   
   has_many :alternativeships, :dependent => :destroy
   has_many :alternatives, :through => :alternativeships
@@ -11,8 +11,14 @@ class Fiche < ActiveRecord::Base
   accepts_nested_attributes_for :sources,
     :reject_if => proc { |attrs| attrs[:name].blank? }, :allow_destroy => true
 
+  attr_reader :createur
+
   attr_writer :alternative_names
   after_save :assign_alternative_names
+
+  def createur
+    @createur || User.find(self.user_id).username
+  end
 
   def alternative_names
     @alternative_names || alternatives.map(&:name).join(', ')
@@ -49,6 +55,7 @@ class Fiche < ActiveRecord::Base
   end
 
   private
+
   def assign_alternative_names
     if @alternative_names
       self.alternatives = @alternative_names.split(', ').map do |name|
@@ -57,6 +64,7 @@ class Fiche < ActiveRecord::Base
     end
   end
 end
+
 
 
 
@@ -104,5 +112,6 @@ end
 #  de_choix              :boolean
 #  pic_lacte             :string(255)
 #  poso_pedia_dose       :string(255)
+#  user_id               :integer
 #
 

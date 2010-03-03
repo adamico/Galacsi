@@ -5,9 +5,9 @@
 
     %ul.fiche_nav
       %li
-        = link_to("Modifier", edit_dci_fiche_path(fiche.dci, fiche)) if permitted_to? :edit, fiche
+        = link_to("Modifier cette fiche", edit_dci_fiche_path(fiche.dci, fiche)) if permitted_to? :edit, fiche
       %li
-        = link_to("Détruire", [fiche.dci, fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) if permitted_to? :destroy, fiche
+        = link_to("Détruire cette fiche", [fiche.dci, fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) if permitted_to? :destroy, fiche
 
     .clear
     
@@ -113,5 +113,11 @@
             %dt Sources
             %dd
               = fiche.sources.map(&:name).join(', ')
+
+        - if fiche.user_id?
+          .clear
+          %dl
+            %dt Fiche crée par
+            %dd= "#{fiche.createur} (#{fiche.user.role})"
 
       .clear

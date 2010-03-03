@@ -23,6 +23,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: fiches
@@ -63,5 +64,6 @@ end
 #  de_choix              :boolean
 #  pic_lacte             :string(255)
 #  poso_pedia_dose       :string(255)
+#  user_id               :integer
 #
 

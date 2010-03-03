@@ -1,5 +1,8 @@
 -#encoding: utf-8
 - semantic_form_for([@fiche.dci, @fiche]) do |f|
+  - if permitted_to? :read, :users
+    - f.inputs :name => 'User' do
+      = f.input :user, :label => "Créateur"
   - f.semantic_fields_for :sources do |builder|
     %h4 Source
     - builder.inputs do
@@ -50,4 +53,4 @@
     %h4 Commentaire générale sur la fiche
     = f.input :commentaire, :hint => "attention le commentaire n'apparait pas dans la page de visualisation de la fiche",:input_html => {:rows => "3x50"}
   - f.buttons do
-    = f.commit_button "Sauvegarder"
+    = f.commit_button "Enregistrer"

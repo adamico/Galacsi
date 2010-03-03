@@ -18,9 +18,11 @@ authorization do
     has_permission_on :fiches, :to => [:create, :read]
     has_permission_on :fiches, :to => :update do
       if_attribute :state => ["brouillon", "a_valider"]
+      if_attribute :user_id => is {user.id}
     end
     has_permission_on :fiches, :to => :initialiser do
       if_attribute :state => "brouillon"
+      if_attribute :user_id => is {user.id}
     end
   end
 

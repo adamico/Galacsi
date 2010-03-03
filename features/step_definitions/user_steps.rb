@@ -1,11 +1,13 @@
 # encoding: utf-8
 When(/^I log in as a user in the (.*) role$/) do |role|
-  a_user = Factory(:user, :role => role.to_s)
-  visit login_url
-  fill_in "Utilisateur", :with => a_user.username
-  fill_in "Mot de passe", :with => a_user.password
-  click_button "Se connecter"
-  response.body.should =~ /succès/m
+  steps %Q{
+    Given a user exists with role: "#{role}", username: "username", password: "password"
+    When I go to the login page
+      And I fill in "Utilisateur" with "username"
+      And I fill in "Mot de passe" with "password"
+    Given I press "Se connecter"
+    Then I should see "succès"
+  }
 end
 
 When(/logged in as an? (.*)$/) do |role|

@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Dci < ActiveRecord::Base
-  require 'activesupport'
+  require 'active_support'
   validates_presence_of :name
   validates_uniqueness_of :name
 

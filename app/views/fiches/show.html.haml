@@ -2,6 +2,11 @@
 - if @fiche.distinction_id?
   %h2= "(#{@fiche.distinction.name} : #{@fiche.distinction_name})"
 
+- if @fiche.user_id
+  %p
+    %b Createur :
+    = "#{@fiche.createur} (#{@fiche.user.role})"
+
 %table.fiche_actions
   %tr
     %td
@@ -14,9 +19,9 @@
           %img{:src => "/images/Delete.png", :width => "32", :alt => "Détruire"}
   %tr
     %td
-      %small="Modifier" if permitted_to? :edit, @fiche
+      %small="Modifier cette fiche" if permitted_to? :edit, @fiche
     %td
-      %small="Détruire" if permitted_to? :destroy, @fiche
+      %small="Détruire cette fiche" if permitted_to? :destroy, @fiche
 
 %hr
 

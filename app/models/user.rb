@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   acts_as_authentic
 
+  has_many :fiches
+
   ROLES = %w[admin valideur contributeur]
 
   def role_symbols
