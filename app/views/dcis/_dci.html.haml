@@ -1,14 +1,18 @@
-- if permitted_to? :create, :fiches
+- if dci.fiches.validated.count > 0 or (permitted_to? :create, :fiches)
   %li
     = link_to h(dci.name.humanize), dci
     = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
     - unless dci.classes_therapeutiques.blank?
       %em
         = dci.classes_therapeutiques
+
 - else
-  %li= link_to(h(dci.name.humanize), dci) if dci.fiches.validated.count > 0
-- if dci.fiches.count > 1 && (permitted_to? :create, :fiches)
-  %li
-    %ol
-      - for fiche in dci.fiches
-        %li= "#{fiche.distinction.name} : #{fiche.distinction_name}" if fiche.distinction_id?
+  Aucune DCI n'existe avec des fiches validées.
+
+%li
+  %ol
+    - for fiche in dci.fiches.validated
+      %li
+        - if fiche.distinction_id?
+          = "#{fiche.distinction.name.humanize} : "
+          = "#{fiche.distinction_name.humanize}"

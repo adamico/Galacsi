@@ -10,9 +10,10 @@
         = link_to("Détruire", [fiche.dci, fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) if permitted_to? :destroy, fiche
 
     .clear
-
-    %p
-      %span.decision{ :id  => fiche.decision.abbr}= h fiche.decision.name rescue ""
+    
+    - unless fiche.decision.blank?
+      %p
+        %span.decision{ :id  => fiche.decision.abbr}= h fiche.decision.name
 
     - unless fiche.conditions.blank?
       = textilize(fiche.conditions)
