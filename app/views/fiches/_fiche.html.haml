@@ -106,8 +106,8 @@
           %th Autres
           %td= fiche.arg_autre
 
-    %hr
     - unless fiche.sources.blank?
+      %hr
       %p
         %b Sources :
         = fiche.sources.map(&:name).join(', ')
@@ -130,7 +130,7 @@
             %b Date de dernière MAJ :
             = l(fiche.validation_date)
             - if permitted_to? :maj_date, :fiches
-              = " => #{link_to("Mettre à jour", maj_date_dci_fiche_path(fiche.dci, fiche), :method => :put)}" unless fiche.validation_date == Time.now.to_date
+              = link_to("=> Mettre à jour", maj_date_dci_fiche_path(fiche.dci, fiche), :method => :put) unless fiche.validation_date == Time.now.to_date
 
         - if fiche.user_id?
           %p
