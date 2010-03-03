@@ -13,10 +13,20 @@
       #menu
         %ul#nav
           %li= link_to "Recherche", search_path
-          %li= link_to "DCI", dcis_path
-          %li= link_to "Classes", classe_therapeutiques_path
-          %li= link_to "Spécialités", specialites_path
-          %li= link_to "Admin", admin_path if permitted_to? :read, :users
+          %li
+            = link_to "DCI", dcis_path
+            - if permitted_to? :create, :dcis
+              %span.add_record= link_to "+", new_dci_path
+          %li
+            = link_to "Classes", classe_therapeutiques_path
+            - if permitted_to? :create, :classe_therapeutiques
+              %span.add_record= link_to "+", new_classe_therapeutique_path
+          %li
+            = link_to "Spécialités", specialites_path
+            - if permitted_to? :create, :specialites
+              %span.add_record= link_to "+", new_specialite_path
+          %li
+            = link_to "Admin", admin_path if permitted_to? :read, :users
     #content
       #left
         - flash.each do |name, msg|

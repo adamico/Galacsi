@@ -43,7 +43,8 @@ class FichesController < ApplicationController
   end
   
   def new
-    @fiche.sources.build
+    # a rajouter si besoin de créer des sources dans la fiche
+    #@fiche.sources.build
   end
   
   def create

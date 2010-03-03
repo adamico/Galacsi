@@ -1,13 +1,15 @@
 -#encoding: utf-8
 - semantic_form_for([@fiche.dci, @fiche]) do |f|
   - if permitted_to? :read, :users
-    - f.inputs :name => 'User' do
+    - f.inputs do
       = f.input :user, :label => "Créateur"
-  - f.semantic_fields_for :sources do |builder|
-    %h4 Source
-    - builder.inputs do
-      = render 'source_fields', :f => builder
-    %p.add_fields= link_to_add_fields "Rajouter une source", f, :sources
+  -# remettre ça pour créer des sources
+    - f.semantic_fields_for :sources do |builder|
+      - builder.inputs do
+        = render 'source_fields', :f => builder
+      %p.add_fields= link_to_add_fields "Rajouter une source", f, :sources
+  - f.inputs do
+    = f.input :sources, :hint => "ce champs est à choix multiple (maintenir enfoncé la touche Ctrl)"
   - f.inputs do
     %li.select
       = f.label :revalider_le, "Informations à revalider dans"

@@ -12,8 +12,8 @@ class Fiche < ActiveRecord::Base
     :reject_if => proc { |attrs| attrs[:name].blank? }, :allow_destroy => true
 
   attr_reader :createur
-
   attr_writer :alternative_names
+
   after_save :assign_alternative_names
 
   def createur

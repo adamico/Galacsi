@@ -93,8 +93,8 @@
           %dd
             = fiche.state.humanize
             %span
-              = " => "
               - if fiche.state == "brouillon" && permitted_to?(:initialiser, :fiches)
+                = " => "
                 = link_to "Initialiser", initialiser_dci_fiche_path(fiche.dci, fiche), :method => :put
               - elsif fiche.state == "valide" && permitted_to?(:invalider, :fiches)
                 = link_to "Invalider", invalider_dci_fiche_path(fiche.dci, fiche), :method => :put
@@ -107,7 +107,8 @@
             %dt Date de dernière MAJ
             %dd
               = l(fiche.validation_date)
-              = " => #{link_to("Mettre à jour", maj_date_dci_fiche_path(fiche.dci, fiche), :method => :put)}" unless fiche.validation_date == Time.now.to_date
+              - if permitted_to? :maj_date, :fiches
+                = " => #{link_to("Mettre à jour", maj_date_dci_fiche_path(fiche.dci, fiche), :method => :put)}" unless fiche.validation_date == Time.now.to_date
         - unless fiche.sources.blank?
           %dl
             %dt Sources
