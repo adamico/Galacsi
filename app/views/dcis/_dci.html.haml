@@ -12,7 +12,6 @@
 %li
   %ol
     - for fiche in dci.fiches.validated
-      %li
-        - if fiche.distinction_id?
-          = "#{fiche.distinction.name.humanize} : "
-          = "#{fiche.distinction_name.humanize}"
+      - if fiche.distinction_id?
+        %li
+          = link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]

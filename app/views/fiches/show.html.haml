@@ -1,71 +1,7 @@
-- title "#{@dci.name.humanize}"
-- if @fiche.distinction_id?
-  %h2= "(#{@fiche.distinction.name} : #{@fiche.distinction_name})"
+%h1= link_to @dci.name.humanize, @dci
 
-- if @fiche.user_id
-  %p
-    %b Createur :
-    = "#{@fiche.createur} (#{@fiche.user.role})"
+%h2= "(#{@dci.commercial_names})" unless @dci.commercial_names.blank?
 
-%table.fiche_actions
-  %tr
-    %td
-      - if permitted_to? :edit, @fiche
-        - link_to edit_dci_fiche_path(@fiche.dci, @fiche) do
-          %img{:src => "/images/Edit.png", :width => "32", :alt => "Modifier"}
-    %td
-      - if permitted_to? :destroy, @fiche
-        - link_to([@fiche.dci, @fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) do
-          %img{:src => "/images/Delete.png", :width => "32", :alt => "Détruire"}
-  %tr
-    %td
-      %small="Modifier cette fiche" if permitted_to? :edit, @fiche
-    %td
-      %small="Détruire cette fiche" if permitted_to? :destroy, @fiche
+%h2= "Classes thérapeutiques : #{@dci.classes_therapeutiques}" unless @dci.classes_therapeutiques.blank?
 
-%hr
-
-- validation_state_and_actions
-
-%hr
-
-%table.fiche_details
-  %tr
-    %th Décision :
-    %td= " #{@fiche.decision.name}" rescue " A renseigner"
-
-  %tr
-    %th Suivi souhaité :
-    %td= " #{@fiche.suivi}" rescue " A renseigner"
-
-  %tr
-    %th Conditions :
-    %td= " #{@fiche.conditions}" rescue " A renseigner"
-
-  %tr
-    %th Surveiller :
-    %td= " #{@fiche.surveillance}" rescue " A renseigner"
-
-  - unless @fiche.alternatives.blank?
-    %tr.alternatives
-      %th Alternatives :
-      %td
-        %ul
-        - @fiche.alternatives.each do |a|
-          - link = !a.commercial_names.blank? ? "#{a.name} (#{a.commercial_names})" : "#{a.name}"
-          %li
-            = link_to link, dci_path(a)
-
-  - if permitted_to?(:initialiser, :fiches)
-    %tr
-      %th Commentaire :
-      %td.comment
-        = @fiche.try(:commentaire)
-
-%hr
-#nav_bar
-  %p
-    = link_to "Toutes les fiches pour #{@fiche.dci.name}", dci_path(@fiche.dci)
-    |
-    = link_to "Accueil", root_path
-
+= render :partial => "fiche"
