@@ -29,15 +29,15 @@ Feature: admin can create and modify users and roles
       | admin     |
 
   Scenario: edit users profiles
-    Given a user exists with username: "test", email: "test@test.com"
-      And I am logged in as a admin
-    When I go to the user's edit page
+    Given I am logged in as a admin
+      And another user exists
+    When I go to the 2nd user's edit page
       And I fill in the following:
         | nom d'utilisateur         | testino |
         | changer le mot de passe   | test    |
         | confirmer le mot de passe | test    |
       And I press "Sauvegarder"
-    Then a user should exist with username: "testino", email: "test@test.com"
+    Then a user should exist with username: "testino"
 
   Scenario: list user roles choices for admin
     Given a user exists with username: "test", email: "test@test.com"

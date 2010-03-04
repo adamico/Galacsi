@@ -13,9 +13,9 @@ Feature: search for fiches by multiple criteria
       | castorama    |
       | blablabla    |
       | acétylsalicylique (acide)|
-    When I go to the homepage
+    When I go to the search page
       And I fill in the search form with "<pattern>"
-      And I press "Go"
+      And I press "Ok"
     Then I should see "<count_result>"
     Scenarios:
       | pattern | count_result    |
@@ -31,17 +31,16 @@ Feature: search for fiches by multiple criteria
       And a dci exists
       And a composition exists with specialite: the specialite, dci: the dci
       And another dci exists with name: "aspartame"
-    When I go to the homepage
+    When I go to the search page
       And I fill in the search form with "asp"
-      And I press "Go"
+      And I press "Ok"
     Then I should see "2 résultats"
 
   Scenario: search by classe therapeutique belonging
     Given a classe_therapeutique exists with name: "analgésique"
       And a dci exists
-      And another dci exists with name: "analage"
       And a classification exists with classe_therapeutique: the classe_therapeutique, dci: the dci
-    When I go to the homepage
+    When I go to the search page
       And I fill in the search form with "ana"
-      And I press "Go"
-    Then I should see "2 résultats"
+      And I press "Ok"
+    Then I should see "1 résultat"

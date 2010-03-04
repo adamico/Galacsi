@@ -31,13 +31,6 @@ Feature: browse dcis according to permissions
     Then I should see "Thefirst"
       And I should see "The2nd"
 
-  Scenario: for guests show message if no dcis has validated fiches
-    Given the following fiches exist:
-        | dci     | state     |
-        | the dci | brouillon |
-    When I go to the dcis page
-    Then I should see "Aucune DCI n'existe avec des fiches validées."
-
   @wip
   Scenario: show validation date
     Given a fiche exists with dci: the dci, state: "valide", validation_date: "#{today}"
