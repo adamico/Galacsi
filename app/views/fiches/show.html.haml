@@ -4,4 +4,4 @@
 
 %h2= "Classes thérapeutiques : #{@dci.classes_therapeutiques}" unless @dci.classes_therapeutiques.blank?
 
-= render :partial => "fiche"
+= render @fiche
