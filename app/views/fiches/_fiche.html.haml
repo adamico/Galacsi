@@ -2,7 +2,7 @@
   .fiche
     %ul.fiche_nav
       %li
-        = link_to("Modifier cette fiche", edit_dci_fiche_path(fiche.dci, fiche)) if permitted_to? :edit, fiche
+        = link_to("Modifier cette fiche", edit_dci_fiche_path(fiche.dci, fiche)) if permitted_to? :update, fiche
       %li
         = link_to("Détruire cette fiche", [fiche.dci, fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) if permitted_to? :destroy, fiche
 

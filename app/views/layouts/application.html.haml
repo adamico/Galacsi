@@ -37,7 +37,13 @@
       #right
         .box
           - user_navlinks
+        .box.news
+          %p
+            %b Dernières MAJ :
+            %ul
+              - Dci.fiches_recent.each do |d|
+                %li= link_to d.name, dci_path(d)
+
         .box
-          
           Design by
-          =link_to "Minimalistic Design", "http://www.minimalistic-design.net"
+          = link_to "Minimalistic Design", "http://www.minimalistic-design.net"

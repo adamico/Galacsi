@@ -31,6 +31,7 @@ class Fiche < ActiveRecord::Base
 
   alias_scope :expired, lambda { revalider_le_before(Time.now.to_date)}
   alias_scope :validated, lambda { state_is("valide")}
+  alias_scope :recent, lambda { validation_date_after(2.weeks.ago) }
 
   # AASM stuff
   include AASM

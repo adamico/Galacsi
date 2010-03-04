@@ -26,8 +26,10 @@ module LayoutHelper
       if current_user
         haml_tag :p do
           haml_concat("Bonjour, ")
-          haml_concat(current_user.username)
-          haml_concat("(#{current_user.role})")
+          haml_tag :b do
+            haml_concat(current_user.username)
+          end
+          haml_concat("(#{current_user.role})") if has_role? :admin
         end
         haml_tag :p do
           haml_concat(link_to "Déconnection", logout_path)

@@ -11,7 +11,6 @@ Feature: contribute fiches
       And I submit
     Then a fiche should exist with user: the user
 
-  @broken
   Scenario: a contributeur can only edit his own fiches
     Given I am logged in as a contributeur
       And another user exists
@@ -25,18 +24,19 @@ Feature: contribute fiches
   Scenario Outline: show edit link unless "valide" or "en_attente"
     Given I am logged in as a contributeur
       And a dci exists
-      And a fiche exists with dci: the dci, state: "<state>"
+      And a fiche exists with dci: the dci, user: the user, state: "<state>"
     When I go to the dci's fiche page
     Then I should <action> "Modifier"
     Examples:
-      | state     | action  |
-      | brouillon | see     |
+      | state     | action |
+      | brouillon |see     |
       | a_valider | see     |
       | valide    | not see |
       | en_attente| not see |
 
   Scenario: push "brouillon" to "à_valider"
-    Given a fiche exists with dci: the dci, state: "brouillon"
+    Given I am logged in as a contributeur
+      And a fiche exists with dci: the dci, user: the user, state: "brouillon"
     When I go to the dci's fiche page
     Then I should see "Initialiser"
 
