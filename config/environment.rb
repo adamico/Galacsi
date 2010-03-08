@@ -14,8 +14,8 @@ Rails::Initializer.run do |config|
   config.gem "searchlogic"
   config.gem 'rubyist-aasm', :version => '> 2.0.2', :lib => 'aasm', :source => "http://gems.github.com"
   config.gem "justinfrench-formtastic", :lib     => 'formtastic', :source  => 'http://gems.github.com'
-  config.gem "friendly_id", :version => ">= 2.3" 
 
+  config.gem "friendly_id", :version => ">= 2.3"
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -32,8 +32,6 @@ Rails::Initializer.run do |config|
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
-
-  config.plugins = [:annotate_models, :validation_reflection]
 
   # Skip frameworks you're not going to use. To use Rails without a database,
   # you must remove the Active Record framework.

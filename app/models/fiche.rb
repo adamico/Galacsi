@@ -8,8 +8,9 @@ class Fiche < ActiveRecord::Base
   has_many :alternativeships, :dependent => :destroy
   has_many :alternatives, :through => :alternativeships
   has_and_belongs_to_many :sources, :join_table => "fiches_sources"
-  accepts_nested_attributes_for :sources,
-    :reject_if => proc { |attrs| attrs[:name].blank? }, :allow_destroy => true
+  # décommenter ces 2 lignes pour créer des sources dans le form de la fiche
+  #accepts_nested_attributes_for :sources,
+  #  :reject_if => proc { |attrs| attrs[:name].blank? }, :allow_destroy => true
 
   attr_reader :createur
   attr_writer :alternative_names

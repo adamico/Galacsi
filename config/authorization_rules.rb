@@ -25,11 +25,12 @@ authorization do
   end
 
   role :valideur do
-    includes :contributeur
-    has_permission_on [:dcis, :fiches, :demandes, :specialites], :to => [:update, :delete]
-    has_permission_on [:decisions, :distinctions, :sources, :classe_therapeutiques], :to => :manage
+    has_permission_on [:dcis, :fiches, :demandes, :specialites, :decisions, :distinctions, :sources, :classe_therapeutiques], :to => :manage
     has_permission_on :fiches, :to => :valider do
       if_attribute :state => ["en_attente", "a_valider"]
+    end
+    has_permission_on :fiches, :to => :initialiser do
+      if_attribute :state => "brouillon"
     end
     has_permission_on :fiches, :to => [:invalider, :maj_date] do
       if_attribute :state => "valide"
