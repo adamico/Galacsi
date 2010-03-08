@@ -41,8 +41,12 @@
           %p
             %b Dernières MAJ :
             %ul
-              - Dci.fiches_recent.each do |d|
-                %li= link_to d.name, dci_path(d)
+              - Dci.find_with_recent_fiches.each do |d|
+                %li
+                  = d.name
+                  %ul
+                    - d.fiches.recent.each do |f|
+                      %li= link_to "#{f.distinction.name} : #{f.distinction_name}", dci_fiche_path(f.dci, f)
 
         .box
           Design by

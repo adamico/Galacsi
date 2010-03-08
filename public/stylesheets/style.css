@@ -110,8 +110,10 @@ li { list-style-type: none;}
 /* My personalizations */
 
 .news {
-  font-size: small;
+  font-size: smaller;
 }
+
+.news ul li ul { margin-left: 1em;}
 
 .float_left { float:left;}
 .float_right { float:right;}
