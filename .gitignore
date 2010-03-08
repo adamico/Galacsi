@@ -9,7 +9,9 @@ coverage/*
 config/database.yml
 db/*.sqlite3
 rerun.txt
+vendor/gems/
 vendor/gems/gems/*
 vendor/gems/specifications/*
 vendor/gems/doc*
 vendor/gems/environment.rb
+rails/
