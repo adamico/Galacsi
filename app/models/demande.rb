@@ -1,7 +1,7 @@
 #encoding: utf-8
 class Demande < ActiveRecord::Base
   validates_presence_of :name
-  validates_uniqueness_of :name, :on => :create, :message => " : une demande avec ce nom existe déjà"
+  validates_uniqueness_of :name
 end
 
 # == Schema Information

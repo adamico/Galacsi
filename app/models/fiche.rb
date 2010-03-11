@@ -8,7 +8,7 @@ class Fiche < ActiveRecord::Base
   has_many :alternativeships, :dependent => :destroy
   has_many :alternatives, :through => :alternativeships
   has_and_belongs_to_many :sources, :join_table => "fiches_sources"
-  # décommenter ces 2 lignes pour créer des sources dans le form de la fiche
+  # uncomment these 2 lines to create sources in fiche form
   #accepts_nested_attributes_for :sources,
   #  :reject_if => proc { |attrs| attrs[:name].blank? }, :allow_destroy => true
 
@@ -66,11 +66,6 @@ class Fiche < ActiveRecord::Base
     end
   end
 end
-
-
-
-
-
 
 
 
