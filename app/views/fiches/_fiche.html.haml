@@ -68,8 +68,10 @@
           %b Attention :
           pour cette molécule un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur ou
           %u mieux de la patiente concernée.
-
-    .argumentaire
+    
+    %p= link_to_function "Montrer les informations détaillées", toggle_div(:argumentaire)
+    
+    #argumentaire{:style => "display: none;"}
       %h3 Données détaillées
       %table
         %tr

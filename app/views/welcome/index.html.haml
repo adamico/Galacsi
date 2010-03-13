@@ -1,8 +1,11 @@
+-#encoding: utf-8
 - title "Bienvenue!"
 
 - unless @expired_fiches.count < 1
   %p
-    = "Attention vous avez : " + pluralize(@expired_fiches.count, 'fiche') + " a vérifier"
+    Attention vous avez : 
+    = pluralize(@expired_fiches.count, 'fiche')
+    a verifier
   %ul
     - @expired_fiches.each do |fiche|
       %li
