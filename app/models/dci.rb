@@ -9,7 +9,11 @@ class Dci < ActiveRecord::Base
     # remove accents and other diacritics from Western characters
     :approximate_ascii => true
 
-  has_many :fiches, :dependent => :destroy
+  has_many :fiches, :dependent => :destroy do
+    def valide
+      find(:all, :conditions => { :state => "valide"})
+    end
+  end
 
   has_many :classifications, :dependent => :destroy
   has_many :classe_therapeutiques, :through => :classifications

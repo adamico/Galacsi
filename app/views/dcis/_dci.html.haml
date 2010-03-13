@@ -1,4 +1,4 @@
-- if dci.fiches.validated.count > 0 or (permitted_to? :create, :fiches)
+- if dci.fiches.valide.count > 0 or (permitted_to? :create, :fiches)
   %li
     = link_to h(dci.name.humanize), dci
     = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
@@ -8,7 +8,7 @@
 
 %li
   %ol
-    - for fiche in dci.fiches.validated
+    - for fiche in dci.fiches.valide
       - if fiche.distinction_id?
         %li
           = link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]
