@@ -1,8 +1,12 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Demande do
+  before(:each) do
+    @demande = Demande.new    
+  end
   it "should be valid" do
-    Demande.new.should be_valid
+    @demande.name = "value for name"
+    @demande.should be_valid
   end
 end
 

@@ -1,11 +1,11 @@
 one:
   name: MyString
-  type: MyString
+  nature: MyString
   url: MyString
 
 two:
   name: MyString
-  type: MyString
+  nature: MyString
   url: MyString
 
 

@@ -1,8 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Fiche do
+  before(:each) do
+    @fiche = Fiche.new
+  end
   it "should be valid" do
-    Fiche.new.should be_valid
+    @fiche.should be_valid
   end
 end
 

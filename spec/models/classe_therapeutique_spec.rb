@@ -1,8 +1,12 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ClasseTherapeutique do
+  before(:each) do
+    @classe_therapeutique = ClasseTherapeutique.new
+  end
   it "should be valid" do
-    ClasseTherapeutique.new.should be_valid
+    @classe_therapeutique.name = "value for name"
+    @classe_therapeutique.should be_valid
   end
 end
 

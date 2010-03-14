@@ -1,8 +1,12 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Distinction do
+  before(:each) do
+    @distinction = Distinction.new
+  end
   it "should be valid" do
-    Distinction.new.should be_valid
+    @distinction.name = "value for name"
+    @distinction.should be_valid
   end
 end
 

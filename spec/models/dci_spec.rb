@@ -1,8 +1,12 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Dci do
+  before(:each) do
+    @dci = Dci.new
+  end
   it "should be valid" do
-    Dci.new.should be_valid
+    @dci.name = "value for name"
+    @dci.should be_valid
   end
 end
 
