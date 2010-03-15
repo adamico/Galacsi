@@ -4,6 +4,10 @@ describe UsersController do
   fixtures :all
   integrate_views
   
+  before(:each) do
+    activate_authlogic
+    UserSession.create Factory.build(:user, :role => "valideur")
+  end
   it "new action should render new template" do
     get :new
     response.should render_template(:new)

@@ -1,9 +1,9 @@
 one:
-  type: MyString
+  nature: MyString
   name: MyString
 
 two:
-  type: MyString
+  nature: MyString
   name: MyString
 
 # == Schema Information
