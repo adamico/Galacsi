@@ -1,10 +1,11 @@
-- if dci.fiches.valide.count > 0 or (permitted_to? :create, :fiches)
-  %li
-    = link_to h(dci.name.humanize), dci
-    = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
-    - unless dci.classes_therapeutiques.blank?
-      %em
-        = dci.classes_therapeutiques
+- unless dci.fiches.valide.empty?
+  - if dci.fiches.valide.size > 0 or (permitted_to? :create, :fiches)
+    %li
+      = link_to h(dci.name.humanize), dci
+      = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
+      - unless dci.classes_therapeutiques.blank?
+        %em
+          = dci.classes_therapeutiques
 
 %li
   %ol
