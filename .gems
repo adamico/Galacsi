@@ -1,0 +1,6 @@
+authlogic
+declarative_authorization -s http://gemcutter.org
+searchlogic
+rubyist-aasm -v '> 2.0.2' -s http://gems.github.com
+justinfrench-formtastic -s http://gems.github.com
+friendly_id -v '>= 2.3'

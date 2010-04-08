@@ -7,7 +7,6 @@
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'RedCloth', :lib => 'redcloth'
   config.gem "authlogic"
   config.gem "declarative_authorization", :source => "http://gemcutter.org"
