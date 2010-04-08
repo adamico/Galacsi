@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Dci do
   before(:each) do
-    @dci = Dci.new
+    @dci = Factory.build(:dci)
   end
   it "should be valid" do
     @dci.name = "value for name"

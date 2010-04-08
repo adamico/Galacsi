@@ -13,6 +13,9 @@ class Dci < ActiveRecord::Base
     def valide
       find(:all, :conditions => { :state => "valide"})
     end
+    def recentes
+      find(:all, :conditions => [ "validation_date >= #{2.weeks.ago}" ])
+    end
   end
 
   has_many :classifications, :dependent => :destroy
