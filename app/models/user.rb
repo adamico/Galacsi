@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :fiches
 
-  ROLES = %w[admin valideur contributeur]
+  ROLES = %w[valideur contributeur]
 
   def role_symbols
     [role.to_sym]
