@@ -6,6 +6,19 @@
     = stylesheet_link_tag 'style'
     = stylesheet_link_tag "formtastic"
     = stylesheet_link_tag "formtastic_changes"
+    = stylesheet_link_tag "anylinkcssmenu"
+    %script{:type => "text/javascript",
+            :src => "javascripts/anylinkcssmenu.js"}
+      /***********************************************
+      * AnyLink CSS Menu script v2.0- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+      * This notice MUST stay intact for legal use
+      * Visit Project Page at http://www.dynamicdrive.com/dynamicindex1/anylinkcss.htm for full source code
+      ***********************************************/
+
+    %script{:type => "text/javascript"}
+      //anylinkcssmenu.init("menu_anchors_class") ////Pass in the CSS class of anchor links (that contain a sub menu)
+      anylinkcssmenu.init("anchorclass")
+
     = yield(:head)
   %body
     #header
@@ -25,8 +38,19 @@
             = link_to "Spécialités", specialites_path
             - if permitted_to? :create, :specialites
               %span.add_record= link_to "+", new_specialite_path
-          %li
-            = link_to "Admin", admin_path if permitted_to? :read, :users
+          - if permitted_to? :read, :users
+            %li
+              %a{:href => "/admin", :class => "anchorclass",
+                  :rel => "submenu1"} Admin
+
+            .anylinkcss#submenu1
+              %ul
+                %li= link_to "Décisions", decisions_path
+                %li= link_to "Distinctions", distinctions_path
+                %li= link_to "Utilisateurs", users_path
+                %li= link_to "Sources", sources_path
+
+
     #content
       #left
         - flash.each do |name, msg|

@@ -4,6 +4,10 @@ describe DistinctionsController do
   fixtures :all
   integrate_views
   
+  before(:each) do
+    activate_authlogic
+    UserSession.create Factory.build(:user, :role => "valideur")
+  end
   it "index action should render index template" do
     get :index
     response.should render_template(:index)
@@ -28,7 +32,7 @@ describe DistinctionsController do
   it "create action should redirect when model is valid" do
     Distinction.any_instance.stubs(:valid?).returns(true)
     post :create
-    response.should redirect_to(distinction_url(assigns[:distinction]))
+    response.should redirect_to(distinctions_url)
   end
   
   it "edit action should render edit template" do
@@ -45,7 +49,7 @@ describe DistinctionsController do
   it "update action should redirect when model is valid" do
     Distinction.any_instance.stubs(:valid?).returns(true)
     put :update, :id => Distinction.first
-    response.should redirect_to(distinction_url(assigns[:distinction]))
+    response.should redirect_to(distinctions_url)
   end
   
   it "destroy action should destroy model and redirect to index action" do
