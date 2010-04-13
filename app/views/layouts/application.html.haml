@@ -70,7 +70,11 @@
                   = d.name
                   %ul
                     - d.fiches.recent.each do |f|
-                      %li= link_to "#{f.distinction.name} : #{f.distinction_name}", dci_fiche_path(f.dci, f)
+                      - if !f.distinction.blank?
+                        %li= link_to "#{f.distinction.name} : #{f.distinction_name}", dci_fiche_path(f.dci, f)
+                      - else
+                        %li
+                          = link_to f.dci.name, dci_fiche_path(f.dci, f)
 
         .box
           Design by
