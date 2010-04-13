@@ -28,14 +28,21 @@
     .resume
       %h3 Résumé
 
-      %p.retrait
-        %b
-          Passage dans le lait :
-        = fiche.passage_lait
-        - if fiche.risque_accumulation?
-          = "- risque d'accumulation dans le lait"
-        - if fiche.risque_dim_lactation?
-          = "- risque théorique de diminution de la lactation"
+      - unless fiche.passage_lait.blank?
+        %p.retrait
+          %b
+            Passage dans le lait :
+          = fiche.passage_lait
+      
+      - if fiche.risque_accumulation? or fiche.risque_dim_lactation?
+        %p.retrait
+          %b
+            - if fiche.risque_accumulation?
+              = "Risque d'accumulation dans le lait"
+        %p.retrait
+          %b
+            - if fiche.risque_dim_lactation?
+              = "Risque théorique de diminution de la lactation"
 
       %h4 Recul :
       %p.retrait= textilize_without_paragraph(fiche.ei)
