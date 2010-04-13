@@ -38,9 +38,11 @@
           = "- risque théorique de diminution de la lactation"
 
       %h4 Recul :
-      = textilize(fiche.ei)
+      %p.retrait= textilize_without_paragraph(fiche.ei)
       - if fiche.ei_theoriques?
-        = textilize(fiche.ei_theoriques)
+        %p.retrait
+          = "Risque théorique :"
+          = textilize_without_paragraph(fiche.ei_theoriques)
 
       - if fiche.conditions?
         %p.retrait
@@ -69,44 +71,52 @@
           pour cette molécule un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur ou
           %u mieux de la patiente concernée.
     
-    %p= link_to_function "Montrer les informations détaillées", toggle_div(:argumentaire)
+    %p= link_to_function "Montrer les informations détaillées", toggle_div("argumentaire_#{fiche.id}")
     
-    #argumentaire{:style => "display: none;"}
+    %div{:class => "argumentaire", :id => "argumentaire_#{fiche.id}", :style => "display: none;"}
       %h3 Données détaillées
       %table
         %tr
-          %th Biodisponibilité (PO)
-          %td= fiche.biodisponibilite
-          %th Vd
-          %td= fiche.vol_dist
-          %th Liaison aux PP
-          %td= fiche.liaison_pp
-          %th T1/2
-          %td= fiche.thalf
+          - unless fiche.biodisponibilite.blank?
+            %th Biodisponibilité (PO)
+            %td= fiche.biodisponibilite
+          - unless fiche.vol_dist.blank?
+            %th Vd
+            %td= fiche.vol_dist
+          - unless fiche.liaison_pp.blank?
+            %th Liaison aux PP
+            %td= fiche.liaison_pp
+          - unless fiche.thalf.blank?
+            %th T1/2
+            %td= fiche.thalf
         %tr
-          %th Métabolites actifs
-          %td
-            - unless fiche.metabolites_actifs.blank?
-              = fiche.metabolites_actifs? ? "Oui" : "Non"
-          %th Rapport lait/plasma
-          %td= fiche.rapport_lp
-          %th Pic lacté
-          %td= fiche.pic_lacte
+          - unless fiche.metabolites_actifs.blank?
+            %th Métabolites actifs
+            %td= fiche.metabolites_actifs? ? "Oui" : "Non"
+          - unless fiche.rapport_lp.blank?
+            %th Rapport lait/plasma
+            %td= fiche.rapport_lp
+          - unless fiche.pic_lacte.blank?
+            %th Pic lacté
+            %td= fiche.pic_lacte
         %tr
-          %th Dose estimée ingérée par l'enfant
-          %td
-            = "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
-            - if fiche.dose_par_rapport_dp?
-              %br/
-              = "(#{fiche.dose_par_rapport_dp} de la posologie pédiatrique)"
+          - unless fiche.dose_par_rapport_dmap.blank? and fiche.dose_par_rapport_dp.blank?
+            %th Dose estimée ingérée par l'enfant
+            %td
+              = "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
+              - if fiche.dose_par_rapport_dp?
+                %br/
+                = "(#{fiche.dose_par_rapport_dp} de la posologie pédiatrique)"
         %tr
-          %th Posologie pédiatrique
-          %td
-            = fiche.poso_pedia_dose
-            = "a partir de #{fiche.poso_pedia_des}" if fiche.poso_pedia_des?
+          - unless fiche.poso_pedia_dose.blank? and fiche.poso_pedia_des.blank?
+            %th Posologie pédiatrique
+            %td
+              = fiche.poso_pedia_dose
+              = "a partir de #{fiche.poso_pedia_des}" if fiche.poso_pedia_des?
         %tr
-          %th Autres
-          %td= fiche.arg_autre
+          - unless fiche.arg_autre.blank?
+            %th Autres
+            %td= fiche.arg_autre
 
     - unless fiche.sources.blank?
       %hr

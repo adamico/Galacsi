@@ -1,6 +1,6 @@
-- title "#{@dci.name.humanize}"
+- title @dci.name.humanize, false
 
-%h2.float_left= "(#{@dci.commercial_names})" unless @dci.commercial_names.blank?
+%h1.float_left= @dci.name.humanize
 
 %ul.edit_actions
   - if permitted_to? :edit, @dci
@@ -10,6 +10,7 @@
 
 .clear
 
+%h2= "Spécialités : #{@dci.commercial_names}" unless @dci.commercial_names.blank?
 %h2= "Classes thérapeutiques : #{@dci.classes_therapeutiques}" unless @dci.classes_therapeutiques.blank?
 
 - if !@dci.fiches.blank?
