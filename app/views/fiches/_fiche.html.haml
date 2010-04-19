@@ -1,11 +1,5 @@
 -if permitted_to? :read, fiche
   .fiche
-    %ul.fiche_nav
-      %li
-        = link_to("Modifier cette fiche", edit_dci_fiche_path(fiche.dci, fiche)) if permitted_to? :update, fiche
-      %li
-        = link_to("Détruire cette fiche", [fiche.dci, fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) if permitted_to? :destroy, fiche
-
     .fiche_header
       - if fiche.distinction_id?
         %p.float_left
@@ -54,7 +48,7 @@
           %b Surveillance :
           = fiche.surveillance
         %p.surveillance
-          La poursuite du traitement doit être reconsidérée et le CRPV prévenu si l'un des troubles cités est observé
+          La poursuite du traitement ou de l'allaitement doit être reconsidéré et le CRPV prévenu si l'un des troubles cités est observé
 
       - unless fiche.alternatives.blank?
         %p.retrait
@@ -99,6 +93,7 @@
           - unless fiche.pic_lacte.blank?
             %th Pic lacté
             %td= fiche.pic_lacte
+        -# fusion the 2 following %tr
         %tr
           - unless fiche.dose_par_rapport_dmap.blank? and fiche.dose_par_rapport_dp.blank?
             %th Dose estimée ingérée par l'enfant
@@ -106,7 +101,7 @@
               = "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
               - if fiche.dose_par_rapport_dp?
                 %br/
-                = "(#{fiche.dose_par_rapport_dp} de la posologie pédiatrique)"
+                = "#{fiche.dose_par_rapport_dp} de la posologie pédiatrique"
         %tr
           - unless fiche.poso_pedia_dose.blank? and fiche.poso_pedia_des.blank?
             %th Posologie pédiatrique
@@ -125,6 +120,7 @@
         = fiche.sources.map(&:name).join(', ')
 
     - if permitted_to? :update, :fiches
+      -# put the contents of .validation div in a single line
       .validation
         %hr
         %p
@@ -148,3 +144,10 @@
           %p
             %b Fiche crée par :
             = "#{fiche.createur} (#{fiche.user.role})"
+
+  -# see how to put the following ul into the .fiche div
+  %ul.fiche_nav
+    %li
+      = link_to("Modifier cette fiche", edit_dci_fiche_path(fiche.dci, fiche)) if permitted_to? :update, fiche
+    %li
+      = link_to("Détruire cette fiche", [fiche.dci, fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) if permitted_to? :destroy, fiche

@@ -49,7 +49,7 @@
     %h4 Existe-t-il une posologie pédiatrique ?
     = f.input :has_poso_pedia, :label => "Oui"
     = f.input :poso_pedia_dose, :label => "laquelle ?"
-    = f.input :poso_pedia_des, :label => "à partir de"
+    = f.input :poso_pedia_des, :label => "à partir de", :hint => "indiquer un âge ou une classe d'âge"
     %h4 Autres argumentaires
     = f.input :arg_autre, :label => "Autres", :input_html => {:rows => "2x50"}
     %h4 Commentaire générale sur la fiche
