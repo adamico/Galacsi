@@ -36,8 +36,6 @@
               %span.add_record= link_to "+", new_classe_therapeutique_path
           %li
             = link_to "Spécialités", specialites_path
-            - if permitted_to? :create, :specialites
-              %span.add_record= link_to "+", new_specialite_path
           - if permitted_to? :read, :users
             %li
               %a{:href => "/admin", :class => "anchorclass",
@@ -67,10 +65,12 @@
             %ul
               - Dci.find_with_recent_fiches.each do |d|
                 %li
-                  = d.name
+                  = link_to d.name, dci_path(d)
                   %ul
+                    -# check if heroku changes exist for this and if they are pushed to master
                     - d.fiches.recent.each do |f|
-                      %li= link_to "#{f.distinction.name} : #{f.distinction_name}", dci_fiche_path(f.dci, f)
+                      - unless f.distinction.nil?
+                        %li= link_to "#{f.distinction.name} : #{f.distinction_name}", dci_fiche_path(f.dci, f)
 
         .box
           Design by
