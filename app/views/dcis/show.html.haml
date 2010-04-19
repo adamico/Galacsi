@@ -1,6 +1,6 @@
 - title @dci.name.humanize, false
 
-%h1.float_left= @dci.name.humanize
+%h1.dci_title= @dci.name.humanize
 
 %ul.edit_actions
   - if permitted_to? :edit, @dci
