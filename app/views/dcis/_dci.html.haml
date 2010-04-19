@@ -1,15 +1,15 @@
-- unless dci.fiches.valide.empty?
-  - if dci.fiches.valide.size > 0 or (permitted_to? :create, :fiches)
-    %li
-      = link_to h(dci.name.humanize), dci
-      = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
-      - unless dci.classes_therapeutiques.blank?
-        %em
-          = dci.classes_therapeutiques
+- if dci.fiches.valide.size > 0 or (permitted_to? :create, :fiches)
+  %li
+    = link_to h(dci.name.humanize), dci
+    = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
+    - unless dci.classes_therapeutiques.blank?
+      %em
+        = dci.classes_therapeutiques
 
 %li
   %ol
-    - for fiche in dci.fiches.valide
+    - fiches = permitted_to?(:create,:fiches) ? dci.fiches : dci.fiches.valide
+    - for fiche in fiches
       - if fiche.distinction_id?
         %li
           = link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]
