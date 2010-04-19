@@ -5,7 +5,7 @@
   %h2 Aucun résultat
 
 - else
-  %h2= pluralize(@dcis.count, 'résultat')
+  %h2= pluralize(@dcis.size, 'résultat')
   %ul.dcis
     = render @dcis
 

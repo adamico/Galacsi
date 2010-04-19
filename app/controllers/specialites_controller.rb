@@ -1,7 +1,7 @@
 class SpecialitesController < ApplicationController
   filter_resource_access
   def index
-    @specialites = Specialite.with_permissions_to(:read)
+    @specialites = Specialite.with_permissions_to(:read).all(:order => "LOWER(name) ASC")
   end
   
   def show
