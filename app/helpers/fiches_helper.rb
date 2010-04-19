@@ -1,5 +1,34 @@
 # encoding: utf-8
 module FichesHelper
+  def fiche_header(instance)
+    haml_tag :div, :class => "fiche_header" do
+      if instance.distinction_id?
+        haml_tag :p, :class => "float_left" do
+          haml_tag :span, instance.distinction.name.humanize,
+            :<, :class => "strong"
+          haml_tag :span, " : #{instance.distinction_name.humanize}",
+            :<, :class => "distinction"
+        end
+      end
+      unless instance.decision.blank?
+        haml_tag :p, :class => "float_right" do
+          haml_tag :span, "Décision allaitement : ",
+            :<, :class => "strong"
+          haml_tag :span, h(instance.decision.name),
+            :<, {:class => "decision", :id => "#{instance.decision.abbr}"}
+        end
+      end
+      haml_tag :div, :class => "clear"
+      if instance.de_choix?
+        haml_tag :p do
+          haml_tag :span, {:class => "safe"} do
+            haml_concat "Molécule de choix pendant l'allaitement"
+          end
+        end
+      end
+    end
+  end
+
   def validation_state_and_actions
     haml_tag :table do
       haml_tag :tr do

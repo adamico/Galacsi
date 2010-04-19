@@ -112,48 +112,41 @@ li { list-style-type: none;}
 .news {
   font-size: smaller;
 }
-
 .news ul li ul { margin-left: 1em;}
 
 .float_left { float:left;}
 .float_right { float:right;}
 
-table { border-collapse:collapse;}
-table td, table th { padding: 0 1em;}
-table td { background: #f0f0f0}
-table th { text-align: right;}
-
 .odd { background: #eee;}
 .even { background: #fff;}
-
-div#fiches { clear:both; }
-
-div.fiche { background-color: #fff; color: black; border: solid 2px #0066B3; padding: .5em; margin: 5px 0; }
-div.fiche_header { clear: both; margin: 1em}
 
 .search form label { line-height: 2em; }
 .search form input { border: 1px solid #00c; background: #ebebeb; margin: 0 .5em; padding: 2px 4px; }
 .search input:focus { background: #fff; }
 .search input.search_submit { background: #00c; border: 0; color: #fff; cursor: pointer; font-size: .9em; font-weight: bold; letter-spacing: .1em; padding: 2px 8px; text-transform: uppercase; }
 
+form p.inline-hints { color:#666; margin:0.5em 0 0 25%; }
+.search form fieldset { border: none}
+
 abbr { cursor: help; }
 
-ul.edit_actions { width: auto; float: right; margin: 0; margin-bottom: 1em; background: black; color: white; }
-ul.edit_actions li { float:left; border-right: 1px solid white;}
+ul.edit_actions { width: auto; float: right; margin: 0; background: black; color: white; }
+ul.edit_actions li { float:left; }
 ul.edit_actions a { color: white; padding-left: .5em; padding-right: .5em;}
 ul.edit_actions a:hover { color: black; background: white; }
 
-ul.fiche_nav { float: right;}
-ul.fiche_nav li { float:left; border-right: 1px solid white;}
-ul.fiche_nav a { color: black; padding-left: .5em; padding-right: .5em;}
-ul.fiche_nav a:hover { text-decoration: underline;  }
+div#fiches { clear:both; }
+div.fiche { background-color: #fff; color: black; border: solid 2px #0066B3; margin: 5px 0; }
 
-dl { margin: 0; margin-top: 0.5em;padding-left: 1em;}
-dt { float:left; font-weight: bold; clear: left;}
-dt:after { content: " : ";}
-dd { float:left; margin-left: .5em; margin-bottom: .5em;}
+div.fiche_header { clear: both; margin: 0}
+div.fiche_header p { margin: 0.5em;}
+span.safe { font-weight: bold; color:green;}
 
-.decision { font-size: large; text-transform:uppercase; padding: .25em; border: 2px solid;}
+span.strong, span.distinction, span.decision {
+  font-weight: bolder;
+}
+span.distinction { font-size: large;}
+span.decision { font-size: large; text-transform:uppercase; padding: .25em; border: 2px solid;}
 
 #ci { background:#ffa880; border-color:red} /* contre-indiqué */
 #ad { background:#ffc860; border-color:rgb(255,153,51);} /* à discuter */
@@ -162,15 +155,9 @@ dd { float:left; margin-left: .5em; margin-bottom: .5em;}
 
 .fields { border: 1px solid black;}
 
-form p.inline-hints { color:#666; margin:0.5em 0 0 25%; }
-.search form fieldset { border: none}
-
-span.distinction { font-size: large;}
-
-.resume { background: #ddf0ee; padding: .5em; }
+.resume { background: #ddf0ee; padding: 0 0.5em; margin: 0; }
 .resume h3 { clear:both; margin: 0 .5em 0 0; padding:0;}
 .resume h4 { clear:both; margin:0; margin-top: 2px; margin-left: 1em}
-.resume b { }
 .resume p { margin:0; margin-left: 2em; margin-top: 2px}
 .resume p.surveillance { font-size: small; color: #777; font-weight:bold;}
 .resume p.retrait { margin-left: 1em;}
@@ -178,7 +165,12 @@ span.distinction { font-size: large;}
 .resume ul { margin-left: 2em;} 
 .resume a { color: #036DA7}
 .resume a:hover { text-decoration: underline; }
-span.safe { font-weight: bold; color:green;}
 
-.validation { font-size: 80%}
 .argumentaire { font-size: 80%}
+.argumentaire table { border-collapse:collapse;}
+.argumentaire table td, table th { padding: 0 1em;}
+.argumentaire table td { background: #f0f0f0}
+.argumentaire table th { text-align: right;}
+
+.fiche_footer { background: black; color: white; padding:0; margin:0;}
+.validation { font-size: 80%}
