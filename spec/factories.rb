@@ -1,5 +1,4 @@
 Factory.define :fiche do |f|
-  f.state 'brouillon'
   f.validation_date "#{Time.now.to_date}"
   f.revalider_le "#{Time.now.advance(:months => -4).to_date}"
   f.commentaire 'blabla'
@@ -8,6 +7,14 @@ Factory.define :fiche do |f|
   f.association :dci
   f.association :distinction
   f.suivi 'oui'
+end
+
+Factory.define :fiche_valide, :parent => :fiche do |f|
+  f.state "valide"
+end
+
+Factory.define :fiche_en_attente, :parent => :fiche do |f|
+  f.state "en_attente"
 end
 
 Factory.define(:distinction) do |f|
@@ -37,7 +44,6 @@ Factory.define :user do |f|
   f.email { |a| "#{a.username}@example.com".downcase }
   f.password "secret"
   f.password_confirmation { |user| user.password }
-  f.role "contributeur"
 end
 
 Factory.define :admin, :parent => :user do |f|

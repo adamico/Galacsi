@@ -1,15 +1,15 @@
 class DcisController < ApplicationController
-  filter_resource_access
-  filter_resource_access :additional_collection => {:search => :index}
+
+  load_and_authorize_resource
 
   def index
     params[:search] ||= {}
-    @dcis = Dci.with_permissions_to(:read)
+    @dcis = Dci.all
   end
   
   def search
     params[:search] ||= {}
-    @search = Dci.with_permissions_to(:read).search(params[:search])
+    @search = Dci.search(params[:search])
     @dcis = @search.all.uniq
   end
   
@@ -18,11 +18,11 @@ class DcisController < ApplicationController
   end
   
   def new
-    # @dci is created in before_filter
+    @dci = Dci.new
   end
   
   def create
-    # @dci is created in before_filter
+    @dci = Dci.new(params[:dci])
     if @dci.save
       flash[:notice] = "Successfully created dci."
       redirect_to @dci
@@ -51,7 +51,4 @@ class DcisController < ApplicationController
     flash[:notice] = "Successfully destroyed dci."
     redirect_to dcis_url
   end
-
-  protected
-
 end

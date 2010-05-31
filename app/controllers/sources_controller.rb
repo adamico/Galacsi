@@ -1,7 +1,8 @@
 class SourcesController < ApplicationController
-  filter_resource_access
+  load_and_authorize_resource
+
   def index
-    @sources = Source.with_permissions_to(:read)
+    @sources = Source.all
   end
   
   def show

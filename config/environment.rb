@@ -9,7 +9,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   config.gem 'RedCloth', :lib => 'redcloth'
   config.gem "authlogic"
-  config.gem "declarative_authorization", :source => "http://gemcutter.org"
+  config.gem "cancan"
   config.gem "searchlogic"
   config.gem 'rubyist-aasm', :version => '> 2.0.2', :lib => 'aasm', :source => "http://gems.github.com"
   config.gem "justinfrench-formtastic", :lib     => 'formtastic', :source  => 'http://gems.github.com'

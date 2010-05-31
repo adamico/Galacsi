@@ -119,7 +119,7 @@ fr:
       messages:
         inclusion: "n'est pas inclus(e) dans la liste"
         exclusion: "n'est pas disponible"
-        invalid: "n'est pas valide"
+        record_invalid: "n'est pas valide"
         confirmation: "ne concorde pas avec la confirmation"
         accepted: "doit être accepté(e)"
         empty: "doit être rempli(e)"

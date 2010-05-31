@@ -1,19 +1,7 @@
-# encoding: utf-8
 class FichesController < ApplicationController
-  filter_resource_access :nested_in => :dcis
 
-  # provided by the default filter_resource_access before_filters
-  #def load_dci
-  #  @dci = Dci.find(params[:dci_id])
-  #end
-  #
-  #def load_fiche
-  #  @fiche = Fiche.find(params[:id])
-  #end
-  #
-  #def new_fiche
-  #  @fiche = @dci.fiches.new(params[:fiche])
-  #end
+  load_and_authorize_resource :nested => :dci
+
   def initialiser
     @fiche.initialiser!
     flash[:notice] = "La fiche a été initialisée."
@@ -43,8 +31,6 @@ class FichesController < ApplicationController
   end
   
   def new
-    # a rajouter si besoin de créer des sources dans la fiche
-    #@fiche.sources.build
   end
   
   def create
@@ -75,17 +61,4 @@ class FichesController < ApplicationController
     redirect_to @dci
   end
   
-  protected
-  # provided by the default filter_resource_access before_filters
-  #def load_dci
-  #  @dci = Dci.find(params[:dci_id])
-  #end
-  #
-  #def load_fiche
-  #  @fiche = Fiche.find(params[:id])
-  #end
-  #
-  #def new_fiche
-  #  @fiche = @dci.fiches.new(params[:fiche])
-  #end
 end

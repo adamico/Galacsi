@@ -1,16 +1,18 @@
 class DistinctionsController < ApplicationController
-  filter_resource_access
+  load_and_authorize_resource
   def index
-    @distinctions = Distinction.with_permissions_to(:read)
+    @distinctions = Distinction.all
   end
   
   def show
   end
   
   def new
+    @distinction = Distinction.new
   end
   
   def create
+    @distinction = Distinction.new(params[:distinction])
     if @distinction.save
       flash[:notice] = "Successfully created distinction."
       redirect_to distinctions_url

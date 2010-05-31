@@ -1,17 +1,20 @@
 #encoding: utf-8
 class DemandesController < ApplicationController
-  filter_resource_access
+  load_and_authorize_resource
+
   def index
-    @demandes = Demande.with_permissions_to(:read)
+    @demandes = Demande.all(:read)
   end
   
   def show
   end
   
   def new
+    @demande = Demande.new
   end
   
   def create
+    @demande = Demande.new(params[:demande])
     if @demande.save
       flash[:notice] = "La demande a été enregistrée."
       redirect_to root_path
