@@ -30,3 +30,4 @@ config.action_mailer.delivery_method = :test
 config.gem "rspec", :lib => 'spec'
 config.gem "rspec-rails", :lib => false
 config.gem "relevance-rcov", :lib => "rcov"
+config.gem 'factory_girl'
