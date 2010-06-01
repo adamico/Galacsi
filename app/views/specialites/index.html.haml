@@ -4,5 +4,5 @@
   - for specialite in @specialites
     %tr
       %td= link_to h(specialite.name), specialite
-      %td= link_to 'Modifier', edit_specialite_path(specialite) if permitted_to? :edit, :specialites
-      %td= link_to 'Détruire', specialite, :confirm => 'Are you sure?', :method => :delete if permitted_to? :delete, :specialites
+      %td= link_to 'Modifier', edit_specialite_path(specialite) if can? :edit, Specialite
+      %td= link_to 'Détruire', specialite, :confirm => 'Are you sure?', :method => :delete if can? :delete, Specialite

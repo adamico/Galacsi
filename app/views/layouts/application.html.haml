@@ -28,15 +28,15 @@
           %li= link_to "Recherche", search_path
           %li
             = link_to "DCI", dcis_path
-            - if permitted_to? :create, :dcis
+            - if can? :create, Dci
               %span.add_record= link_to "+", new_dci_path
           %li
             = link_to "Classes", classe_therapeutiques_path
-            - if permitted_to? :create, :classe_therapeutiques
+            - if can? :create, ClasseTherapeutique
               %span.add_record= link_to "+", new_classe_therapeutique_path
           %li
             = link_to "Spécialités", specialites_path
-          - if permitted_to? :read, :users
+          - if can? :read, User
             %li
               %a{:href => "/admin", :class => "anchorclass",
                   :rel => "submenu1"} Admin

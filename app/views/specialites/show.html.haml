@@ -1,9 +1,9 @@
 - title @specialite.name
 
 %ul.edit_actions
-  - if permitted_to? :edit, :specialites
+  - if can? :edit, Specialite
     %li= link_to "Modifier cette spécialité", edit_specialite_path(@specialite)
-  - if permitted_to? :delete, :specialites
+  - if can? :delete, Specialite
     %li= link_to "Détruire cette spécialité", @specialite, :confirm => 'Are you sure?', :method => :delete
 
 - if !@specialite.dcis.blank?

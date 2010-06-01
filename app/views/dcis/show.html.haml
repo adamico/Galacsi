@@ -3,9 +3,9 @@
 %h1.dci_title= @dci.name.humanize
 
 %ul.edit_actions
-  - if permitted_to? :edit, @dci
+  - if can? :edit, @dci
     %li= link_to "Modifier cette DCI", edit_dci_path(@dci)
-  - if permitted_to? :delete, @dci
+  - if can? :delete, @dci
     %li= link_to "Détruire cette DCI", @dci, :confirm => 'Etes-vous sûr ?', :method => :delete
 
 .clear
@@ -20,4 +20,4 @@
   %p Aucune fiche d'évaluation n'a été crée pour cette DCI.
 
 %p
-  = link_to "Rajouter une fiche", new_dci_fiche_path(@dci) if permitted_to? :create, @dci.fiches
+  = link_to "Rajouter une fiche", new_dci_fiche_path(@dci) if can? :create, Fiche

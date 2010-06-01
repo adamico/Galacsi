@@ -1,9 +1,9 @@
 - title @classe_therapeutique.name
 
 %ul.edit_actions
-  - if permitted_to? :edit, :classe_therapeutiques
+  - if can? :edit, ClasseTherapeutique
     %li= link_to "Modifier cette classe", edit_classe_therapeutique_path(@classe_therapeutique)
-  - if permitted_to? :delete, @dci
+  - if can? :delete, @dci
     %li= link_to "Détruire cette classe", @classe_therapeutique, :confirm => 'Are you sure?', :method => :delete
 
 - if !@classe_therapeutique.dcis.blank?

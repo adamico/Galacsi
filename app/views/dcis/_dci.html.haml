@@ -1,4 +1,4 @@
-- if dci.fiches.valide.size > 0 or (permitted_to? :create, :fiches)
+- if dci.fiches.valide.size > 0 or (can? :create, Fiche)
   %li
     = link_to h(dci.name.humanize), dci
     = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
@@ -8,7 +8,7 @@
 
 %li
   %ol
-    - fiches = permitted_to?(:create,:fiches) ? dci.fiches : dci.fiches.valide
+    - fiches = can?(:create, Fiche) ? dci.fiches : dci.fiches.valide
     - for fiche in fiches
       - if fiche.distinction_id?
         %li
