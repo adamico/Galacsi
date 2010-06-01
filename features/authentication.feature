@@ -4,10 +4,8 @@ Feature: user besides guest must authenticate
   Should authenticate themselves to the application
   To avoid wasting time
 
-  Background:
-    Given a user exists with username: "myuser", password: "mypass"
-
   Scenario Outline: user tries to authenticate
+    Given a user exists with username: "myuser", password: "mypass"
     When they visit the user authentication page
       And they enter the username "<username>"
       And they enter the password "<password>"
@@ -18,13 +16,21 @@ Feature: user besides guest must authenticate
       | myuser    | mypass    | see         |
       | tizio     | pass      | not see     |
 
-  Scenario: log in
-    When I login
+  Scenario Outline: log in as a user with role
+    Given I am not authenticated
+    When I login as a <role>
     Then I should see an authentication success message
+      And I should see "<role>"
       And I should see "Déconnection"
+    Examples:
+      | role   |
+      | contributeur |
+      | valideur |
+      | admin |
+
 
   Scenario: log out
-    Given I am logged in
+    Given I am logged in as a contributeur
     When I follow "Déconnection"
     Then I should see "Déconnection effectuée avec succès."
       And I should see "Connection"

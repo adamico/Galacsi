@@ -1,15 +1,19 @@
-def user
-  @user ||= Factory(:user)
+def user(role)
+  @user ||= Factory(:role.to_sym)
 end
 
-def login
-  user
+def login(role)
+  auser = user(role)
   visit root_url
   response.should contain("Connection")
   click_link "Connection"
-  fill_in "Utilisateur", :with => user.username
-  fill_in "Mot de passe", :with => user.password
+  fill_in "Utilisateur", :with => auser.username
+  fill_in "Mot de passe", :with => auser.password
   click_button "Se connecter"
+end
+
+Given(/^I am not authenticated$/) do
+  visit('/users/sign_out')
 end
 
 When(/user authentication page$/) do

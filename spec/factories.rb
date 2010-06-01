@@ -40,9 +40,9 @@ Factory.define :classe_therapeutique do |f|
 end
 
 Factory.define :user do |f|
-  f.sequence(:username) {|n| "user#{n}"}
+  f.sequence(:username) {|n| "username#{n}"}
   f.email { |a| "#{a.username}@example.com".downcase }
-  f.password "secret"
+  f.password "password"
   f.password_confirmation { |user| user.password }
 end
 
