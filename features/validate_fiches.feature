@@ -69,7 +69,7 @@ Feature: validate fiches
       And a distinction exist with name: "indication"
       And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction: the distinction, distinction_name: "nuova"
     When I go to the homepage
-    Then I should see "1 fiche a vérifier"
+    Then I should see "1 fiche à vérifier"
       And I should see "Questa (indication : nuova)"
 
   Scenario: show link to expired validation fiches

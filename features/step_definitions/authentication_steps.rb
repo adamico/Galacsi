@@ -1,22 +1,8 @@
-def user(role)
-  @user ||= Factory(role.to_sym)
-end
-
-def login(role)
-  auser = user(role)
-  visit root_url
-  response.should contain("Connection")
-  click_link "Connection"
-  fill_in "Nom d'utilisateur", :with => auser.username
-  fill_in "Mot de passe", :with => auser.password
-  click_button "Connection"
-end
-
 Given(/^I am not authenticated$/) do
   visit('/users/sign_out')
 end
 
-When(/user authentication page$/) do
+When(/authentication page$/) do
   visit('/users/sign_in')
 end
 
@@ -36,6 +22,21 @@ When(/see an authentication success message$/) do
   have_selector("#authenticated_session_header")
 end
 
-When(/(login|logged in) as an? (.*)$/) do |skip, role|
-  login(role)
+When(/I login with "(.*)"/) do |username|
+  steps %Q{
+    When I visit the authentication page
+    When I fill in "Nom d'utilisateur" with "#{username}"
+    When I fill in "Mot de passe" with "password"
+    When I press the authenticate button
+  }
+end
+
+When(/I am logged in as an? #{capture_model}$/) do |role|
+  Given "a #{role} exists"
+  user = model!(role)
+  steps %Q{
+    And I am not authenticated
+    When I login with "#{user.username}"
+    Then I should see an authentication success message
+  }
 end

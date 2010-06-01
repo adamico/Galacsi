@@ -17,10 +17,8 @@ Feature: user besides guest must authenticate
       | tizio     | pass      | not see     |
 
   Scenario Outline: log in as a user with role
-    Given I am not authenticated
-    When I login as a <role>
-    Then I should see an authentication success message
-      And I should see "Déconnection"
+    When I am logged in as a <role>
+    Then I should see "Déconnection"
     Examples:
       | role   |
       | contributeur |

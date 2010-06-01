@@ -1,6 +1,5 @@
--#encoding: utf-8
 - semantic_form_for([@fiche.dci, @fiche]) do |f|
-  - if permitted_to? :read, :users
+  - if can? :read, User
     - f.inputs do
       = f.input :user, :label => "Créateur"
   -# remettre ça pour créer des sources
