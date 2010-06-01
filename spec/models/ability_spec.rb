@@ -12,7 +12,8 @@ describe Ability do
     it { should be_able_to(:read, ClasseTherapeutique.new) }
   end
   context "for an admin:" do
-    admin = Factory.build :admin
+    admin = Factory.build :user
+    admin.admin = true
     subject { Ability.new(admin) }
     it { should be_able_to(:manage, ClasseTherapeutique.new)}
     it { should be_able_to(:manage, Dci.new) }

@@ -6,6 +6,7 @@ Factory.define :fiche do |f|
   f.association :decision
   f.association :dci
   f.association :distinction
+  f.association :user
   f.suivi 'oui'
 end
 
@@ -31,7 +32,17 @@ Factory.define :decision do |f|
   f.name "Compatible"
 end
 
-Factory.define(:specialite) do |f|
+Factory.define :composition do |f|
+  f.association :specialite
+  f.association :dci
+end
+
+Factory.define :classification do |f|
+  f.association :classe_therapeutique
+  f.association :dci
+end
+
+Factory.define :specialite  do |f|
   f.sequence(:name) {|n| "specialite#{n}"}
 end
 
@@ -44,10 +55,6 @@ Factory.define :user do |f|
   f.email { |a| "#{a.username}@example.com".downcase }
   f.password "password"
   f.password_confirmation { |user| user.password }
-end
-
-Factory.define :admin, :parent => :user do |f|
-  f.role "admin"
 end
 
 Factory.define :valideur, :parent => :user do |f|
