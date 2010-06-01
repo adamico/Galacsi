@@ -110,6 +110,12 @@ fr:
       last_word_connector: " et "
   
   activerecord:
+    models:
+      user: Utilisateur
+    attributes:
+      user:
+        username: "Nom d'utilisateur"
+        password: "Mot de passe"
     errors:
       template:
         header: 

@@ -1,7 +1,7 @@
 fr:
   devise:
     sessions:
-      link: 'Se connecter'
+      link: 'Connection'
       signed_in: 'Connection effectuée avec succès.'
       signed_out: 'Déconnection effectuée avec succès.'
       unauthenticated: 'Vous devez vous connecter ou vous enregistrer pour pouvoir continuer.'
