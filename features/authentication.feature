@@ -20,7 +20,6 @@ Feature: user besides guest must authenticate
     Given I am not authenticated
     When I login as a <role>
     Then I should see an authentication success message
-      And I should see "<role>"
       And I should see "Déconnection"
     Examples:
       | role   |
