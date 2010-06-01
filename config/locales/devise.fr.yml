@@ -1,0 +1,35 @@
+fr:
+  devise:
+    sessions:
+      link: 'Se connecter'
+      signed_in: 'Connection effectuée avec succès.'
+      signed_out: 'Déconnection effectuée avec succès.'
+      unauthenticated: 'Vous devez vous connecter ou vous enregistrer pour pouvoir continuer.'
+      unconfirmed: 'Vous devez confirmer votre compte pour pouvoir continuer.'
+      locked: 'Votre compte est bloqué.'
+      invalid: 'Email ou mot de passe invalide.'
+      invalid_token: 'Authentication token invalide.'
+      timeout: 'Votre session a expiré, connectez vous pour continuer.'
+      inactive: 'Votre compte est inactif.'
+    passwords:
+      link: 'Mot de passe oublié ?'
+      send_instructions: 'Vous allez recevoir un email avec les instructions pour changer votre mot de passe dans quelques minutes.'
+      updated: 'Votre mot de passe a été modifié avec succès. Vous êtes connectés.'
+    confirmations:
+      link: "Vous n'avez pas reçu les instructions pour confirmer votre compte ?"
+      send_instructions: 'Vous allez recevoir un email avec les instructions pour confirmer votre compte dans quelques minutes.'
+      confirmed: 'Votre compte a été confirmé avec succès. Vous êtes connectés.'
+    registrations:
+      link: "Créer un compte"
+      signed_up: 'Vous avez créé un compte avec succès.'
+      updated: 'Vous avez modifié votre compte avec succès.'
+      destroyed: 'Adieu ! Votre compe a été supprimé avec succès. A bientôt.'
+    unlocks:
+      link: "Vous n'avez pas reçu les informations pour débloquer votre copte ?"
+      send_instructions: 'Vous allez recevoir un email avec les instructions pour débloquer votre compte dans quelques minutes.'
+      unlocked: 'Votre compte a été débloqué avec succès. Vous êtes connéctés.'
+    mailer:
+      confirmation_instructions: 'Instructions pour confirmer votre compte'
+      reset_password_instructions: 'Instructions pour modifier votre mot de passe'
+      unlock_instructions: 'Instructions pour débloquer votre compte'
+
