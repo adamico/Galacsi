@@ -23,7 +23,6 @@ Feature: user besides guest must authenticate
       | role   |
       | contributeur |
       | valideur |
-      | admin |
 
 
   Scenario: log out
