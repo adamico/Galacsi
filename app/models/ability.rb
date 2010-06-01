@@ -23,7 +23,7 @@ class Ability
       can :manage, :all
     else
       can :read, Fiche, :state => ["en_attente", "valide"]
-      can :read, [Dci, Specialite, ClasseTherapeutique]
+      can [:read, :search], [Dci, Specialite, ClasseTherapeutique]
     end
   end
 end

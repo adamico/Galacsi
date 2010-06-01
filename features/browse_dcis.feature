@@ -41,3 +41,4 @@ Feature: browse dcis according to permissions
     Given a fiche exists with dci: the dci, state: "brouillon"
     When I go to the dci page
     Then I should not see "Validation"
+    And I should not see "brouillon"
