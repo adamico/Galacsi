@@ -8,6 +8,11 @@ Factory.define :fiche do |f|
   f.association :distinction
   f.association :user
   f.suivi 'oui'
+  f.state 'brouillon'
+end
+
+Factory.define :fiche_a_valider, :parent => :fiche do |f|
+  f.state "a_valider"
 end
 
 Factory.define :fiche_valide, :parent => :fiche do |f|

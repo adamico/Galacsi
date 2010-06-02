@@ -6,7 +6,9 @@ describe Ability do
     user = Factory.build :user
     subject { Ability.new(user) }
     it { should be_able_to(:read, Factory(:fiche_valide)) }
-    it { should be_able_to(:read, Factory(:fiche_en_attente)) }
+    it { should_not be_able_to(:read, Factory(:fiche)) }
+    it { should_not be_able_to(:read, Factory(:fiche_a_valider)) }
+    it { should_not be_able_to(:read, Factory(:fiche_en_attente)) }
     it { should be_able_to(:read, Dci.new) }
     it { should be_able_to(:read, Specialite.new) }
     it { should be_able_to(:read, ClasseTherapeutique.new) }
@@ -29,9 +31,12 @@ describe Ability do
     contrib = Factory.build :contributeur
     subject { Ability.new(contrib) }
     it { should be_able_to(:read, ClasseTherapeutique.new)}
-    it { should_not be_able_to(:destroy, Dci.new)}
-    it { should_not be_able_to(:destroy, Specialite.new)}
-    it { should_not be_able_to(:destroy, ClasseTherapeutique.new)}
+    it { should_not be_able_to(:create, Dci)}
+    it { should_not be_able_to(:modify, Dci.new)}
+    it { should_not be_able_to(:create, Specialite)}
+    it { should_not be_able_to(:modify, Specialite.new)}
+    it { should_not be_able_to(:create, ClasseTherapeutique)}
+    it { should_not be_able_to(:modify, ClasseTherapeutique.new)}
     it { should be_able_to(:read, Fiche.new)}
     it { should be_able_to(:create, Fiche)}
     it { should be_able_to(:update, Factory(:fiche, :user => contrib))}
