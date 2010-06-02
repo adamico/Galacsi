@@ -13,3 +13,4 @@
       - if fiche.distinction_id?
         %li
           = link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]
+          = fiche.state.humanize if can? :create, Fiche

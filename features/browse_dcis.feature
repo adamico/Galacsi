@@ -18,7 +18,7 @@ Feature: browse dcis according to permissions
     Then I should see "Thefirst"
       But I should not see "The2nd"
 
-  Scenario: auth users visiting /dcis/ should see dcis names for fiches with any state
+  Scenario: auth users visiting /dcis/ should see dcis with list of fiches with any state
     Given I am logged in as a contributeur
       And another dci exists with name: "the2nd"
       And the following fiches exist:
@@ -29,7 +29,10 @@ Feature: browse dcis according to permissions
         | the 2nd dci   | a_valider |
     When I go to the dcis page
     Then I should see "Thefirst"
+      And I should see "Valide"
+      And I should see "Brouillon"
       And I should see "The2nd"
+      And I should see "A valider"
 
   @wip
   Scenario: show validation date
