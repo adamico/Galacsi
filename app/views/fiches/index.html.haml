@@ -1,0 +1,21 @@
+- title "Liste complète des fiches"
+
+%h2 Filtrer par:
+- form_for @search do |f|
+  = f.label :state_is, "Etat de validation"
+  = f.select :state_is, Fiche.aasm_states_for_select, :include_blank => true 
+  = f.submit "OK"
+
+- if !@fiches.empty?
+  %table#fiches
+    %thead
+      %th DCI
+      %th Distinction
+      %th Validation
+    - @fiches.each do |fiche|
+      %tr
+        %td= h fiche.dci.name
+        %td= "#{fiche.distinction.name} : #{fiche.distinction_name}"
+        %td= h fiche.state.humanize
+- else
+  %h3 Pas de résultats

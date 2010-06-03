@@ -7,7 +7,6 @@ Feature: contribute fiches
     Given I am logged in as a contributeur
       And a dci exists
 
-  @focus
   Scenario: a contributeur owns fiches he creates
     When I go to the dci page
       And I follow "Rajouter une fiche"

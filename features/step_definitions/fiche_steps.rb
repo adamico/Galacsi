@@ -23,3 +23,8 @@ Then(/^I should be at the (.*?) page$/) do |page|
     url_for(model($1))
   end
 end
+
+Then(/^I should see fiches table$/) do |table|
+  # table is a Cucumber::Ast::Table
+  table.diff!(tableish('table#fiches tr', 'td,th'))
+end

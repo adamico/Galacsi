@@ -2,6 +2,11 @@ class FichesController < ApplicationController
 
   load_and_authorize_resource :nested => :dci
 
+  def index
+    @search = Fiche.search(params[:search])
+    @fiches = @search.all
+  end
+
   def initialiser
     @fiche.initialiser!
     flash[:notice] = "La fiche a été initialisée."
