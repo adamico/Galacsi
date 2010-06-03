@@ -1,16 +1,25 @@
-- if dci.fiches.valide.size > 0 or (can? :create, Fiche)
-  %li
-    = link_to h(dci.name.humanize), dci
-    = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
-    - unless dci.classes_therapeutiques.blank?
-      %em
-        = dci.classes_therapeutiques
-
 %li
-  %ol
-    - fiches = can?(:create, Fiche) ? dci.fiches : dci.fiches.valide
-    - for fiche in fiches
-      - if fiche.distinction_id?
-        %li
-          = link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]
-          = fiche.state.humanize if can? :create, Fiche
+  = link_to h(dci.name.humanize), dci
+  = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
+  - unless dci.classes_therapeutiques.blank?
+    %em= dci.classes_therapeutiques
+- if can?(:create, Fiche)
+  %li
+    - if !dci.fiches.valide.blank?
+      %strong= "Fiches validées (#{dci.fiches.valide.count})"
+      %ol
+        - for fiche in dci.fiches.valide
+          - if fiche.distinction_id?
+            %li= link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]
+    - else
+      %strong= "Pas de fiches validées"
+    - if !dci.fiches.non_valide.blank?
+      %strong= "Fiches non validées (#{dci.fiches.non_valide.count})"
+      %ol
+        - for fiche in dci.fiches.non_valide
+          - if fiche.distinction_id?
+            %li
+              = link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]
+              = fiche.state.humanize
+    - else
+      %strong= "Pas de fiches non validées"

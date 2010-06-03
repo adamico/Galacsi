@@ -1,4 +1,3 @@
-#encoding: utf-8
 class Dci < ActiveRecord::Base
   require 'active_support'
   validates_presence_of :name
@@ -12,6 +11,9 @@ class Dci < ActiveRecord::Base
   has_many :fiches, :dependent => :destroy do
     def valide
       find(:all, :conditions => { :state => "valide"})
+    end
+    def non_valide
+      find(:all, :conditions => [ "state IS NOT ?", "valide" ])
     end
     def recentes
       find(:all, :conditions => [ "validation_date >= #{2.weeks.ago}" ])
