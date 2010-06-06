@@ -26,6 +26,8 @@
       #menu
         %ul#nav
           %li= link_to "Recherche", search_path
+          - if can? :create, Fiche
+            %li= link_to "Fiches", fiches_path
           %li
             = link_to "DCI", dcis_path
             - if can? :create, Dci
