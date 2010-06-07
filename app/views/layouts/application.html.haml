@@ -65,7 +65,7 @@
           %p
             %b Dernières MAJ :
             %ul
-              - Dci.find_with_recent_fiches.each do |d|
+              - Dci.with_recent_fiches.limit(5).uniq.each do |d|
                 %li
                   = link_to d.name, dci_path(d)
                   %ul

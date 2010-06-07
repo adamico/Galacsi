@@ -6,12 +6,10 @@ When(/authentication page$/) do
   visit('/users/sign_in')
 end
 
-When(/enter the username "(.*)"$/) do |name|
-  Then "I fill in \"Nom d'utilisateur\" with \"#{name}\""
-end
-
-When(/enter the password "(.*)"$/) do |password|
-  Then "I fill in \"Mot de passe\" with \"#{password}\""
+When(/enter the (.*) "(.*)"$/) do |field, value|
+  steps %Q{
+    When I fill in "#{field}" with "#{value}"
+  }
 end
 
 When(/press the authenticate button$/) do

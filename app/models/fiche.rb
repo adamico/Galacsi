@@ -12,6 +12,7 @@ class Fiche < ActiveRecord::Base
   #accepts_nested_attributes_for :sources,
   #  :reject_if => proc { |attrs| attrs[:name].blank? }, :allow_destroy => true
 
+  attr_protected :state_event
   attr_reader :createur
   attr_writer :alternative_names
 
@@ -37,30 +38,31 @@ class Fiche < ActiveRecord::Base
   PASSAGE = ["dose dépendant", "inconnu", "faible"]
   RLP = ["<1", ">1"]
 
-  alias_scope :expired, lambda { revalider_le_before(Time.now.to_date)}
-  alias_scope :validated, lambda { state_is("valide")}
-  alias_scope :recent, lambda { validation_date_after(2.weeks.ago) }
+ scope :expired, where("revalider_le <= ?", Time.now.to_date)
+ scope :validated, where("state = ?", "valide")
+ scope :recent, where("validation_date >= ?", 02.weeks.ago)
 
-  # AASM stuff
-  include AASM
-  aasm_column :state
-  aasm_initial_state :brouillon
+  # state machine stuff
+  state_machine :initial => :brouillon do
+    #aasm_column :state
+    #aasm_initial_state :brouillon
 
-  aasm_state :brouillon
-  aasm_state :a_valider
-  aasm_state :valide
-  aasm_state :en_attente
+    #aasm_state :brouillon
+    #aasm_state :a_valider
+    #aasm_state :valide
+    #aasm_state :en_attente
 
-  aasm_event :initialiser do
-    transitions :to => :a_valider, :from => [:brouillon]
-  end
+    event :initialiser do
+      transition :brouillon => :a_valider
+    end
 
-  aasm_event :valider do
-    transitions :to => :valide, :from => [:a_valider, :en_attente]
-  end
+    event :valider do
+      transition [:a_valider, :en_attente] => :valide
+    end
 
-  aasm_event :invalider do
-    transitions :to => :en_attente, :from => [:valide]
+    event :invalider do
+      transition :valide => :en_attente
+    end
   end
 
   private

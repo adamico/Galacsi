@@ -31,9 +31,7 @@ class Dci < ActiveRecord::Base
 
   before_validation :set_unicode_stripped_name
 
-  def self.find_with_recent_fiches
-    fiches_recent.all(:limit => 5).uniq
-  end
+  scope :with_recent_fiches, joins(:fiches) & Fiche.recent
 
   def set_unicode_stripped_name
     self.stripped_name ||= strip_unicode(self.name) if self.name

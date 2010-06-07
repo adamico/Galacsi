@@ -1,9 +1,9 @@
 - title "Liste complète des fiches"
 
 %h2 Filtrer par:
-- form_for @search do |f|
+- form_for @search, :url => fiches_path, :html => {:method => :get} do |f|
   = f.label :state_is, "Etat de validation"
-  = f.select :state_is, Fiche.aasm_states_for_select, :include_blank => true 
+  = f.select :state_is, Fiche.states, :include_blank => true 
   = f.submit "OK"
 
 - if !@fiches.empty?
