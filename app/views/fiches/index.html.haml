@@ -15,7 +15,7 @@
     - @fiches.each do |fiche|
       %tr
         %td= h fiche.dci.name
-        %td= "#{fiche.distinction.name} : #{fiche.distinction_name}"
+        %td= h fiche.full_distinction
         %td= h fiche.state.humanize
 - else
   %h3 Pas de résultats

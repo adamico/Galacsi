@@ -17,6 +17,13 @@ class Fiche < ActiveRecord::Base
 
   after_save :assign_alternative_names
 
+  def full_distinction
+    dist = []
+    dist << distinction.name if distinction
+    dist << distinction_name unless distinction_name.blank?
+    dist.join(" : ")
+  end
+
   def createur
     @createur || User.find(self.user_id).username
   end
