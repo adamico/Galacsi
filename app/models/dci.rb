@@ -13,7 +13,7 @@ class Dci < ActiveRecord::Base
       find(:all, :conditions => { :state => "valide"})
     end
     def non_valide
-      find(:all, :conditions => [ "state IS NOT ?", "valide" ])
+      find(:all, :conditions => [ "state != ?", "valide" ])
     end
     def recentes
       find(:all, :conditions => [ "validation_date >= #{2.weeks.ago}" ])
