@@ -25,11 +25,12 @@ Feature: validate fiches
 
   Scenario: validate a fiche
     Given a dci exists
+    And a fiche exists with dci: the dci, state: "valide"
     And a fiche exists with dci: the dci, state: "a_valider"
-    When I go to the dci's fiche page
+    When I go to the dci's 2nd fiche page
       And I follow "Valider"
     Then I should be on the dci's page
-      And I should see "valide"
+      And I should see "La fiche a été validée"
       And I should see the validation date
 
   Scenario Outline: show a link to update validation date for valid fiches
