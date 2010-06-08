@@ -16,7 +16,6 @@ Feature: browse dcis according to permissions
         | the 2nd dci   | a_valider |
         | the 2nd dci   | a_valider |
     When I go to the dcis page
-    Then show me the page
     Then I should see "Thefirst"
       But I should not see "The2nd"
 

@@ -31,7 +31,6 @@ Feature: validate fiches
       And I follow "Valider"
     Then I should be on the dci's page
       And I should see "La fiche a été validée"
-      And I should see the validation date
 
   Scenario Outline: show a link to update validation date for valid fiches
     Given a dci exists
@@ -68,7 +67,6 @@ Feature: validate fiches
     When I go to the dci's fiche page
       And I follow "Mettre à jour"
     Then I should see "La date de validation a été mise à jour avec succès."
-    Then I should see the validation date
 
   Scenario: show expired validation fiches
     Given a dci exists
