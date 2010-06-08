@@ -18,9 +18,9 @@
 - else
   %p= link_to "Fiches validées", :fiches_valide => 1 unless @dci.fiches.valide.empty?
 
-- if !@fiches.blank?
+- if !@fiches.empty?
   #fiches
-    = render :partial => @fiches
+    = render @fiches
 - else
   %p Pas de fiches
 

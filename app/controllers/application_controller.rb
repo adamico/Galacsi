@@ -10,14 +10,14 @@ class ApplicationController < ActionController::Base
   private
 
   def fiches_valide?
-    if session[:fiches_valide]
-      session[:fiches_valide] == "1"
+    if session[:fiches_valide_param]
+      session[:fiches_valide_param] == "1"
     end
   end
   helper_method :fiches_valide?
 
   def prepare_dci_fiches
-    session[:fiches_valide] = params[:fiches_valide] if params[:fiches_valide]
+    session[:fiches_valide_param] = params[:fiches_valide] if params[:fiches_valide]
   end
 
   protected

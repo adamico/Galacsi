@@ -13,7 +13,8 @@ Rails::Initializer.run do |config|
   config.gem "searchlogic"
   config.gem 'rubyist-aasm', :version => '> 2.0.2', :lib => 'aasm', :source => "http://gems.github.com"
   config.gem "justinfrench-formtastic", :lib     => 'formtastic', :source  => 'http://gems.github.com'
-
+  config.gem "haml"
+  config.gem "sqlite3-ruby", :lib => 'sqlite3'
   config.gem "friendly_id", :version => ">= 2.3"
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers

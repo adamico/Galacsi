@@ -1,3 +1,4 @@
+@wip
 Feature: browse dcis according to permissions
   In order to show correct information for drug use during breastfeeding
   As a user
@@ -15,10 +16,10 @@ Feature: browse dcis according to permissions
         | the 2nd dci   | a_valider |
         | the 2nd dci   | a_valider |
     When I go to the dcis page
+    Then show me the page
     Then I should see "Thefirst"
       But I should not see "The2nd"
 
-  @focus
   Scenario: auth users visiting /dcis/ should see any kind of fiches
     Given I am logged in as a contributeur
       And another dci exists with name: "the2nd"
@@ -36,7 +37,6 @@ Feature: browse dcis according to permissions
       And I should see "Pas de fiches validées"
       And I should see "Fiches non validées (2)"
 
-  @wip
   Scenario: show validation date
     Given a fiche exists with dci: the dci, state: "valide", validation_date: "#{today}"
     When I go to the dci page
