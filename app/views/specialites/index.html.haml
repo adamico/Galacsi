@@ -1,8 +1,8 @@
 - title "Liste des Spécialités"
 
-%table
-  - for specialite in @specialites
-    %tr
+%table#list
+  - @specialites.each do |specialite|
+    %tr{:class => "#{cycle('odd', 'even')}"}
       %td= link_to h(specialite.name), specialite
-      %td= link_to 'Modifier', edit_specialite_path(specialite) if can? :edit, Specialite
-      %td= link_to 'Détruire', specialite, :confirm => 'Are you sure?', :method => :delete if can? :delete, Specialite
+      %td
+        - actions_buttons(specialite)

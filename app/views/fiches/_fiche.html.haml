@@ -23,9 +23,8 @@
       %h4 Recul :
       %p.retrait= textilize_without_paragraph(fiche.ei)
       - if fiche.ei_theoriques?
-        %p.retrait
-          = "Risque théorique :"
-          = textilize_without_paragraph(fiche.ei_theoriques)
+        %p.retrait= "Risque théorique :"
+        %p.retrait= textilize_without_paragraph(fiche.ei_theoriques)
 
       - if fiche.conditions?
         %p.retrait

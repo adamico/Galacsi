@@ -327,13 +327,13 @@ table th {
   .validation a {
     color: #00ffee; }
 
-table#fiches, table#classes_therap {
+table#list {
   border-collapse: collapse; }
-  table#fiches th, table#fiches td, table#classes_therap th, table#classes_therap td {
+  table#list th, table#list td {
     padding: 0 0.5em; }
-  table#fiches tr.odd, table#classes_therap tr.odd {
+  table#list tr.odd {
     background: #dddddd; }
-  table#fiches tr.even, table#classes_therap tr.even {
+  table#list tr.even {
     background: white; }
 
 ul.inline li {
