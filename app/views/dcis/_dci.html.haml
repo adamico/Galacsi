@@ -8,9 +8,9 @@
 %div{:id => "liste_fiches_#{dci.id}", :style => "display:none;"}
   %li
     %ol
-      - if !dci.fiches.valide.blank?
+      - if !dci.fiches.valide.empty?
         %li
-          %strong= "Fiches validées (#{dci.fiches.valide.count})"
+          %strong= "Fiches validées (#{dci.fiches.valide.size})"
           %ol
             - for fiche in dci.fiches.valide
               - if fiche.distinction_id?
@@ -19,9 +19,9 @@
         %li
           %strong= "Pas de fiches validées"
 
-      - if !dci.fiches.non_valide.blank?
+      - if !dci.fiches.non_valide.empty?
         %li
-          %strong= "Fiches non validées (#{dci.fiches.non_valide.count})"
+          %strong= "Fiches non validées (#{dci.fiches.non_valide.size})"
           %ol
             - for fiche in dci.fiches.non_valide
               - if fiche.distinction_id?
