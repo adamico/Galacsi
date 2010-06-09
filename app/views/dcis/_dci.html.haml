@@ -5,29 +5,19 @@
     %em= dci.classes_therapeutiques
   - if can?(:create, Fiche)
     = link_to_function "+", toggle_div("liste_fiches_#{dci.id}")
+
 %div{:id => "liste_fiches_#{dci.id}", :style => "display:none;"}
   %li
     %ol
-      - if !dci.fiches.valide.empty?
+      - if !dci.fiches.empty?
         %li
-          %strong= "Fiches validées (#{dci.fiches.valide.size})"
+          %strong= "Fiches (#{dci.fiches.size})"
           %ol
-            - for fiche in dci.fiches.valide
-              - if fiche.distinction_id?
-                %li= link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]
-      - else
-        %li
-          %strong= "Pas de fiches validées"
-
-      - if !dci.fiches.non_valide.empty?
-        %li
-          %strong= "Fiches non validées (#{dci.fiches.non_valide.size})"
-          %ol
-            - for fiche in dci.fiches.non_valide
+            - for fiche in dci.fiches
               - if fiche.distinction_id?
                 %li
                   = link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]
                   = fiche.state.humanize
       - else
         %li
-          %strong= "Pas de fiches non validées"
+          %strong= "Pas de fiches"

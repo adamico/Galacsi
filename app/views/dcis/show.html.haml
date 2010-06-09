@@ -15,15 +15,13 @@
 
 - if current_user
   - if fiches_non_valide?
-    %p= link_to "Fiches validées", :fiches_non_valide => 0 unless @dci.fiches.non_valide.empty?
+    %p= link_to "Fiches validées", :fiches_non_valide => 0 unless @dci.fiches.valide.empty?
   - else
-    %p= link_to "Fiches non validées", :fiches_non_valide => 1 unless @dci.fiches.valide.empty?
+    %p= link_to "Fiches non validées", :fiches_non_valide => 1 unless @dci.fiches.non_valide.empty?
 
 - if !@fiches.empty?
   #fiches
     = render @fiches
-- else
-  %p Pas de fiches
 
 %p
   = link_to "Rajouter une fiche", new_dci_fiche_path(@dci) if can? :create, Fiche
