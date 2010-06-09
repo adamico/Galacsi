@@ -221,10 +221,76 @@ ul.edit_actions {
 div#fiches {
   clear: both; }
 div.fiche {
+  margin: 5px 0; }
+  div.fiche div.fiche_footer {
+    background: black;
+    color: white;
+    padding: 0;
+    margin: 0; }
+    div.fiche div.fiche_footer div.validation {
+      font-size: 90%; }
+  div.fiche div.argumentaire {
+    font-size: 85%; }
+    div.fiche div.argumentaire table {
+      border-collapse: collapse; }
+      div.fiche div.argumentaire table td {
+        padding: 0 1em; }
+  div.fiche div.resume {
+    padding: 0 0.5em;
+    margin: 0; }
+    div.fiche div.resume h3 {
+      clear: both;
+      margin: 0 0.5em 0 0;
+      padding: 0; }
+    div.fiche div.resume h4 {
+      clear: both;
+      margin: 0;
+      margin-top: 2px;
+      margin-left: 1em; }
+    div.fiche div.resume p {
+      margin: 0;
+      margin-left: 2em;
+      margin-top: 2px; }
+      div.fiche div.resume p.surveillance {
+        font-size: small;
+        color: #777777;
+        font-weight: bold; }
+      div.fiche div.resume p.retrait {
+        margin-left: 1em; }
+      div.fiche div.resume p.alert {
+        margin-left: 0;
+        color: red;
+        font-size: small; }
+    div.fiche div.resume ul {
+      margin-left: 2em; }
+    div.fiche div.resume a {
+      color: #036da7; }
+      div.fiche div.resume a:hover {
+        text-decoration: underline; }
+div.fiche.valide {
   background-color: white;
   color: black;
-  border: solid 2px #0066b3;
-  margin: 5px 0; }
+  border: solid 2px #0066b3; }
+  div.fiche.valide div.resume {
+    background: #ddf0ee; }
+  div.fiche.valide div.fiche_footer {
+    background: black;
+    color: white; }
+    div.fiche.valide div.fiche_footer div.validation a {
+      color: #00ffee; }
+div.fiche.non_valide {
+  background: black;
+  color: white;
+  border: solid 2px #b30000; }
+  div.fiche.non_valide a {
+    color: #0099ff; }
+  div.fiche.non_valide div.resume {
+    background: #552222; }
+  div.fiche.non_valide div.fiche_footer {
+    background: white;
+    color: black; }
+    div.fiche.non_valide div.fiche_footer div.validation a {
+      color: #0088ff; }
 div.fiche_header {
   clear: both;
   margin: 0; }
@@ -239,6 +305,7 @@ span.strong, span.distinction, span.decision {
 span.distinction {
   font-size: large; }
 span.decision {
+  color: black;
   font-size: large;
   text-transform: uppercase;
   padding: 0.25em;
@@ -267,65 +334,15 @@ span.decision {
 .fields {
   border: 1px solid black; }
 
-.resume {
-  background: #ddf0ee;
-  padding: 0 0.5em;
-  margin: 0; }
-  .resume h3 {
-    clear: both;
-    margin: 0 0.5em 0 0;
-    padding: 0; }
-  .resume h4 {
-    clear: both;
-    margin: 0;
-    margin-top: 2px;
-    margin-left: 1em; }
-  .resume p {
-    margin: 0;
-    margin-left: 2em;
-    margin-top: 2px; }
-    .resume p.surveillance {
-      font-size: small;
-      color: #777777;
-      font-weight: bold; }
-    .resume p.retrait {
-      margin-left: 1em; }
-    .resume p.alert {
-      margin-left: 0;
-      color: red;
-      font-size: small; }
-  .resume ul {
-    margin-left: 2em; }
-  .resume a {
-    color: #036da7; }
-    .resume a:hover {
-      text-decoration: underline; }
-
-.argumentaire {
-  font-size: 80%; }
-  .argumentaire table {
-    border-collapse: collapse; }
-    .argumentaire table td {
-      padding: 0 1em; }
-
 table th {
   padding: 0 1em; }
 
 .argumentaire table td {
+  vertical-align: top;
   background: #f0f0f0; }
 .argumentaire table th {
+  vertical-align: top;
   text-align: right; }
-
-.fiche_footer {
-  background: black;
-  color: white;
-  padding: 0;
-  margin: 0; }
-
-.validation {
-  font-size: 80%; }
-  .validation a {
-    color: #00ffee; }
 
 table#list {
   border-collapse: collapse; }

@@ -227,10 +227,78 @@ div
   &#fiches
     clear: both
   &.fiche
+    margin: 5px 0
+    div.fiche_footer
+      background: black
+      color: white
+      padding: 0
+      margin: 0
+      div.validation
+        font-size: 90%
+    div.argumentaire
+      font-size: 85%
+      table
+        border-collapse: collapse
+        td
+          padding: 0 1em
+    div.resume
+      padding: 0 0.5em
+      margin: 0
+      h3
+        clear: both
+        margin: 0 .5em 0 0
+        padding: 0
+      h4
+        clear: both
+        margin: 0
+        margin-top: 2px
+        margin-left: 1em
+      p
+        margin: 0
+        margin-left: 2em
+        margin-top: 2px
+        &.surveillance
+          font-size: small
+          color: #777
+          font-weight: bold
+        &.retrait
+          margin-left: 1em
+        &.alert
+          margin-left: 0
+          color: red
+          font-size: small
+      ul
+        margin-left: 2em
+      a
+        color: #036DA7
+        &:hover
+          text-decoration: underline
+  &.fiche.valide
     background-color: #fff
     color: black
     border: solid 2px #0066B3
-    margin: 5px 0
+    div.resume
+      background: #ddf0ee
+    div.fiche_footer
+      background: black
+      color: white
+      div.validation
+        a
+          color: #0FE
+  &.fiche.non_valide
+    background: #000
+    color: white
+    border: solid 2px #B30000
+    a
+      color: #09F
+    div.resume
+      background: #522
+    div.fiche_footer
+      background: white
+      color: black
+      div.validation
+        a
+          color: #08F
   &.fiche_header
     clear: both
     margin: 0
@@ -246,6 +314,7 @@ span
   &.distinction
     font-size: large
   &.decision
+    color: black
     font-size: large
     text-transform: uppercase
     padding: .25em
@@ -278,66 +347,18 @@ span
 .fields
   border: 1px solid black
 
-.resume
-  background: #ddf0ee
-  padding: 0 0.5em
-  margin: 0
-  h3
-    clear: both
-    margin: 0 .5em 0 0
-    padding: 0
-  h4
-    clear: both
-    margin: 0
-    margin-top: 2px
-    margin-left: 1em
-  p
-    margin: 0
-    margin-left: 2em
-    margin-top: 2px
-    &.surveillance
-      font-size: small
-      color: #777
-      font-weight: bold
-    &.retrait
-      margin-left: 1em
-    &.alert
-      margin-left: 0
-      color: red
-      font-size: small
-  ul
-    margin-left: 2em
-  a
-    color: #036DA7
-    &:hover
-      text-decoration: underline
-
-.argumentaire
-  font-size: 80%
-  table
-    border-collapse: collapse
-    td
-      padding: 0 1em
 
 table th
   padding: 0 1em
 
 .argumentaire table
   td
+    vertical-align: top
     background: #f0f0f0
   th
+    vertical-align: top
     text-align: right
 
-.fiche_footer
-  background: black
-  color: white
-  padding: 0
-  margin: 0
-
-.validation
-  font-size: 80%
-  a
-    color: #0FE
 
 table#list
   border-collapse: collapse
@@ -403,3 +424,4 @@ input.destroy_button
       color: #900
     right:
       color: #900
+

@@ -1,5 +1,5 @@
 - if can?(:read, fiche)
-  .fiche
+  %div{:class => ["fiche", (fiche.state == "valide") ? "valide" : "non_valide"]}
     - fiche_header(fiche)
 
     .resume
@@ -10,15 +10,12 @@
           %b Passage dans le lait :
           = fiche.passage_lait
 
-      - if fiche.risque_accumulation? or fiche.risque_dim_lactation?
+      - if fiche.risque_accumulation?
         %p.retrait
-          %b
-            - if fiche.risque_accumulation?
-              = "Risque d'accumulation dans le lait"
+          %b= "Risque d'accumulation dans le lait"
+      - if fiche.risque_dim_lactation?
         %p.retrait
-          %b
-            - if fiche.risque_dim_lactation?
-              = "Risque théorique de diminution de la lactation"
+          %b= "Risque théorique de diminution de la lactation"
 
       %h4 Recul :
       %p.retrait= textilize_without_paragraph(fiche.ei)
@@ -90,10 +87,10 @@
           - unless fiche.dose_par_rapport_dmap.blank? and fiche.dose_par_rapport_dp.blank?
             %th Dose estimée ingérée par l'enfant
             %td
-              = "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
-              - if fiche.dose_par_rapport_dp?
-                %br/
-                = "#{fiche.dose_par_rapport_dp} de la posologie pédiatrique"
+              %ul
+                %li= "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
+                - if fiche.dose_par_rapport_dp?
+                  %li= "#{fiche.dose_par_rapport_dp} de la posologie pédiatrique"
           - unless fiche.poso_pedia_dose.blank? and fiche.poso_pedia_des.blank?
             %th Posologie pédiatrique
             %td
