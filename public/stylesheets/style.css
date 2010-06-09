@@ -183,5 +183,10 @@ span.decision { font-size: large; text-transform:uppercase; padding: .25em; bord
 .validation a { color: #0FE }
 
 table#fiches th, table#fiches td {
-	padding: 0 1em;
+  padding: 0 1em;
+}
+
+ul.inline li {
+  float: left;
+  padding-right: 1em;
 }

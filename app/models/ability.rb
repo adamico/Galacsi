@@ -12,7 +12,9 @@ class Ability
     can :show, Dci do |dci|
       dci && !dci.fiches.valide.empty?
     end
-    can :read, Fiche, :state => "valide"
+    can :read, Fiche do |fiche|
+      fiche && fiche.state == "valide"
+    end
 
     if user.admin?
       can :manage, :all

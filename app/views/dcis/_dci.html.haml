@@ -1,24 +1,19 @@
 - if can?(:show, dci)
   %li
-    = link_to h(dci.name.humanize), dci
-    = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
-    - unless dci.classes_therapeutiques.blank?
-      %em= dci.classes_therapeutiques
-    - if can?(:create, Fiche)
-      = link_to_function "+", toggle_div("liste_fiches_#{dci.id}")
+    %ul.inline
+      %li{:style => "width: 12em;"}= link_to h(dci.name.humanize), dci
+      %li{:style => "width: 15em;"}= "(#{dci.commercial_names})" unless dci.commercial_names.blank?
+      - unless dci.classes_therapeutiques.blank?
+        %li{:style => "width: 22em;"}
+          %em= dci.classes_therapeutiques
 
-%div{:id => "liste_fiches_#{dci.id}", :style => "display:none;"}
+%li.clear
+
+- if dci.fiches.size > 1
   %li
     %ol
-      - if !dci.fiches.empty?
-        %li
-          %strong= "Fiches (#{dci.fiches.size})"
-          %ol
-            - for fiche in dci.fiches
-              - if fiche.distinction_id?
-                %li
-                  = link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]
-                  = fiche.state.humanize
-      - else
-        %li
-          %strong= "Pas de fiches"
+      - for fiche in dci.fiches
+        - if fiche.distinction_id? && can?(:show, fiche)
+          %li
+            = link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]
+            = fiche.state.humanize if can?(:create, Fiche)

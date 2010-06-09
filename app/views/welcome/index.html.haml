@@ -1,6 +1,6 @@
 - title "Bienvenue!"
 
-- unless @expired_fiches.count < 1
+- if @expired_fiches.count > 0 && can?(:valider, Fiche)
   %p= "Attention vous avez : #{pluralize(@expired_fiches.count, 'fiche')} à vérifier"
   %ul
     - @expired_fiches.each do |fiche|

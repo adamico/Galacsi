@@ -69,11 +69,12 @@
                 - if can?(:show, dci)
                   %li
                     = link_to dci.name, dci_path(dci)
-                    %ul
-                      - dci.fiches.recent.each do |fiche|
-                        - unless fiche.distinction.nil?
-                          - if can?(:read, fiche)
-                            %li= link_to "#{fiche.distinction.name} : #{fiche.distinction_name}", dci_fiche_path(fiche.dci, fiche)
+                    - if dci.fiches.recent.size > 1
+                      %ul
+                        - dci.fiches.recent.each do |fiche|
+                          - unless fiche.distinction.nil?
+                            - if can?(:read, fiche)
+                              %li= link_to "#{fiche.distinction.name} : #{fiche.distinction_name}", dci_fiche_path(fiche.dci, fiche)
 
         .box
           Design by

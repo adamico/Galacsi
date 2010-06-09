@@ -86,3 +86,12 @@ Feature: validate fiches
     When I follow "Questa (indication : nuova)"
     Then I should be at the dci's fiche page
 
+  @focus
+  Scenario: hide link to expired validation fiches for guests
+    Given I am not authenticated
+    And a dci exists
+    And another dci exists with name: "questa"
+    And a distinction exist with name: "indication"
+    And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction: the distinction, distinction_name: "nuova"
+    When I go to the homepage
+    Then I should not see "Attention vous avez : 1 fiche à vérifier"
