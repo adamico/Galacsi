@@ -20,7 +20,7 @@ Feature: search fiches
       | the 1st dci | the 1st distinction | ind2             | brouillon|
       | the 2nd dci | the 2nd distinction | voie1            | a_valider|
       | the 3rd dci | the 2nd distinction | voie2            | a_valider|
-    
+
   Scenario: show list of all fiches when no filter
     When I go to the fiches page
     And I press "OK"

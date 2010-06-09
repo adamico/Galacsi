@@ -22,7 +22,7 @@ module ApplicationHelper
 
   def actions_buttons(object)
     haml_tag('ul.actions') do
-      if can? :show, object
+      if can? :show, object and object.class == Dci
         haml_tag :li do
           haml_concat(button_to("Voir", polymorphic_path([object.dci, object]), :method => :get, :class => "go_button"))
         end

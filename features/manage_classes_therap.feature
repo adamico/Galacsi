@@ -39,3 +39,9 @@ Feature: manage classes therapeutiques
       And I press "Enregistrer"
     Then I should see "Classes thérapeutiques :"
       And I should see "Uneclasse1, Uneclasse2"
+
+  Scenario: hide classes therapeutiques links if dcis list empty
+    Given I am not authenticated
+    And a classe_therapeutique exists with name: "classe1"
+    When I go to the classe_therapeutiques page
+    Then I should not see "classe1"
