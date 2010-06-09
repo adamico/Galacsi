@@ -1,4 +1,6 @@
 rails -v 2.3.8
+RedCloth
+sqlite3-ruby
 haml -v 3.0.3
 devise -v 1.0.7
 cancan
