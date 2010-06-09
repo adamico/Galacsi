@@ -15,9 +15,9 @@
 
 - if current_user
   - if fiches_non_valide?
-    %p= link_to "Fiches validées", :fiches_non_valide => 0 unless @dci.fiches.valide.empty?
+    %p= link_to "Voir les fiches validées", :fiches_non_valide => 0 unless @dci.fiches.valide.empty?
   - else
-    %p= link_to "Fiches non validées", :fiches_non_valide => 1 unless @dci.fiches.non_valide.empty?
+    %p= link_to "Voir les fiches non validées", :fiches_non_valide => 1 unless @dci.fiches.non_valide.empty?
 
 - if !@fiches.empty?
   #fiches

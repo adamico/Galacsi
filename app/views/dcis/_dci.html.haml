@@ -1,10 +1,11 @@
-%li
-  = link_to h(dci.name.humanize), dci
-  = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
-  - unless dci.classes_therapeutiques.blank?
-    %em= dci.classes_therapeutiques
-  - if can?(:create, Fiche)
-    = link_to_function "+", toggle_div("liste_fiches_#{dci.id}")
+- if can?(:show, dci)
+  %li
+    = link_to h(dci.name.humanize), dci
+    = "(#{dci.commercial_names})" unless dci.commercial_names.blank?
+    - unless dci.classes_therapeutiques.blank?
+      %em= dci.classes_therapeutiques
+    - if can?(:create, Fiche)
+      = link_to_function "+", toggle_div("liste_fiches_#{dci.id}")
 
 %div{:id => "liste_fiches_#{dci.id}", :style => "display:none;"}
   %li
