@@ -47,6 +47,11 @@
             %li
               = link_to link, dci_path(a)
 
+      - unless fiche.arg_autre.blank?
+        %p.retrait
+          %b Autres argumentaires :
+          = fiche.arg_autre
+
       - if fiche.suivi == "oui"
         %p.alert
           %b Attention :
@@ -94,9 +99,6 @@
             %td
               = fiche.poso_pedia_dose
               = "a partir de #{fiche.poso_pedia_des}" if fiche.poso_pedia_des?
-          - unless fiche.arg_autre.blank?
-            %th Autres
-            %td= fiche.arg_autre
 
     - unless fiche.sources.blank?
       %p
