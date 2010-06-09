@@ -4,7 +4,7 @@ Feature: managing dcis
   I want to create, modify and delete dcis
 
   Background:
-    Given I am logged in as a contributeur
+    Given I am logged in as a valideur
 
   Scenario: creating valid dcis
     When I go to the new dci page

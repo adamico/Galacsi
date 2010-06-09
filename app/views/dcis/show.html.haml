@@ -13,16 +13,15 @@
 %h2= "Spécialités : #{@dci.commercial_names}" unless @dci.commercial_names.blank?
 %h2= "Classes thérapeutiques : #{@dci.classes_therapeutiques}" unless @dci.classes_therapeutiques.blank?
 
-- if fiches_valide?
-  %p= link_to "Fiches non validées", :fiches_valide => 0 unless @dci.fiches.non_valide.empty?
-- else
-  %p= link_to "Fiches validées", :fiches_valide => 1 unless @dci.fiches.valide.empty?
+- if current_user
+  - if fiches_non_valide?
+    %p= link_to "Fiches validées", :fiches_non_valide => 0 unless @dci.fiches.valide.empty?
+  - else
+    %p= link_to "Fiches non validées", :fiches_non_valide => 1 unless @dci.fiches.non_valide.empty?
 
-- if !@fiches.blank?
+- if !@fiches.empty?
   #fiches
-    = render :partial => @fiches
-- else
-  %p Pas de fiches
+    = render @fiches
 
 %p
   = link_to "Rajouter une fiche", new_dci_fiche_path(@dci) if can? :create, Fiche

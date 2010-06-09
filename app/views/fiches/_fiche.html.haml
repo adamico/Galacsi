@@ -1,4 +1,4 @@
--if can? :read, fiche
+-if can? :read, Fiche
   .fiche
     - fiche_header(fiche)
 
@@ -105,7 +105,7 @@
         = fiche.sources.map(&:name).join(', ')
 
     .fiche_footer
-      - if can? :update, Fiche
+      - if can? :create, Fiche
         .validation
           %table{:style => "width:100%;"}
             %tr

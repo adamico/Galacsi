@@ -15,10 +15,10 @@ class DcisController < ApplicationController
   
   def show
     # @dci is loaded in before_filter
-    if fiches_valide?
-      @fiches = @dci.fiches.valide
-    else
+    if fiches_non_valide? && !@dci.fiches.non_valide.empty?
       @fiches = @dci.fiches.non_valide
+    else
+      @fiches = @dci.fiches.valide
     end
   end
   
