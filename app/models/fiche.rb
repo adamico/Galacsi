@@ -43,6 +43,7 @@ class Fiche < ActiveRecord::Base
  scope :recent, where("validation_date >= ?", 02.weeks.ago)
 
   # state machine stuff
+  STATES = [["brouillon", "brouillon"], ["a_valider", "à valider"], ["valide", "valide"], ["en_attente", "en attente"]]
   state_machine :initial => :brouillon do
     #aasm_column :state
     #aasm_initial_state :brouillon

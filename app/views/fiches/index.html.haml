@@ -3,7 +3,7 @@
 %h2 Filtrer par:
 - form_for @search, :url => fiches_path, :html => {:method => :get} do |f|
   = f.label :state_is, "Etat de validation"
-  = f.select :state_is, Fiche.states, :include_blank => true 
+  = f.select :state_is, Fiche::STATES, :include_blank => true 
   = f.submit "OK"
 
 - if !@fiches.empty?
