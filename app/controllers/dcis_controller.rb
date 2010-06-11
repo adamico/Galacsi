@@ -4,7 +4,8 @@ class DcisController < ApplicationController
 
   def index
     params[:search] ||= {}
-    @dcis = Dci.all
+    @search = Dci.search(params[:search])
+    @dcis = @search.all
   end
   
   def search

@@ -1,4 +1,4 @@
-- title "Recherche de produits"
+- title "Recherche"
 
 - if @dcis.empty?
   %h2 Aucun résultat
@@ -7,5 +7,3 @@
   %h2= pluralize(@dcis.size, 'résultat')
   %ul.dcis
     = render @dcis
-
-%p= link_to "Nouvelle DCI", new_dci_path if can? :create, @dci
