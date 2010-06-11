@@ -7,8 +7,8 @@ Feature: user besides guest must authenticate
   Scenario Outline: user tries to authenticate
     Given a user exists with username: "myuser", password: "mypass"
     When they visit the user authentication page
-      And they enter the username "<username>"
-      And they enter the password "<password>"
+      And they enter the user_username "<username>"
+      And they enter the user_password "<password>"
       And they press the authenticate button
     Then they should <expectation> an authentication success message
     Examples:
@@ -18,6 +18,7 @@ Feature: user besides guest must authenticate
 
   Scenario Outline: log in as a user with role
     When I am logged in as a <role>
+    Then show me the page
     Then I should see "Déconnection"
     Examples:
       | role   |

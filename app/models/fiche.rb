@@ -38,12 +38,12 @@ class Fiche < ActiveRecord::Base
   RLP = ["<1", ">1"]
 
  scope :expired,    where("revalider_le <= ?", Time.now.to_date)
- scope :validated,  where("state = ?", "valide")
+ scope :valide,  where("state = ?", "valide")
  scope :non_valide, where("state != ?", "valide")
  scope :recent,     where("validation_date >= ?", 02.weeks.ago)
 
   # state machine stuff
-  STATES = [["brouillon", "brouillon"], ["a_valider", "à valider"], ["valide", "valide"], ["en_attente", "en attente"]]
+  STATES = [["brouillon", "brouillon"], ["à valider", "a_valider"], ["valide", "valide"], ["en attente", "en_attente"]]
   state_machine :initial => :brouillon do
     #aasm_column :state
     #aasm_initial_state :brouillon
