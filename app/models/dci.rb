@@ -9,10 +9,8 @@ class Dci < ActiveRecord::Base
     :approximate_ascii => true
 
   has_many :fiches, :dependent => :destroy
-
   has_many :classifications, :dependent => :destroy
   has_many :classe_therapeutiques, :through => :classifications
-
   has_many :compositions, :dependent => :destroy
   has_many :specialites, :through => :compositions
 
@@ -25,15 +23,6 @@ class Dci < ActiveRecord::Base
     fiches_recent.all(:limit => 5).uniq
   end
 
-  def set_unicode_stripped_name
-    self.stripped_name ||= strip_unicode(self.name) if self.name
-  end
-
-  def strip_unicode(string)
-    mb_string = ActiveSupport::Multibyte::Chars.new(string)
-    mb_string.normalize(:kd).gsub(/[^\x00-\x7F]/,'').to_s
-  end
-
   def classes_therapeutiques
     @classes_therapeutiques || classe_therapeutiques.map(&:name).map(&:humanize).join(', ')
   end
@@ -43,6 +32,15 @@ class Dci < ActiveRecord::Base
   end
 
   private
+
+  def set_unicode_stripped_name
+    self.stripped_name ||= strip_unicode(self.name) if self.name
+  end
+
+  def strip_unicode(string)
+    mb_string = ActiveSupport::Multibyte::Chars.new(string)
+    mb_string.normalize(:kd).gsub(/[^\x00-\x7F]/,'').to_s
+  end
 
   def assign_commercial_names
     if @commercial_names

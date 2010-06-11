@@ -1,4 +1,3 @@
-#encoding: utf-8
 class Fiche < ActiveRecord::Base
   belongs_to :decision
   belongs_to :dci
