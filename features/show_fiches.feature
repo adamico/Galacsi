@@ -15,7 +15,7 @@ Feature: show fiches for a dci
 
   Scenario: a guest should only see validated fiches
     When I go to the first dci page
-    Then I should see "dist1"
+    Then I should see "Dist1"
     But I should not see "dist2"
 
   Scenario: hide validation field for guest users

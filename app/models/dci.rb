@@ -8,17 +8,7 @@ class Dci < ActiveRecord::Base
     # remove accents and other diacritics from Western characters
     :approximate_ascii => true
 
-  has_many :fiches, :dependent => :destroy do
-    def valide
-      find(:all, :conditions => { :state => "valide"})
-    end
-    def non_valide
-      find(:all, :conditions => [ "state != ?", "valide" ])
-    end
-    def recentes
-      find(:all, :conditions => [ "validation_date >= #{2.weeks.ago}" ])
-    end
-  end
+  has_many :fiches, :dependent => :destroy
 
   has_many :classifications, :dependent => :destroy
   has_many :classe_therapeutiques, :through => :classifications

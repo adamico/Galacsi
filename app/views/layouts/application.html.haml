@@ -69,7 +69,7 @@
                 - if can?(:show, dci)
                   %li
                     = link_to dci.name, dci_path(dci)
-                    - if dci.fiches.recent.size > 1
+                    - if (dci.fiches.recent.size > 1 && can?(:create, Fiche)) or dci.fiches.valide.recent.size > 1
                       %ul
                         - dci.fiches.recent.each do |fiche|
                           - unless fiche.distinction.nil?

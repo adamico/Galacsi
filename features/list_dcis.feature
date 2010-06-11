@@ -27,19 +27,23 @@ Feature: list dcis according to permissions
     Then I should see "The3rd"
     But I should not see "dist5"
 
+  Scenario: hide fiches link for guests if dci has one validated fiche only
+    When I go to the dcis page
+    Then I should see "Thefirst"
+    But I should not see "dist1"
+
   Scenario: hide fiches non valide link for guests
     When I go to the dcis page
     Then I should see "Thefirst"
-    And I should see "dist1"
     But I should not see "dist2"
-    
+
   Scenario: hide fiches state for guests
     When I go to the dcis page
     Then I should not see "valide"
     Then I should not see "brouillon"
     Then I should not see "a_valider"
     Then I should not see "en_attente"
-    
+
   Scenario: a guest should only see dcis with validated fiches
     When I go to the dcis page
     Then I should see "Thefirst"

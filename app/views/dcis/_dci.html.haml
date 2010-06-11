@@ -9,7 +9,7 @@
 
 %li.clear
 
-- if dci.fiches.size > 1
+- if (dci.fiches.size > 1 && can?(:create, Fiche)) or dci.fiches.valide.size > 1
   %li
     %ol
       - for fiche in dci.fiches
