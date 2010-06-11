@@ -7,7 +7,7 @@
   = f.submit "OK"
 
 - if !@fiches.empty?
-  %table#fiches
+  %table#list
     %thead
       %th DCI
       %th Distinction
@@ -15,16 +15,13 @@
       %th Créateur
       %th Actions
     - @fiches.each do |fiche|
-      %tr
+      %tr{:class => "#{cycle('odd', 'even')}"}
         %td= h fiche.dci.name
         %td= h fiche.full_distinction
         %td= h fiche.state.humanize
         %td= h fiche.createur if fiche.user
         %td
-          = link_to "Voir", [fiche.dci, fiche]
-          |
-          = link_to("Modifier", edit_dci_fiche_path(fiche.dci, fiche)) if can? :update, fiche
-          |
-          = link_to("Détruire", [fiche.dci, fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) if can? :destroy, fiche
+          - actions_buttons(fiche)
+
 - else
   %h3 Pas de résultats

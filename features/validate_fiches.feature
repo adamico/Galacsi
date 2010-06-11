@@ -25,12 +25,12 @@ Feature: validate fiches
 
   Scenario: validate a fiche
     Given a dci exists
+    And a fiche exists with dci: the dci, state: "valide"
     And a fiche exists with dci: the dci, state: "a_valider"
-    When I go to the dci's fiche page
+    When I go to the dci's 2nd fiche page
       And I follow "Valider"
     Then I should be on the dci's page
-      And I should see "valide"
-      And I should see the validation date
+      And I should see "La fiche a été validée"
 
   Scenario Outline: show a link to update validation date for valid fiches
     Given a dci exists
@@ -67,7 +67,6 @@ Feature: validate fiches
     When I go to the dci's fiche page
       And I follow "Mettre à jour"
     Then I should see "La date de validation a été mise à jour avec succès."
-    Then I should see the validation date
 
   Scenario: show expired validation fiches
     Given a dci exists
@@ -87,3 +86,12 @@ Feature: validate fiches
     When I follow "Questa (indication : nuova)"
     Then I should be at the dci's fiche page
 
+  @focus
+  Scenario: hide link to expired validation fiches for guests
+    Given I am not authenticated
+    And a dci exists
+    And another dci exists with name: "questa"
+    And a distinction exist with name: "indication"
+    And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction: the distinction, distinction_name: "nuova"
+    When I go to the homepage
+    Then I should not see "Attention vous avez : 1 fiche à vérifier"

@@ -19,4 +19,27 @@ module ApplicationHelper
       page[div].visual_effect :highlight
     end
   end
+
+  def actions_buttons(object)
+    haml_tag('ul.actions') do
+      if can? :show, object and object.class == Fiche
+        haml_tag :li do
+          haml_concat(button_to("Voir", polymorphic_path([object.dci, object]), :method => :get, :class => "go_button"))
+        end
+      end
+      if can? :update, object
+        haml_tag :li do
+          haml_concat(button_to("Modifier", edit_polymorphic_path(object), :method => :get, :class => "edit_button"))
+        end
+      end
+      if can? :destroy, object
+        haml_tag :li do
+          haml_concat(button_to("Détruire", polymorphic_path(object), :confirm => 'Etes-vous sûr ?', :method => :delete, :class => "destroy_button"))
+        end
+      end
+    end
+    haml_tag('div.clear_both') do
+    end
+  end
+
 end

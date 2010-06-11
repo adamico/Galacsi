@@ -1,0 +1,427 @@
+html
+  margin: 0
+  padding: 0
+
+body
+  margin: 0
+  padding: 0
+  font: 85%/1.3 TrebuchetMS,Arial,sans-serif
+  text-align: left
+  background: #fff
+  padding-bottom: 20px
+
+a
+  color: #0066B3
+  background: inherit
+  text-decoration: none
+
+h1
+  font: bold 2.1em Arial, Arial, Sans-Serif
+  color: #036DA7
+  margin-top: 0
+
+h2
+  font: bold 1.1em Arial, Arial, Sans-Serif
+  padding: 0
+  margin: 0
+
+div
+  &#header
+    width: 100%
+    overflow: hidden
+    background: #BBD9EE
+    h1
+      width: 770px
+      margin: 0 auto
+      text-align: left
+  &#menu
+    width: 770px
+    margin: 0 auto
+    text-align: left
+  &#header h1
+    padding: 30px 0 20px
+    color: black
+
+ul#nav
+  list-style-type: none
+  margin: 0
+  padding: 0
+  li
+    list-style-type: none
+    margin: 0
+    padding: 0
+    float: left
+    margin-left: 3px
+    text-align: center
+  float: right
+  font-size: 80%
+  a
+    float: left
+    width: 95px
+    padding: 5px 0
+    background: #E7F1F8
+    text-decoration: none
+    color: #666
+    border-top: 1px solid #fff
+    border-left: 1px solid #fff
+    border-right: 1px solid #fff
+    &:hover
+      background: #fff
+      color: #000
+  li.activelink a
+    background: #FFF
+    color: #003
+    &:hover
+      background: #FFF
+      color: #003
+  span.add_record a
+    width: 1em
+
+#left
+  float: left
+  width: 76%
+  padding: 1em
+  margin-bottom: 1.2em
+  background: #eee
+
+#right
+  float: right
+  width: 20%
+  margin: 0 0 10px 0
+  .box
+    padding: 1em
+    margin: 0 0 1em 0
+    background: #FFF6BF
+
+#content
+  font: 100%/1.3 TrebuchetMS,Arial,sans-serif
+  margin: 0 auto
+  padding: 10px
+  background: #fff
+
+ul
+  padding: 0
+  margin: 0
+
+li
+  list-style-type: none
+
+.clear
+  clear: both
+  height: 0
+  overflow: hidden
+
+#flash_notice, #flash_error
+  padding: 5px 8px
+  margin: 10px 0
+
+#flash_notice
+  background-color: #CFC
+  border: solid 1px #6C6
+
+#flash_error
+  background-color: #FCC
+  border: solid 1px #C66
+
+.fieldWithErrors
+  display: inline
+
+#errorExplanation
+  width: 400px
+  border: 2px solid #CF0000
+  padding: 0px
+  padding-bottom: 12px
+  margin-bottom: 20px
+  background-color: #f0f0f0
+  h2
+    text-align: left
+    font-weight: bold
+    padding: 5px 5px 5px 15px
+    font-size: 12px
+    margin: 0
+    background-color: #c00
+    color: #fff
+  p
+    color: #333
+    margin-bottom: 0
+    padding: 8px
+  ul
+    margin: 2px 24px
+    li
+      font-size: 12px
+      list-style: disc
+
+/* My personalizations
+
+h1.dci_title
+  float: left
+  margin-bottom: 0
+
+.news
+  font-size: smaller
+  ul li ul
+    margin-left: 1em
+
+.float_left
+  float: left
+
+.float_right
+  float: right
+
+.odd
+  background: #eee
+
+.even
+  background: #fff
+
+.search
+  form
+    label
+      line-height: 2em
+    input
+      border: 1px solid #0000cc
+      background: #ebebeb
+      margin: 0 .5em
+      padding: 2px 4px
+  input
+    &:focus
+      background: #fff
+    &.search_submit
+      background: #0000cc
+      border: 0
+      color: #fff
+      cursor: pointer
+      font-size: .9em
+      font-weight: bold
+      letter-spacing: .1em
+      padding: 2px 8px
+      text-transform: uppercase
+
+form p.inline-hints
+  color: #666
+  margin: 0.5em 0 0 25%
+
+.search form fieldset
+  border: none
+
+abbr
+  cursor: help
+
+ul.edit_actions
+  width: auto
+  float: right
+  margin: 0
+  background: black
+  color: white
+  li
+    float: left
+  a
+    color: white
+    padding-left: .5em
+    padding-right: .5em
+    &:hover
+      color: black
+      background: white
+
+div
+  &#fiches
+    clear: both
+  &.fiche
+    margin: 5px 0
+    div.fiche_footer
+      background: black
+      color: white
+      padding: 0
+      margin: 0
+      div.validation
+        font-size: 90%
+    div.argumentaire
+      font-size: 85%
+      table
+        border-collapse: collapse
+        td
+          padding: 0 1em
+    div.resume
+      padding: 0 0.5em
+      margin: 0
+      h3
+        clear: both
+        margin: 0 .5em 0 0
+        padding: 0
+      h4
+        clear: both
+        margin: 0
+        margin-top: 2px
+        margin-left: 1em
+      p
+        margin: 0
+        margin-left: 2em
+        margin-top: 2px
+        &.surveillance
+          font-size: small
+          color: #777
+          font-weight: bold
+        &.retrait
+          margin-left: 1em
+        &.alert
+          margin-left: 0
+          color: red
+          font-size: small
+      ul
+        margin-left: 2em
+      a
+        color: #036DA7
+        &:hover
+          text-decoration: underline
+  &.fiche.valide
+    background-color: #fff
+    color: black
+    border: solid 2px #0066B3
+    div.resume
+      background: #ddf0ee
+    div.fiche_footer
+      background: black
+      color: white
+      div.validation
+        a
+          color: #0FE
+  &.fiche.non_valide
+    background: #000
+    color: white
+    border: solid 2px #B30000
+    a
+      color: #09F
+    div.resume
+      background: #522
+    div.fiche_footer
+      background: white
+      color: black
+      div.validation
+        a
+          color: #08F
+  &.fiche_header
+    clear: both
+    margin: 0
+    p
+      margin: 0.5em
+
+span
+  &.safe
+    font-weight: bold
+    color: green
+  &.strong, &.distinction, &.decision
+    font-weight: bolder
+  &.distinction
+    font-size: large
+  &.decision
+    color: black
+    font-size: large
+    text-transform: uppercase
+    padding: .25em
+    border: 2px solid
+
+#ci
+  background: #ffa880
+  border-color: red
+
+/* contre-indiqué
+
+#ad
+  background: #ffc860
+  border-color: rgb(255, 153, 51)
+
+/* à discuter
+
+#comp
+  background: rgb(215, 228, 189)
+  border-color: rgb(0, 176, 80)
+
+/* compatible
+
+#sc
+  background: rgb(255, 255, 153)
+  border-color: yellow
+
+/* sous conditions
+
+.fields
+  border: 1px solid black
+
+
+table th
+  padding: 0 1em
+
+.argumentaire table
+  td
+    vertical-align: top
+    background: #f0f0f0
+  th
+    vertical-align: top
+    text-align: right
+
+
+table#list
+  border-collapse: collapse
+  th, td
+    padding: 0 0.5em
+  tr.odd
+    background: #DDD
+  tr.even
+    background: #FFF
+ul
+  &.inline li
+    float: left
+    padding-right: 1em
+  &.actions
+    padding: 0
+    margin: 0
+    li
+      list-style: none
+      margin: 0
+      padding: 0
+      float: left
+      form.button-to
+        display: inline
+        margin: 0
+    input
+      padding: 0
+      margin: 1px
+      font-weight: bold
+
+input.edit_button
+  background: #fd0
+  border:
+    left:
+      color: #ff0
+    top:
+      color: #ff0
+    bottom:
+      color: #f90
+    right:
+      color: #f90
+input.go_button
+  background: green
+  color: white
+  border:
+    left:
+      color: #0b0
+    top:
+      color: #0b0
+    bottom:
+      color: #090
+    :right
+      color: #090
+input.destroy_button
+  background: #c00
+  color: white
+  padding: 0
+  border:
+    left:
+      color: #f00
+    top:
+      color: #f00
+    bottom:
+      color: #900
+    right:
+      color: #900
+

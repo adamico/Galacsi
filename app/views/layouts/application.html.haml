@@ -65,13 +65,16 @@
           %p
             %b Dernières MAJ :
             %ul
-              - Dci.with_recent_fiches.limit(5).uniq.each do |d|
-                %li
-                  = link_to d.name, dci_path(d)
-                  %ul
-                    - d.fiches.recent.each do |f|
-                      - unless f.distinction.nil?
-                        %li= link_to "#{f.distinction.name} : #{f.distinction_name}", dci_fiche_path(f.dci, f)
+              - Dci.with_recent_fiches.limit(5).uniq.each do |dci|
+                - if can?(:show, dci)
+                  %li
+                    = link_to dci.name, dci_path(dci)
+                    - if (dci.fiches.recent.size > 1 && can?(:create, Fiche)) or dci.fiches.valide.recent.size > 1
+                      %ul
+                        - dci.fiches.recent.each do |fiche|
+                          - unless fiche.distinction.nil?
+                            - if can?(:read, fiche)
+                              %li= link_to "#{fiche.distinction.name} : #{fiche.distinction_name}", dci_fiche_path(fiche.dci, fiche)
 
         .box
           Design by

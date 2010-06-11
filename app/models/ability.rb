@@ -7,15 +7,21 @@ class Ability
     guest.role = ""
     user ||= guest
 
-    can [:read, :search], [Dci, Specialite, ClasseTherapeutique]
-    can :read, Fiche, :state => "valide"
+    can :search, [Dci, Specialite, ClasseTherapeutique]
+    can :index, Dci
+    can :show, Dci do |dci|
+      dci && !dci.fiches.valide.empty?
+    end
+    can :read, Fiche do |fiche|
+      fiche && fiche.state == "valide"
+    end
 
     if user.admin?
       can :manage, :all
     else
       case user.role
       when "contributeur"
-        can :read, [ClasseTherapeutique, Fiche]
+        can :read, [Dci, ClasseTherapeutique, Fiche]
         can :create, Fiche
         can :update, Fiche, :state => ["brouillon", "a_valider"], :user_id => user.id
         can :initialiser, Fiche, :state => "brouillon", :user_id => user.id

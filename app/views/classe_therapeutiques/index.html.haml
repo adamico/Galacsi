@@ -1,11 +1,13 @@
 - title "Liste des Classes Thérapeutiques"
 
-%table
+%table#list
   %tr
-  - for classe_therapeutique in @classe_therapeutiques
-    %tr
-      %td= link_to h(classe_therapeutique.name), classe_therapeutique
-      - if can? :update, ClasseTherapeutique
-        %td= link_to 'Modifier', edit_classe_therapeutique_path(classe_therapeutique)
-      - if can? :delete, ClasseTherapeutique
-        %td= link_to 'Détruire', classe_therapeutique, :confirm => 'Are you sure?', :method => :delete
+    %th Nom
+    %th DCIs
+  - @classe_therapeutiques.each do |classe_therapeutique|
+    - if !classe_therapeutique.dcis.empty? || can?(:create, ClasseTherapeutique)
+      %tr{:class => "#{cycle('odd', 'even')}"}
+        %td= link_to h(classe_therapeutique.name), classe_therapeutique
+        %td= classe_therapeutique.dcis.size
+        %td
+          - actions_buttons(classe_therapeutique)

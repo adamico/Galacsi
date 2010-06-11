@@ -1,5 +1,5 @@
--if can? :read, fiche
-  .fiche
+- if can?(:read, fiche)
+  %div{:class => ["fiche", (fiche.state == "valide") ? "valide" : "non_valide"]}
     - fiche_header(fiche)
 
     .resume
@@ -10,22 +10,18 @@
           %b Passage dans le lait :
           = fiche.passage_lait
 
-      - if fiche.risque_accumulation? or fiche.risque_dim_lactation?
+      - if fiche.risque_accumulation?
         %p.retrait
-          %b
-            - if fiche.risque_accumulation?
-              = "Risque d'accumulation dans le lait"
+          %b= "Risque d'accumulation dans le lait"
+      - if fiche.risque_dim_lactation?
         %p.retrait
-          %b
-            - if fiche.risque_dim_lactation?
-              = "Risque théorique de diminution de la lactation"
+          %b= "Risque théorique de diminution de la lactation"
 
       %h4 Recul :
       %p.retrait= textilize_without_paragraph(fiche.ei)
       - if fiche.ei_theoriques?
-        %p.retrait
-          = "Risque théorique :"
-          = textilize_without_paragraph(fiche.ei_theoriques)
+        %p.retrait= "Risque théorique :"
+        %p.retrait= textilize_without_paragraph(fiche.ei_theoriques)
 
       - if fiche.conditions?
         %p.retrait
@@ -48,13 +44,18 @@
             %li
               = link_to link, dci_path(a)
 
+      - unless fiche.arg_autre.blank?
+        %p.retrait
+          %b Autres argumentaires :
+          = fiche.arg_autre
+
       - if fiche.suivi == "oui"
         %p.alert
           %b Attention :
           pour cette molécule un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur ou
           %u mieux de la patiente concernée.
 
-    %p= link_to_function "Montrer les informations détaillées", toggle_div("argumentaire_#{fiche.id}")
+    %p= link_to_function "Montrer/Cacher les informations détaillées", toggle_div("argumentaire_#{fiche.id}")
 
     %div{:class => "argumentaire", :id => "argumentaire_#{fiche.id}", :style => "display: none;"}
       %h3 Données détaillées
@@ -86,18 +87,15 @@
           - unless fiche.dose_par_rapport_dmap.blank? and fiche.dose_par_rapport_dp.blank?
             %th Dose estimée ingérée par l'enfant
             %td
-              = "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
-              - if fiche.dose_par_rapport_dp?
-                %br/
-                = "#{fiche.dose_par_rapport_dp} de la posologie pédiatrique"
+              %ul
+                %li= "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
+                - if fiche.dose_par_rapport_dp?
+                  %li= "#{fiche.dose_par_rapport_dp} de la posologie pédiatrique"
           - unless fiche.poso_pedia_dose.blank? and fiche.poso_pedia_des.blank?
             %th Posologie pédiatrique
             %td
               = fiche.poso_pedia_dose
               = "a partir de #{fiche.poso_pedia_des}" if fiche.poso_pedia_des?
-          - unless fiche.arg_autre.blank?
-            %th Autres
-            %td= fiche.arg_autre
 
     - unless fiche.sources.blank?
       %p
@@ -105,7 +103,7 @@
         = fiche.sources.map(&:name).join(', ')
 
     .fiche_footer
-      - if can? :update, Fiche
+      - if can? :create, Fiche
         .validation
           %table{:style => "width:100%;"}
             %tr
