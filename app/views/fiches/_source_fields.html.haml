@@ -1,8 +1,6 @@
-%fieldset
-  .fields
-    %ol
-      = f.input :name, :label => "Nom"
-      = f.input :nature
-      = f.input :url, :as => :text, :input_html => {:rows => "2x50"}
-      = f.hidden_field :_destroy
-      = link_to_remove_fields "Effacer cette source", f
+.fields
+  = f.inputs :name => "Source", :id => "source" do
+    = f.input :name, :label => "Nom"
+    = f.input :nature
+    = f.input :url, :as => :text, :input_html => {:rows => "2x50"}
+  %p.remove_fields= link_to_remove_fields "Effacer cette source", f

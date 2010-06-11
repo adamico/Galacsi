@@ -1,15 +1,13 @@
-- semantic_form_for([@fiche.dci, @fiche]) do |f|
+= semantic_form_for([@fiche.dci, @fiche]) do |f|
   - if can? :read, User
-    - f.inputs do
+    = f.inputs do
       = f.input :user, :label => "Créateur"
-  -# remettre ça pour créer des sources
-    - f.semantic_fields_for :sources do |builder|
-      - builder.inputs do
-        = render 'source_fields', :f => builder
-      %p.add_fields= link_to_add_fields "Rajouter une source", f, :sources
-  - f.inputs do
-    = f.input :sources, :hint => "ce champs est à choix multiple (maintenir enfoncé la touche Ctrl)"
-  - f.inputs do
+  - f.fields_for :sources do |source|
+    = render 'source_fields', :f => source
+  %p.add_fields= link_to_add_fields "Rajouter une source", f, :sources
+  -#- f.inputs do
+    -#= f.input :sources, :hint => "ce champs est à choix multiple (maintenir enfoncé la touche Ctrl)"
+  = f.inputs do
     %li.select
       = f.label :revalider_le, "Informations à revalider dans"
       = f.select(:revalider_le, [['3 mois', 3.months.from_now.to_date], ['6 mois', 6.months.from_now.to_date], ['1 an', 1.year.from_now.to_date]])

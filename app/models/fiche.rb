@@ -3,13 +3,12 @@ class Fiche < ActiveRecord::Base
   belongs_to :dci
   belongs_to :distinction
   belongs_to :user
-  
+
   has_many :alternativeships, :dependent => :destroy
   has_many :alternatives, :through => :alternativeships
   has_and_belongs_to_many :sources, :join_table => "fiches_sources"
-  # uncomment these 2 lines to create sources in fiche form
-  #accepts_nested_attributes_for :sources,
-  #  :reject_if => proc { |attrs| attrs[:name].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :sources,
+    :reject_if => proc { |attrs| attrs[:name].blank? }, :allow_destroy => true
 
   attr_protected :state_event
   attr_reader :createur
