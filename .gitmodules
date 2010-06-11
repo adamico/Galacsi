@@ -4,3 +4,6 @@
 [submodule "vendor/plugins/rspec-on-rails-matchers"]
 	path = vendor/plugins/rspec-on-rails-matchers
 	url = http://github.com/joshknowles/rspec-on-rails-matchers.git
+[submodule "public/javascripts/jquery-ujs"]
+	path = public/javascripts/jquery-ujs
+	url = http://github.com/rails/jquery-ujs.git
