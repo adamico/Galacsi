@@ -13,6 +13,7 @@ group :development do
   gem "rails3-generators"
 end
 
+gem "RedCloth"
 gem "meta_search", :git => "git@github.com:adamico/meta_search.git" # Track git repo
 gem "state_machine", "0.9.2"
 gem "haml"

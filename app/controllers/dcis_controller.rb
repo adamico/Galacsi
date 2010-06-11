@@ -3,7 +3,6 @@ class DcisController < ApplicationController
   load_and_authorize_resource
 
   def index
-    params[:search] ||= {}
     @search = Dci.search(params[:search])
     @dcis = @search.all
   end

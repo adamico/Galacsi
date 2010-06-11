@@ -1,4 +1,11 @@
-- title "Recherche"
+- title "Rechercher une DCI"
 
-%ul.dcis
-  = render @dcis
+= render "search_form"
+
+- if params[:search]
+  %table#list
+    %thead
+      %th DCI
+      %th Spécialité(s)
+      %th Classe(s) Thérapeutique(s)
+    = render @dcis
