@@ -13,11 +13,12 @@ module ApplicationHelper
     link_to_function(name, h("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"))
   end
 
-  def toggle_div(div)
-    update_page do |page|
-      page[div].toggle
-      page[div].visual_effect :highlight
-    end
+  def link_to_toggle_div(name, id)
+    # TODO: create js function 
+    #update_page do |page|
+      #page[div].toggle
+      #page[div].visual_effect :highlight
+    #end
   end
 
   def actions_buttons(object)

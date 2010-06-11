@@ -55,7 +55,7 @@
           pour cette molécule un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur ou
           %u mieux de la patiente concernée.
 
-    %p= link_to_function "Montrer/Cacher les informations détaillées", toggle_div("argumentaire_#{fiche.id}")
+    %p= link_to_toggle_div "Montrer/Cacher les informations détaillées", "argumentaire_#{fiche.id}"
 
     %div{:class => "argumentaire", :id => "argumentaire_#{fiche.id}", :style => "display: none;"}
       %h3 Données détaillées
