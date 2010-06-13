@@ -33,6 +33,10 @@ Factory.define :dci do |f|
   f.classe_therapeutiques { |classe_therapeutiques| [classe_therapeutiques.association(:classe_therapeutique)]}
 end
 
+Factory.define :dci_with_valid_fiches, :parent => :dci do |f|
+end
+
+
 Factory.define :decision do |f|
   f.name "Compatible"
 end

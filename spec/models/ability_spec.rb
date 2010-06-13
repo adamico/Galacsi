@@ -9,7 +9,8 @@ describe Ability do
     it { should_not be_able_to(:read, Factory(:fiche)) }
     it { should_not be_able_to(:read, Factory(:fiche_a_valider)) }
     it { should_not be_able_to(:read, Factory(:fiche_en_attente)) }
-    it { should be_able_to(:read, Dci.new) }
+    it { should not_be_able_to(:read, Dci.new) }
+    it { should be_able_to(:read, Factory(:dci_with_valid_fiches))}
     it { should be_able_to(:read, Specialite.new) }
     it { should be_able_to(:read, ClasseTherapeutique.new) }
   end
