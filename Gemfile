@@ -16,12 +16,12 @@ gem "RedCloth"
 gem "meta_search", :git => "git@github.com:adamico/meta_search.git" # Track git repo
 gem "state_machine", "0.9.2"
 gem "haml"
-gem 'factory_girl', :git => 'http://github.com/thoughtbot/factory_girl.git', :branch => 'rails3'
+gem 'factory_girl_rails'
 gem 'devise', '1.1.rc0'
 gem 'cancan'
 gem 'formtastic', :git => 'http://github.com/justinfrench/formtastic.git', :branch => 'rails3'
 gem "activesupport"
-gem "friendly_id", '3.0.4'
+gem "friendly_id", '~> 3.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -41,13 +41,14 @@ gem "friendly_id", '3.0.4'
 #   gem 'webrat'
 # end
 #
+
 group :cucumber do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'cucumber-rails'
-  gem 'cucumber', '0.7.2'
+  gem 'cucumber', '>=0.7.2'
   gem 'pickle'
-  gem 'rspec-rails', '2.0.0.beta.8'
+  gem 'rspec-rails', '>=2.0.0.beta.8'
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
 end

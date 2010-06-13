@@ -36,7 +36,7 @@ class Dci < ActiveRecord::Base
   end
 
   def strip_unicode(string)
-    mb_string = ActiveSupport::Multibyte::Chars.new(string)
+    mb_string = ActiveSupport::Multibyte::Chars.new string
     mb_string.normalize(:kd).gsub(/[^\x00-\x7F]/,'').to_s
   end
 
