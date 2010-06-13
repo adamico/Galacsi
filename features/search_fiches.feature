@@ -31,7 +31,7 @@ Feature: search fiches
 
   Scenario: filter fiches by state
     When I go to the fiches page
-    And I select "Brouillon" from "Etat de validation"
+    And I select "brouillon" from "Etat de validation"
     And I press "OK"
     Then I should see "indication : ind1"
     Then I should see "indication : ind2"

@@ -10,10 +10,10 @@ Feature: manage users and roles
     When I go to the users page
       And I follow "Nouvel utilisateur"
       And I fill in the following:
-        | nom d'utilisateur         | pinco         |
-        | email                     | pinco@ad.com  |
-        | mot de passe              | pallino       |
-        | confirmer le mot de passe | pallino       |
+        | Nom d'utilisateur         | pinco         |
+        | Email                     | pinco@ad.com  |
+        | Mot de passe              | pallino       |
+        | Confirmer le mot de passe | pallino       |
       And I press "Sauvegarder"
     Then a user should exist with username: "pinco"
     
@@ -21,9 +21,9 @@ Feature: manage users and roles
     Given a user exists
     When I go to the 2nd user's edit page
       And I fill in the following:
-        | nom d'utilisateur         | testino |
-        | changer le mot de passe   | testin  |
-        | confirmer le mot de passe | testin  |
+        | Nom d'utilisateur         | testino |
+        | Changer le mot de passe   | testin  |
+        | Confirmer le mot de passe | testin  |
       And I press "Sauvegarder"
     Then a user should exist with username: "testino"
 
@@ -31,8 +31,8 @@ Feature: manage users and roles
     Given a user exists with username: "test", email: "test@test.com"
     When I go to the user's edit page
       And I fill in the following:
-        | changer le mot de passe   | testin  |
-        | confirmer le mot de passe | testin  |
+        | Changer le mot de passe   | testin  |
+        | Confirmer le mot de passe | testin  |
       And I select "valideur" from "Role"
       And I press "Sauvegarder"
     Then a valideur should exist with username: "test"

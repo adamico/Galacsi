@@ -1,8 +1,9 @@
+-# coding: utf-8
 = semantic_form_for([@fiche.dci, @fiche]) do |f|
   - if can? :read, User
     = f.inputs do
       = f.input :user, :label => "Créateur"
-  - f.fields_for :sources do |source|
+  = f.fields_for :sources do |source|
     = render 'source_fields', :f => source
   %p.add_fields= link_to_add_fields "Rajouter une source", f, :sources
   -#- f.inputs do

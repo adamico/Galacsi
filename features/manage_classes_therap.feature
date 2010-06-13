@@ -1,3 +1,4 @@
+# encoding: utf-8
 Feature: manage classes therapeutiques
   In order to search for dci by classe therapeutique
   As a user of GalacSI
@@ -23,8 +24,7 @@ Feature: manage classes therapeutiques
       And I fill in "Nom" with "lenom"
       And I select "Urologie" from "Classes thérapeutiques"
       And I press "Enregistrer"
-    Then I should be at the dci's page
-      And I should see "Classes thérapeutiques :"
+    Then I should see "Classes thérapeutiques :"
       And I should see "Urologie"
 
   Scenario: adding multiple classes therapeutiques

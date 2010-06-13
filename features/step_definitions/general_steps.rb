@@ -1,3 +1,4 @@
+# encoding: utf-8
 When(/^I submit$/) do
   steps %Q{
     When I press "Enregistrer"

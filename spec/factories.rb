@@ -34,6 +34,7 @@ Factory.define :dci do |f|
 end
 
 Factory.define :dci_with_valid_fiches, :parent => :dci do |f|
+  f.fiches { |fiches| [fiches.association(:fiche_valide)]}
 end
 
 

@@ -18,7 +18,6 @@ Feature: user besides guest must authenticate
 
   Scenario Outline: log in as a user with role
     When I am logged in as a <role>
-    Then show me the page
     Then I should see "Déconnection"
     Examples:
       | role   |

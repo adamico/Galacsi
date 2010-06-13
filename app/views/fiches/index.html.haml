@@ -1,7 +1,7 @@
 - title "Liste complète des fiches"
 
 %h2 Filtrer par:
-- form_for @search, :url => fiches_path, :html => {:method => :get} do |f|
+= form_for @search, :url => fiches_path, :html => {:method => :get} do |f|
   = f.label :state_eq, "Etat de validation"
   = f.select :state_eq, Fiche::STATES, :include_blank => true 
   = f.submit "OK"
