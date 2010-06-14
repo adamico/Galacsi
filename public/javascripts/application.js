@@ -12,10 +12,6 @@ function add_fields(link, association, content) {
   $(link).parent().before(content.replace(regexp, new_id));
 }
 
-$('#toggle_fiches_nv').click(function() {
-        $("#fiches_non_validees").toggle('fold');
-      });
-
-$('#toggle_det_infos').click(function() {
-        $("#argumentaire").toggle('fold');
-      });
+function toggle_div(id) {
+  $(id).toggle('fold','',500);
+};
