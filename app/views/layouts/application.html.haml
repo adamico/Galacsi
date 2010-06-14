@@ -19,6 +19,7 @@
       //anylinkcssmenu.init("menu_anchors_class") ////Pass in the CSS class of anchor links (that contain a sub menu)
       anylinkcssmenu.init("anchorclass")
 
+    = csrf_meta_tag
     = yield(:head)
   %body
     #header
@@ -61,19 +62,18 @@
         .box
           - user_navlinks
         .box.news
-          %p
-            %b Dernières MAJ :
-            %ul
-              - Dci.with_recent_fiches.limit(5).uniq.each do |dci|
-                - if can?(:show, dci)
-                  %li
-                    = link_to dci.name, dci_path(dci)
-                    - if (dci.fiches.recent.size > 1 && can?(:create, Fiche)) or dci.fiches.valide.recent.size > 1
-                      %ul
-                        - dci.fiches.recent.each do |fiche|
-                          - unless fiche.distinction.nil?
-                            - if can?(:read, fiche)
-                              %li= link_to "#{fiche.distinction.name} : #{fiche.distinction_name}", dci_fiche_path(fiche.dci, fiche)
+          %b Dernières MAJ :
+          %ul
+            - Dci.with_recent_fiches.limit(5).uniq.each do |dci|
+              - if can?(:show, dci)
+                %li
+                  = link_to dci.name, dci_path(dci)
+                  - if (dci.fiches.recent.size > 1 && can?(:create, Fiche)) or dci.fiches.valide.recent.size > 1
+                    %ul
+                      - dci.fiches.recent.each do |fiche|
+                        - unless fiche.distinction.nil?
+                          - if can?(:read, fiche)
+                            %li= link_to "#{fiche.distinction.name} : #{fiche.distinction_name}", dci_fiche_path(fiche.dci, fiche)
 
         .box
           Design by

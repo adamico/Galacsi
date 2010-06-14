@@ -11,3 +11,11 @@ function add_fields(link, association, content) {
   var regexp = new RegExp("new_" + association, "g");
   $(link).parent().before(content.replace(regexp, new_id));
 }
+
+$('#toggle_fiches_nv').click(function() {
+        $("#fiches_non_validees").toggle('fold');
+      });
+
+$('#toggle_det_infos').click(function() {
+        $("#argumentaire").toggle('fold');
+      });

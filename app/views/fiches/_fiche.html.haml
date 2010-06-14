@@ -18,10 +18,10 @@
           %b= "Risque théorique de diminution de la lactation"
 
       %h4 Recul :
-      %p.retrait= sanitize(textilize(fiche.ei))
+      .retrait= sanitize(textilize(fiche.ei))
       - if fiche.ei_theoriques?
         %p.retrait= "Risque théorique :"
-        %p.retrait= sanitize(textilize(fiche.ei_theoriques))
+        .retrait= sanitize(textilize(fiche.ei_theoriques))
 
       - if fiche.conditions?
         %p.retrait
@@ -55,9 +55,9 @@
           pour cette molécule un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur ou
           %u mieux de la patiente concernée.
 
-    %p= link_to_toggle_div "Montrer/Cacher les informations détaillées", "argumentaire_#{fiche.id}"
+    %p= link_to "Montrer/Cacher les informations détaillées", nil, :id => "toggle_det_infos"
 
-    %div{:class => "argumentaire", :id => "argumentaire_#{fiche.id}", :style => "display: none;"}
+    %div{:class => "argumentaire", :id => "argumentaire", :style => "display: none;"}
       %h3 Données détaillées
       %table
         %tr

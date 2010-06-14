@@ -14,14 +14,6 @@ module ApplicationHelper
     link_to_function(name, h("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"))
   end
 
-  def link_to_toggle_div(name, id)
-    # TODO: create js function 
-    #update_page do |page|
-      #page[div].toggle
-      #page[div].visual_effect :highlight
-    #end
-  end
-
   def actions_buttons(object)
     haml_tag('ul.actions') do
       if can? :show, object and object.class == Fiche

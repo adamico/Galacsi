@@ -16,7 +16,7 @@
 #fiches
   = render @dci.fiches.valide
   - if can?(:create, Fiche) && !@dci.fiches.non_valide.empty?
-    %p= link_to_function "Montrer/Cacher les fiches non validées", toggle_div("fiches_non_validees")
+    %p= link_to "Montrer/Cacher les fiches non validées", nil, :id => "toggle_fiches_nv"
     #fiches_non_validees{:style => "display: none;"}
       = render @dci.fiches.non_valide
 
