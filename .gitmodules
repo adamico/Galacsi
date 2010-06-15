@@ -1,6 +1,3 @@
-[submodule "vendor/plugins/annotate_models"]
-	path = vendor/plugins/annotate_models
-	url = git@github.com:adamico/annotate_models.git
 [submodule "vendor/plugins/rspec-on-rails-matchers"]
 	path = vendor/plugins/rspec-on-rails-matchers
 	url = http://github.com/joshknowles/rspec-on-rails-matchers.git
