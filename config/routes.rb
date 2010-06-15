@@ -10,6 +10,7 @@ Galacsi::Application.routes.draw do |map|
     end
 
     get :search, :on => :collection
+    get :stripped_names, :on => :collection
   end
 
   resources :fiches

@@ -7,6 +7,10 @@ class DcisController < ApplicationController
     @dcis = @search.all
   end
 
+  def stripped_names
+    @thedcis = Dci.where(:stripped_name =~ "%#{params[:term]}%")
+  end
+
   def search
     params[:search] ||= {}
     @search = Dci.search(params[:search])

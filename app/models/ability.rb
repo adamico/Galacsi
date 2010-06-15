@@ -9,6 +9,7 @@ class Ability
 
     can :search, [Dci, Specialite, ClasseTherapeutique]
     can :index, Dci
+    can :stripped_names, Dci
     can :show, Dci do |dci|
       dci && !dci.fiches.valide.empty?
     end

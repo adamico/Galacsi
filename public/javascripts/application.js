@@ -17,8 +17,8 @@ function toggle_div(id) {
 };
 
 $(function() {
-  var data = ["acetylsalicylique (acide)", "bla", "test"];
   $("#search_stripped_name_like").autocomplete({
-    source: data
+    source: '/dcis/stripped_names.js',
+    minLength: 2
   });
 });
