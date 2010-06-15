@@ -18,10 +18,10 @@
           %b= "Risque théorique de diminution de la lactation"
 
       %h4 Recul :
-      .retrait= sanitize(textilize(fiche.ei))
+      .retrait= textilize(fiche.ei)
       - if fiche.ei_theoriques?
         %p.retrait= "Risque théorique :"
-        .retrait= sanitize(textilize(fiche.ei_theoriques))
+        .retrait= textilize(fiche.ei_theoriques)
 
       - if fiche.conditions?
         %p.retrait

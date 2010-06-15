@@ -37,21 +37,14 @@ class Fiche < ActiveRecord::Base
   PASSAGE = ["dose dépendant", "inconnu", "faible"]
   RLP = ["<1", ">1"]
 
- scope :expired,    where("revalider_le <= ?", Time.now.to_date)
- scope :valide,  where("state = ?", "valide")
- scope :non_valide, where("state != ?", "valide")
- scope :recent,     where("validation_date >= ?", 02.weeks.ago)
+  alias_scope :expired,     lambda{revalider_le_before(Time.now.to_date)}
+  alias_scope :valide,      lambda{state_is("valide")}
+  alias_scope :non_valide,  lambda{state_is_not("valide")}
+  alias_scope :recent,      lambda{validation_date_after(2.weeks.ago)}
 
   # state machine stuff
   STATES = [["brouillon", "brouillon"], ["à valider", "a_valider"], ["valide", "valide"], ["en attente", "en_attente"]]
   state_machine :initial => :brouillon do
-    #aasm_column :state
-    #aasm_initial_state :brouillon
-
-    #aasm_state :brouillon
-    #aasm_state :a_valider
-    #aasm_state :valide
-    #aasm_state :en_attente
 
     event :initialiser do
       transition :brouillon => :a_valider

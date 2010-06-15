@@ -3,7 +3,7 @@ class ClasseTherapeutiquesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @classe_therapeutiques = ClasseTherapeutique.includes(:dcis)
+    @classe_therapeutiques = ClasseTherapeutique.all(:include => :dcis)
   end
   
   def show

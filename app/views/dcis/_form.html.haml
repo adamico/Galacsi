@@ -1,5 +1,5 @@
-= semantic_form_for @dci do |f|
-  = f.inputs do
+- semantic_form_for @dci do |f|
+  - f.inputs do
     %p
       %b Attention: tant que les champs "Spécialités" ou "Classes thérapeutiques" sont vides la dci n'est pas prise en compte par le moteur de recherche
     = f.input :name, :label => "Nom"

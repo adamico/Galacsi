@@ -3,25 +3,11 @@
 Devise.setup do |config|
   # Configure the e-mail address which will be shown in DeviseMailer.
   config.mailer_sender = "please-change-me@config-initializers-devise.com"
+  
+  # Configure the content type of DeviseMailer mails (defaults to text/html")
+  # config.mailer_content_type = "text/plain"
 
-  # ==> Configuration for any authentication mechanism
-  # Configure which keys are used when authenticating an user. By default is
-  # just :email. You can configure it to use [:username, :subdomain], so for
-  # authenticating an user, both parameters are required. Remember that those
-  # parameters are used only when authenticating and not when retrieving from
-  # session. If you need permissions, you should implement that in a before filter.
-  config.authentication_keys = [ :username ]
-
-  # Tell if authentication through request.params is enabled. True by default.
-  # config.params_authenticatable = true
-
-  # Tell if authentication through HTTP Basic Auth is enabled. True by default.
-  # config.http_authenticatable = true
-
-  # The realm used in Http Basic Authentication
-  # config.http_authentication_realm = "Application"
-
-  # ==> Configuration for :database_authenticatable
+  # ==> Configuration for :authenticatable
   # Invoke `rake secret` and use the printed value to setup a pepper to generate
   # the encrypted password. By default no pepper is used.
   # config.pepper = "rake secret output"
@@ -36,6 +22,16 @@ Devise.setup do |config|
   # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
   # config.encryptor = :sha1
 
+  # Configure which keys are used when authenticating an user. By default is
+  # just :email. You can configure it to use [:username, :subdomain], so for
+  # authenticating an user, both parameters are required. Remember that those
+  # parameters are used only when authenticating and not when retrieving from
+  # session. If you need permissions, you should implement that in a before filter.
+  config.authentication_keys = [ :username ]
+
+  # The realm used in Http Basic Authentication
+  # config.http_authentication_realm = "Application"
+
   # ==> Configuration for :confirmable
   # The time you want give to your user to confirm his account. During this time
   # he will be able to access your application without confirming. Default is nil.
@@ -45,34 +41,20 @@ Devise.setup do |config|
   # The time the user will be remembered without asking for credentials again.
   # config.remember_for = 2.weeks
 
-  # ==> Configuration for :validatable
-  # Range for password length
-  # config.password_length = 6..20
-
-  # Regex to use to validate the email address
-  # config.email_regexp = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
-
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again.
   # config.timeout_in = 10.minutes
 
   # ==> Configuration for :lockable
-  # Defines which strategy will be used to lock an account.
-  # :failed_attempts = Locks an account after a number of failed attempts to sign in.
-  # :none            = No lock strategy. You should handle locking by yourself.
-  # config.lock_strategy = :failed_attempts
+  # Number of authentication tries before locking an account.
+  # config.maximum_attempts = 20
 
   # Defines which strategy will be used to unlock an account.
   # :email = Sends an unlock link to the user email
   # :time  = Reanables login after a certain ammount of time (see :unlock_in below)
-  # :both  = Enables both strategies
-  # :none  = No unlock strategy. You should handle unlocking by yourself.
+  # :both  = enables both strategies
   # config.unlock_strategy = :both
-
-  # Number of authentication tries before locking an account if lock_strategy
-  # is failed attempts.
-  # config.maximum_attempts = 20
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
   # config.unlock_in = 1.hour
@@ -82,9 +64,10 @@ Devise.setup do |config|
   # config.token_authentication_key = :auth_token
 
   # ==> General configuration
-  # Load and configure the ORM. Supports :active_record (default), :mongoid
+  # Load and configure the ORM. Supports :active_record (default), :mongo_mapper
   # (requires mongo_ext installed) and :data_mapper (experimental).
-  require 'devise/orm/active_record'
+  # require 'devise/orm/mongo_mapper'
+  # config.orm = :mongo_mapper
 
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "sessions/users/new". It's turned off by default because it's slower if you
@@ -111,6 +94,12 @@ Devise.setup do |config|
   #     twitter.consumer_key  = <YOUR CONSUMER KEY>
   #     twitter.options :site => 'http://twitter.com'
   #   end
-  #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
+  #   manager.default_strategies.unshift :twitter_oauth
+  # end
+
+  # Configure default_url_options if you are using dynamic segments in :path_prefix
+  # for devise_for.
+  # config.default_url_options do
+  #   { :locale => I18n.locale }
   # end
 end

@@ -1,5 +1,5 @@
-= semantic_form_for(user) do |f|
-  = f.inputs do
+- semantic_form_for(user) do |f|
+  - f.inputs do
     = f.input :username, :label => "Nom d'utilisateur"
     = f.input :email
     = f.input :password, :label => (f.object.new_record? ? "Mot de passe" : "Changer le mot de passe")

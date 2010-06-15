@@ -2,7 +2,7 @@ class SpecialitesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @specialites = Specialite.includes(:dcis).order("LOWER(name) ASC")
+    @specialites = Specialite.all(:include => :dcis, :order => "LOWER(name) ASC")
   end
   
   def show

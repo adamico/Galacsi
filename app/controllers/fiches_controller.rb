@@ -4,8 +4,8 @@ class FichesController < ApplicationController
   load_and_authorize_resource :nested => :dci
 
   def index
-    @search = Fiche.includes(:distinction, :user, :dci).search(params[:search])
-    @fiches = @search.all
+    @search = Fiche.search(params[:search])
+    @fiches = @search.all(:include => [:distinction, :user, :dci])
   end
 
   def initialiser
