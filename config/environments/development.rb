@@ -19,4 +19,5 @@ Galacsi::Application.configure do
 
   # this is for devise, set to real address in production
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
 end
