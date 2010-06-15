@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100615155642) do
+ActiveRecord::Schema.define(:version => 20100615160511) do
 
   create_table "alternativeships", :force => true do |t|
     t.integer  "fiche_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20100615155642) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "stripped_name"
+    t.integer  "dcis_count",    :default => 0
   end
 
   create_table "classifications", :force => true do |t|
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20100615155642) do
     t.datetime "updated_at"
     t.string   "stripped_name"
     t.string   "cached_slug"
+    t.integer  "classe_therapeutiques_count", :default => 0
   end
 
   add_index "dcis", ["cached_slug"], :name => "index_dcis_on_cached_slug"

@@ -1,10 +1,12 @@
 class ClasseTherapeutiquesController < ApplicationController
+
+  load_and_authorize_resource
+
   def index
-    @classe_therapeutiques = ClasseTherapeutique.all
+    @classe_therapeutiques = ClasseTherapeutique.includes(:dcis)
   end
   
   def show
-    @classe_therapeutique = ClasseTherapeutique.find(params[:id])
   end
   
   def new
@@ -12,7 +14,6 @@ class ClasseTherapeutiquesController < ApplicationController
   end
   
   def create
-    @classe_therapeutique = ClasseTherapeutique.new(params[:classe_therapeutique])
     if @classe_therapeutique.save
       flash[:notice] = "Successfully created classe therapeutique."
       redirect_to @classe_therapeutique
@@ -22,11 +23,9 @@ class ClasseTherapeutiquesController < ApplicationController
   end
   
   def edit
-    @classe_therapeutique = ClasseTherapeutique.find(params[:id])
   end
   
   def update
-    @classe_therapeutique = ClasseTherapeutique.find(params[:id])
     if @classe_therapeutique.update_attributes(params[:classe_therapeutique])
       flash[:notice] = "Successfully updated classe therapeutique."
       redirect_to @classe_therapeutique
@@ -36,7 +35,6 @@ class ClasseTherapeutiquesController < ApplicationController
   end
   
   def destroy
-    @classe_therapeutique = ClasseTherapeutique.find(params[:id])
     @classe_therapeutique.destroy
     flash[:notice] = "Successfully destroyed classe therapeutique."
     redirect_to classe_therapeutiques_url

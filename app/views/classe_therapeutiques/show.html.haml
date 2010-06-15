@@ -12,7 +12,7 @@
     - @classe_therapeutique.dcis.each do |dci|
       %tr{:class => "#{cycle('odd', 'even')}"}
         %td= link_to dci.name, dci_path(dci)
-      %td
-        - actions_buttons(dci)
+        %td
+          - actions_buttons(dci)
 - else
   Il n'y a pas de DCIs pour cette classe

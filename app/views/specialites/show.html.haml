@@ -12,7 +12,7 @@
     - @specialite.dcis.each do |dci|
       %tr{:class => "#{cycle('odd', 'even')}"}
         %td= link_to dci.name, dci_path(dci)
-      %td
-        - actions_buttons(dci)
+        %td
+          - actions_buttons(dci)
 - else
   Cette possibilité ne doit pas exister... pas de spécialités sans DCI normalement
