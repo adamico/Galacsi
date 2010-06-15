@@ -15,3 +15,10 @@ function add_fields(link, association, content) {
 function toggle_div(id) {
   $(id).toggle('fold','',500);
 };
+
+$(function() {
+  var data = ["acetylsalicylique (acide)", "bla", "test"];
+  $("#search_stripped_name_like").autocomplete({
+    source: data
+  });
+});
