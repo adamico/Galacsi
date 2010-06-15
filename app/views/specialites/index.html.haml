@@ -3,6 +3,6 @@
 %table#list
   - @specialites.each do |specialite|
     %tr{:class => "#{cycle('odd', 'even')}"}
-      %td= link_to h(specialite.name), specialite
+      %td= link_to specialite.name, specialite
       %td
         - actions_buttons(specialite)

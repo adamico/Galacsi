@@ -346,12 +346,14 @@ table th {
 
 table#list {
   border-collapse: collapse; }
+  table#list th {
+    border-bottom: 1px solid black; }
   table#list th, table#list td {
     padding: 0 0.5em; }
-  table#list tr.odd {
-    background: #dddddd; }
   table#list tr.even {
-    background: white; }
+    background: #dddddd; }
+  table#list tr.odd {
+    background: #eeeeee; }
 
 ul.inline li {
   float: left;

@@ -4,6 +4,7 @@
   %tr
     %th Nom
     %th DCIs
+    %th &nbsp;
   - @classe_therapeutiques.each do |classe_therapeutique|
     - if !classe_therapeutique.dcis.empty? || can?(:create, ClasseTherapeutique)
       %tr{:class => "#{cycle('odd', 'even')}"}
