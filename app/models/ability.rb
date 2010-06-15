@@ -8,6 +8,10 @@ class Ability
     user ||= guest
 
     can :read, Specialite
+    can :index, ClasseTherapeutique
+    can :show, ClasseTherapeutique do |ct|
+      ct && !ct.dcis.empty?
+    end
     can :index, Dci
     can :show, Dci do |dci|
       dci && !dci.fiches.valide.empty?

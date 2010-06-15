@@ -19,7 +19,7 @@ class Dci < ActiveRecord::Base
 
   before_validation :set_unicode_stripped_name
 
-  def with_recent_fiches
+  def self.with_recent_fiches
     fiches_recent.all(:limit => 5).uniq
   end
 

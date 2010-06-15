@@ -84,7 +84,8 @@ Feature: validate fiches
       And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction: the distinction, distinction_name: "nuova"
       And I go to the homepage
     When I follow "Questa (indication : nuova)"
-    Then I should be at the dci's fiche page
+    Then I should see "Questa"
+    And I should see "Indication : Nuova"
 
   @focus
   Scenario: hide link to expired validation fiches for guests

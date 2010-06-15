@@ -1,1 +1,6 @@
-= raw @thedcis.map(&:stripped_name)
+= "["
+- array = []
+- @thedcis.map(&:stripped_name).each do |name|
+  - array << "\"#{name}\""
+= array.join(', ')
+= "]"

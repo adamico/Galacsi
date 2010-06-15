@@ -14,8 +14,7 @@ Feature: manage classes therapeutiques
     When I go to the dci's edit page
       And I select "Urologie" from "Classes thérapeutiques"
       And I press "Enregistrer"
-    Then I should be at the dci's page
-      And I should see "Classes thérapeutiques :"
+    Then I should see "Classes thérapeutiques :"
       And I should see "Urologie"
 
   Scenario: adding a classe therapeutique to new dcis
