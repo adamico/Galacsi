@@ -1,5 +1,4 @@
-- semantic_form_for(@specialite) do |f|
-  - f.inputs do
+= semantic_form_for(@specialite) do |f|
+  = f.inputs do
     = f.input :name, :label => "Nom"
-  - f.buttons do
     = f.commit_button 'Enregistrer'
