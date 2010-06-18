@@ -35,6 +35,6 @@ group :cucumber do
   gem 'cucumber', '>=0.7.2'
   gem 'rspec-rails', '>=2.0.0.beta.8'
   gem 'launchy'    # So you can do Then show me the page
-  gem 'pickle'
+  gem 'pickle', :git => 'http://github.com/codegram/pickle.git'
   gem 'factory_girl_rails'
 end
