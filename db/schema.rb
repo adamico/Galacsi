@@ -23,7 +23,8 @@ ActiveRecord::Schema.define(:version => 20100615160511) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "stripped_name"
-    t.integer  "dcis_count",    :default => 0
+    t.integer  "dcis_count",            :default => 0
+    t.integer  "classifications_count", :default => 0
   end
 
   create_table "classifications", :force => true do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20100615160511) do
     t.string   "stripped_name"
     t.string   "cached_slug"
     t.integer  "classe_therapeutiques_count", :default => 0
+    t.integer  "classifications_count",       :default => 0
   end
 
   add_index "dcis", ["cached_slug"], :name => "index_dcis_on_cached_slug"

@@ -15,9 +15,9 @@ end
 gem "RedCloth"
 gem "meta_search"
 gem "meta_where"
-gem "state_machine", "0.9.2"
+gem "state_machine"
 gem "haml"
-gem 'devise', '1.1.rc0'
+gem 'devise', '1.1.rc1'
 gem 'cancan'
 gem 'formtastic', :git => 'http://github.com/justinfrench/formtastic.git', :branch => 'rails3'
 gem "activesupport"
@@ -32,8 +32,9 @@ group :cucumber do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'cucumber-rails'
-  gem 'cucumber', '>=0.7.2'
+  gem 'cucumber'
   gem 'rspec-rails', '>=2.0.0.beta.8'
+  gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
   gem 'pickle', :git => 'http://github.com/codegram/pickle.git'
   gem 'factory_girl_rails'
