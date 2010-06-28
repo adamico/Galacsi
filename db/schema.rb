@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100615160511) do
+ActiveRecord::Schema.define(:version => 20100628093501) do
 
   create_table "alternativeships", :force => true do |t|
     t.integer  "fiche_id"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20100615160511) do
     t.string   "stripped_name"
     t.string   "cached_slug"
     t.integer  "classifications_count", :default => 0
+    t.integer  "fiches_count",          :default => 0
   end
 
   add_index "dcis", ["cached_slug"], :name => "index_dcis_on_cached_slug"

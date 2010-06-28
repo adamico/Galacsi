@@ -10,9 +10,10 @@ describe Ability do
     it { should_not be_able_to(:read, Factory(:fiche_a_valider)) }
     it { should_not be_able_to(:read, Factory(:fiche_en_attente)) }
     it { should_not be_able_to(:read, Dci.new) }
-    it { should be_able_to(:read, Factory(:dci_with_valid_fiches))}
+    it { should be_able_to(:index, Dci.new)}
+    it "should be able to read a dci with a valide fiche"
     it { should be_able_to(:read, Specialite.new) }
-    it { should be_able_to(:read, ClasseTherapeutique.new) }
+    it { should be_able_to(:index, ClasseTherapeutique.new) }
   end
   context "for an admin:" do
     admin = Factory.build :user
