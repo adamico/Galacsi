@@ -1,0 +1,6 @@
+= "["
+- array = []
+- @thespecialites.map(&:name).each do |name|
+  - array << "\"#{name}\""
+= array.join(', ')
+= "]"

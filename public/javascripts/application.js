@@ -29,3 +29,10 @@ $(function() {
     minLength: 2
   });
 });
+
+$(function() {
+  $("#search_specialites_name_like").autocomplete({
+    source: '/specialites/names.js',
+    minLength: 2
+  });
+});

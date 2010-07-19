@@ -5,6 +5,11 @@ class SpecialitesController < ApplicationController
     @specialites = Specialite.all(:include => :dcis, :order => "LOWER(name) ASC")
   end
   
+  def names
+    @thespecialites = Specialite.all(:conditions => ["name LIKE ?", "%#{params[:term]}%"])
+    @thespecialites.reject! { |spec| spec.dcis.with_valid_fiches.empty? } unless current_user
+  end
+
   def show
   end
   
