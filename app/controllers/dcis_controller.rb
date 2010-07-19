@@ -9,8 +9,10 @@ class DcisController < ApplicationController
 
   def stripped_names
     @thedcis = Dci.all(:conditions => ["stripped_name LIKE ?", "%#{params[:term]}%"])
+    @thedcis.reject! { |dci| dci.fiches.valide.empty? } unless current_user
   end
 
+  #FIXME: inutile l'azione search per il controller dcis
   def search
     params[:search] ||= {}
     @search = Dci.search(params[:search])

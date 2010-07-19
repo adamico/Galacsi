@@ -1,0 +1,6 @@
+= "["
+- array = []
+- @theclasses.map(&:stripped_name).each do |name|
+  - array << "\"#{name}\""
+= array.join(', ')
+= "]"

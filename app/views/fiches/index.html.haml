@@ -9,11 +9,12 @@
 - if !@fiches.empty?
   %table#list
     %thead
-      %th DCI
-      %th Distinction
-      %th Validation
-      %th Créateur
-      %th &nbsp;
+      %tr
+        %th DCI
+        %th Distinction
+        %th Validation
+        %th Créateur
+        %th &nbsp;
     - @fiches.each do |fiche|
       %tr{:class => "#{cycle('odd', 'even')}"}
         %td= h fiche.dci.name

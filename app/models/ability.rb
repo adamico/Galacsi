@@ -7,16 +7,19 @@ class Ability
     guest.role = ""
     user ||= guest
 
+    # guest abilities
     can :read, Specialite
     can :index, ClasseTherapeutique
     can :show, ClasseTherapeutique do |ct|
       ct && !ct.dcis.empty?
     end
+
     can :index, Dci
     can :show, Dci do |dci|
       dci && !dci.fiches.valide.empty?
     end
-    can :stripped_names, Dci
+    can :stripped_names, [Dci, ClasseTherapeutique]
+
     can :read, Fiche do |fiche|
       fiche && fiche.state == "valide"
     end

@@ -19,6 +19,10 @@ class Dci < ActiveRecord::Base
 
   before_validation :set_unicode_stripped_name
 
+  named_scope :with_valid_fiches, 
+    :joins => :fiches,
+    :conditions => { :fiches => { :state => "valide"} }
+
   def self.with_recent_fiches
     fiches_recent.all(:limit => 5).uniq
   end
@@ -54,14 +58,18 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: dcis
 #
-#  id            :integer         not null, primary key
-#  name          :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
-#  stripped_name :string(255)
+#  id                    :integer         not null, primary key
+#  name                  :string(255)
+#  created_at            :datetime
+#  updated_at            :datetime
+#  stripped_name         :string(255)
+#  cached_slug           :string(255)
+#  classifications_count :integer         default(0)
+#  fiches_count          :integer         default(0)
 #
 

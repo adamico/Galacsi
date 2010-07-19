@@ -22,3 +22,10 @@ $(function() {
     minLength: 2
   });
 });
+
+$(function() {
+  $("#search_classe_therapeutiques_stripped_name_like").autocomplete({
+    source: '/classe_therapeutiques/stripped_names.js',
+    minLength: 2
+  });
+});
