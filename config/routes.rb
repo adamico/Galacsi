@@ -2,8 +2,8 @@ ActionController::Routing::Routes.draw do |map|
   map.devise_for :users
 
   map.resources :decisions, :demandes, :distinctions, :sources, :users
-  map.resources :classe_therapeutiques, :collection => { :stripped_names => :get }
   map.resources :dcis, :collection => { :search => :get, :stripped_names => :get }
+  map.resources :classe_therapeutiques, :collection => { :stripped_names => :get }
   map.resources :specialites, :collection => { :names => :get }
 
   map.resources :dcis do |dci|

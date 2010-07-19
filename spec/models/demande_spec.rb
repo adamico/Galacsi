@@ -11,6 +11,7 @@ describe Demande do
 end
 
 
+
 # == Schema Information
 #
 # Table name: demandes
@@ -20,5 +21,7 @@ end
 #  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  contexte   :text
+#  demandeur  :string(255)
 #
 

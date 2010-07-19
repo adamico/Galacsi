@@ -16,6 +16,7 @@ Rails::Initializer.run do |config|
   config.gem "haml"
   config.gem "sqlite3-ruby", :lib => 'sqlite3'
   config.gem "friendly_id", :version => ">= 2.3"
+  config.gem "recaptcha", :lib => "recaptcha/rails"
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -49,3 +50,5 @@ Rails::Initializer.run do |config|
   config.i18n.load_path += Dir[File.join(RAILS_ROOT, 'config', 'locales', '**', '*.{rb,yml}')]
   config.i18n.default_locale = :fr
 end
+ENV['RECAPTCHA_PUBLIC_KEY']  = '6LfFmLsSAAAAAMZDjXeNzOIDPL3YyD82rpffGbzk'
+ENV['RECAPTCHA_PRIVATE_KEY'] = '6LfFmLsSAAAAAMYsNAe1wvq-f_7l3jzEDhtJp91E'

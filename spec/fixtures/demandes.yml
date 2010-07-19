@@ -7,6 +7,7 @@ two:
   name: MyString
 
 
+
 # == Schema Information
 #
 # Table name: demandes
@@ -16,5 +17,7 @@ two:
 #  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  contexte   :text
+#  demandeur  :string(255)
 #
 
