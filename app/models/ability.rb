@@ -24,7 +24,10 @@ class Ability
     can :read, Fiche do |fiche|
       fiche && fiche.state == "valide"
     end
+    
+    can :create, Demande
 
+    # admin abilities
     if user.admin?
       can :manage, :all
     else

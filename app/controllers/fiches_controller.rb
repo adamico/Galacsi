@@ -34,6 +34,7 @@ class FichesController < ApplicationController
   end
 
   def show
+    @dci = @fiche.dci
   end
   
   def new
@@ -50,6 +51,7 @@ class FichesController < ApplicationController
   end
   
   def edit
+    @dci = @fiche.dci
   end
   
   def update

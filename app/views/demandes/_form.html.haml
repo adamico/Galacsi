@@ -1,8 +1,6 @@
-- form_for @demande do |f|
+- semantic_form_for @demande do |f|
   = f.error_messages
-  %p
-    = f.label :name, "Nom"
-    %br
-    = f.text_field :name
-  %p
-    = f.submit "Enregistrer"
+  - f.inputs do
+    = f.input :nature, :label => "Nature de la demande", :as => :select, :collection => Demande::NATURES
+    = f.input :name, :label => "Libellé à créer"
+    = f.commit_button 'Enregistrer'

@@ -11,13 +11,19 @@ module DcisHelper
       haml_concat "Aucun résultat pour"
       haml_concat "\"#{string[0][0]}\""
       haml_concat "dans les noms de"
+
       field = case string[0][1]
-      when /classe/; "classe thérapeutique"
-      when /specialite/; "spécialité"
+      when /classe/; "CLASSE THERAPEUTIQUE"
+      when /specialite/; "SPECIALITE"
       else
-        "les noms de DCI"
+        "DCI"
       end
+
       haml_concat field
+      haml_tag :br do end;
+      if string[0][0].length > 3
+        haml_concat link_to "Demander la création", new_demande_path(nil, :nom_demande => string[0][0], :type_demande => field)
+      end
     end
   end
 end
