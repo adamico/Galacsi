@@ -1,4 +1,6 @@
-- title @classe_therapeutique.name
+- title @classe_therapeutique.name, false
+
+%h1.float_left= @classe_therapeutique.name
 
 %ul.edit_actions
   - if can? :edit, ClasseTherapeutique
@@ -6,9 +8,12 @@
   - if can? :delete, @dci
     %li= link_to "Détruire cette classe", @classe_therapeutique, :confirm => 'Are you sure?', :method => :delete
 
+.clear
+
 - if !@classe_therapeutique.dcis.blank?
   %table#list
     %th Liste des DCI
+    %th &nbsp;
     - @classe_therapeutique.dcis.each do |dci|
       %tr{:class => "#{cycle('odd', 'even')}"}
         %td= link_to dci.name, dci_path(dci)

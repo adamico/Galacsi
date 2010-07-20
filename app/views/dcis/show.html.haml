@@ -10,8 +10,8 @@
 
 .clear
 
-%h2= "Spécialités : #{@dci.commercial_names}" unless @dci.commercial_names.blank?
-%h2= "Classes thérapeutiques : #{@dci.classes_therapeutiques}" unless @dci.classes_therapeutiques.blank?
+- %w(specialites classe_therapeutiques).each do |association|
+  - links_to_associations(@dci, association)
 
 #fiches
   = render @dci.fiches.valide
