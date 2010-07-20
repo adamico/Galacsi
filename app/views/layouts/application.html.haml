@@ -23,31 +23,7 @@
   %body
     #header
       %h1= link_to "GalacSI", root_path
-      #menu
-        %ul#nav
-          %li
-            = link_to "DCI", dcis_path
-            - if can? :create, Dci
-              %span.add_record= link_to "+", new_dci_path
-          - if can? :create, Fiche
-            %li= link_to "Fiches", fiches_path
-          %li
-            = link_to "Classes", classe_therapeutiques_path
-            - if can? :create, ClasseTherapeutique
-              %span.add_record= link_to "+", new_classe_therapeutique_path
-          %li
-            = link_to "Spécialités", specialites_path
-          - if can? :read, User
-            %li
-              %a{:href => "/admin", :class => "anchorclass",
-                  :rel => "submenu1"} Admin
-
-            .anylinkcss#submenu1
-              %ul
-                %li= link_to "Décisions", decisions_path
-                %li= link_to "Distinctions", distinctions_path
-                %li= link_to "Utilisateurs", users_path
-                %li= link_to "Sources", sources_path
+      = render :partial => 'shared/navmenu'
 
 
     #content
@@ -60,21 +36,10 @@
       #right
         .box
           - user_navlinks
-        - unless Dci.with_recent_fiches.empty?
-          .box.news
-            %b Dernières MAJ :
-            %ul
-              - Dci.with_recent_fiches.each do |dci|
-                - if can?(:show, dci)
-                  %li
-                    = link_to dci.name, dci_path(dci)
-                    - if (dci.fiches.recent.size > 1 && can?(:create, Fiche)) or dci.fiches.valide.recent.size > 1
-                      %ul
-                        - dci.fiches.recent.each do |fiche|
-                          - unless fiche.distinction.nil?
-                            - if can?(:read, fiche)
-                              %li= link_to "#{fiche.distinction.name} : #{fiche.distinction_name}", dci_fiche_path(fiche.dci, fiche)
-
+        = render :partial => 'shared/news' unless Dci.with_recent_fiches.empty?
+        .box
+          %p Vous n'avez pas trouvé ce que vous cherchiez ?
+          %p= link_to "Demander une création", new_demande_path
         .box
           Design by
           = link_to "Minimalistic Design", "http://www.minimalistic-design.net"

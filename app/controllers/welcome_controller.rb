@@ -10,4 +10,7 @@ class WelcomeController < ApplicationController
   def admin
   end
 
+  def about
+  end
+
 end

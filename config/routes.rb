@@ -20,5 +20,6 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'welcome'
 
   map.search '/search', :controller => 'welcome', :action => 'search'
+  map.about '/about', :controller => 'welcome', :action => 'about'
   map.admin '/admin', :controller => 'welcome', :action => 'admin'
 end
