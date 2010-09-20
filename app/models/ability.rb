@@ -21,22 +21,25 @@ class Ability
     can :stripped_names, [Dci, ClasseTherapeutique]
     can :names, Specialite
 
-    can :read, Fiche do |fiche|
-      fiche && fiche.state == "valide"
-    end
+    can :read, Fiche, :state => "valide"
     
     can :create, Demande
 
     # admin abilities
     if user.admin?
       can :manage, :all
+    # other roles abilities
     else
       case user.role
       when "contributeur"
         can :read, [Dci, ClasseTherapeutique, Fiche]
         can :create, Fiche
-        can :update, Fiche, :state => ["brouillon", "a_valider"], :user_id => user.id
-        can :initialiser, Fiche, :state => "brouillon", :user_id => user.id
+        can :update, Fiche,
+          :state => ["brouillon", "a_valider"],
+          :user_id => user.id
+        can :initialiser, Fiche,
+          :state => "brouillon",
+          :user_id => user.id
       when "valideur"
         can :manage, User do |action, object_class|
           action != :destroy
