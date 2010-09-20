@@ -1,12 +1,17 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe Demande do
-  before(:each) do
-    @demande = Demande.new    
+  let(:demande) {Factory.build(:demande)}
+  subject {demande}
+
+  it {should be_valid}
+  it "should require a name" do
+    subject.name = ""
+    subject.should_not be_valid
   end
-  it "should be valid" do
-    @demande.name = "value for name"
-    @demande.should be_valid
+  it "should require a unique name" do
+    other_demande = Factory(:demande, :name => subject.name)
+    subject.should_not be_valid
   end
 end
 

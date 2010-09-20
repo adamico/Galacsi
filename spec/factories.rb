@@ -69,3 +69,7 @@ end
 Factory.define :contributeur, :parent => :user do |f|
   f.role "contributeur"
 end
+
+Factory.define :demande do |f|
+  f.sequence(:name) {|i| "demande#{i}"}
+end
