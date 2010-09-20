@@ -1,7 +1,6 @@
 class Dci < ActiveRecord::Base
   require 'active_support'
-  validates_presence_of :name
-  validates_uniqueness_of :name
+  validates :name, :presence => true, :uniqueness => true
 
   # use the "name" column as the basis of the friendly_id, and use slugs
   has_friendly_id :name, :use_slug => true,

@@ -37,7 +37,9 @@ class Ability
         can :update, Fiche,
           :state => ["brouillon", "a_valider"],
           :user_id => user.id
-        can :initialiser, Fiche, :state => "brouillon", :user_id => user.id
+        can :initialiser, Fiche,
+          :state => "brouillon",
+          :user_id => user.id
       when "valideur"
         can :manage, User do |action, object_class|
           action != :destroy

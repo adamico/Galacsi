@@ -1,12 +1,20 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Source do
-  before(:each) do
-    @source = Source.new
+  let(:source) {Factory(:source)}
+  subject {source}
+
+  it {should be_valid}
+  it "should require a name" do
+    subject.name = ""
+    subject.should_not be_valid
   end
-  it "should be valid" do
-    @source.name = "value for name"
-    @source.should be_valid
+  it "should reject invalid url sources" do
+    urls = %w(http:/www.url.com httpp://www.url.com http://www,url.com)
+    urls.each do |url|
+      subject.url = url
+      subject.should_not be_valid
+    end
   end
 end
 

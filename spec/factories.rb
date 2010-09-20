@@ -73,3 +73,8 @@ end
 Factory.define :demande do |f|
   f.sequence(:name) {|i| "demande#{i}"}
 end
+
+Factory.define :source do |f|
+  f.name "source_name"
+  f.url "http://www.example.com"
+end
