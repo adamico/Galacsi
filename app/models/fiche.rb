@@ -38,7 +38,7 @@ class Fiche < ActiveRecord::Base
   RLP = ["<1", ">1"]
 
  scope :expired,    where("revalider_le <= ?", Time.now.to_date)
- scope :valide,  where("state = ?", "valide")
+ scope :valide,     where("state = ?", "valide")
  scope :non_valide, where("state != ?", "valide")
  scope :recent,     where("validation_date >= ?", 02.weeks.ago)
 

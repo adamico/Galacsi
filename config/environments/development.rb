@@ -1,4 +1,4 @@
-Galacsi::Application.configure do
+GalacsiRails3::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
   # In the development environment your application's code is reloaded on
@@ -18,6 +18,11 @@ Galacsi::Application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   # this is for devise, set to real address in production
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = {:host => 'localhost:3000'}
+  # Print deprecation notices to the Rails logger
+  config.active_support.deprecation = :log
 
+  # Only use best-standards-support built into browsers
+  config.action_dispatch.best_standards_support = :builtin
 end
+
