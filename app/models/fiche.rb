@@ -15,7 +15,7 @@ class Fiche < ActiveRecord::Base
   attr_reader :createur
   attr_writer :alternative_names
 
-  after_save :assign_alternative_names
+  after_save :assign_alternatives
 
   def full_distinction
     dist = []
@@ -25,7 +25,7 @@ class Fiche < ActiveRecord::Base
   end
 
   def createur
-    @createur || User.find(self.user_id).username
+    @createur || User.find(user_id).username
   end
 
   def alternative_names
@@ -37,10 +37,10 @@ class Fiche < ActiveRecord::Base
   PASSAGE = ["dose dépendant", "inconnu", "faible"]
   RLP = ["<1", ">1"]
 
- scope :expired,    where("revalider_le <= ?", Time.now.to_date)
- scope :valide,     where("state = ?", "valide")
- scope :non_valide, where("state != ?", "valide")
- scope :recent,     where("validation_date >= ?", 02.weeks.ago)
+  scope :expired,    where("revalider_le <= ?", Time.now.to_date)
+  scope :valide,     where("state = ?", "valide")
+  scope :non_valide, where("state != ?", "valide")
+  scope :recent,     where("validation_date >= ?", 02.weeks.ago)
 
   # state machine stuff
   STATES = [["brouillon", "brouillon"], ["à valider", "a_valider"], ["valide", "valide"], ["en attente", "en_attente"]]
@@ -68,7 +68,7 @@ class Fiche < ActiveRecord::Base
 
   private
 
-  def assign_alternative_names
+  def assign_alternatives
     if @alternative_names
       self.alternatives = @alternative_names.split(', ').map do |name|
         Dci.find_or_create_by_name(name)
