@@ -1,12 +1,23 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+#encoding: utf-8
+require 'spec_helper'
 
 describe ClasseTherapeutique do
-  before(:each) do
-    @classe_therapeutique = ClasseTherapeutique.new
+  let(:classe_therapeutique) { Factory.build(:classe_therapeutique)}
+  subject {classe_therapeutique}
+
+  it {should be_valid}
+
+  it "should require a unique name" do
+    other_ct = Factory(:classe_therapeutique, :name => subject.name)
+    subject.should_not be_valid
   end
-  it "should be valid" do
-    @classe_therapeutique.name = "value for name"
-    @classe_therapeutique.should be_valid
+
+  describe "before validation" do
+    it "should set unicode stripped name" do
+      subject.name = "époque"
+      subject.save!
+      subject.stripped_name.should == "epoque"
+    end
   end
 end
 
