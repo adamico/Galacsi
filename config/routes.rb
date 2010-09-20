@@ -1,4 +1,4 @@
-Galacsi::Application.routes.draw do |map|
+GalacsiRails3::Application.routes.draw do
   devise_for :users
   resources :classe_therapeutiques, :decisions, :demandes, :specialites, :distinctions, :sources, :users
 
@@ -9,8 +9,9 @@ Galacsi::Application.routes.draw do |map|
       end
     end
 
-    get :search, :on => :collection
-    get :stripped_names, :on => :collection
+    collection do
+      get :search, :stripped_names
+    end
   end
 
   resources :fiches
