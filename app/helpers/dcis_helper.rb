@@ -3,18 +3,11 @@ module DcisHelper
 
   def links_to_associations(dci, association)
     unless dci.send(association).empty?
-      haml_tag :h2 do
-        title = case association
-                when "specialites" then "Spécialités : "
-                when "classe_therapeutiques" then "Classes thérapeutiques : "
-                end
-        haml_concat title
-        links = []
-        dci.send(association).each do |item|
-          links << link_to(h(item.name.humanize), polymorphic_path(item))
-        end
-        haml_concat links.join(', ')
+      links = []
+      dci.send(association).each do |item|
+        links << link_to(h(item.name.humanize), polymorphic_path(item))
       end
+      haml_concat links.join(', ').html_safe
     end
     haml_tag 'div.clear' do end;
   end

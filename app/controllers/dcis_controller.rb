@@ -12,11 +12,9 @@ class DcisController < ApplicationController
     @thedcis.reject! { |dci| dci.fiches.valide.empty? } unless current_user
   end
 
-  #FIXME: inutile l'azione search per il controller dcis
   def search
-    params[:search] ||= {}
     @search = Dci.search(params[:search])
-    @dcis = @search.all.uniq
+    @dcis = @search.includes(:classifications, :specialites, :fiches => [:distinction, :user]).all
   end
   
   def show

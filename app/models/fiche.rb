@@ -9,7 +9,10 @@ class Fiche < ActiveRecord::Base
   has_many :alternatives, :through => :alternativeships
   has_and_belongs_to_many :sources, :join_table => "fiches_sources"
   accepts_nested_attributes_for :sources,
-    :reject_if => proc { |attrs| attrs[:name].blank? }, :allow_destroy => true
+    :reject_if => proc { |attrs| attrs[:name].blank? },
+    :allow_destroy => true
+
+  delegate :name, :to => :dci, :allow_nil => true, :prefix => true
 
   attr_protected :state_event
   attr_reader :createur
@@ -19,8 +22,8 @@ class Fiche < ActiveRecord::Base
 
   def full_distinction
     dist = []
-    dist << distinction.name if distinction
-    dist << distinction_name unless distinction_name.blank?
+    dist << distinction.name.humanize if distinction
+    dist << distinction_name.humanize unless distinction_name.blank?
     dist.join(" : ")
   end
 

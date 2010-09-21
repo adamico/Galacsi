@@ -14,7 +14,7 @@ class Ability
       ct && !ct.dcis.empty?
     end
 
-    can :index, Dci
+    can :search, Dci
     can :show, Dci do |dci|
       dci && !dci.fiches.valide.empty?
     end

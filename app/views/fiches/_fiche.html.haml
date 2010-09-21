@@ -109,11 +109,11 @@
             %tr
               %td
                 %b Etat de validation :
-                = fiche.state.humanize
+                %span{:class => "#{fiche.state}"}= fiche.state.humanize
                 - if fiche.state == "brouillon" && can?(:initialiser, Fiche)
                   = link_to "=> Initialiser", initialiser_dci_fiche_path(fiche.dci, fiche), :method => :put
                 - elsif fiche.state == "valide" && can?(:invalider, Fiche)
-                  = link_to "=> Invalider", invalider_dci_fiche_path(fiche.dci, fiche), :method => :put
+                  = link_to "=> Mettre en attente", invalider_dci_fiche_path(fiche.dci, fiche), :method => :put
                 - elsif (fiche.state == "a_valider" || fiche.state == "en_attente") && can?(:valider, fiche)
                   = link_to "=> Valider", valider_dci_fiche_path(fiche.dci, fiche), :method => :put
 

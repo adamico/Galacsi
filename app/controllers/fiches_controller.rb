@@ -1,7 +1,7 @@
 # encoding: utf-8
 class FichesController < ApplicationController
 
-  load_and_authorize_resource :dci
+  load_resource :dci
   load_and_authorize_resource :fiche, :through => :dci
 
   def index
@@ -35,9 +35,11 @@ class FichesController < ApplicationController
   end
 
   def show
+    @dci = @fiche.dci
   end
   
   def new
+    @dci = @fiche.dci
   end
   
   def create
@@ -51,6 +53,7 @@ class FichesController < ApplicationController
   end
   
   def edit
+    @dci = @fiche.dci
   end
   
   def update

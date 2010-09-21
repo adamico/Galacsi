@@ -10,8 +10,12 @@
 
 .clear
 
-- %w(specialites classe_therapeutiques).each do |association|
-  - links_to_associations(@dci, association)
+%h2
+  Spécialités : 
+  - links_to_associations(@dci, "specialites")
+%h2 
+  Classes thérapeutiques : 
+  - links_to_associations(@dci, "classe_therapeutiques")
 
 #fiches
   - if !@dci.fiches.valide.empty?

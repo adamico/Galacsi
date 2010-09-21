@@ -155,9 +155,9 @@ h1.dci_title {
   float: left;
   margin-bottom: 0; }
 
-.news {
+.news, .small {
   font-size: smaller; }
-  .news ul li ul {
+  .news ul li ul, .small ul li ul {
     margin-left: 1em; }
 
 .float_left {
@@ -311,6 +311,20 @@ span.decision {
   padding: 0.25em;
   border: 2px solid; }
 
+/*fiche states */
+.brouillon {
+  background: yellow; }
+
+.a_valider {
+  background: #ff9933; }
+
+.valide {
+  background: #00b050; }
+
+.en_attente {
+  background: red; }
+
+/*decisions */
 #ci {
   background: #ffa880;
   border-color: red; }
@@ -334,6 +348,9 @@ span.decision {
 .fields {
   border: 1px solid black; }
 
+table {
+  border-collapse: collapse; }
+
 table th {
   padding: 0 1em; }
 
@@ -354,6 +371,9 @@ table#list {
     background: #dddddd; }
   table#list tr.odd {
     background: #eeeeee; }
+  table#list td.sub {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black; }
 
 ul.inline li {
   float: left;

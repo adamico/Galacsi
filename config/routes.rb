@@ -24,7 +24,7 @@ GalacsiRails3::Application.routes.draw do
 
   resources :fiches
 
-  match '/search' => 'welcome#search'
+  match '/search' => 'dcis#search'
   match '/admin'  => 'welcome#admin'
   match '/about'  => 'welcome#about'
 

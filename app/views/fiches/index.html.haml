@@ -18,10 +18,11 @@
     %tbody
       - @fiches.each do |fiche|
         %tr{:class => "#{cycle('odd', 'even')}"}
-          %td= h fiche.dci.name
-          %td= h fiche.full_distinction
-          %td= h fiche.state.humanize
-          %td= h fiche.createur if fiche.user
+          %td= fiche.dci_name 
+          %td= fiche.full_distinction
+          %td{:class => "#{fiche.state}"}
+            = fiche.state.humanize
+          %td= fiche.createur if fiche.user
           %td
             - actions_buttons(fiche)
 

@@ -5,11 +5,13 @@
 %p Cras id ullamcorper turpis. Duis vitae sem arcu. Suspendisse potenti. Donec ipsum eros, rhoncus
  
 - if @expired_fiches.count > 0 && can?(:valider, Fiche)
-  %p= "Attention vous avez : #{pluralize(@expired_fiches.count, 'fiche')} à vérifier"
+  %p
+    %strong= "Attention vous avez #{pluralize(@expired_fiches.count, 'fiche')} à vérifier : "
   %ul
     - @expired_fiches.each do |fiche|
       %li
         - if fiche.distinction_id?
-          = link_to "#{fiche.dci.name.humanize} (#{fiche.distinction.name} : #{fiche.distinction_name})", dci_fiche_path(fiche.dci, fiche)
+          = link_to "#{fiche.dci.name.humanize} - #{fiche.full_distinction}", dci_fiche_path(fiche.dci, fiche)
+          (fiche validée le #{l(fiche.validation_date)})
         - else
           = link_to "#{fiche.dci.name.humanize}", dci_fiche_path(fiche.dci, fiche)
