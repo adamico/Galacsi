@@ -17,7 +17,7 @@
   - if !@dci.fiches.valide.empty?
     = render @dci.fiches.valide
   - else
-    - if can(:create, Fiche)
+    - if can?(:create, Fiche)
       %br/
       %h2 Aucune fiche validée pour cette DCI
   - if can?(:create, Fiche) && !@dci.fiches.non_valide.empty?
