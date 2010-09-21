@@ -53,6 +53,37 @@ describe Fiche do
       subject.alternative_names.should == "name0, name1, name2"
     end
   end
+  describe ".expired" do
+    it "should return fiches with #revalider_le <= today" do
+      exp1 = Factory(:fiche, :revalider_le => (Time.now.to_date - 1))
+      exp2 = Factory(:fiche, :revalider_le => (Time.now.to_date - 1))
+      Fiche.recent.all.should == [exp1, exp2]
+    end
+  end
+  describe ".valide" do
+    it "should return fiches with valide state" do
+      val1 = Factory(:fiche_valide)
+      val2 = Factory(:fiche_valide)
+      Fiche.valide.all.should == [val1, val2]
+    end
+  end
+  describe ".non_valide" do
+    it "should return fiches with state other than 'valide'" do
+      brou = Factory(:fiche)
+      aval = Factory(:fiche_a_valider)
+      enat = Factory(:fiche_en_attente)
+      Fiche.non_valide.all.should == [brou, aval, enat]
+    end
+  end
+  describe ".recent" do
+    it "should return fiches with validation_date >= 2 weeks ago" do
+      rec1 = Factory(:fiche, :validation_date => 2.weeks.ago)
+      rec2 = Factory(:fiche, :validation_date => 1.weeks.ago)
+      rec3 = Factory(:fiche, :validation_date => Time.now.to_date)
+      nrec = Factory(:fiche, :validation_date => 3.weeks.ago)
+      Fiche.recent.all.should == [rec1, rec2, rec3]
+    end
+  end
 end
 
 
@@ -98,7 +129,7 @@ end
 #  liaison_pp            :string(255)
 #  vol_dist              :string(255)
 #  tmax                  :string(255)
-#  thalf                 :string(255)
+# thalf                 :string(255)
 #  pm                    :string(255)
 #  passage_lait          :string(255)
 #  rapport_lp            :string(255)

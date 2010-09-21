@@ -6,6 +6,10 @@ describe Dci do
   subject {dci}
 
   it {should be_valid}
+  it "should require a unique name" do
+    other_dci = Factory(:dci, :name => subject.name)
+    subject.should_not be_valid
+  end
 
   describe "#commercial_names" do
     it "should exist" do
@@ -45,6 +49,33 @@ describe Dci do
       end
       subject.classe_therapeutiques = cts
       subject.classes_therapeutiques.should == "Ct0, Ct1, Ct2"
+    end
+  end
+
+  describe ".with_recent_fiches" do
+    it "should return dcis with recently validated fiches" do
+      dci1 = Factory(:dci)
+      dci2 = Factory(:dci)
+      dci3 = Factory(:dci)
+      dci.save!
+      dci.fiches.create(:validation_date => Time.now.to_date)
+      dci1.fiches.create(:validation_date => 1.week.ago)
+      dci2.fiches.create(:validation_date => 2.week.ago)
+      dci3.fiches.create(:validation_date => 3.week.ago)
+      Dci.with_recent_fiches.all.should == [dci, dci1, dci2]
+    end
+  end
+  describe ".with_valid_fiches" do
+    it "should return dcis with valide state fiches only" do
+      dci1 = Factory(:dci)
+      dci2 = Factory(:dci)
+      dci3 = Factory(:dci)
+      dci.save!
+      dci.fiches.create(:state => "valide")
+      dci1.fiches.create(:state => "valide")
+      dci2.fiches.create(:state => "valide")
+      dci3.fiches.create
+      Dci.with_valid_fiches.all.should == [dci, dci1, dci2]
     end
   end
 end
