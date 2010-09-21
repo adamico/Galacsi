@@ -16,6 +16,7 @@ gem 'formtastic'
 gem "activesupport"
 gem "friendly_id", '~> 3.0'
 gem 'will_paginate', '3.0.pre'
+gem 'pickle'
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
@@ -51,6 +52,5 @@ group :cucumber do
   gem 'rspec-rails', ">= 2.0.0.beta.20"
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
-  gem 'pickle'
   gem 'factory_girl_rails'
 end

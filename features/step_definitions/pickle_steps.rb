@@ -61,22 +61,22 @@ Then(/^#{capture_model} should not be #{capture_model}(?:'s)? (\w+)$/) do |targe
 end
 
 # assert model.predicate? 
-Then(/^#{capture_model} should (?:be|have) (?:an? )?#{capture_predicate}$/) do |name, predicate|
-  if model!(name).respond_to?("has_#{predicate.gsub(' ', '_')}")
-    model!(name).should send("have_#{predicate.gsub(' ', '_')}")
-  else
-    model!(name).should send("be_#{predicate.gsub(' ', '_')}")
-  end
-end
+#Then(/^#{capture_model} should (?:be|have) (?:an? )?#{capture_predicate}$/) do |name, predicate|
+  #if model!(name).respond_to?("has_#{predicate.gsub(' ', '_')}")
+    #model!(name).should send("have_#{predicate.gsub(' ', '_')}")
+  #else
+    #model!(name).should send("be_#{predicate.gsub(' ', '_')}")
+  #end
+#end
 
 # assert not model.predicate?
-Then(/^#{capture_model} should not (?:be|have) (?:an? )?#{capture_predicate}$/) do |name, predicate|
-  if model!(name).respond_to?("has_#{predicate.gsub(' ', '_')}")
-    model!(name).should_not send("have_#{predicate.gsub(' ', '_')}")
-  else
-    model!(name).should_not send("be_#{predicate.gsub(' ', '_')}")
-  end
-end
+#Then(/^#{capture_model} should not (?:be|have) (?:an? )?#{capture_predicate}$/) do |name, predicate|
+  #if model!(name).respond_to?("has_#{predicate.gsub(' ', '_')}")
+    #model!(name).should_not send("have_#{predicate.gsub(' ', '_')}")
+  #else
+    #model!(name).should_not send("be_#{predicate.gsub(' ', '_')}")
+  #end
+#end
 
 # model.attribute.should eql(value)
 # model.attribute.should_not eql(value)
@@ -95,6 +95,6 @@ Then(/^#{capture_model}'s (\w+) (should(?: not)?) be #{capture_value}$/) do |nam
 end
 
 # assert size of association
-Then /^#{capture_model} should have (\d+) (\w+)$/ do |name, size, association|
+Then(/^#{capture_model} should have (\d+) (\w+)$/) do |name, size, association|
   model!(name).send(association).size.should == size.to_i
 end

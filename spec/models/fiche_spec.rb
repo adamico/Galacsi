@@ -8,7 +8,6 @@ describe Fiche do
 
   describe "when saved" do
     it "should assign alternatives" do
-      #pending("failing")
       alt_names = "alt1, alt2, alt3"
       subject.alternative_names = alt_names
       subject.save!
