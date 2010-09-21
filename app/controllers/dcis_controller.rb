@@ -3,8 +3,8 @@ class DcisController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @search = Dci.includes(:classe_therapeutiques, :specialites, :fiches => [:distinction, :user]).search(params[:search])
-    @dcis = @search.all
+    @search = Dci.search(params[:search])
+    @dcis = @search.includes(:classifications, :specialites, :fiches => [:distinction, :user]).all
   end
 
   def stripped_names
