@@ -26,6 +26,7 @@ GalacsiRails3::Application.routes.draw do
 
   match '/search' => 'welcome#search'
   match '/admin'  => 'welcome#admin'
+  match '/about'  => 'welcome#about'
 
   root :to => "welcome#index"
   # The priority is based upon order of creation:

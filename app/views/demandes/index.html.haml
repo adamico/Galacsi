@@ -1,15 +1,20 @@
 - title "Liste des demandes de création"
 
-%table
-  %tr
-    %th Type
-    %th Libellé
-  - for demande in @demandes
+%table#list
+  %thead
     %tr
-      %td= h demande.nature
-      %td= h demande.name
+      %th Type
+      %th Libellé
+      %th Contexte
+      %th Demandeur
+      %th &nbsp;
+  - for demande in @demandes
+    %tr{:class => "#{cycle('odd', 'even')}"}
+      %td= demande.nature
+      %td= demande.name
+      %td= demande.contexte
+      %td= demande.demandeur
       %td
         - actions_buttons(demande)
 
-%p
-  = link_to "Nouvelle demande", new_demande_path
+%p= link_to "Nouvelle demande", new_demande_path

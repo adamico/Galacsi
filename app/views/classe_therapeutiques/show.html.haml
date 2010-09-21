@@ -7,12 +7,13 @@
     %li= link_to "Détruire cette classe", @classe_therapeutique, :confirm => 'Are you sure?', :method => :delete
 
 - if !@classe_therapeutique.dcis.blank?
-  %h2 Liste des DCIs
   %table#list
+    %tr
+      %th Liste des DCIs
     - @classe_therapeutique.dcis.each do |dci|
       %tr{:class => "#{cycle('odd', 'even')}"}
         %td= link_to dci.name, dci_path(dci)
         %td
           - actions_buttons(dci)
 - else
-  Il n'y a pas de DCIs pour cette classe
+  Il n'y a pas de DCI pour cette classe
