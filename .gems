@@ -1,7 +1,0 @@
-haml -v 3.0.3
-devise -v 1.0.7
-cancan
-searchlogic
-rubyist-aasm -v '> 2.0.2' -s http://gems.github.com
-justinfrench-formtastic -s http://gems.github.com
-friendly_id -v 2.3
