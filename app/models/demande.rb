@@ -1,5 +1,11 @@
+#encoding: utf-8
 class Demande < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
+  NATURES = [
+    ["Nouvelle DCI", "DCI"],
+    ["Nouvelle spécialité", "SPECIALITE"],
+    ["Nouvelle fiche", "fiche"]
+  ]
 end
 
 

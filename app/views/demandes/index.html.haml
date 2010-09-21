@@ -1,12 +1,15 @@
-- title "Demandes"
+- title "Liste des demandes de création"
 
 %table
   %tr
     %th Type
-    %th Name
+    %th Libellé
   - for demande in @demandes
     %tr
+      %td= h demande.nature
       %td= h demande.name
-      %td= link_to 'Show', demande
-      %td= link_to 'Edit', edit_demande_path(demande)
-      %td= link_to 'Destroy', demande, :confirm => 'Are you sure?', :method => :delete
+      %td
+        - actions_buttons(demande)
+
+%p
+  = link_to "Nouvelle demande", new_demande_path
