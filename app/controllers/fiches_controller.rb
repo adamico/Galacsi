@@ -1,7 +1,8 @@
 # encoding: utf-8
 class FichesController < ApplicationController
 
-  load_and_authorize_resource :nested => :dci
+  load_and_authorize_resource :dci
+  load_and_authorize_resource :fiche, :through => :dci
 
   def index
     @search = Fiche.includes(:distinction, :user, :dci).search(params[:search])

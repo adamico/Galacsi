@@ -13,6 +13,25 @@ describe ClasseTherapeutiquesController do
       get :index
       response.should be_success
     end
+    it "should assign classe therapeutiques to a global var" do
+      get :index
+      assigns(:classe_therapeutiques).should_not be_nil
+    end
+  end
+
+  describe "GET 'stripped_names'" do
+    it "should be successful" do
+      get :stripped_names, :format => :js
+      response.should be_success
+    end
+    it "should render an array of stripped names" do
+      pending("maybe need to move this example to request specs")
+      3.times do |i|
+        Factory(:classe_therapeutique, :name => "name#{i+1}")
+      end
+      get :stripped_names, :format => :js
+      response.should have_selector("pre", :content => '["name1", "name2", "name3"]')
+    end
   end
 
   describe "GET 'show'" do

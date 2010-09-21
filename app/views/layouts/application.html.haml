@@ -56,6 +56,7 @@
         - if show_title?
           %h1=h yield(:title)
         = yield
+        = debug(params) if Rails.env.development?
       #right
         .box
           - user_navlinks

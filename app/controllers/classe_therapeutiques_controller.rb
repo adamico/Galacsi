@@ -3,9 +3,15 @@ class ClasseTherapeutiquesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @classe_therapeutiques = ClasseTherapeutique.includes(:dcis)
+    @classe_therapeutiques = ClasseTherapeutique.includes(:classifications)
   end
   
+  def stripped_names
+    @theclasses = ClasseTherapeutique.where(:stripped_name =~ "%#{params[:term]}%")
+    @theclasses.reject! { |ct| ct.classifications.empty?}
+    @theclasses.reject! { |ct| ct.dcis.with_valid_fiches.empty?} unless current_user
+  end
+
   def show
   end
   
