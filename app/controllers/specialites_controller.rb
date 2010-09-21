@@ -5,6 +5,11 @@ class SpecialitesController < ApplicationController
     @specialites = Specialite.includes(:dcis).order("LOWER(name) ASC")
   end
   
+  def names
+    @thespecialites = Specialite.where(:name =~ "%#{params[:term]}%")
+    @thespecialites.reject! { |sp| sp.dcis.with_valid_fiches.empty? } unless current_user
+  end
+
   def show
   end
   

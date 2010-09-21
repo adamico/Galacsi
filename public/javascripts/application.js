@@ -21,11 +21,12 @@ $(function() {
     source: '/dcis/stripped_names.js',
     minLength: 2
   });
-});
-
-$(function() {
   $("#search_classe_therapeutiques_stripped_name_contains").autocomplete({
     source: '/classe_therapeutiques/stripped_names.js',
+    minLength: 2
+  });
+  $("#search_specialites_name_contains").autocomplete({
+    source: '/specialites/names.js',
     minLength: 2
   });
 });

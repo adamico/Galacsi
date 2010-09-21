@@ -1,9 +1,13 @@
 GalacsiRails3::Application.routes.draw do
   devise_for :users
-  resources :decisions, :demandes, :specialites, :distinctions, :sources, :users
+  resources :decisions, :demandes, :distinctions, :sources, :users
 
   resources :classe_therapeutiques do
     get :stripped_names, :on => :collection
+  end
+
+  resources :specialites do
+    get :names, :on => :collection
   end
 
   resources :dcis do
