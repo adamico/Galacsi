@@ -17,6 +17,7 @@ gem "activesupport"
 gem "friendly_id", '~> 3.0'
 gem 'will_paginate', '3.0.pre'
 gem 'pickle'
+gem 'recaptcha', :require => "recaptcha/rails"
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
