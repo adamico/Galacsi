@@ -25,5 +25,4 @@
     #fiches_non_validees{:style => "display: none;"}
       = render @dci.fiches.non_valide
 
-%p
-  = link_to "Rajouter une fiche", new_dci_fiche_path(@dci) if can? :create, Fiche
+%p= link_to "Rajouter une fiche", new_dci_fiche_path(@dci) if can? :create, Fiche
