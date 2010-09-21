@@ -371,9 +371,15 @@ table#list
   tr.odd
     background: #EEE
 ul
-  &.inline li
+  &.inline
+    li
+      float: left
+      padding-right: 1em
+  &.list
+    margin-left: 0.5em
     float: left
-    padding-right: 1em
+    font-weight: bold
+    font-size: 1.1em
   &.actions
     padding: 0
     margin: 0
