@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20100921100504) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "stripped_name"
-    t.integer  "dcis_count",            :default => 0
     t.integer  "classifications_count", :default => 0
   end
 
