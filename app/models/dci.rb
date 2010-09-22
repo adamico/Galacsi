@@ -19,10 +19,10 @@ class Dci < ActiveRecord::Base
   before_validation :set_unicode_stripped_name
 
   scope :with_recent_fiches,
-    joins(:fiches) & Fiche.recent
+    joins(:fiches).merge(Fiche.recent)
 
   scope :with_valid_fiches,
-    joins(:fiches) & Fiche.valide
+    joins(:fiches).merge(Fiche.valide)
 
   def classes_therapeutiques
     @classes_therapeutiques || classe_therapeutiques.map(&:name).map(&:humanize).join(', ')
