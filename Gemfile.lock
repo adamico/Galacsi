@@ -1,9 +1,3 @@
-GIT
-  remote: http://github.com/adamico/recaptcha.git
-  revision: 60553730f019a52befdaa3dcc3aa2b47e0d117ec
-  specs:
-    recaptcha (0.2.3)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -137,6 +131,7 @@ GEM
       rake (>= 0.8.4)
       thor (~> 0.14.0)
     rake (0.8.7)
+    recaptcha (0.2.3)
     rspec (2.0.0.beta.22)
       rspec-core (= 2.0.0.beta.22)
       rspec-expectations (= 2.0.0.beta.22)
@@ -203,7 +198,7 @@ DEPENDENCIES
   pickle
   rails (= 3.0.0)
   rails3-generators
-  recaptcha!
+  recaptcha
   rspec-rails (>= 2.0.0.beta.20)
   spork
   sqlite3-ruby
