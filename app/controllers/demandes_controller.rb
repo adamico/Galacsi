@@ -16,8 +16,7 @@ class DemandesController < ApplicationController
   def create
     @demande = Demande.new(params[:demande])
     if verify_recaptcha(
-      :model => @demande,
-      :message => "Veuillez recopier les 2 mots dans le champ de vérification") && @demande.save
+      :model => @demande) && @demande.save
     #if @demande.save
       flash[:notice] = "La demande a été enregistrée."
       redirect_to root_path
