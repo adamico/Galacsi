@@ -11,5 +11,5 @@
       :as => :string,
       :hint => "numéro d'appel, distinction d'une fiche à créer (voie, indication, etc.), etc."
     = f.input :demandeur, :label => "Votre nom"
-    = recaptcha_tags(:display => {:theme => "white", :lang => "fr"})
+    = raw recaptcha_tags(:display => {:theme => "white", :lang => "fr"})
     = f.commit_button "Enregistrer"
