@@ -1,7 +1,11 @@
-haml -v 3.0.3
+haml -v 3.0.18
+RedCloth
+searchlogic
+state_machine
 devise -v 1.0.7
 cancan
-searchlogic
-rubyist-aasm -v '> 2.0.2' -s http://gems.github.com
-justinfrench-formtastic -s http://gems.github.com
-friendly_id -v 2.3
+formtastic
+activesupport
+friendly_id -v 3.1.6
+will_paginate
+recaptcha
