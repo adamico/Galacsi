@@ -1,5 +1,5 @@
 .box.news
-  %b Dernières MAJ :
+  %strong Dernières MAJ :
   %ul
     - Dci.with_recent_fiches.each do |dci|
       - if can?(:show, dci)

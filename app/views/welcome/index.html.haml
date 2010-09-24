@@ -2,15 +2,3 @@
 %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis id purus felis. Vestibulum dapibus dolor id mauris scelerisque pretium. Proin sit amet sapien bibendum augue tristique ultrices. Aliquam eu posuere tellus. Nulla sed mi a purus ornare porttitor. Nulla pellentesque laoreet enim, in pretium metus adipiscing vel. Pellentesque ullamcorper ante sit amet odio luctus vitae fermentum nisl varius. Nunc eget quam metus, quis egestas risus. Phasellus volutpat elementum quam nec luctus. Suspendisse imperdiet enim vehicula ante vehicula suscipit. Donec suscipit tellus eget mauris volutpat vitae ullamcorper nisl rutrum. Nam sagittis euismod orci nec vulputate. Morbi porttitor, ante id posuere consequat, libero mi blandit magna, at posuere dolor dolor eu massa. Donec tempus euismod mi, in tincidunt urna gravida vitae. Aliquam nec odio ligula. Pellentesque tincidunt, purus eget venenatis consectetur, felis eros dictum purus, quis suscipit velit eros id eros.
 
 %p Cras id ullamcorper turpis. Duis vitae sem arcu. Suspendisse potenti. Donec ipsum eros, rhoncus nec vulputate non, tincidunt eu felis. Pellentesque eget felis in ipsum sagittis ultricies eu id sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque lectus massa, iaculis eu rutrum at, malesuada eu elit. Nullam in volutpat tortor. Pellentesque eleifend lorem ut orci adipiscing ac semper nunc blandit. Nunc id justo a nisi consectetur cursus. Nulla facilisi. Praesent auctor scelerisque lorem, vitae scelerisque nibh tempor vitae. Nunc a enim dui, vel porta dui. Nullam malesuada consequat lacinia. Aliquam vel nulla a augue pretium ultrices. Aliquam erat volutpat. Nulla sagittis ornare pharetra. In pellentesque facilisis sem, vel posuere dolor vulputate ut. Nulla convallis lectus ut lorem mattis posuere. Mauris consectetur scelerisque ligula ac ullamcorper.
-
-- if @expired_fiches.count > 0 && can?(:valider, Fiche)
-  %p
-    %strong= "Attention vous avez #{pluralize(@expired_fiches.count, 'fiche')} à vérifier : "
-  %ul
-    - @expired_fiches.each do |fiche|
-      %li
-        - if fiche.distinction_id?
-          = link_to "#{fiche.dci.name.humanize} - #{fiche.full_distinction}", dci_fiche_path(fiche.dci, fiche)
-          (fiche validée le #{l(fiche.validation_date)})
-        - else
-          = link_to "#{fiche.dci.name.humanize}", dci_fiche_path(fiche.dci, fiche)

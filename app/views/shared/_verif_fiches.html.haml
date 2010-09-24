@@ -1,0 +1,11 @@
+- if @expired_fiches.count > 0 && can?(:valider, Fiche)
+  .box.news
+    %strong= "Attention vous avez #{pluralize(@expired_fiches.count, 'fiche')} à vérifier : "
+    %ul
+      - @expired_fiches.each do |fiche|
+        %li
+          - if fiche.distinction_id?
+            = link_to "#{fiche.dci.name.humanize} - #{fiche.full_distinction}", dci_fiche_path(fiche.dci, fiche)
+            (fiche validée le #{l(fiche.validation_date)})
+          - else
+            = link_to "#{fiche.dci.name.humanize}", dci_fiche_path(fiche.dci, fiche)
