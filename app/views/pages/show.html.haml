@@ -1,0 +1,11 @@
+- page_title = @page.title.nil? ? @page.permalink : @page.title
+
+- title page_title, false
+
+%h1.float_left= page_title
+
+- actions_buttons(@page)
+
+.clear
+
+= textilize @page.content

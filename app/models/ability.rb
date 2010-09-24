@@ -8,6 +8,7 @@ class Ability
     user ||= guest
 
     # guest abilities
+    can :show, Page
     can :read, Specialite
     can :index, ClasseTherapeutique
     can :show, ClasseTherapeutique do |ct|
@@ -32,6 +33,7 @@ class Ability
     else
       case user.role
       when "contributeur"
+        can :read, Page
         can :read, [Dci, ClasseTherapeutique, Fiche]
         can :create, Fiche
         can :update, Fiche,
@@ -44,7 +46,7 @@ class Ability
         can :manage, User do |action, object_class|
           action != :destroy
         end
-        can :manage, [Dci, Fiche, Demande, Specialite, Decision, Distinction, Source, ClasseTherapeutique]
+        can :manage, [Dci, Fiche, Demande, Specialite, Decision, Distinction, Source, ClasseTherapeutique, Page]
         can :valider, Fiche, :state => ["en_attente", "a_valider"]
         can [:invalider, :maj_date], Fiche, :state => ["valide"]
       end

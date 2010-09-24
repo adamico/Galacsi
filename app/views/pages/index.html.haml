@@ -1,0 +1,16 @@
+- title "Pages"
+
+%table
+  %tr
+    %th Nom (lien)
+    %th Titre
+    %th Contenu
+  - for page in @pages
+    %tr
+      %td= link_to h(page.permalink), page
+      %td= h page.title
+      %td= truncate h(page.content)
+      %td
+        - actions_buttons(page)
+
+%p= link_to "Nouvelle Page", new_page_path

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :pages
+
   map.devise_for :users
 
   map.resources :decisions, :demandes, :distinctions, :sources, :users
@@ -17,9 +19,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :fiches
 
-  map.root :controller => 'welcome'
-
-  map.search '/search', :controller => 'dcis', :action => 'search'
-  map.about '/about', :controller => 'welcome', :action => 'about'
+  map.root :controller => 'pages', :action => 'show', :permalink => 'home'
   map.admin '/admin', :controller => 'welcome', :action => 'admin'
+  map.search '/search', :controller => 'dcis', :action => 'search'
+
+  map.home ':permalink', :controller => 'pages', :action => 'show'
 end
