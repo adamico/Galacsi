@@ -21,14 +21,3 @@ gem 'activesupport'
 gem 'friendly_id', '3.1.6'
 gem 'will_paginate'
 gem 'recaptcha'
-
-group :cucumber do
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'cucumber-rails'
-  gem 'cucumber'
-  gem 'rspec-rails', "1.3.2"
-  gem 'spork'
-  gem 'launchy'    # So you can do Then show me the page
-  gem 'factory_girl'
-end
