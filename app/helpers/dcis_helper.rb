@@ -12,7 +12,7 @@ module DcisHelper
     haml_tag 'div.clear' do end;
   end
 
-  def search_result
+  def unfructuous_search
     pars = params[:search].delete_if {|k, v| v.blank?}
     pars = pars.to_a
     string = []

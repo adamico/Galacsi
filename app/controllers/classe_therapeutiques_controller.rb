@@ -5,7 +5,7 @@ class ClasseTherapeutiquesController < ApplicationController
   def index
     @classe_therapeutiques = ClasseTherapeutique.includes(:classifications)
   end
-  
+
   def stripped_names
     @theclasses = ClasseTherapeutique.where(:stripped_name =~ "%#{params[:term]}%")
     @theclasses.reject! { |ct| ct.classifications.empty?}

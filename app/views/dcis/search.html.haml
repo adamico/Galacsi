@@ -4,7 +4,7 @@
 
 - if params[:search]
   - if @dcis.empty?
-    - search_result
+    - unfructuous_search
   - else
     %table#list
       %thead
@@ -12,4 +12,5 @@
           %th DCI
           %th Spécialité(s)
           %th Classe(s) Thérapeutique(s)
-      = render @dcis
+      %tbody
+        = render @dcis

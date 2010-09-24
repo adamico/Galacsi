@@ -11,7 +11,7 @@
         %th Contexte
         %th Demandeur
         %th &nbsp;
-    - for demande in @demandes
+    - @demandes.each do ||
       %tr{:class => "#{cycle('odd', 'even')}"}
         %td= demande.nature
         %td= demande.name

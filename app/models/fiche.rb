@@ -48,13 +48,6 @@ class Fiche < ActiveRecord::Base
   # state machine stuff
   STATES = [["brouillon", "brouillon"], ["à valider", "a_valider"], ["valide", "valide"], ["en attente", "en_attente"]]
   state_machine :initial => :brouillon do
-    #aasm_column :state
-    #aasm_initial_state :brouillon
-
-    #aasm_state :brouillon
-    #aasm_state :a_valider
-    #aasm_state :valide
-    #aasm_state :en_attente
 
     event :initialiser do
       transition :brouillon => :a_valider

@@ -1,7 +1,6 @@
 - title @classe_therapeutique.name, false
 
-%h1.float_left
-  = @classe_therapeutique.name
+%h1.float_left= @classe_therapeutique.name
 
 %ul.edit_actions
   - if can? :edit, ClasseTherapeutique

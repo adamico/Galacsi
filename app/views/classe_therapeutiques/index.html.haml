@@ -9,6 +9,6 @@
     - if !classe_therapeutique.dcis.empty? || can?(:create, ClasseTherapeutique)
       %tr{:class => "#{cycle('odd', 'even')}"}
         %td= link_to h(classe_therapeutique.name), classe_therapeutique
-        %td= classe_therapeutique.dcis.size
+        %td= classe_therapeutique.classifications.size
         %td
           - actions_buttons(classe_therapeutique)

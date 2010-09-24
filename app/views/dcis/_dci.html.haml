@@ -16,4 +16,4 @@
             %tr
               %td.sub= link_to fiche.full_distinction, [fiche.dci, fiche]
               - if can?(:create, Fiche)
-                %td.sub.small{:class => "#{fiche.state}"}= fiche.state.humanize 
+                %td.sub.small{:class => "#{fiche.state}"}= fiche.state.humanize
