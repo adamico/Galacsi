@@ -12,8 +12,9 @@
 
 - if !@classe_therapeutique.dcis.blank?
   %table#list
-    %th Liste des DCI
-    %th &nbsp;
+    %tr
+      %th Liste des DCI
+      %th &nbsp;
     - @classe_therapeutique.dcis.each do |dci|
       %tr{:class => "#{cycle('odd', 'even')}"}
         %td= link_to dci.name, dci_path(dci)

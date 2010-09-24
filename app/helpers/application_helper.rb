@@ -22,11 +22,13 @@ module ApplicationHelper
     haml_tag('ul.actions') do
       if can? :show, object and [Fiche, Demande].include?(object.class)
         path = case object.class
-                      when Fiche; [object.dci, object]
-                      else object;
-                      end
+               when Fiche; [object.dci, object]
+               else object;
+               end
         haml_tag :li do
-          haml_concat(button_to("Voir", polymorphic_path(path), :method => :get, :class => "go_button"))
+          haml_concat(button_to("Voir", polymorphic_path(path),
+                                :method => :get,
+                                :class => "go_button"))
         end
       end
       if can? :update, object

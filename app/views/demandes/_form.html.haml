@@ -3,7 +3,10 @@
   - f.inputs do
     = f.input :nature, :label => "Nature de la demande", :as => :select, :collection => Demande::NATURES
     = f.input :name, :label => "Libellé à créer"
-    = f.input :contexte, :as => :string, :label => "Contexte de la création", :hint => "numéro d'appel, distinction d'une fiche à créer (voie, indication, etc.), etc."
+    = f.input :contexte,
+      :as => :string,
+      :label => "Contexte de la création",
+      :hint => "numéro d'appel, distinction d'une fiche à créer (voie, indication, etc.), etc."
     = f.input :demandeur, :label => "Votre nom"
     = recaptcha_tags(:display => {:theme => "white", :lang => "fr"})
     = f.commit_button 'Enregistrer'

@@ -2,7 +2,10 @@
 class Demande < ActiveRecord::Base
   validates_presence_of :name, :demandeur
   validates_uniqueness_of :name
-  NATURES = [["Nouvelle DCI", "DCI"], ["Nouvelle spécialité", "SPECIALITE"], ["Nouvelle fiche", "fiche"]]
+  NATURES = [
+    ["Nouvelle DCI", "DCI"],
+    ["Nouvelle spécialité", "SPÉCIALITÉ"],
+    ["Nouvelle fiche", "fiche"]]
 end
 
 

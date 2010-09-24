@@ -4,7 +4,11 @@ class DcisController < ApplicationController
 
   def index
     @search = Dci.search(params[:search])
-    @dcis = @search.all(:include => [:classifications, :specialites, :fiches])
+    if params[:search]
+      @dcis = @search.all(:include => [:classifications, :specialites, :fiches])
+    else
+      @dcis.all(:include => [:classifications, :specialites, {:fiches => [:distinction, :user]}])
+    end
   end
 
   def stripped_names

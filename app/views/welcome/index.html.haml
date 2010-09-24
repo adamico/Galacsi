@@ -5,7 +5,7 @@
 
 - if @expired_fiches.count > 0 && can?(:valider, Fiche)
   %p
-    %strong= "Attention vous avez : #{pluralize(@expired_fiches.count, 'fiche')} à vérifier"
+    %strong= "Attention vous avez #{pluralize(@expired_fiches.count, 'fiche')} à vérifier : "
   %ul
     - @expired_fiches.each do |fiche|
       %li
