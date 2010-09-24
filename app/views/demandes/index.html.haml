@@ -1,20 +1,23 @@
 - title "Liste des demandes de création"
 
-%table#list
-  %thead
-    %tr
-      %th Type
-      %th Libéllé
-      %th Contexte
-      %th Demandeur
-      %th &nbsp;
-  - @demandes.each do |demande|
-    %tr{:class => "#{cycle('odd', 'even')}"}
-      %td= h demande.nature
-      %td= h demande.name
-      %td= h demande.contexte
-      %td= h demande.demandeur
-      %td
-        - actions_buttons(demande)
+- if @demandes.empty?
+  %h2 La liste des demandes est vide.
+- else
+  %table#list
+    %thead
+      %tr
+        %th Type
+        %th Libéllé
+        %th Contexte
+        %th Demandeur
+        %th &nbsp;
+    - @demandes.each do |demande|
+      %tr{:class => "#{cycle('odd', 'even')}"}
+        %td= h demande.nature
+        %td= h demande.name
+        %td= h demande.contexte
+        %td= h demande.demandeur
+        %td
+          - actions_buttons(demande)
 
-%p= link_to "Nouvelle Demande de création", new_demande_path
+%p= link_to "Nouvelle demande", new_demande_path

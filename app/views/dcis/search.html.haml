@@ -1,9 +1,16 @@
-- title "Recherche"
+- title "Rechercher un médicament"
 
-- if @dcis.empty?
-  %h2 Aucun résultat
+= render "search_form"
 
-- else
-  %h2= pluralize(@dcis.size, 'résultat')
-  %ul.dcis
-    = render @dcis
+- if params[:search]
+  - if @dcis.empty?
+    - unfructuous_search
+  - else
+    %table#list
+      %thead
+        %tr
+          %th DCI
+          %th Spécialité(s)
+          %th Classe(s) Thérapeutique(s)
+      %tbody
+        = render @dcis

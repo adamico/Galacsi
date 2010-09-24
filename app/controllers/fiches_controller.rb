@@ -1,7 +1,8 @@
 # encoding: utf-8
 class FichesController < ApplicationController
 
-  load_and_authorize_resource :nested => :dci
+  load_resource :dci
+  load_and_authorize_resource :fiche, :through => :dci
 
   def index
     @search = Fiche.search(params[:search])
@@ -38,6 +39,7 @@ class FichesController < ApplicationController
   end
   
   def new
+    @dci = @fiche.dci
   end
   
   def create

@@ -157,7 +157,7 @@ h1.dci_title
   float: left
   margin-bottom: 0
 
-.news
+.news, .small
   font-size: smaller
   ul li ul
     margin-left: 1em
@@ -320,6 +320,18 @@ span
     padding: .25em
     border: 2px solid
 
+/** fiche states
+.brouillon
+  background: yellow
+.a_valider
+  background: rgb(255, 153, 51)
+.valide
+  background: rgb(0, 176, 80)
+.en_attente
+  background: red
+
+/** decisions
+
 #ci
   background: #ffa880
   border-color: red
@@ -347,6 +359,8 @@ span
 .fields
   border: 1px solid black
 
+table
+  border-collapse: collapse
 
 table th
   padding: 0 1em
@@ -370,6 +384,9 @@ table#list
     background: #DDD
   tr.odd
     background: #EEE
+  td.sub
+    border-top: 1px solid black
+    border-bottom: 1px solid black
 ul
   &.inline
     li

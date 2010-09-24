@@ -1,15 +1,21 @@
-- title "Rechercher un médicament"
+- title "Liste complète des DCIs"
 
-= render "search_form"
-
-- if params[:search]
-  - if @dcis.empty?
-    - search_result
-  - else
-    %table#list
-      %thead
-        %tr
-          %th DCI
-          %th Spécialité(s)
-          %th Classe(s) Thérapeutique(s)
-      = render @dcis
+- if @dcis.empty?
+  Aucune DCI dans la base.
+- else
+  %table#list
+    %thead
+      %tr
+        %th DCI
+        %th Spécialité(s)
+        %th Classe(s) Thérapeutique(s)
+        %th Fiches
+    %tbody
+      - @dcis.each do |dci|
+        %tr{:class => "#{cycle('odd', 'even')}"}
+          %td= link_to dci.name.humanize, dci
+          %td
+            - links_to_associations(dci, "specialites")
+          %td
+            - links_to_associations(dci, "classe_therapeutiques")
+          %td #{dci.fiches.size} (#{pluralize dci.fiches.non_valide.size, 'non validée'})

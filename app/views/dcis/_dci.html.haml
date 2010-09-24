@@ -1,5 +1,5 @@
 - if can?(:show, dci)
-  %tr
+  %tr{:class => "#{cycle('even', 'odd')}"}
     %td= link_to h(dci.name.humanize), dci
     %td= "(#{dci.commercial_names})" unless dci.commercial_names.blank?
     - unless dci.classes_therapeutiques.blank?
@@ -7,12 +7,13 @@
         %em= dci.classes_therapeutiques
 
 - if (dci.fiches.size > 1 && can?(:create, Fiche)) or dci.fiches.valide.size > 1
-  %tr
+  %tr{:class => "#{cycle('even', 'odd')}"}
     %td &nbsp;
     %td
-      %ul
+      %table
         - for fiche in dci.fiches
           - if fiche.distinction_id? && can?(:show, fiche)
-            %li
-              = link_to "#{fiche.distinction.name.humanize} : #{fiche.distinction_name.humanize}", [fiche.dci, fiche]
-              = fiche.state.humanize if can?(:create, Fiche)
+            %tr
+              %td.sub= link_to fiche.full_distinction, [fiche.dci, fiche]
+              - if can?(:create, Fiche)
+                %td.sub.small{:class => "#{fiche.state}"}= fiche.state.humanize
