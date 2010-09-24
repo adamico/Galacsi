@@ -7,13 +7,14 @@
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+  config.gem "haml"
   config.gem 'RedCloth', :lib => 'redcloth'
-  config.gem 'devise', :version => '1.0.7'
-  config.gem "cancan"
   config.gem "searchlogic"
   config.gem 'state_machine'
+  config.gem 'devise', :version => '1.0.7'
+  config.gem "cancan"
   config.gem "formtastic"
-  config.gem "haml"
+  config.gem "activesupport"
   config.gem "sqlite3-ruby", :lib => 'sqlite3'
   config.gem "friendly_id", :version => ">= 2.3"
   config.gem "recaptcha", :lib => "recaptcha/rails"

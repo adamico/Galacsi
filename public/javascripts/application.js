@@ -2,7 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 //
 function remove_fields(link) {
-  $(link).prev("input[type=hidden]").val = "1";
+  $(link).prev("input[type=hidden]").val("1");
   $(link).closest(".fields").hide();
 }
 
