@@ -40,7 +40,7 @@ class DcisController < ApplicationController
   end
   
   def edit
-    # @dci is loaded in before_filtergit@heroku.com:galacsi.git
+    # @dci is loaded in before_filter
   end
   
   def update

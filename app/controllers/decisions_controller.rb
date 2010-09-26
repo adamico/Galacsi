@@ -28,7 +28,7 @@ class DecisionsController < ApplicationController
     if @decision.update_attributes(params[:decision])
       flash[:notice] = "Successfully updated decision."
       redirect_to @decision
-    elsegit@heroku.com:galacsi.git
+    else
       render :action => 'edit'
     end
   end
