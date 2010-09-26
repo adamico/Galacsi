@@ -7,7 +7,7 @@ class DcisController < ApplicationController
     if params[:search]
       @dcis = @search.all(:include => [:classifications, :specialites, :fiches])
     else
-      @dcis.all(:include => [:classifications, :specialites, {:fiches => [:distinction, :user]}])
+      @dcis = Dci.all(:include => [:classifications, :specialites, {:fiches => [:distinction, :user]}])
     end
   end
 
