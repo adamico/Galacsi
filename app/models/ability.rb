@@ -22,7 +22,7 @@ class Ability
     can :names, Specialite
 
     can :read, Fiche, :state => "valide"
-    
+
     can :create, Demande
 
     # admin abilities

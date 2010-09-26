@@ -1,3 +1,4 @@
+- @expired_fiches = Fiche.expired
 - if @expired_fiches.count > 0 && can?(:valider, Fiche)
   .box.news
     %strong= "Attention vous avez #{pluralize(@expired_fiches.count, 'fiche')} à vérifier : "
