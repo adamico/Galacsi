@@ -1,5 +1,6 @@
 #encoding: utf-8
 class Fiche < ActiveRecord::Base
+  # associations
   belongs_to :decision
   belongs_to :dci, :counter_cache => true
   belongs_to :distinction
@@ -11,6 +12,17 @@ class Fiche < ActiveRecord::Base
   accepts_nested_attributes_for :sources,
     :reject_if => proc { |attrs| attrs[:name].blank? },
     :allow_destroy => true
+
+  require 'comma'
+  # comma CSV support
+  comma do
+
+    dci :name => "DCI"
+    full_distinction 'Distinction'
+    decision :name => "Décision"
+    state 'Validation'
+    createur
+  end
 
   delegate :name, :to => :dci, :allow_nil => true, :prefix => true
 

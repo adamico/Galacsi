@@ -7,6 +7,10 @@ class FichesController < ApplicationController
   def index
     @search = Fiche.search(params[:search])
     @fiches = @search.all(:include => [:distinction, :user, :dci])
+    respond_to do |format|
+      format.html
+      format.csv { render :csv => @fiches}
+    end
   end
 
   def initialiser

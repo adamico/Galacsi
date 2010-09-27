@@ -24,6 +24,8 @@
           %td= h fiche.createur if fiche.user
           %td
             - actions_buttons(fiche)
+  %p= link_to "Exporter en fichier .csv", fiches_path(:format => :csv,
+      :search => params[:search])
 
 - else
   %h3 Pas de résultats
