@@ -22,4 +22,4 @@ gem 'friendly_id', '3.1.6'
 gem 'will_paginate'
 gem 'recaptcha', :require => "recaptcha/rails"
 gem 'fastercsv'
-gem 'crafterm-comma', :require => 'comma'
+gem 'comma'

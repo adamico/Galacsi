@@ -5,10 +5,9 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  protected
-
-  def permission_denied
-    flash[:error] = "Sorry, you are not allowed to access that page."
-    redirect_to root_url
+  rescue_from CanCan::AccessDenied do |exception|
+    exception.default_message = "Vous n'êtes pas authorisé à voir cette page, veuillez vous connecter!"
+    flash[:error] = exception.message
+    redirect_to new_user_session_path
   end
 end
