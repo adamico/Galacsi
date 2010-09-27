@@ -1,10 +1,10 @@
 class DecisionsController < ApplicationController
+  load_and_authorize_resource :decision
   def index
     @decisions = Decision.all
   end
   
   def show
-    @decision = Decision.find(params[:id])
   end
   
   def new
@@ -22,11 +22,9 @@ class DecisionsController < ApplicationController
   end
   
   def edit
-    @decision = Decision.find(params[:id])
   end
   
   def update
-    @decision = Decision.find(params[:id])
     if @decision.update_attributes(params[:decision])
       flash[:notice] = "Successfully updated decision."
       redirect_to @decision
@@ -36,7 +34,6 @@ class DecisionsController < ApplicationController
   end
   
   def destroy
-    @decision = Decision.find(params[:id])
     @decision.destroy
     flash[:notice] = "Successfully destroyed decision."
     redirect_to decisions_url

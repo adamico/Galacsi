@@ -1,6 +1,7 @@
 *.html
 .DS_Store
 *.swp
+*.swo
 *~
 log/*.log
 tmp/**/*
