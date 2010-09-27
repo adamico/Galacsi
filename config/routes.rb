@@ -1,9 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :pages
-
   map.devise_for :users
 
-  map.resources :decisions, :demandes, :distinctions, :sources, :users
+  map.resources :decisions, :demandes, :distinctions, :sources, :users, :fiches, :pages
   map.resources :dcis, :collection => { :search => :get, :stripped_names => :get }
   map.resources :classe_therapeutiques, :collection => { :stripped_names => :get }
   map.resources :specialites, :collection => { :names => :get }
@@ -17,10 +15,7 @@ ActionController::Routing::Routes.draw do |map|
     }
   end
 
-  map.resources :fiches
-
   map.root :controller => 'pages', :action => 'show', :permalink => 'home'
-  map.admin '/admin', :controller => 'welcome', :action => 'admin'
   map.search '/search', :controller => 'dcis', :action => 'search'
 
   map.home ':permalink', :controller => 'pages', :action => 'show'
