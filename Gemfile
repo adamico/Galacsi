@@ -20,4 +20,4 @@ gem 'formtastic'
 gem 'activesupport'
 gem 'friendly_id', '3.1.6'
 gem 'will_paginate'
-gem 'recaptcha'
+gem 'recaptcha', :require => "recaptcha/rails"

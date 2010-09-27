@@ -7,11 +7,12 @@ namespace :db do
     seed_decisions
     seed_distinctions
     seed_classes
+    seed_pages
+    #seed_dcis
+    #seed_fiches
   end
 end
 
-#seed_dcis
-#seed_fiches
 
 def seed_decisions
   decisions = [ "contre-indiqué", "à discuter", "compatible", "sous conditions"]
@@ -48,4 +49,10 @@ end
 
 def seed_fiches
   
+end
+
+def seed_pages
+  Page.create(:permalink => "home", :title => "Bienvenue!")
+  Page.create(:permalink => "about", :title => "A propos")
+  Page.create(:permalink => "disclaimer", :title => "Mentions légales")
 end
