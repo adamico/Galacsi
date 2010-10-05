@@ -1,3 +1,4 @@
+# galacsi rails3 Gemfile
 source :gemcutter
 
 gem 'rails', '3.0.0'
