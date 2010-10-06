@@ -1,4 +1,6 @@
-source :rubygems
+# galacsi rails2 Gemfile
+
+source :gemcutter
 
 gem 'pg', :group => :production
 
