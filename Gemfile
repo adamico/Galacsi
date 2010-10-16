@@ -1,4 +1,4 @@
-source :gemcutter
+source :rubygems
 
 gem 'pg', :group => :production
 
@@ -9,7 +9,7 @@ group :development do
   gem 'annotate-models', '1.0.4'
 end
 
-gem 'rails', '2.3.9'
+gem 'rails', '2.3.10'
 gem 'haml', '3.0.18'
 gem 'RedCloth'
 gem 'searchlogic'
