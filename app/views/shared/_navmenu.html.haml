@@ -13,8 +13,7 @@
     %li= link_to "Spécialités", specialites_path
     - if can? :read, User
       %li= link_to "Demandes", demandes_path
-      %li= link_to("Admin", "#", :class => "anchorclass", :rel => "submenu1")
-    %li= link_to "A propos", home_path('about')
-    %li= link_to "Mentions légales", home_path('disclaimer')
+      %li= link_to("Admin", "#", :class => "anchorclass", :rel => "admin_menu")
+    %li= link_to("A propos", "#", :class => "anchorclass", :rel => "pages_menu")
 
 = render 'shared/anylinkcss_menu'

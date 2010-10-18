@@ -1,7 +1,12 @@
-.anylinkcss#submenu1
+.anylinkcss#admin_menu
   %ul
     %li= link_to "Décisions", decisions_path
     %li= link_to "Distinctions", distinctions_path
     %li= link_to "Utilisateurs", users_path
     %li= link_to "Sources", sources_path
     %li= link_to "Pages", pages_path
+
+.anylinkcss#pages_menu
+  %ul
+    %li= link_to "Qui sommes nous ?", home_path('about')
+    %li= link_to "Mentions légales", home_path('disclaimer')
