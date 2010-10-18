@@ -1,5 +1,1 @@
-rvm --create 1.8.7@galacsi-rails2
-
-if [[ -s galacsi-rails2.gems ]] ; then
-  rvm gemset import galacsi-rails2.gems
-fi
+rvm 1.8.7@galacsi-rails2
