@@ -2,16 +2,16 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
     %title= h(yield(:title) || "Untitled")
-    = render 'shared/stylesheets'
+    = render 'stylesheets'
     = javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.5.custom.min', 'jrails', 'application', 'jquery.selectboxes.min'
-    = render 'shared/anylinkcssmenu'
+    = render 'anylinkcssmenu'
 
     = yield(:head)
 
   %body
     #header
       %h1= link_to "GalacSI", root_path
-      = render :partial => 'shared/navmenu'
+      = render 'navmenu'
 
     #content
       #left
@@ -24,10 +24,10 @@
       #right
         .box
           - user_navlinks
-        = render 'shared/news' unless Dci.with_recent_fiches.empty?
-        = render 'shared/verif_fiches'
+        = render 'news' unless Dci.with_recent_fiches.empty?
+        = render 'verif_fiches'
         .box
           %p Vous n'avez pas trouvé ce que vous cherchiez ?
           %p= link_to "Demander une création", new_demande_path
 
-    = render 'shared/footer'
+    = render 'footer'
