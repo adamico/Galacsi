@@ -222,6 +222,15 @@ div#fiches {
   clear: both; }
 div.fiche {
   margin: 5px 0; }
+  div.fiche h3 {
+    clear: both;
+    margin: 0 0.5em 0 0;
+    padding: 0; }
+  div.fiche h4 {
+    clear: both;
+    margin: 0;
+    margin-top: 2px;
+    margin-left: 1em; }
   div.fiche div.fiche_footer {
     background: black;
     color: white;
@@ -238,15 +247,6 @@ div.fiche {
   div.fiche div.resume {
     padding: 0 0.5em;
     margin: 0; }
-    div.fiche div.resume h3 {
-      clear: both;
-      margin: 0 0.5em 0 0;
-      padding: 0; }
-    div.fiche div.resume h4 {
-      clear: both;
-      margin: 0;
-      margin-top: 2px;
-      margin-left: 1em; }
     div.fiche div.resume p {
       margin: 0;
       margin-left: 2em;
@@ -255,8 +255,6 @@ div.fiche {
         font-size: small;
         color: #777777;
         font-weight: bold; }
-      div.fiche div.resume p.retrait {
-        margin-left: 1em; }
       div.fiche div.resume p.alert {
         margin-left: 0;
         color: red;
@@ -424,3 +422,10 @@ input.destroy_button {
   border-top-color: red;
   border-bottom-color: #990000;
   border-right-color: #990000; }
+
+.retrait {
+  margin-left: 1em; }
+  .retrait p {
+    margin: 0;
+    margin-left: 2em;
+    margin-top: 2px; }
