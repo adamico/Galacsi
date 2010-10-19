@@ -23,8 +23,8 @@ module DcisHelper
       haml_concat "dans les noms de"
 
       field = case string[0][1]
-      when /classe/; "CLASSE THÉRAPEUTIQUE"
-      when /specialite/; "SPÉCIALITÉ"
+      when /classe/; "CLASSE THERAPEUTIQUE"
+      when /specialite/; "SPECIALITE"
       else
         "DCI"
       end

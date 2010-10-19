@@ -1,10 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
   map.devise_for :users
 
-  map.resources :decisions, :demandes, :distinctions, :sources, :users, :fiches, :pages
+  map.resources :decisions, :demandes, :distinctions, :users, :fiches, :pages
   map.resources :dcis, :collection => { :search => :get, :stripped_names => :get }
   map.resources :classe_therapeutiques, :collection => { :stripped_names => :get }
   map.resources :specialites, :collection => { :names => :get }
+
+  map.resources :sources, :collection => { :names => :get }
 
   map.resources :dcis do |dci|
     dci.resources :fiches, :member => { 

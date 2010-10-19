@@ -43,7 +43,7 @@ class FichesController < ApplicationController
   end
   
   def new
-    @dci = @fiche.dci
+    @dci = Dci.find(params[:dci_id])
   end
   
   def create

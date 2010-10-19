@@ -10,6 +10,7 @@ function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g");
   $(link).parent().before(content.replace(regexp, new_id));
+  source_autocomplete();
 }
 
 function toggle_div(id) {
@@ -41,21 +42,23 @@ $(function() {
   $("#demande_nature").selectOptions(type_demande);
 });
 
+var source_autocomplete = function() {
+  $(".source_autocomplete").autocomplete({
+    source: '/sources/names.js',
+    minLength: 2
+  });
+};
+
 $(function() {
+  source_autocomplete();
   $("#search_stripped_name_like").autocomplete({
     source: '/dcis/stripped_names.js',
     minLength: 2
   });
-});
-
-$(function() {
   $("#search_classe_therapeutiques_stripped_name_like").autocomplete({
     source: '/classe_therapeutiques/stripped_names.js',
     minLength: 2
   });
-});
-
-$(function() {
   $("#search_specialites_name_like").autocomplete({
     source: '/specialites/names.js',
     minLength: 2

@@ -33,6 +33,7 @@ class Ability
     else
       case user.role
       when "contributeur"
+        can [:read, :names], Source
         can :read, Page
         can :read, [Dci, ClasseTherapeutique, Fiche]
         can :create, Fiche
@@ -47,6 +48,7 @@ class Ability
           action != :destroy
         end
         can :manage, [Dci, Fiche, Demande, Specialite, Decision, Distinction, Source, ClasseTherapeutique, Page]
+        can :names, Source
         can :valider, Fiche, :state => ["en_attente", "a_valider"]
         can [:invalider, :maj_date], Fiche, :state => ["valide"]
       end
