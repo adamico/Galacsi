@@ -286,6 +286,8 @@ div.fiche.non_valide {
     color: #0099ff; }
   div.fiche.non_valide div.resume {
     background: #552222; }
+  div.fiche.non_valide div.argumentaire table td {
+    color: black; }
   div.fiche.non_valide div.fiche_footer {
     background: white;
     color: black; }
