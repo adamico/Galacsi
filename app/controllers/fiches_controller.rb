@@ -1,8 +1,8 @@
 # encoding: utf-8
 class FichesController < ApplicationController
 
-  load_resource :dci
-  load_and_authorize_resource :fiche, :through => :dci
+  authorize_resource :dci
+  load_and_authorize_resource :fiche, :through => :dci, :shallow => true
 
   def index
     @search = Fiche.search(params[:search])
