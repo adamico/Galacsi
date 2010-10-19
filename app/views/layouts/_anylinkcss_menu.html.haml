@@ -8,5 +8,6 @@
 
 .anylinkcss#pages_menu
   %ul
-    %li= link_to "Qui sommes nous ?", home_path('about')
-    %li= link_to "Mentions légales", home_path('disclaimer')
+    - pages = Page.all.reject {|p| p.permalink == 'home'}
+    - pages.each do |page|
+      %li= link_to page.title_or_permalink, home_path(page.permalink)
