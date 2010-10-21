@@ -19,7 +19,7 @@ class Ability
     can :show, Dci do |dci|
       dci && !dci.fiches.valide.empty?
     end
-    can :stripped_names, [Dci, ClasseTherapeutique]
+    can :stripped_names, [Dci, Specialite]
     can :names, Specialite
 
     can :read, Fiche, :state => "valide"
