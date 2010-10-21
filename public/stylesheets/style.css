@@ -99,11 +99,8 @@ ul#nav {
   background: white; }
 
 ul {
-  padding: 0;
-  margin: 0; }
-
-li {
-  list-style-type: none; }
+  padding-top: 0;
+  margin-top: 0; }
 
 .clear {
   clear: both;
@@ -202,6 +199,11 @@ form p.inline-hints {
 abbr {
   cursor: help; }
 
+ul.plain {
+  margin: 0;
+  padding: 0;
+  list-style: inside; }
+
 ul.edit_actions {
   width: auto;
   float: right;
@@ -209,7 +211,7 @@ ul.edit_actions {
   background: black;
   color: white; }
   ul.edit_actions li {
-    float: left; }
+    display: inline; }
   ul.edit_actions a {
     color: white;
     padding-left: 0.5em;
@@ -217,6 +219,12 @@ ul.edit_actions {
     ul.edit_actions a:hover {
       color: black;
       background: white; }
+
+ul.inline {
+  margin: 0;
+  padding: 0; }
+  ul.inline li {
+    list-style-type: none; }
 
 div#fiches {
   clear: both; }
@@ -231,6 +239,11 @@ div.fiche {
     margin: 0;
     margin-top: 2px;
     margin-left: 1em; }
+  div.fiche .alert {
+    color: red;
+    font-size: small; }
+  div.fiche h4.inline {
+    display: inline; }
   div.fiche div.fiche_footer {
     background: black;
     color: white;
@@ -255,10 +268,9 @@ div.fiche {
         font-size: small;
         color: #777777;
         font-weight: bold; }
-      div.fiche div.resume p.alert {
-        margin-left: 0;
-        color: red;
-        font-size: small; }
+      div.fiche div.resume p.inline {
+        margin: 0;
+        display: inline; }
     div.fiche div.resume ul {
       margin-left: 2em; }
     div.fiche div.resume a {

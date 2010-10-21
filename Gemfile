@@ -14,6 +14,7 @@ end
 gem 'rails', '2.3.10'
 gem 'haml', '3.0.18'
 gem 'RedCloth'
+gem 'acts_as_sanitiled'
 gem 'searchlogic'
 gem 'state_machine'
 gem 'devise', '1.0.7'

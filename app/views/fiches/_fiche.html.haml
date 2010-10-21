@@ -6,52 +6,48 @@
       %h3 Résumé
 
       - unless fiche.passage_lait.blank?
-        %p.retrait
-          %b Passage dans le lait :
-          = fiche.passage_lait
+        %h4.inline Passage dans le lait :
+        %p.inline= fiche.passage_lait
 
       - if fiche.risque_accumulation?
-        %p.retrait
-          %b= "Risque d'accumulation dans le lait"
+        %h4 Risque d'accumulation dans le lait
       - if fiche.risque_dim_lactation?
         %p.retrait
-          %b= "Risque théorique de diminution de la lactation"
+          %b Risque théorique de diminution de la lactation
 
       %h4 Recul :
-      .retrait= textilize(fiche.ei)
+      = fiche.ei
       - if fiche.ei_theoriques?
-        %p.retrait= "Risque théorique :"
-        .retrait= textilize(fiche.ei_theoriques)
+        %p.retrait
+          %b Risque théorique :
+        .retrait= fiche.ei_theoriques
 
       - if fiche.conditions?
-        %p.retrait
-          %b Allaitement possible si :
-          = fiche.conditions
+        %h4 Allaitement possible si :
+        = fiche.conditions
 
       - if fiche.surveillance?
-        %p.retrait
-          %b Surveillance :
-          = fiche.surveillance
+        %h4 Surveillance :
+        = fiche.surveillance
         %p.surveillance
           La poursuite du traitement ou de l'allaitement doit être reconsidéré et le CRPV prévenu si l'un des troubles cités est observé
 
       - unless fiche.alternatives.blank?
-        %p.retrait
-          %b Alternatives :
-        %ul
+        %h4 Alternatives :
+        %ul.inline
           - fiche.alternatives.each do |a|
             - link = !a.commercial_names.blank? ? "#{a.name} (#{a.commercial_names})" : "#{a.name}"
             %li
               = link_to link, dci_path(a)
 
+      .clear
       - unless fiche.arg_autre.blank?
-        %p.retrait
-          %b Autres argumentaires :
-          = fiche.arg_autre
+        %h4 Autres argumentaires :
+        = fiche.arg_autre
 
       - if fiche.suivi == "oui"
-        %p.alert
-          %b Attention :
+        %h4.inline.alert Attention :
+        %p.inline.alert
           pour cette molécule un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur ou
           %u mieux de la patiente concernée.
 
@@ -87,7 +83,7 @@
           - unless fiche.dose_par_rapport_dmap.blank? and fiche.dose_par_rapport_dp.blank?
             %th Dose estimée ingérée par l'enfant
             %td
-              %ul
+              %ul.plain
                 %li= "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
                 - if fiche.dose_par_rapport_dp?
                   %li= "#{fiche.dose_par_rapport_dp} de la posologie pédiatrique"
@@ -103,10 +99,10 @@
       - unless fiche.sources.empty?
         %h4 Sources :
         .retrait
-          %p= fiche.sources.map(&:name).join(', ')
+          = fiche.sources.map(&:name).join(', ')
       %h4 Articles :
       .retrait
-        %p= textilize_without_paragraph(fiche.articles)
+        = fiche.articles
 
     .fiche_footer
       - if can? :create, Fiche
@@ -136,7 +132,7 @@
                   = "#{fiche.createur} (#{fiche.user.role})"
 
       .clear
-      %ul.edit_actions
+      %ul.edit_actions.inline
         %li= link_to("Modifier cette fiche", edit_dci_fiche_path(fiche.dci, fiche)) if can? :update, fiche
         %li= link_to("Détruire cette fiche", [fiche.dci, fiche], {:confirm => 'Etes-vous sûr ?', :method => :delete}) if can? :destroy, fiche
       .clear

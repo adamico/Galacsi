@@ -1,5 +1,7 @@
 #encoding: utf-8
 class Fiche < ActiveRecord::Base
+  acts_as_sanitiled :commentaire, :ei, :conditions, :surveillance, :arg_autre, :ei_theoriques, :articles
+
   # associations
   belongs_to :decision
   belongs_to :dci, :counter_cache => true

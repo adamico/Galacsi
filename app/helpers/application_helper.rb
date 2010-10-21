@@ -19,7 +19,7 @@ module ApplicationHelper
   end
 
   def actions_buttons(object)
-    haml_tag('ul.actions') do
+    haml_tag('ul.actions.inline') do
       if can? :show, object and [Fiche, Demande].include?(object.class)
         path = case object.class
                when Fiche; [object.dci, object]
