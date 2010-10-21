@@ -1,35 +1,12 @@
-one:
-  name: MyString
-
-two:
-  name: MyString
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # == Schema Information
+# Schema version: 20101021093522
 #
 # Table name: fiches
 #
-#  id                    :integer         not null, primary key
+#  id                    :integer         primary key
 #  name                  :string(255)
-#  created_at            :datetime
-#  updated_at            :datetime
+#  created_at            :timestamp
+#  updated_at            :timestamp
 #  state                 :string(255)
 #  decision_id           :integer
 #  validation_date       :date
@@ -63,5 +40,30 @@ two:
 #  pic_lacte             :string(255)
 #  poso_pedia_dose       :string(255)
 #  user_id               :integer
+#  articles              :text
 #
+
+one:
+  name: MyString
+
+two:
+  name: MyString
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,13 +1,13 @@
 # == Schema Information
-# Schema version: 20100924142056
+# Schema version: 20101021093522
 #
 # Table name: pages
 #
-#  id         :integer         not null, primary key
+#  id         :integer         primary key
 #  permalink  :string(255)
 #  content    :text
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :timestamp
+#  updated_at :timestamp
 #  title      :string(255)
 #
 

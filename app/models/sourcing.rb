@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20101021093522
+#
+# Table name: sourcings
+#
+#  id         :integer         primary key
+#  fiche_id   :integer
+#  source_id  :integer
+#  created_at :timestamp
+#  updated_at :timestamp
+#
+
 class Sourcing < ActiveRecord::Base
   belongs_to :fiche
   belongs_to :source

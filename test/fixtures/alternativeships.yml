@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20101021093522
+#
+# Table name: alternativeships
+#
+#  id             :integer         primary key
+#  fiche_id       :integer
+#  alternative_id :integer
+#  created_at     :timestamp
+#  updated_at     :timestamp
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
@@ -8,15 +20,4 @@ two:
   fiche_id: 1
   alternative_id: 1
 
-
-# == Schema Information
-#
-# Table name: alternativeships
-#
-#  id             :integer         not null, primary key
-#  fiche_id       :integer
-#  alternative_id :integer
-#  created_at     :datetime
-#  updated_at     :datetime
-#
 

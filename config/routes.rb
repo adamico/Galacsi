@@ -3,8 +3,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :decisions, :demandes, :distinctions, :users, :fiches, :pages
   map.resources :dcis, :collection => { :search => :get, :stripped_names => :get }
-  map.resources :classe_therapeutiques, :collection => { :stripped_names => :get }
-  map.resources :specialites, :collection => { :names => :get }
+  map.resources :classe_therapeutiques
+  map.resources :specialites, :collection => { :stripped_names => :get }
 
   map.resources :sources, :collection => { :names => :get }
 

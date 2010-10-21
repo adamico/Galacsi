@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101019134429) do
+ActiveRecord::Schema.define(:version => 20101021093522) do
 
   create_table "alternativeships", :force => true do |t|
     t.integer   "fiche_id"
@@ -76,46 +76,51 @@ ActiveRecord::Schema.define(:version => 20101019134429) do
   end
 
   create_table "fiches", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "state"
-    t.integer  "decision_id"
-    t.date     "validation_date"
-    t.text     "commentaire"
-    t.text     "distinction_name"
-    t.integer  "dci_id"
-    t.string   "suivi"
-    t.date     "revalider_le"
-    t.text     "ei"
-    t.text     "conditions"
-    t.text     "surveillance"
-    t.string   "biodisponibilite"
-    t.string   "dose_par_rapport_dmap"
-    t.string   "dose_par_rapport_dp"
-    t.string   "liaison_pp"
-    t.string   "vol_dist"
-    t.string   "tmax"
-    t.string   "thalf"
-    t.string   "pm"
-    t.string   "passage_lait"
-    t.string   "rapport_lp"
-    t.boolean  "has_poso_pedia"
-    t.boolean  "metabolites_actifs"
-    t.boolean  "risque_accumulation"
-    t.boolean  "risque_dim_lactation"
-    t.string   "poso_pedia_des"
-    t.text     "arg_autre"
-    t.integer  "distinction_id"
-    t.text     "ei_theoriques"
-    t.boolean  "de_choix"
-    t.string   "pic_lacte"
-    t.string   "poso_pedia_dose"
-    t.integer  "user_id"
-    t.text     "articles"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "state"
+    t.integer   "decision_id"
+    t.date      "validation_date"
+    t.text      "commentaire"
+    t.text      "distinction_name"
+    t.integer   "dci_id"
+    t.string    "suivi"
+    t.date      "revalider_le"
+    t.text      "ei"
+    t.text      "conditions"
+    t.text      "surveillance"
+    t.string    "biodisponibilite"
+    t.string    "dose_par_rapport_dmap"
+    t.string    "dose_par_rapport_dp"
+    t.string    "liaison_pp"
+    t.string    "vol_dist"
+    t.string    "tmax"
+    t.string    "thalf"
+    t.string    "pm"
+    t.string    "passage_lait"
+    t.string    "rapport_lp"
+    t.boolean   "has_poso_pedia"
+    t.boolean   "metabolites_actifs"
+    t.boolean   "risque_accumulation"
+    t.boolean   "risque_dim_lactation"
+    t.string    "poso_pedia_des"
+    t.text      "arg_autre"
+    t.integer   "distinction_id"
+    t.text      "ei_theoriques"
+    t.boolean   "de_choix"
+    t.string    "pic_lacte"
+    t.string    "poso_pedia_dose"
+    t.integer   "user_id"
+    t.text      "articles"
   end
 
   add_index "fiches", ["decision_id"], :name => "index_produits_on_decision_id"
+
+  create_table "fiches_sources", :id => false, :force => true do |t|
+    t.integer "fiche_id"
+    t.integer "source_id"
+  end
 
   create_table "pages", :force => true do |t|
     t.string    "permalink"
@@ -146,16 +151,17 @@ ActiveRecord::Schema.define(:version => 20101019134429) do
   end
 
   create_table "sourcings", :force => true do |t|
-    t.integer  "fiche_id"
-    t.integer  "source_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "fiche_id"
+    t.integer   "source_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "specialites", :force => true do |t|
     t.string    "name"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.string    "stripped_name"
   end
 
   create_table "users", :force => true do |t|

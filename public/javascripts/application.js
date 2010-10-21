@@ -55,12 +55,8 @@ $(function() {
     source: '/dcis/stripped_names.js',
     minLength: 2
   });
-  $("#search_classe_therapeutiques_stripped_name_like").autocomplete({
-    source: '/classe_therapeutiques/stripped_names.js',
-    minLength: 2
-  });
-  $("#search_specialites_name_like").autocomplete({
-    source: '/specialites/names.js',
+  $("#search_specialites_stripped_name_like").autocomplete({
+    source: '/specialites/stripped_names.js',
     minLength: 2
   });
 });

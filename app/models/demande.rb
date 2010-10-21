@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 20101021093522
+#
+# Table name: demandes
+#
+#  id         :integer         primary key
+#  nature     :string(255)
+#  name       :string(255)
+#  created_at :timestamp
+#  updated_at :timestamp
+#  contexte   :text
+#  demandeur  :string(255)
+#
+
 #encoding: utf-8
 class Demande < ActiveRecord::Base
   validates_presence_of :name, :demandeur
@@ -10,17 +24,4 @@ class Demande < ActiveRecord::Base
 end
 
 
-
-# == Schema Information
-#
-# Table name: demandes
-#
-#  id         :integer         not null, primary key
-#  nature     :string(255)
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  contexte   :text
-#  demandeur  :string(255)
-#
 

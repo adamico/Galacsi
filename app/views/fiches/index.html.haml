@@ -10,7 +10,8 @@
   %table#list
     %thead
       %tr
-        %th DCI
+        %th= order @search, :by => :updated_at, :as => "Dernière modif."
+        %th= order @search, :by => :dci_stripped_name, :as => "DCI"
         %th Distinction
         %th Validation
         %th Créateur
@@ -18,6 +19,7 @@
     %tbody
       - @fiches.each do |fiche|
         %tr{:class => "#{cycle('odd', 'even')}"}
+          %td= l fiche.updated_at
           %td= h fiche.dci_name
           %td= h fiche.full_distinction
           %td{:class => "#{fiche.state}"}= h fiche.state.humanize
