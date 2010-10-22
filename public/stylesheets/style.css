@@ -386,6 +386,9 @@ table#list {
   table#list td.sub {
     border-top: 1px solid black;
     border-bottom: 1px solid black; }
+  table#list th.time, table#list td.time {
+    font-size: 0.8em;
+    width: 5em; }
 
 ul.inline li {
   float: left;

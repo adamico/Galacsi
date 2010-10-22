@@ -1,14 +1,11 @@
 - title "Liste des Classes Thérapeutiques"
 
 %table#list
-  %tr
-    %th Nom
-    %th DCI
-    %th &nbsp;
   - @classe_therapeutiques.each do |classe_therapeutique|
-    - if !classe_therapeutique.dcis.empty? || can?(:create, ClasseTherapeutique)
+    - if !classe_therapeutique.dcis.with_valid_fiches.empty? || can?(:create, ClasseTherapeutique)
       %tr{:class => "#{cycle('odd', 'even')}"}
         %td= link_to h(classe_therapeutique.name), classe_therapeutique
-        %td= classe_therapeutique.classifications.size
-        %td
-          - actions_buttons(classe_therapeutique)
+        - if can?(:create, ClasseTherapeutique)
+          %td= pluralize(classe_therapeutique.classifications.size, 'dci')
+          %td
+            - actions_buttons(classe_therapeutique)

@@ -93,16 +93,18 @@
               = fiche.poso_pedia_dose
               = "a partir de #{fiche.poso_pedia_des}" if fiche.poso_pedia_des?
 
-    %p= link_to_toggle_div "Montrer/Cacher les sources", "sources_#{fiche.id}"
+    - unless fiche.sources.empty? && fiche.articles.blank?
+      %p= link_to_toggle_div "Montrer/Cacher les sources", "sources_#{fiche.id}"
 
-    %div{:classe => "sources", :id => "sources_#{fiche.id}", :style => "display: none;"}
-      - unless fiche.sources.empty?
-        %h4 Sources :
-        .retrait
-          = fiche.sources.map(&:name).join(', ')
-      %h4 Articles :
-      .retrait
-        = fiche.articles
+      %div{:classe => "sources", :id => "sources_#{fiche.id}", :style => "display: none;"}
+        - unless fiche.sources.empty?
+          %h4 Sources :
+          .retrait
+            = fiche.sources.map(&:name).join(', ')
+        - unless fiche.articles.blank?
+          %h4 Articles :
+          .retrait
+            = fiche.articles
 
     .fiche_footer
       - if can? :create, Fiche

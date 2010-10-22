@@ -2,7 +2,9 @@
 
 %table#list
   - @specialites.each do |specialite|
-    %tr{:class => "#{cycle('odd', 'even')}"}
-      %td= link_to h(specialite.name), specialite
-      %td
-        - actions_buttons(specialite)
+    - if !specialite.dcis.with_valid_fiches.empty? || can?(:create, Specialite)
+      %tr{:class => "#{cycle('odd', 'even')}"}
+        %td= link_to h(specialite.name), specialite
+        - if can?(:create, ClasseTherapeutique)
+          %td
+            - actions_buttons(specialite)

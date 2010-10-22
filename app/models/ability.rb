@@ -9,10 +9,13 @@ class Ability
 
     # guest abilities
     can :show, Page
-    can :read, Specialite
+    can :index, Specialite
+    can :show, Specialite do |sp|
+      !sp.dcis.with_valid_fiches.empty?
+    end
     can :index, ClasseTherapeutique
     can :show, ClasseTherapeutique do |ct|
-      ct && !ct.dcis.empty?
+      !ct.dcis.with_valid_fiches.empty?
     end
 
     can :search, Dci

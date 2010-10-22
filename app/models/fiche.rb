@@ -1,3 +1,4 @@
+#encoding: utf-8
 # == Schema Information
 # Schema version: 20101021093522
 #
@@ -43,7 +44,6 @@
 #  articles              :text
 #
 
-#encoding: utf-8
 class Fiche < ActiveRecord::Base
   acts_as_sanitiled :commentaire, :ei, :conditions, :surveillance, :arg_autre, :ei_theoriques, :articles
 

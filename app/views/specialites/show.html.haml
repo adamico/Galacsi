@@ -1,18 +1,19 @@
-- title @specialite.name
+- title @specialite.name, false
 
-%ul.edit_actions
-  - if can? :edit, Specialite
-    %li= link_to "Modifier cette spécialité", edit_specialite_path(@specialite)
-  - if can? :delete, Specialite
-    %li= link_to "Détruire cette spécialité", @specialite, :confirm => 'Are you sure?', :method => :delete
+%h1.float_left= @specialite.name
+
+- actions_buttons(@specialite)
+
+.clear
 
 - if !@specialite.dcis.blank?
   %h2 Composition :
   %table#list
     - @specialite.dcis.each do |dci|
-      %tr{:class => "#{cycle('odd', 'even')}"}
-        %td= link_to h(dci.name), dci_path(dci)
-        %td
-          - actions_buttons(dci)
+      - if can? :show, dci
+        %tr{:class => "#{cycle('odd', 'even')}"}
+          %td= link_to h(dci.name), dci_path(dci)
+          %td
+            - actions_buttons(dci)
 - else
   Cette possibilité ne doit pas exister... pas de spécialités sans DCI normalement
