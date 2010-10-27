@@ -1,9 +1,9 @@
 fr:
   devise:
     sessions:
-      link: 'Connection'
-      signed_in: 'Connection effectuée avec succès.'
-      signed_out: 'Déconnection effectuée avec succès.'
+      link: 'Connexion'
+      signed_in: 'Connexion effectuée avec succès.'
+      signed_out: 'Déconnexion effectuée avec succès.'
       unauthenticated: 'Vous devez vous connecter ou vous enregistrer pour pouvoir continuer.'
       unconfirmed: 'Vous devez confirmer votre compte pour pouvoir continuer.'
       locked: 'Votre compte est bloqué.'

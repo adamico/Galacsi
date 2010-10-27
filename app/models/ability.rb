@@ -20,7 +20,7 @@ class Ability
 
     can :search, Dci
     can :show, Dci do |dci|
-      dci && !dci.fiches.valide.empty?
+      !dci.fiches.valide.empty?
     end
     can :stripped_names, [Dci, Specialite]
     can :names, Specialite
