@@ -18,7 +18,6 @@ class Ability
       !ct.dcis.with_valid_fiches.empty?
     end
 
-    can :search, Dci
     can :show, Dci do |dci|
       !dci.fiches.valide.empty?
     end
@@ -26,16 +25,19 @@ class Ability
     can :names, Specialite
 
     can :read, Fiche, :state => "valide"
+    can :search, Fiche
 
     can :create, Demande
 
     # admin abilities
     if user.admin?
       can :manage, :all
+      can :search, [Fiche, Dci]
     # other roles abilities
     else
       case user.role
       when "contributeur"
+        can :search, [Fiche, Dci]
         can [:read, :names], Source
         can :read, Page
         can :read, [Dci, ClasseTherapeutique, Fiche]
@@ -47,6 +49,7 @@ class Ability
           :state => "brouillon",
           :user_id => user.id
       when "valideur"
+        can :search, [Fiche, Dci]
         can :manage, User do |action, object_class|
           action != :destroy
         end

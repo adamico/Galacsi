@@ -20,7 +20,7 @@ class DcisController < ApplicationController
     @search = Dci.search(params[:search])
     @dcis = @search.all(:include => [:classifications, :specialites, {:fiches => [:distinction, :user]}] )
   end
-  
+
   def show
     # @dci is loaded in before_filter
   end

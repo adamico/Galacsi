@@ -9,16 +9,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sources, :collection => { :names => :get }
 
   map.resources :dcis do |dci|
-    dci.resources :fiches, :member => { 
-      :initialiser => :put,
-      :valider => :put,
-      :invalider => :put,
-      :maj_date => :put
-    }
+    dci.resources :fiches,
+      :member => { 
+        :initialiser => :put,
+        :valider => :put,
+        :invalider => :put,
+        :maj_date => :put
+      }
   end
 
   map.root :controller => 'pages', :action => 'show', :permalink => 'home'
-  map.search '/search', :controller => 'dcis', :action => 'search'
+  map.search '/search', :controller => 'fiches', :action => 'search'
 
   map.home ':permalink', :controller => 'pages', :action => 'show'
 end

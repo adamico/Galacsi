@@ -1,8 +1,7 @@
 # encoding: utf-8
 class FichesController < ApplicationController
 
-  authorize_resource :dci
-  load_and_authorize_resource :fiche, :through => :dci, :shallow => true
+  load_and_authorize_resource :fiche
 
   def index
     @search = Fiche.search(params[:search])
@@ -11,6 +10,13 @@ class FichesController < ApplicationController
       format.html
       format.csv { render :csv => @fiches}
     end
+  end
+
+  def search
+    #@scope = Fiche.accessible_by(current_ability)
+    @search = Fiche.search(params[:search])
+    @fiches = @search.all(:include => [:distinction, :dci])
+    @fiches.reject! { |fiche| fiche.state != "valide" } unless current_user
   end
 
   def initialiser

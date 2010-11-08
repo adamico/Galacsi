@@ -5,8 +5,18 @@ Feature: searching dcis
 
   Background:
     Given a home_page exists
-      And 4 dcis exist
-      And 4 specialites exist
+      And the following dcis exist:
+        | name |
+        | dci1 |
+        | dci2 |
+        | dci3 |
+        | dci4 |
+      And the following specialites exist:
+        | name |
+        | specialite1 |
+        | specialite2 |
+        | specialite3 |
+        | specialite4 |
       And 2 classe_therapeutiques exist
       And the following compositions exist:
         | dci           | specialite          |
@@ -20,15 +30,19 @@ Feature: searching dcis
         | the 2nd dci   | the first classe_therapeutique|
         | the 3rd dci   | the 2nd classe_therapeutique  |
         | the 4th dci   | the 2nd classe_therapeutique  |
-      And 3 distinctions exist
+      And the following distinctions exist:
+        | name      |
+        | Voie      |
+        | Indication|
+        | Dosage    |
       And the following fiches exist:
         | dci           | distinction           | distinction_name | state     |
-        | the first dci | the first distinction | dn1              | valide    |
-        | the first dci | the first distinction | dn2              | brouillon |
-        | the 2nd dci   | the 2nd distinction   | dn3              | a_valider |
-        | the 2nd dci   | the 2nd distinction   | dn4              | a_valider |
-        | the 3rd dci   | the 3rd distinction   | dn5              | valide    |
-        | the 4th dci   | the 3rd distinction   | dn6              | en_attente|
+        | the first dci | the first distinction | Orale            | valide    |
+        | the first dci | the first distinction | IV               | brouillon |
+        | the 2nd dci   | the 2nd distinction   | Cardiologie      | a_valider |
+        | the 2nd dci   | the 2nd distinction   | Antalgique       | a_valider |
+        | the 3rd dci   | the 3rd distinction   | Haut             | valide    |
+        | the 4th dci   | the 3rd distinction   | Bas              | en_attente|
 
   Scenario Outline: unfructuous search
     When I go to the search page
@@ -40,10 +54,10 @@ Feature: searching dcis
       | Par principe actif | bla  | DCI         |
       | Par spécialité     | bla  | SPECIALITE  |
 
-  Scenario: unauth users should only see dcis with valid fiches
+  Scenario: unauth users can only see valid fiches
     When I go to the search page
     And I press "OK"
-    Then I should see the following search result:
-      | DCI     | Spécialité(s) | Classe(s) Thérapeutique(s)|
-      | Dci9    | Specialite9   | Classe5                   |
-      | Dci11   | Specialite11  | Classe6                   |
+    Then I should see "2 résultats"
+      And I should see the following search results:
+        | Dci1 (Voie : Orale) |
+        | Dci3 (Dosage : Haut)|

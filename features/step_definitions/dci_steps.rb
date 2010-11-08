@@ -11,7 +11,7 @@ Then(/^I should see the following dcis:$/) do |expected_table|
   expected_table.diff!(actual_table)
 end
 
-Then(/^I should see the following search result:$/) do |expected_table|
+Then(/^I should see the following search results:$/) do |expected_table|
   actual_table = table(tableish('table#list tr', 'th,td'))
   puts "\nactual table :\n" + actual_table.hashes.inspect
   puts "\nexpected table: \n" + expected_table.hashes.inspect
