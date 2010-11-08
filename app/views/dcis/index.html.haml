@@ -9,7 +9,7 @@
         %th DCI
         %th Spécialité(s)
         %th Classe(s) Thérapeutique(s)
-        %th Fiches
+        %th Fiche(s)
     %tbody
       - @dcis.each do |dci|
         %tr{:class => "#{cycle('odd', 'even')}"}
@@ -18,4 +18,6 @@
             - links_to_associations(dci, "specialites")
           %td
             - links_to_associations(dci, "classe_therapeutiques")
-          %td #{dci.fiches.size} (#{pluralize dci.fiches.non_valide.size, 'non validée'})
+          %td
+            = dci.fiches.size
+            = "(" + pluralize(dci.fiches.non_valide.size, 'non validée') + ")" unless dci.fiches.non_valide.size == 0

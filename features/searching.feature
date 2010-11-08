@@ -1,47 +1,38 @@
-@wip
-Feature: search for fiches by multiple criteria
-  In order to know if drugs may be taken while breastfeeding
-  As a guest
-  I want to search for fiches by different criteria
+Feature: search fiches
+  In order to quickly access non validated fiches
+  As a valideur
+  I want to list fiches without opening dcis and filter them by state
 
-  Scenario Outline: guests search dcis by name
-    Given the following dcis exist
-      | name         |
-      | lamotrigine  |
-      | azathioprine |
-      | amoxicilline |
-      | tartampionat |
-      | castorama    |
-      | blablabla    |
-      | acétylsalicylique (acide)|
-    When I go to the search page
-      And I fill in the search form with "<pattern>"
-      And I press "Ok"
-    Then I should see "<count_result>"
-    Scenarios:
-      | pattern | count_result    |
-      | ine     | 3 résultats     |
-      | lam     | 1 résultat      |
-      | tar     | 1 résultat      |
-      | cas     | 1 résultat      |
-      | ace     | 1 résultat      |
-      | acé     | 1 résultat      |
+  Background:
+    Given a home_page exists
+    And I am logged in as a valideur
+    And the following distinctions exist
+      | name      |
+      | indication|
+      | voie      |
+    And the following dcis exist
+      | name |
+      | dci1 |
+      | dci2 |
+      | dci3 |
+    And the following fiches exist
+      | dci         | distinction         | distinction_name | state     |
+      | the 1st dci | the 1st distinction | ind1             | brouillon |
+      | the 1st dci | the 1st distinction | ind2             | brouillon |
+      | the 2nd dci | the 2nd distinction | voie1            | a_valider |
+      | the 3rd dci | the 2nd distinction | voie2            | a_valider |
 
-  Scenario: search dci or specialite by name
-    Given a specialite exists with name: "aspirine"
-      And a dci exists
-      And a composition exists with specialite: the specialite, dci: the dci
-      And another dci exists with name: "aspartame"
-    When I go to the search page
-      And I fill in the search form with "asp"
-      And I press "Ok"
-    Then I should see "2 résultats"
+  Scenario: show list of all fiches when no filter
+    When I go to the fiches page
+    And I press "OK"
+    Then I should see "Indication : Ind1"
+    And I should see "Indication : Ind2"
+    And I should see "Voie : Voie1"
+    And I should see "Voie : Voie2"
 
-  Scenario: search by classe therapeutique belonging
-    Given a classe_therapeutique exists with name: "analgésique"
-      And a dci exists
-      And a classification exists with classe_therapeutique: the classe_therapeutique, dci: the dci
-    When I go to the search page
-      And I fill in the search form with "ana"
-      And I press "Ok"
-    Then I should see "1 résultat"
+  Scenario: filter fiches by state
+    When I go to the fiches page
+    And I select "brouillon" from "Etat de validation"
+    And I press "OK"
+    Then I should see "Indication : Ind1"
+    Then I should see "Indication : Ind2"

@@ -30,7 +30,7 @@ Factory.define :fiche_en_attente, :parent => :fiche do |f|
 end
 
 Factory.define(:distinction) do |f|
-  f.name "indication"
+  f.sequence(:name) {|n| "dist#{n}"}
 end
 
 Factory.define :dci do |f|
