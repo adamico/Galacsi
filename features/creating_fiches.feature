@@ -3,9 +3,17 @@ Feature: Creating fiches for dci
   As a galacsi contributor
   I want to create fiches according to different criteria
 
-  Scenario: adding alternatives to fiches
-    Given I am logged in as a contributeur
+  Background:
+    Given a home_page exists
       And a dci exists
+      And I am logged in as a contributeur
+
+  Scenario: creating a blank fiche
+    When I go to the dci's new fiche page
+    And I submit
+    Then 1 fiches should exist
+
+  Scenario: creating a fiche with alternatives
     When I go to the dci's new fiche page
       And I fill in "Alternatives" with "desloratadine, cétirizine, ampicilline"
       And I submit
@@ -13,3 +21,5 @@ Feature: Creating fiches for dci
       And I should see "desloratadine"
       And I should see "cétirizine"
       And I should see "ampicilline"
+
+  Scenario: creating a fiche with sources

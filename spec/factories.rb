@@ -13,10 +13,6 @@ Factory.define :fiche do |f|
   f.revalider_le "#{Time.now.advance(:months => -4).to_date}"
   f.commentaire 'blabla'
   f.distinction_name 'hta'
-  f.association :decision
-  f.association :dci
-  f.association :distinction
-  f.association :user
   f.suivi 'oui'
   f.state 'brouillon'
 end
@@ -39,8 +35,6 @@ end
 
 Factory.define :dci do |f|
   f.sequence(:name) {|n| "dci#{n}" }
-  f.specialites { |specialites| [specialites.association(:specialite)]}
-  f.classe_therapeutiques { |classe_therapeutiques| [classe_therapeutiques.association(:classe_therapeutique)]}
 end
 
 Factory.define :decision do |f|
