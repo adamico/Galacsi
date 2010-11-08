@@ -73,6 +73,8 @@ class Fiche < ActiveRecord::Base
 
   delegate :name, :to => :dci, :allow_nil => true, :prefix => true
 
+  alias_scope :valide, lambda { state_is("valide")}
+
   attr_protected :state_event
   attr_reader :createur
   attr_writer :alternative_names

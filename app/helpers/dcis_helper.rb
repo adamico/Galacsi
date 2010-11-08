@@ -19,10 +19,11 @@ module DcisHelper
     end
     haml_tag :h3 do
       haml_concat "Aucun résultat pour"
-      haml_concat "\"#{string[0][0]}\""
+      haml_concat "'" + "#{string[0][0]}" + "'"
       haml_concat "dans les noms de"
 
       field = case string[0][1]
+      #FIXME: remove classe therapeutique
       when /classe/; "CLASSE THERAPEUTIQUE"
       when /specialite/; "SPECIALITE"
       else
