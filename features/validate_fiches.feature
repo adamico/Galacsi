@@ -20,9 +20,10 @@ Feature: validate fiches
       | position | action               |
       | first    | see "Initialiser"    |
       | 2nd      | see "Valider"        |
-      | 3th      | see "Invalider"      |
+      | 3th      | see "Mettre en attente"|
       | 4th      | see "Valider"        |
 
+  @wip
   Scenario: validate a fiche
     Given a dci exists
     And a fiche exists with dci: the dci, state: "valide"
@@ -61,9 +62,10 @@ Feature: validate fiches
     When I go to the dci's fiche page
     Then I should not see "Mettre à jour"
 
+  @wip
   Scenario: update validation date
     Given a dci exists
-    And a fiche exists with dci: the dci, validation_date: "2008-12-7", state: "valide"
+    And a fiche_valide exists with dci: the dci, validation_date: "2008-12-7"
     When I go to the dci's fiche page
       And I follow "Mettre à jour"
     Then I should see "La date de validation a été mise à jour avec succès."
@@ -75,7 +77,7 @@ Feature: validate fiches
       And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction: the distinction, distinction_name: "nuova"
     When I go to the homepage
     Then I should see "1 fiche à vérifier"
-      And I should see "Questa (indication : nuova)"
+      And I should see "Questa - Indication : Nuova"
 
   Scenario: show link to expired validation fiches
     Given a dci exists
@@ -83,11 +85,10 @@ Feature: validate fiches
       And a distinction exist with name: "indication"
       And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction: the distinction, distinction_name: "nuova"
       And I go to the homepage
-    When I follow "Questa (indication : nuova)"
+    When I follow "Questa - Indication : Nuova"
     Then I should see "Questa"
     And I should see "Indication : Nuova"
 
-  @focus
   Scenario: hide link to expired validation fiches for guests
     Given I am not authenticated
     And a dci exists

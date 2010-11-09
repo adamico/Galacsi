@@ -4,8 +4,7 @@ Feature: Creating fiches for dci
   I want to create fiches according to different criteria
 
   Background:
-    Given a home_page exists
-      And a dci exists
+    Given a dci exists
       And I am logged in as a contributeur
 
   Scenario: creating a blank fiche

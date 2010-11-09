@@ -8,12 +8,12 @@
 
 - if params[:search]
   - if @fiches.empty?
-    %h2 Aucun résultat
+    - unfructuous_search
   - else
     %h2= pluralize(@fiches.size, "résultat")
     %table#list
       %tbody
         - @fiches.each do |fiche|
           %tr
-            %td= link_to h(fiche.dci_name), dci_path(fiche.dci)
+            %td= link_to h(fiche.dci_name.humanize), dci_path(fiche.dci)
             %td= fiche.full_distinction

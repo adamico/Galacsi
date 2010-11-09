@@ -5,18 +5,19 @@ Feature: show fiches for a dci
 
   Background:
     Given a dci exists with name: "thefirst"
-    And another dci exists with name: "the2nd"
-    And the following fiches exist:
-      | dci           | distinction_name | state     |
-      | the first dci | dist1            | valide    |
-      | the first dci | dist2            | brouillon |
-      | the 2nd dci   | dist3            | a_valider |
-      | the 2nd dci   | dist4            | a_valider |
+      And a distinction exists with name: "dist1"
+      And another dci exists with name: "the2nd"
+      And the following fiches exist:
+        | dci           | distinction           |distinction_name | state     |
+        | the first dci | the first distinction |dn1              | valide    |
+        | the first dci | the first distinction |dn2              | brouillon |
+        | the 2nd dci   | the first distinction |dn3              | a_valider |
+        | the 2nd dci   | the first distinction |dn4              | a_valider |
 
   Scenario: a guest should only see validated fiches
     When I go to the first dci page
-    Then I should see "Dist1"
-    But I should not see "dist2"
+    Then I should see "Dist1 : Dn1"
+    But I should not see "Dist1 : Dn2"
 
   Scenario: hide validation field for guest users
     When I go to the first dci page

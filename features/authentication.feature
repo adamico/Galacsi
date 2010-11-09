@@ -3,9 +3,6 @@ Feature: user besides guest must authenticate
   A user
   Should authenticate themselves to the application
 
-  Background:
-    Given a home_page exists
-
   Scenario Outline: user tries to authenticate
     Given a user exists with username: "myuser", password: "mypass"
     When they visit the user authentication page

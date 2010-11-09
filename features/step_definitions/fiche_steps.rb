@@ -28,3 +28,8 @@ Then(/^I should see fiches table$/) do |table|
   # table is a Cucumber::Ast::Table
   table.diff!(tableish('table#fiches tr', 'td,th'))
 end
+
+Then(/^I should see the following search results:$/) do |expected_table|
+  actual_table = table(tableish('table#list tr', 'th,td'))
+  expected_table.diff!(actual_table)
+end

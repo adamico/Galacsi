@@ -3,8 +3,7 @@ Feature: list classes therapeutiques
   Unauthorised users should not see all c.t.
 
   Background:
-    Given a home_page exists
-      And the following classe_therapeutiques exist:
+    Given the following classe_therapeutiques exist:
       | name      |
       | classe_nok|
       | classe_ok |

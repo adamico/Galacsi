@@ -4,13 +4,12 @@ Feature: searching dcis
   I want to search dcis by name or specialite
 
   Background:
-    Given a home_page exists
-      And the following dcis exist:
-        | name |
-        | dci1 |
-        | dci2 |
-        | dci3 |
-        | dci4 |
+    Given the following dcis exist:
+      | name |
+      | dci1 |
+      | dci2 |
+      | dci3 |
+      | dci4 |
       And the following specialites exist:
         | name |
         | specialite1 |
@@ -46,11 +45,11 @@ Feature: searching dcis
 
   Scenario Outline: unfructuous search
     When I go to the search page
-      And I fill in "<search field>" with "<value>"
+      And I fill in "<field>" with "<value>"
       And I press "OK"
-    Then I should see "Aucun résultat pour '<value>' dans les noms de <search type>"
+    Then I should see "Aucun résultat pour '<value>' dans les noms de <type>"
     Examples:
-      | search field       | value| search type |
+      | field              | value| type        |
       | Par principe actif | bla  | DCI         |
       | Par spécialité     | bla  | SPECIALITE  |
 
@@ -59,5 +58,5 @@ Feature: searching dcis
     And I press "OK"
     Then I should see "2 résultats"
       And I should see the following search results:
-        | Dci1 (Voie : Orale) |
-        | Dci3 (Dosage : Haut)|
+        | Dci1 | Voie : Orale |
+        | Dci3 | Dosage : Haut|

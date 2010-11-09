@@ -6,8 +6,7 @@ Feature: manage classes therapeutiques
   To DCIs
 
   Background:
-    Given a home_page exists
-      And I am logged in as a valideur
+    Given I am logged in as a valideur
 
   Scenario: adding a classe therapeutique to existing dcis
     Given a dci exists
