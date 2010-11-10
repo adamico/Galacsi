@@ -1,3 +1,14 @@
+class Decision < ActiveRecord::Base
+  validates_presence_of :name
+  
+  has_many :fiches
+end
+
+
+
+
+
+
 # == Schema Information
 # Schema version: 20101021093522
 #
@@ -10,14 +21,4 @@
 #  updated_at  :timestamp
 #  abbr        :string(255)
 #
-
-class Decision < ActiveRecord::Base
-  validates_presence_of :name
-  
-  has_many :fiches
-end
-
-
-
-
 

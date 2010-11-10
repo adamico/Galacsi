@@ -1,3 +1,13 @@
+class Source < ActiveRecord::Base
+  has_many :fiches, :through => :sourcings
+  has_many :sourcings, :dependent => :destroy
+  
+  validates_presence_of :name
+end
+
+
+
+
 # == Schema Information
 # Schema version: 20101021093522
 #
@@ -10,13 +20,4 @@
 #  created_at :timestamp
 #  updated_at :timestamp
 #
-
-class Source < ActiveRecord::Base
-  has_many :fiches, :through => :sourcings
-  has_many :sourcings, :dependent => :destroy
-  
-  validates_presence_of :name
-end
-
-
 

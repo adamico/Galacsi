@@ -1,3 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  fiche: 
+  source: 
+
+two:
+  fiche: 
+  source: 
+
 # == Schema Information
 # Schema version: 20101021093522
 #
@@ -10,12 +20,3 @@
 #  updated_at :timestamp
 #
 
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  fiche: 
-  source: 
-
-two:
-  fiche: 
-  source: 

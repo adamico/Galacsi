@@ -1,3 +1,9 @@
+class Page < ActiveRecord::Base
+  def title_or_permalink
+    title.nil? ? permalink : title
+  end
+end
+
 # == Schema Information
 # Schema version: 20101021093522
 #
@@ -11,8 +17,3 @@
 #  title      :string(255)
 #
 
-class Page < ActiveRecord::Base
-  def title_or_permalink
-    title.nil? ? permalink : title
-  end
-end

@@ -1,16 +1,3 @@
-# == Schema Information
-# Schema version: 20101021093522
-#
-# Table name: decisions
-#
-#  id          :integer         primary key
-#  name        :string(255)
-#  description :text
-#  created_at  :timestamp
-#  updated_at  :timestamp
-#  abbr        :string(255)
-#
-
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
@@ -24,4 +11,18 @@ two:
 
 
 
+
+
+# == Schema Information
+# Schema version: 20101021093522
+#
+# Table name: decisions
+#
+#  id          :integer         primary key
+#  name        :string(255)
+#  description :text
+#  created_at  :timestamp
+#  updated_at  :timestamp
+#  abbr        :string(255)
+#
 

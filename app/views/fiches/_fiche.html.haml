@@ -123,7 +123,7 @@
 
               - if fiche.validation_date? && fiche.state == 'valide'
                 %td
-                  %b Date de dernière MAJ :
+                  %b Dernière MAJ :
                   = l(fiche.validation_date)
                   - if can? :maj_date, Fiche
                     = link_to("=> Mettre à jour", maj_date_dci_fiche_path(fiche.dci, fiche), :method => :put) unless fiche.validation_date == Time.now.to_date

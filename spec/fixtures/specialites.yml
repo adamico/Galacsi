@@ -1,3 +1,11 @@
+one:
+  name: MyString
+
+two:
+  name: MyString
+
+
+
 # == Schema Information
 # Schema version: 20101021093522
 #
@@ -9,11 +17,4 @@
 #  updated_at    :timestamp
 #  stripped_name :string(255)
 #
-
-one:
-  name: MyString
-
-two:
-  name: MyString
-
 

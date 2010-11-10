@@ -13,7 +13,6 @@ class FichesController < ApplicationController
   end
 
   def search
-    #@scope = Fiche.accessible_by(current_ability)
     @search = Fiche.search(params[:search])
     @fiches = @search.all(:include => [:distinction, :dci])
     @fiches.reject! { |fiche| fiche.state != "valide" } unless current_user
@@ -29,7 +28,6 @@ class FichesController < ApplicationController
   def valider
     @dci = @fiche.dci
     @fiche.valider!
-    @fiche.update_attribute :validation_date, Time.now.to_date
     flash[:notice] = "La fiche a été validée."
     redirect_to @fiche.dci
   end

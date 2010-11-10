@@ -1,15 +1,3 @@
-# == Schema Information
-# Schema version: 20101021093522
-#
-# Table name: specialites
-#
-#  id            :integer         primary key
-#  name          :string(255)
-#  created_at    :timestamp
-#  updated_at    :timestamp
-#  stripped_name :string(255)
-#
-
 class Specialite < ActiveRecord::Base
   has_many :compositions, :dependent => :destroy
   has_many :dcis, :through => :compositions
@@ -26,4 +14,17 @@ class Specialite < ActiveRecord::Base
   end
 end
 
+
+
+# == Schema Information
+# Schema version: 20101021093522
+#
+# Table name: specialites
+#
+#  id            :integer         primary key
+#  name          :string(255)
+#  created_at    :timestamp
+#  updated_at    :timestamp
+#  stripped_name :string(255)
+#
 

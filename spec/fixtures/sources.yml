@@ -1,3 +1,16 @@
+one:
+  name: MyString
+  nature: MyString
+  url: MyString
+
+two:
+  name: MyString
+  nature: MyString
+  url: MyString
+
+
+
+
 # == Schema Information
 # Schema version: 20101021093522
 #
@@ -10,16 +23,4 @@
 #  created_at :timestamp
 #  updated_at :timestamp
 #
-
-one:
-  name: MyString
-  nature: MyString
-  url: MyString
-
-two:
-  name: MyString
-  nature: MyString
-  url: MyString
-
-
 

@@ -1,3 +1,28 @@
+one:
+  name: MyString
+
+two:
+  name: MyString
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # == Schema Information
 # Schema version: 20101021093522
 #
@@ -42,28 +67,4 @@
 #  user_id               :integer
 #  articles              :text
 #
-
-one:
-  name: MyString
-
-two:
-  name: MyString
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

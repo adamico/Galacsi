@@ -1,30 +1,116 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe Fiche do
-  before(:each) do
-    @fiche = Fiche.new
+  subject {Factory(:fiche)}
+  it {should be_valid}
+  describe "#full_distinction" do
+    context "when #distinction is nil" do
+      it "should return #distinction_name only" do
+        subject.distinction_id = nil
+        subject.distinction_name = "dn1"
+        subject.full_distinction.should == "Dn1"
+      end
+    end
+    context "when #distinction_name is blank" do
+      it "should return #distinction.name" do
+        distinction = Factory(:distinction, :name => "dist1")
+        subject.distinction_name = ""
+        subject.distinction = distinction
+        subject.full_distinction.should == "Dist1"
+      end
+    end
+    it "should join #distinction.name and #distinction_name with ' : '" do
+      distinction = Factory(:distinction, :name => "dist1")
+      subject.distinction = distinction
+      subject.distinction_name = "dn1"
+      subject.full_distinction.should == "Dist1 : Dn1"
+    end
   end
-  it "should be valid" do
-    @fiche.should be_valid
+  describe "#createur" do
+    it "should return the fiche's creator username" do
+      user = Factory(:user)
+      subject.user = user
+      subject.createur.should == user.username
+    end
+  end
+  describe "#alternative_names" do
+    it "should return names of alternatives joined by ', '" do
+      2.times do |n|
+        subject.alternatives << Factory(:dci, :name => "dci#{n+1}")
+      end
+      subject.alternative_names.should == "dci1, dci2"
+    end
+  end
+  # scopes
+  describe ".expired" do
+    it "should return expired fiches" do
+      Factory(:fiche, :revalider_le => 2.months.from_now)
+      exp_fiche = Factory(:fiche_expiree)
+      Fiche.expired.should == [exp_fiche]
+    end
+  end
+  describe ".valide" do
+    it "should return fiches with 'valide' state only" do
+      Factory(:fiche)
+      val_fiches = []
+      3.times do
+        val_fiches << Factory(:fiche_valide)
+      end
+      Fiche.valide.should == val_fiches
+    end
+  end
+  describe ".non_valide" do
+    it "should return all fiches where state is not 'valide'" do
+      Factory(:fiche_valide)
+      nval_fiches = [
+        Factory(:fiche),
+        Factory(:fiche_en_attente),
+        Factory(:fiche_a_valider)
+      ]
+      Fiche.non_valide.should == nval_fiches
+    end
+  end
+  describe ".recent" do
+    it "should return recently validated fiches only" do
+      Factory(:fiche, :validation_date => 3.weeks.ago)
+      recent_fiche = Factory(:fiche_recente)
+      Fiche.recent.should == [recent_fiche]
+    end
+  end
+  # workflow state machine callbacks
+  describe "#valider" do
+    subject {Factory(:fiche_a_valider)}
+    it "should update validation_date" do
+      subject.valider!
+      subject.validation_date.should == Time.now.to_date
+    end
+    context "when #revalider_le is nil" do
+      it "should set expiration date" do
+        subject.revalider_le = nil
+        subject.valider!
+        subject.revalider_le.should == 3.months.from_now.to_date
+      end
+    end
+    context "when #revalider_le is already set" do
+      it "should use set date" do
+        subject.revalider_le = 6.months.from_now.to_date
+        subject.valider!
+        subject.revalider_le.should == 6.months.from_now.to_date
+      end
+    end
+  end
+  describe "#invalider" do
+    subject {Factory(:fiche_valide)}
+    it "should set #validation_date to nil" do
+      subject.invalider!
+      subject.validation_date.should == nil
+    end
+    it "should set #revalider_le to nil" do
+      subject.invalider!
+      subject.revalider_le.should == nil
+    end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # == Schema Information

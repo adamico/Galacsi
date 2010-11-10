@@ -1,3 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  dci_id: 1
+  specialite_id: 1
+
+two:
+  dci_id: 1
+  specialite_id: 1
+
+
+
 # == Schema Information
 # Schema version: 20101021093522
 #
@@ -9,15 +21,4 @@
 #  created_at    :timestamp
 #  updated_at    :timestamp
 #
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  dci_id: 1
-  specialite_id: 1
-
-two:
-  dci_id: 1
-  specialite_id: 1
-
 

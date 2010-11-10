@@ -1,18 +1,3 @@
-# == Schema Information
-# Schema version: 20101021093522
-#
-# Table name: dcis
-#
-#  id                    :integer         primary key
-#  name                  :string(255)
-#  created_at            :timestamp
-#  updated_at            :timestamp
-#  stripped_name         :string(255)
-#  cached_slug           :string(255)
-#  classifications_count :integer         default(0)
-#  fiches_count          :integer         default(0)
-#
-
 class Dci < ActiveRecord::Base
   require 'active_support'
   validates_presence_of :name
@@ -75,4 +60,20 @@ end
 
 
 
+
+
+# == Schema Information
+# Schema version: 20101021093522
+#
+# Table name: dcis
+#
+#  id                    :integer         primary key
+#  name                  :string(255)
+#  created_at            :timestamp
+#  updated_at            :timestamp
+#  stripped_name         :string(255)
+#  cached_slug           :string(255)
+#  classifications_count :integer         default(0)
+#  fiches_count          :integer         default(0)
+#
 

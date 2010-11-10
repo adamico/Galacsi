@@ -9,8 +9,6 @@ Factory.define :home_page, :parent => :page do |f|
 end
 
 Factory.define :fiche do |f|
-  f.validation_date "#{Time.now.to_date}"
-  f.revalider_le "#{Time.now.advance(:months => -4).to_date}"
   f.commentaire 'blabla'
   f.distinction_name 'hta'
   f.suivi 'oui'
@@ -23,10 +21,22 @@ end
 
 Factory.define :fiche_valide, :parent => :fiche do |f|
   f.state "valide"
+  f.validation_date Time.now.to_date
+  f.revalider_le 3.months.from_now.to_date
 end
 
 Factory.define :fiche_en_attente, :parent => :fiche do |f|
   f.state "en_attente"
+end
+
+Factory.define :fiche_expiree, :parent => :fiche do |f|
+  f.state "valide"
+  f.revalider_le 1.day.ago.to_date
+end
+
+Factory.define :fiche_recente, :parent => :fiche do |f|
+  f.state "valide"
+  f.validation_date Time.now.to_date
 end
 
 Factory.define(:distinction) do |f|
