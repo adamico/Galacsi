@@ -23,15 +23,16 @@ two:
 
 
 
+
 # == Schema Information
-# Schema version: 20101021093522
+# Schema version: 20101110112900
 #
 # Table name: fiches
 #
-#  id                    :integer         primary key
+#  id                    :integer         not null, primary key
 #  name                  :string(255)
-#  created_at            :timestamp
-#  updated_at            :timestamp
+#  created_at            :datetime
+#  updated_at            :datetime
 #  state                 :string(255)
 #  decision_id           :integer
 #  validation_date       :date
@@ -66,5 +67,6 @@ two:
 #  poso_pedia_dose       :string(255)
 #  user_id               :integer
 #  articles              :text
+#  published_at          :date
 #
 

@@ -67,13 +67,11 @@ class Fiche < ActiveRecord::Base
   state_machine :initial => :brouillon do
 
     after_transition any => :valide do |fiche, transition|
-      fiche.validation_date = Time.now.to_date
-      fiche.revalider_le = 3.months.from_now.to_date unless fiche.revalider_le
+      fiche.publish!
     end
 
     after_transition any => :en_attente do |fiche, transition|
-      fiche.validation_date = nil
-      fiche.revalider_le = nil
+      fiche.revoke!
     end
 
     event :initialiser do
@@ -86,6 +84,28 @@ class Fiche < ActiveRecord::Base
 
     event :invalider do
       transition :valide => :en_attente
+    end
+  end
+
+  # publication
+  state_machine :published_at, :initial => :unpublished do
+    event :publish do
+      transition all => :published
+    end
+    event :revoke do
+      transition all => :unpublished
+    end
+    state :unpublished, :value => nil
+    state :published,
+      :if => lambda {|value| !value.nil?},
+      :value => lambda {Time.now.to_date}
+    after_transition any => :published do |fiche, transition|
+      fiche.validation_date = Time.now.to_date
+      fiche.revalider_le = 3.months.from_now.to_date unless fiche.revalider_le
+    end
+    after_transition any => :unpublished do |fiche, transition|
+      fiche.validation_date = nil
+      fiche.revalider_le = nil
     end
   end
 
@@ -103,15 +123,16 @@ end
 
 
 
+
 # == Schema Information
-# Schema version: 20101021093522
+# Schema version: 20101110112900
 #
 # Table name: fiches
 #
-#  id                    :integer         primary key
+#  id                    :integer         not null, primary key
 #  name                  :string(255)
-#  created_at            :timestamp
-#  updated_at            :timestamp
+#  created_at            :datetime
+#  updated_at            :datetime
 #  state                 :string(255)
 #  decision_id           :integer
 #  validation_date       :date
@@ -146,5 +167,6 @@ end
 #  poso_pedia_dose       :string(255)
 #  user_id               :integer
 #  articles              :text
+#  published_at          :date
 #
 
