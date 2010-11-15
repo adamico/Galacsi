@@ -114,19 +114,31 @@
               %td
                 %b Etat de validation :
                 %span{:class => "#{fiche.state}"}= fiche.state.humanize
-                - if fiche.state == "brouillon" && can?(:initialiser, Fiche)
-                  = link_to "=> Initialiser", initialiser_dci_fiche_path(fiche.dci, fiche), :method => :put
-                - elsif fiche.state == "valide" && can?(:invalider, Fiche)
-                  = link_to "=> Mettre en attente", invalider_dci_fiche_path(fiche.dci, fiche), :method => :put
-                - elsif (fiche.state == "a_valider" || fiche.state == "en_attente") && can?(:valider, fiche)
-                  = link_to "=> Valider", valider_dci_fiche_path(fiche.dci, fiche), :method => :put
+                - form_for [fiche.dci, fiche],
+                  :html => {:class => "state_form"} do |f|
+                  = f.label "=> "
+                  = f.collection_select :state_event,
+                    fiche.state_transitions, :event, :human_to_name, {},
+                    { :style => "display: none;"}
+                  = f.submit fiche.state_transitions.first.event.to_s.humanize
 
-              - if fiche.validation_date? && fiche.state == 'valide'
+              - unless fiche.published_at.nil?
                 %td
                   %b Dernière MAJ :
-                  = l(fiche.validation_date)
-                  - if can? :maj_date, Fiche
-                    = link_to("=> Mettre à jour", maj_date_dci_fiche_path(fiche.dci, fiche), :method => :put) unless fiche.validation_date == Time.now.to_date
+                  = l(fiche.published_at)
+                  %br/
+                  - if fiche.expired?
+                    %b Fiche expirée !
+                    - if can?(:edit, Fiche)
+                      - form_for [fiche.dci, fiche],
+                        :html => {:class => "state_form"} do |f|
+                        = f.label "=> "
+                        = f.select :published_at_event,
+                          [["published", "publish"]], {},
+                          {:style => "display:none;"}
+                        = f.submit "Revalider"
+                  %b À revalider le :
+                  = l(fiche.revalider_le)
 
               - if fiche.user_id?
                 %td

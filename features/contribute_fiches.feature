@@ -33,7 +33,7 @@ Feature: contribute fiches
   Scenario: push "brouillon" to "à_valider"
     Given a fiche exists with dci: the dci, user: the contributeur, state: "brouillon"
     When I go to the dci's fiche page
-    Then I should see "Initialiser"
+    Then I should see the "Initialiser" button
 
   Scenario Outline: contributeurs shouldn't see "valider" or "invalider" link
     Given a fiche exists with dci: the dci, state: "<state>"

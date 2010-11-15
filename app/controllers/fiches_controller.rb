@@ -18,38 +18,10 @@ class FichesController < ApplicationController
     @fiches.reject! { |fiche| fiche.state != "valide" } unless current_user
   end
 
-  def initialiser
-    @dci = @fiche.dci
-    @fiche.initialiser!
-    flash[:notice] = "La fiche a été initialisée."
-    redirect_to @fiche.dci
-  end
-
-  def valider
-    @dci = @fiche.dci
-    @fiche.valider!
-    flash[:notice] = "La fiche a été validée."
-    redirect_to @fiche.dci
-  end
-
-  def invalider
-    @dci = @fiche.dci
-    @fiche.invalider!
-    flash[:notice] = "La fiche a été mise en attente."
-    redirect_to @fiche.dci
-  end
-
-  def maj_date
-    @dci = @fiche.dci
-    @fiche.update_attribute :validation_date, Time.now.to_date
-    flash[:notice] = "La date de validation a été mise à jour avec succès."
-    redirect_to @fiche.dci
-  end
-
   def show
     @dci = @fiche.dci
   end
-  
+
   def new
     @dci = Dci.find(params[:dci_id])
     @fiche = @dci.fiches.build

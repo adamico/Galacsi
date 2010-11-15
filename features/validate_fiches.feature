@@ -15,75 +15,73 @@ Feature: validate fiches
       | the dci | valide    |
       | the dci | en_attente|
     When I go to the dci's <position> fiche page
-    Then I should <action>
+      And I press "<action>"
+    Then I should see "Etat de validation : <state>"
     Scenarios:
-      | position | action               |
-      | first    | see "Initialiser"    |
-      | 2nd      | see "Valider"        |
-      | 3th      | see "Mettre en attente"|
-      | 4th      | see "Valider"        |
+      | position | action           | state |
+      | first    | Initialiser      | A valider|
+      | 2nd      | Valider          | Valide    |
+      | 3th      | Mettre en attente| En attente|
+      | 4th      | Valider          | Valide|
 
-  @wip
-  Scenario: validate a fiche
+  Scenario: show publication date for published fiches
     Given a dci exists
-    And a fiche exists with dci: the dci, state: "valide"
-    And a fiche exists with dci: the dci, state: "a_valider"
-    When I go to the dci's 2nd fiche page
-      And I follow "Valider"
-    Then I should be on the dci's page
-      And I should see "La fiche a été validée"
+      And a fiche exists with dci: the dci
+    When I validate the fiche
+      And I go to the dci's fiche page
+    Then I should see today as the publication date
 
-  Scenario Outline: show a link to update validation date for valid fiches
+  Scenario: warn if fiches are expired
     Given a dci exists
-    And the following fiches exist
-      | dci     | state     | validation_date |
-      | the dci | brouillon |                 |
-      | the dci | a_valider |                 |
-      | the dci | valide    | 2008/12/07      |
-      | the dci | en_attente|                 |
-    When I go to the dci's <position> fiche page
-    Then I should <action> "Mettre à jour"
-    Scenarios:
-      | position | action   |
-      | first    | not see  |
-      | 2nd      | not see  |
-      | 3th      | see      |
-      | 4th      | not see  |
+      And a fiche_expiree exists with dci: the dci
+    When I go to the dci's page
+    Then I should see "Fiche expirée !"
+      And I should see the "Revalider" button
+
+  Scenario: update validation date
+    Given a dci exists
+    And a fiche_expiree exists with dci: the dci
+    When I go to the dci's page
+      And I press "Revalider"
+    Then I should see today as the publication date
 
   Scenario: show validation date for valid fiches
     Given a dci exists
-    And a fiche exists with dci: the dci, state: "valide"
-    When I go to the dci's fiche page
-    Then I should see the validation date
+      And a fiche exists with dci: the dci
+    When I validate the fiche
+      And I go to the dci's page
+    Then I should see today as the publication date
 
   Scenario: hide update validation date link when it's been done today
     Given a dci exists
-    And a fiche exists which has been validated today
-    When I go to the dci's fiche page
-    Then I should not see "Mettre à jour"
+      And a fiche exists with dci: the dci
+    When I validate the fiche
+      And I go to the dci's fiche page
+    Then I should not see "Revalider"
 
-  @wip
   Scenario: update validation date
     Given a dci exists
-    And a fiche_valide exists with dci: the dci, validation_date: "2008-12-7"
+    And a fiche_expiree exists with dci: the dci, revalider_le: "2009-01-01"
     When I go to the dci's fiche page
-      And I follow "Mettre à jour"
-    Then I should see "La date de validation a été mise à jour avec succès."
+      And I press "Revalider"
+    Then I should see today as the publication date
+      And I should see "À revalider le :"
 
   Scenario: show expired validation fiches
     Given a dci exists
       And another dci exists with name: "questa"
       And a distinction exist with name: "indication"
-      And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction: the distinction, distinction_name: "nuova"
+      And a fiche_expiree exists with published_at: "2009-01-01", dci: the 2nd dci, distinction: the distinction, distinction_name: "nuova"
     When I go to the homepage
-    Then I should see "1 fiche à vérifier"
+    Then I should see "Attention vous avez 1 fiche à vérifier"
       And I should see "Questa - Indication : Nuova"
+      And I should see "dernière validation le 01/01/2009"
 
   Scenario: show link to expired validation fiches
     Given a dci exists
       And another dci exists with name: "questa"
       And a distinction exist with name: "indication"
-      And a fiche exists with dci: the 2nd dci, revalider_le: "2010-2-11", distinction: the distinction, distinction_name: "nuova"
+      And a fiche_expiree exists with dci: the 2nd dci, published_at: "2009-01-01", distinction: the distinction, distinction_name: "nuova"
       And I go to the homepage
     When I follow "Questa - Indication : Nuova"
     Then I should see "Questa"

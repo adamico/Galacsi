@@ -7,6 +7,6 @@
         %li
           - if fiche.distinction_id?
             = link_to "#{fiche.dci.name.humanize} - #{fiche.full_distinction}", dci_fiche_path(fiche.dci, fiche)
-            (fiche validée le #{l(fiche.validation_date)})
+            (dernière validation le #{l(fiche.published_at)})
           - else
             = link_to "#{fiche.dci.name.humanize}", dci_fiche_path(fiche.dci, fiche)

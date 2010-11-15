@@ -21,22 +21,22 @@ end
 
 Factory.define :fiche_valide, :parent => :fiche do |f|
   f.state "valide"
-  f.validation_date Time.now.to_date
+  f.published_at Time.now.to_date
   f.revalider_le 3.months.from_now.to_date
 end
 
 Factory.define :fiche_en_attente, :parent => :fiche do |f|
   f.state "en_attente"
+  f.published_at nil
 end
 
-Factory.define :fiche_expiree, :parent => :fiche do |f|
-  f.state "valide"
+Factory.define :fiche_expiree, :parent => :fiche_valide do |f|
   f.revalider_le 1.day.ago.to_date
 end
 
 Factory.define :fiche_recente, :parent => :fiche do |f|
   f.state "valide"
-  f.validation_date Time.now.to_date
+  f.published_at Time.now.to_date
 end
 
 Factory.define(:distinction) do |f|

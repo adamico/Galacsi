@@ -72,7 +72,7 @@ describe Fiche do
   end
   describe ".recent" do
     it "should return recently validated fiches only" do
-      Factory(:fiche, :validation_date => 3.weeks.ago)
+      Factory(:fiche, :published_at => 3.weeks.ago)
       recent_fiche = Factory(:fiche_recente)
       Fiche.recent.should == [recent_fiche]
     end
@@ -80,33 +80,28 @@ describe Fiche do
   # workflow state machine callbacks
   describe "#valider" do
     subject {Factory(:fiche_a_valider)}
-    it "should update validation_date" do
+    it "should set #published_at to today" do
       subject.valider!
-      subject.validation_date.should == Time.now.to_date
+      subject.reload
+      subject.published_at.should == Time.now.to_date
     end
-    context "when #revalider_le is nil" do
-      it "should set expiration date" do
-        subject.revalider_le = nil
-        subject.valider!
-        subject.revalider_le.should == 3.months.from_now.to_date
-      end
-    end
-    context "when #revalider_le is already set" do
-      it "should use set date" do
-        subject.revalider_le = 6.months.from_now.to_date
-        subject.valider!
-        subject.revalider_le.should == 6.months.from_now.to_date
-      end
+    it "should set #revalider_le to 3 months in future" do
+      subject.revalider_le = nil
+      subject.valider!
+      subject.reload
+      subject.revalider_le.should == 3.months.from_now.to_date
     end
   end
-  describe "#invalider" do
+  describe "#mettre_en_attente" do
     subject {Factory(:fiche_valide)}
-    it "should set #validation_date to nil" do
-      subject.invalider!
-      subject.validation_date.should == nil
+    it "should set #published_at to nil" do
+      subject.mettre_en_attente!
+      subject.reload
+      subject.published_at.should == nil
     end
     it "should set #revalider_le to nil" do
-      subject.invalider!
+      subject.mettre_en_attente!
+      subject.reload
       subject.revalider_le.should == nil
     end
   end

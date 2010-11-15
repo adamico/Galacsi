@@ -30,7 +30,6 @@ class Fiche < ActiveRecord::Base
 
   alias_scope :valide, lambda { state_is("valide")}
 
-  attr_protected :state_event
   attr_reader :createur
   attr_writer :alternative_names
 
@@ -59,7 +58,7 @@ class Fiche < ActiveRecord::Base
   alias_scope :expired,     lambda{revalider_le_before(Time.now.to_date)}
   alias_scope :valide,      lambda{state_is("valide")}
   alias_scope :non_valide,  lambda{state_is_not("valide")}
-  alias_scope :recent,      lambda{validation_date_after(2.weeks.ago)}
+  alias_scope :recent,      lambda{published_at_after(2.weeks.ago)}
 
   # state machine stuff
   STATES = [["brouillon", "brouillon"], ["à valider", "a_valider"], ["valide", "valide"], ["en attente", "en_attente"]]
@@ -82,8 +81,14 @@ class Fiche < ActiveRecord::Base
       transition [:a_valider, :en_attente] => :valide
     end
 
-    event :invalider do
+    event :mettre_en_attente do
       transition :valide => :en_attente
+    end
+  end
+
+  def expired?
+    unless published_at.nil?
+      revalider_le <= Time.now.to_date
     end
   end
 
@@ -99,12 +104,10 @@ class Fiche < ActiveRecord::Base
     state :published,
       :if => lambda {|value| !value.nil?},
       :value => lambda {Time.now.to_date}
-    after_transition any => :published do |fiche, transition|
-      fiche.validation_date = Time.now.to_date
-      fiche.revalider_le = 3.months.from_now.to_date unless fiche.revalider_le
+    before_transition any => :published do |fiche, transition|
+      fiche.revalider_le = 3.months.from_now.to_date
     end
-    after_transition any => :unpublished do |fiche, transition|
-      fiche.validation_date = nil
+    before_transition any => :unpublished do |fiche, transition|
       fiche.revalider_le = nil
     end
   end

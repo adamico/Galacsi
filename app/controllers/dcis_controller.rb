@@ -16,11 +16,6 @@ class DcisController < ApplicationController
     @thedcis.reject! { |dci| dci.fiches.valide.empty? } unless current_user
   end
 
-  def search
-    @search = Dci.search(params[:search])
-    @dcis = @search.all(:include => [:classifications, :specialites, {:fiches => [:distinction, :user]}] )
-  end
-
   def show
     # @dci is loaded in before_filter
   end
