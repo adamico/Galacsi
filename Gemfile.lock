@@ -84,6 +84,7 @@ GEM
       activesupport (= 2.3.10)
       rake (>= 0.8.3)
     rake (0.8.7)
+    rcov (0.9.9)
     recaptcha (0.2.3)
     rspec (1.2.9)
     rspec-rails (1.2.9)
@@ -135,6 +136,7 @@ DEPENDENCIES
   pg
   pickle
   rails (= 2.3.10)
+  rcov
   recaptcha
   rspec (~> 1.2.0)
   rspec-rails (~> 1.2.0)

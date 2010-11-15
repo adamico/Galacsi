@@ -10,6 +10,8 @@ coverage/*
 config/database.yml
 db/*.sqlite3
 rerun.txt
+coverage.data
+coverage/*
 vendor/gems/
 vendor/gems/gems/*
 vendor/gems/specifications/*

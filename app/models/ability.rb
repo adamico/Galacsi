@@ -21,8 +21,8 @@ class Ability
     can :show, Dci do |dci|
       !dci.fiches.valide.empty?
     end
+
     can :stripped_names, [Dci, Specialite]
-    can :names, Specialite
 
     can :read, Fiche, :state => "valide"
     can :search, Fiche
@@ -33,30 +33,24 @@ class Ability
     if user.admin?
       can :manage, :all
       can :search, [Fiche, Dci]
+      can :stripped_names, [Dci, Specialite]
     # other roles abilities
     else
       case user.role
       when "contributeur"
         can :search, [Fiche, Dci]
-        can [:read, :names], Source
-        can :read, Page
-        can :read, [Dci, ClasseTherapeutique, Fiche]
+        can :read, [Page, Dci, ClasseTherapeutique, Fiche, Demande, Source]
+        can :names, Source
         can :create, Fiche
         can :update, Fiche,
           :state => ["brouillon", "a_valider"],
           :user_id => user.id
-        can :initialiser, Fiche,
-          :state => "brouillon",
-          :user_id => user.id
       when "valideur"
         can :search, [Fiche, Dci]
-        can :manage, User do |action, object_class|
-          action != :destroy
-        end
-        can :manage, [Dci, Fiche, Demande, Specialite, Decision, Distinction, Source, ClasseTherapeutique, Page]
+        can :manage, :all
+        cannot :destroy, User, :id => user.id
         can :names, Source
-        can :valider, Fiche, :state => ["en_attente", "a_valider"]
-        can [:invalider, :maj_date], Fiche, :state => ["valide"]
+        can :stripped_names, [Dci, Specialite]
       end
     end
   end

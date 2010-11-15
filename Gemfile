@@ -15,6 +15,7 @@ unless ENV.has_key?('SSH_CLIENT')
     gem 'rspec', "~> 1.2.0"
     gem 'rspec-rails', "~> 1.2.0"
     gem 'factory_girl'
+    gem 'rcov'
   end
   group :cucumber do
     gem 'capybara'

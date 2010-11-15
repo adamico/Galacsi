@@ -1,9 +1,7 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe Dci do
-  before(:each) do
-    @dci = Factory.build(:dci)
-  end
+  let(:dci) {Factory.build(:dci)}
   it "should be valid" do
     dci = Factory.build(:dci, :name => "value for name")
     dci.should be_valid
@@ -16,8 +14,15 @@ describe Dci do
       dci.commercial_names.should == "Spec1, Spec2"
     end
   end
-  describe "#assign_commercial_names" do
-    it "should assign existing specialites or create them"
+  describe "when saved" do
+    it "should assign existing specialites or create them" do
+      Factory(:specialite, :name => "spec1")
+      Factory(:specialite, :name => "spec2")
+      dci.commercial_names = "spec1, spec2"
+      dci.save
+      dci.reload
+      dci.commercial_names.should == "spec1, spec2"
+    end
   end
 end
 

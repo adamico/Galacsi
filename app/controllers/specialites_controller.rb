@@ -4,7 +4,7 @@ class SpecialitesController < ApplicationController
   def index
     @specialites = Specialite.all(:include => :dcis, :order => "LOWER(name) ASC")
   end
-  
+
   def stripped_names
     @thespecialites = Specialite.all(:conditions => ["stripped_name LIKE ?", "%#{params[:term]}%"])
     @thespecialites.reject! { |spec| spec.dcis.with_valid_fiches.empty? } unless current_user
@@ -12,7 +12,7 @@ class SpecialitesController < ApplicationController
 
   def show
   end
-  
+
   def new
   end
   
