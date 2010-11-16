@@ -119,8 +119,8 @@ fr:
     errors:
       template:
         header: 
-          one: "Impossible d'enregistrer {{model}}: 1 erreur"
-          other: "Impossible d'enregistrer {{model}}: {{count}} erreurs."
+          one: "Impossible d'enregistrer %{model}: 1 erreur"
+          other: "Impossible d'enregistrer %{model}: {{count}} erreurs."
         body: "Veuillez vérifier les champs suivants :"
       messages:
         inclusion: "n'est pas inclus(e) dans la liste"
@@ -155,6 +155,6 @@ fr:
         password: "Mot de passe"
         password_confirmation: "Confirmer le mot de passe"
     actions:
-      create: "Créer {{model}}"
+      create: "Créer %{model}"
       update: "Sauvegarder"
       dummie: "Lancer!"

@@ -38,7 +38,7 @@ gem 'searchlogic'
 gem 'state_machine'
 gem 'devise', '1.0.7'
 gem 'cancan'
-gem 'formtastic'
+gem 'formtastic', "1.1.0"
 gem 'activesupport'
 gem 'friendly_id', '3.1.6'
 gem 'will_paginate'
