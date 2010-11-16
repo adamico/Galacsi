@@ -6,16 +6,16 @@ Feature: searching dcis
   Background:
     Given the following dcis exist:
       | name |
-      | dci1 |
-      | dci2 |
-      | dci3 |
-      | dci4 |
+      | dci 1 |
+      | dci 2 |
+      | dci 3 |
+      | dci 4 |
       And the following specialites exist:
         | name |
-        | specialite1 |
-        | specialite2 |
-        | specialite3 |
-        | specialite4 |
+        | specialite |
+        | specialite 2 |
+        | specialite 3 |
+        | specialite 4 |
       And 2 classe_therapeutiques exist
       And the following compositions exist:
         | dci           | specialite          |
@@ -53,10 +53,16 @@ Feature: searching dcis
       | Par principe actif | bla  | DCI         |
       | Par spécialité     | bla  | SPECIALITE  |
 
+  Scenario: search fields must be exact results
+    When I go to the search page
+      And I fill in "Par principe actif" with "dci"
+      And I press "OK"
+    Then I should see "Aucun résultat pour 'dci' dans les noms de DCI"
+
   Scenario: unauth users can only see valid fiches
     When I go to the search page
     And I press "OK"
     Then I should see "2 résultats"
       And I should see the following search results:
-        | Dci1 | Voie : Orale |
-        | Dci3 | Dosage : Haut|
+        | Dci 1 | Voie : Orale |
+        | Dci 3 | Dosage : Haut|

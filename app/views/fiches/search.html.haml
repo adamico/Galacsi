@@ -2,8 +2,8 @@
 
 - semantic_form_for @search , :url => { :action => "search" } do |f|
   - f.inputs do
-    = f.input :dci_stripped_name_like, :label => "Par principe actif"
-    = f.input :dci_specialites_stripped_name_like, :label => "Par spécialité"
+    = f.input :dci_stripped_name_is, :label => "Par principe actif"
+    = f.input :dci_specialites_stripped_name_is, :label => "Par spécialité"
     = f.commit_button 'OK'
 
 - if params[:search]

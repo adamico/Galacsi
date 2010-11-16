@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101021093522) do
+ActiveRecord::Schema.define(:version => 20101110112900) do
 
   create_table "alternativeships", :force => true do |t|
     t.integer   "fiche_id"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20101021093522) do
     t.string   "poso_pedia_dose"
     t.integer  "user_id"
     t.text     "articles"
+    t.date     "published_at"
   end
 
   add_index "fiches", ["decision_id"], :name => "index_produits_on_decision_id"

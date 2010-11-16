@@ -51,11 +51,11 @@ var source_autocomplete = function() {
 
 $(function() {
   source_autocomplete();
-  $("#search_dci_stripped_name_like").autocomplete({
+  $("#search_dci_stripped_name_is").autocomplete({
     source: '/dcis/stripped_names.js',
     minLength: 2
   });
-  $("#search_dci_specialites_stripped_name_like").autocomplete({
+  $("#search_dci_specialites_stripped_name_is").autocomplete({
     source: '/specialites/stripped_names.js',
     minLength: 2
   });
