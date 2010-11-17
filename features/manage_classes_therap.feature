@@ -9,13 +9,12 @@ Feature: manage classes therapeutiques
     Given I am logged in as a valideur
 
   Scenario: adding a classe therapeutique to existing dcis
-    Given a dci exists with name: "unedci"
+    Given a dci exists
       And a classe_therapeutique exists with name: "Urologie"
     When I go to the dci's edit page
       And I select "Urologie" from "Classes thérapeutiques"
       And I press "Enregistrer"
-    Then I should be at the dci's page
-      And I should see "Classes thérapeutiques :"
+    Then I should see "Classes thérapeutiques :"
       And I should see "Urologie"
 
   Scenario: adding a classe therapeutique to new dcis
@@ -39,9 +38,3 @@ Feature: manage classes therapeutiques
       And I press "Enregistrer"
     Then I should see "Classes thérapeutiques :"
       And I should see "Uneclasse1, Uneclasse2"
-
-  Scenario: hide classes therapeutiques links if dcis list empty
-    Given I am not authenticated
-    And a classe_therapeutique exists with name: "classe1"
-    When I go to the classe_therapeutiques page
-    Then I should not see "classe1"

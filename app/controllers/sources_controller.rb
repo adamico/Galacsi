@@ -2,9 +2,12 @@ class SourcesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @sources = Source.all
   end
   
+  def names
+    @sources = Source.all(:conditions => ["name LIKE ?", "%#{params[:term]}%"])
+  end
+
   def show
   end
   

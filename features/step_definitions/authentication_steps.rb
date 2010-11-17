@@ -1,9 +1,15 @@
+When(/authentication page$/) do
+  visit('/users/sign_in')
+end
+
 Given(/^I am not authenticated$/) do
   visit('/users/sign_out')
 end
 
-When(/authentication page$/) do
-  visit('/users/sign_in')
+When(/signout$/) do
+  steps %Q{
+    Given I am not authenticated
+  }
 end
 
 When(/enter the (.*) "(.*)"$/) do |field, value|
@@ -13,7 +19,7 @@ When(/enter the (.*) "(.*)"$/) do |field, value|
 end
 
 When(/press the authenticate button$/) do
-  Then "I press \"Connection\""
+  Then "I press \"Connexion\""
 end
 
 When(/see an authentication success message$/) do

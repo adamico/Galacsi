@@ -4,14 +4,16 @@ class Alternativeship < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
+# Schema version: 20101021093522
 #
 # Table name: alternativeships
 #
-#  id             :integer         not null, primary key
+#  id             :integer         primary key
 #  fiche_id       :integer
 #  alternative_id :integer
-#  created_at     :datetime
-#  updated_at     :datetime
+#  created_at     :timestamp
+#  updated_at     :timestamp
 #
 

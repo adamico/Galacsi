@@ -3,15 +3,10 @@ class DcisController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @search = Dci.search(params[:search])
-    if params[:search]
-      @dcis = @search.includes(:classifications, :specialites, :fiches => [:distinction, :user]).all
-    else
-      @dcis = Dci.includes(
-        :classifications,
-        :specialites,
-        :fiches => [:distinction, :user])
-    end
+    @dcis = Dci.includes(
+      :classifications,
+      :specialites,
+      :fiches => [:distinction, :user])
   end
 
   def stripped_names
@@ -19,19 +14,14 @@ class DcisController < ApplicationController
     @thedcis.reject! { |dci| dci.fiches.valide.empty? } unless current_user
   end
 
-  def search
-    @search = Dci.search(params[:search])
-    @dcis = @search.includes(:classifications, :specialites, :fiches => [:distinction, :user]).all
-  end
-  
   def show
     # @dci is loaded in before_filter
   end
-  
+
   def new
     @dci = Dci.new
   end
-  
+
   def create
     @dci = Dci.new(params[:dci])
     if @dci.save
@@ -41,11 +31,11 @@ class DcisController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     # @dci is loaded in before_filter
   end
-  
+
   def update
     # @dci is loaded in before_filter
     if @dci.update_attributes(params[:dci])
@@ -55,7 +45,7 @@ class DcisController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     # @dci is loaded in before_filter
     @dci.destroy

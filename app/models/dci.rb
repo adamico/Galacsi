@@ -24,6 +24,8 @@ class Dci < ActiveRecord::Base
   scope :with_valid_fiches,
     joins(:fiches).merge(Fiche.valide)
 
+  delegate :stripped_name, :to => :dci, :prefix => true
+
   def classes_therapeutiques
     @classes_therapeutiques || classe_therapeutiques.map(&:name).map(&:humanize).join(', ')
   end
@@ -35,7 +37,7 @@ class Dci < ActiveRecord::Base
   private
 
   def set_unicode_stripped_name
-    self.stripped_name ||= strip_unicode(self.name) if self.name
+    self.stripped_name ||= strip_unicode(self.name.downcase) if self.name
   end
 
   def strip_unicode(string)
@@ -55,14 +57,20 @@ end
 
 
 
+
+
 # == Schema Information
+# Schema version: 20101021093522
 #
 # Table name: dcis
 #
-#  id            :integer         not null, primary key
-#  name          :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
-#  stripped_name :string(255)
+#  id                    :integer         primary key
+#  name                  :string(255)
+#  created_at            :timestamp
+#  updated_at            :timestamp
+#  stripped_name         :string(255)
+#  cached_slug           :string(255)
+#  classifications_count :integer         default(0)
+#  fiches_count          :integer         default(0)
 #
 

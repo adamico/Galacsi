@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-GalacsiRails3::Application.load_tasks
+Galacsi::Application.load_tasks

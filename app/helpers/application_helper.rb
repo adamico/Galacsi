@@ -19,7 +19,7 @@ module ApplicationHelper
   end
 
   def actions_buttons(object)
-    haml_tag('ul.actions') do
+    haml_tag('ul.actions.inline') do
       if can? :show, object and [Fiche, Demande].include?(object.class)
         path = case object.class
                when Fiche; [object.dci, object]
@@ -27,8 +27,8 @@ module ApplicationHelper
                end
         haml_tag :li do
           haml_concat(button_to("Voir", polymorphic_path(path),
-                               :method => :get,
-                               :class => "go_button"))
+                                :method => :get,
+                                :class => "go_button"))
         end
       end
       if can? :update, object
@@ -46,4 +46,32 @@ module ApplicationHelper
     end
   end
 
+  def unfructuous_search
+    pars = params[:search].delete_if {|k, v| v.blank?}
+    pars = pars.to_a
+    string = []
+    pars.each do |item|
+      string << [item[1], item[0].gsub(/_like/, "")]
+    end
+    haml_tag :h3 do
+      haml_concat "Aucun résultat pour"
+      haml_concat "'" + "#{string[0][0]}" + "'"
+      haml_concat "dans les noms de"
+
+      field = case string[0][1]
+      when /specialite/; "SPECIALITE"
+      else
+        "DCI"
+      end
+
+      haml_concat field
+      haml_tag :br do end;
+      if string[0][0].length > 3
+        haml_concat link_to "Demander la création", new_demande_path(
+          nil,
+          :nom_demande => string[0][0],
+          :type_demande => field)
+      end
+    end
+  end
 end

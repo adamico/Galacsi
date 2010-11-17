@@ -21,7 +21,7 @@ Spork.prefork do
   require 'capybara/rails'
   require 'capybara/cucumber'
   require 'capybara/session'
-  require 'cucumber/rails/capybara_javascript_emulation' # Lets you click links with onclick javascript handlers without using @culerity or @javascript
+  #require 'cucumber/rails/capybara_javascript_emulation' # Lets you click links with onclick javascript handlers without using @culerity or @javascript
   # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
   # order to ease the transition to Capybara we set the default here. If you'd
   # prefer to use XPath just remove this line and adjust any selectors in your
@@ -31,6 +31,11 @@ Spork.prefork do
 end
  
 Spork.each_run do
+  AfterConfiguration do |config|
+    #puts "Features dwell in #{config.feature_dirs}"
+    Factory(:home_page)
+    puts Page.all.first.inspect
+  end
   # If you set this to false, any error raised from within your app will bubble 
   # up to your step definition and out to cucumber unless you catch it somewhere
   # on the way. You can make Rails rescue errors and render error pages on a

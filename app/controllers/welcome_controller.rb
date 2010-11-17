@@ -3,11 +3,10 @@ class WelcomeController < ApplicationController
     @expired_fiches = Fiche.expired
   end
 
-  def search
-    params[:search] ||= {}
+  def admin
   end
 
-  def admin
+  def about
   end
 
   def about

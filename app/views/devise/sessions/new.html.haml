@@ -1,8 +1,7 @@
-- title t('devise.sessions.link')
+- title "Connexion"
 
 = semantic_form_for resource, :as => resource_name, :url => session_path(resource_name) do |f|
   = f.inputs do
     = f.input :username
     = f.input :password
-    = f.commit_button t('devise.sessions.link')
-= render :partial => "/devise/shared/links"
+    = f.commit_button "Connexion"

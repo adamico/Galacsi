@@ -2,11 +2,9 @@
 
 %h1.float_left= @classe_therapeutique.name
 
-%ul.edit_actions
-  - if can? :edit, ClasseTherapeutique
-    %li= link_to "Modifier cette classe", edit_classe_therapeutique_path(@classe_therapeutique)
-  - if can? :delete, @dci
-    %li= link_to "Détruire cette classe", @classe_therapeutique, :confirm => 'Are you sure?', :method => :delete
+- actions_buttons(@classe_therapeutique)
+
+.clear
 
 .clear
 
@@ -16,9 +14,6 @@
       %th Liste des DCIs
       %th &nbsp;
     - @classe_therapeutique.dcis.each do |dci|
-      %tr{:class => "#{cycle('odd', 'even')}"}
-        %td= link_to dci.name, dci_path(dci)
-        %td
-          - actions_buttons(dci)
+      = render 'shared/dci_line', :dci => dci
 - else
-  Il n'y a pas de DCI pour cette classe
+  Aucune DCI pour cette classe

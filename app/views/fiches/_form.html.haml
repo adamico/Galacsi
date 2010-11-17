@@ -1,13 +1,14 @@
 -# coding: utf-8
 = semantic_form_for([@fiche.dci, @fiche]) do |f|
-  - if can? :read, User
+  - if current_user.admin?
     = f.inputs do
       = f.input :user, :label => "Créateur"
-  = f.fields_for :sources do |source|
-    = render 'source_fields', :f => source
-  %p.add_fields= link_to_add_fields "Rajouter une source", f, :sources
-  -#- f.inputs do
-    -#= f.input :sources, :hint => "ce champs est à choix multiple (maintenir enfoncé la touche Ctrl)"
+  %h4 Sources
+  = f.fields_for :sourcings do |sourcing|
+    = render 'sourcing_fields', :f => sourcing
+  %p.add_fields= link_to_add_fields "Rajouter une source", f, :sourcings
+  = f.inputs do
+    = f.input :articles, :input_html => {:rows => "4x50"}
   = f.inputs do
     %li.select
       = f.label :revalider_le, "Informations à revalider dans"

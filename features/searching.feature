@@ -1,47 +1,68 @@
-@wip
-Feature: search for fiches by multiple criteria
-  In order to know if drugs may be taken while breastfeeding
-  As a guest
-  I want to search for fiches by different criteria
+Feature: searching dcis 
+  In order to quickly found fiches
+  As a user
+  I want to search dcis by name or specialite
 
-  Scenario Outline: guests search dcis by name
-    Given the following dcis exist
-      | name         |
-      | lamotrigine  |
-      | azathioprine |
-      | amoxicilline |
-      | tartampionat |
-      | castorama    |
-      | blablabla    |
-      | acétylsalicylique (acide)|
-    When I go to the search page
-      And I fill in the search form with "<pattern>"
-      And I press "Ok"
-    Then I should see "<count_result>"
-    Scenarios:
-      | pattern | count_result    |
-      | ine     | 3 résultats     |
-      | lam     | 1 résultat      |
-      | tar     | 1 résultat      |
-      | cas     | 1 résultat      |
-      | ace     | 1 résultat      |
-      | acé     | 1 résultat      |
+  Background:
+    Given the following dcis exist:
+      | name |
+      | dci 1 |
+      | dci 2 |
+      | dci 3 |
+      | dci 4 |
+      And the following specialites exist:
+        | name |
+        | specialite |
+        | specialite 2 |
+        | specialite 3 |
+        | specialite 4 |
+      And 2 classe_therapeutiques exist
+      And the following compositions exist:
+        | dci           | specialite          |
+        | the first dci | the first specialite|
+        | the 2nd dci   | the 2nd specialite  |
+        | the 3rd dci   | the 3rd specialite  |
+        | the 4th dci   | the 4th specialite  |
+      And the following classifications exist:
+        | dci           | classe_therapeutique          |
+        | the first dci | the first classe_therapeutique|
+        | the 2nd dci   | the first classe_therapeutique|
+        | the 3rd dci   | the 2nd classe_therapeutique  |
+        | the 4th dci   | the 2nd classe_therapeutique  |
+      And the following distinctions exist:
+        | name      |
+        | Voie      |
+        | Indication|
+        | Dosage    |
+      And the following fiches exist:
+        | dci           | distinction           | distinction_name | state     |
+        | the first dci | the first distinction | Orale            | valide    |
+        | the first dci | the first distinction | IV               | brouillon |
+        | the 2nd dci   | the 2nd distinction   | Cardiologie      | a_valider |
+        | the 2nd dci   | the 2nd distinction   | Antalgique       | a_valider |
+        | the 3rd dci   | the 3rd distinction   | Haut             | valide    |
+        | the 4th dci   | the 3rd distinction   | Bas              | en_attente|
 
-  Scenario: search dci or specialite by name
-    Given a specialite exists with name: "aspirine"
-      And a dci exists
-      And a composition exists with specialite: the specialite, dci: the dci
-      And another dci exists with name: "aspartame"
+  Scenario Outline: unfructuous search
     When I go to the search page
-      And I fill in the search form with "asp"
-      And I press "Ok"
+      And I fill in "<field>" with "<value>"
+      And I press "OK"
+    Then I should see "Aucun résultat pour '<value>' dans les noms de <type>"
+    Examples:
+      | field              | value| type        |
+      | Par principe actif | bla  | DCI         |
+      | Par spécialité     | bla  | spécialité  |
+
+  Scenario: search fields must be exact results
+    When I go to the search page
+      And I fill in "Par principe actif" with "dci"
+      And I press "OK"
+    Then I should see "Aucun résultat pour 'dci' dans les noms de DCI"
+
+  Scenario: unauth users can only see valid fiches
+    When I go to the search page
+    And I press "OK"
     Then I should see "2 résultats"
-
-  Scenario: search by classe therapeutique belonging
-    Given a classe_therapeutique exists with name: "analgésique"
-      And a dci exists
-      And a classification exists with classe_therapeutique: the classe_therapeutique, dci: the dci
-    When I go to the search page
-      And I fill in the search form with "ana"
-      And I press "Ok"
-    Then I should see "1 résultat"
+      And I should see the following search results:
+        | Dci 1 | Voie : Orale |
+        | Dci 3 | Dosage : Haut|

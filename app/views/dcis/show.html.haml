@@ -2,20 +2,14 @@
 
 %h1.dci_title= @dci.name.humanize
 
-%ul.edit_actions
+%ul.edit_actions.inline
   - if can? :edit, @dci
     %li= link_to "Modifier cette DCI", edit_dci_path(@dci)
   - if can? :delete, @dci
-    %li= link_to "Détruire cette DCI", @dci, :confirm => 'Etes-vous sûr ?', :method => :delete
+    %li= link_to "Détruire cette DCI", @dci,
+      :confirm => 'Etes-vous sûr ?', :method => :delete
 
-.clear
-
-%h2
-  Spécialités :
-  - links_to_associations(@dci, "specialites")
-%h2 
-  Classes thérapeutiques :
-  - links_to_associations(@dci, "classe_therapeutiques")
+= render 'shared/associations_links', :dci => @dci
 
 #fiches
   - if !@dci.fiches.valide.empty?
@@ -25,7 +19,8 @@
       %br/
       %h2 Aucune fiche validée pour cette DCI
   - if can?(:create, Fiche) && !@dci.fiches.non_valide.empty?
-    %p= link_to_toggle_div "Montrer/Cacher les fiches non validées", "fiches_non_validees"
+    %p= link_to_toggle_div "Montrer/Cacher les fiches non validées",
+      "fiches_non_validees"
     #fiches_non_validees{:style => "display: none;"}
       = render @dci.fiches.non_valide
 

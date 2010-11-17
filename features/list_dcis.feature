@@ -1,66 +1,61 @@
-Feature: list dcis according to permissions
-  In order to show correct information for drug use during breastfeeding
-  As a user
-  I want to list dcis according to user permissions
+Feature: list dcis
+  As an authenticated user
+  I want to list all dcis with fiches of any state
 
   Background:
-    Given a dci exists with name: "thefirst"
-    And another dci exists with name: "the2nd"
-    And another dci exists with name: "the3rd"
-    And another dci exists with name: "the4th"
-    Given the following distinctions exist:
-      | name |
-      | d1   |
-      | d2   |
-      | d3   |
-    And the following fiches exist:
-      | dci           | distinction           | distinction_name | state     |
-      | the first dci | the first distinction | dist1            | valide    |
-      | the first dci | the first distinction | dist2            | brouillon |
-      | the 2nd dci   | the 2nd distinction   | dist3            | a_valider |
-      | the 2nd dci   | the 2nd distinction   | dist4            | a_valider |
-      | the 3rd dci   | the 3rd distinction   | dist5            | valide    |
-      | the 4th dci   | the 3rd distinction   | dist6            | en_attente|
-
-  Scenario: hide fiches link if dci has one fiche only
-    When I go to the dcis page
-    And I press "OK"
-    Then I should see "The3rd"
-    But I should not see "dist5"
-
-  Scenario: hide fiches link for guests if dci has one validated fiche only
-    When I go to the dcis page
-    And I press "OK"
-    Then I should see "Thefirst"
-    But I should not see "dist1"
-
-  Scenario: hide fiches non valide link for guests
-    When I go to the dcis page
-    And I press "OK"
-    Then I should see "Thefirst"
-    But I should not see "dist2"
-
-  Scenario: hide fiches state for guests
-    When I go to the dcis page
-    And I press "OK"
-    Then I should not see "valide"
-    Then I should not see "brouillon"
-    Then I should not see "a_valider"
-    Then I should not see "en_attente"
-
-  Scenario: a guest should only see dcis with validated fiches
-    When I go to the dcis page
-    And I press "OK"
-    Then I should see "Thefirst"
-    But I should not see "The2nd"
-
-  Scenario: auth users should see any kind of fiches
     Given I am logged in as a contributeur
+      And the following dcis exist:
+        | name |
+        | dci1 |
+        | dci2 |
+        | dci3 |
+        | dci4 |
+      And the following specialites exist:
+        | name |
+        | specialite1 |
+        | specialite2 |
+        | specialite3 |
+        | specialite4 |
+      And the following classe_therapeutiques exist:
+        | name    |
+        | classe1 |
+        | classe2 |
+      And the following compositions exist:
+        | dci           | specialite          |
+        | the first dci | the first specialite|
+        | the 2nd dci   | the 2nd specialite  |
+        | the 3rd dci   | the 3rd specialite  |
+        | the 4th dci   | the 4th specialite  |
+      And the following classifications exist:
+        | dci           | classe_therapeutique          |
+        | the first dci | the first classe_therapeutique|
+        | the 2nd dci   | the first classe_therapeutique|
+        | the 3rd dci   | the 2nd classe_therapeutique  |
+        | the 4th dci   | the 2nd classe_therapeutique  |
+      And the following distinctions exist:
+        | name      |
+        | Voie      |
+        | Indication|
+        | Dosage    |
+      And the following fiches exist:
+        | dci           | distinction           | distinction_name | state     |
+        | the first dci | the first distinction | Orale            | valide    |
+        | the first dci | the first distinction | IV               | brouillon |
+        | the 2nd dci   | the 2nd distinction   | Cardiologie      | a_valider |
+        | the 2nd dci   | the 2nd distinction   | Antalgique       | a_valider |
+        | the 3rd dci   | the 3rd distinction   | Haut             | valide    |
+        | the 4th dci   | the 3rd distinction   | Bas              | en_attente|
+
+  Scenario: warn if no dcis
+    Given I have no dcis
     When I go to the dcis page
-    And I press "OK"
-    Then I should see "Thefirst"
-    And I should see "dist1"
-    And I should see "dist2"
-    And I should see "The2nd"
-    And I should see "dist3"
-    And I should see "dist4"
+    Then I should see "Aucune DCI dans la base"
+
+  Scenario: list all dcis
+    When I go to the dcis page
+    Then I should see the following dcis:
+      | DCI | Spécialité(s) | Classe(s) Thérapeutique(s) | Fiche(s) |
+      | Dci1| Specialite1   | Classe1                    | 2 (1 non validée)|
+      | Dci2| Specialite2   | Classe1                    | 2 (2 non validées)|
+      | Dci3| Specialite3   | Classe2                    | 1 |
+      | Dci4| Specialite4   | Classe2                    | 1 (1 non validée)|

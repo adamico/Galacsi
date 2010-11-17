@@ -1,0 +1,19 @@
+#menu
+  %ul#nav
+    %li= link_to "Recherche", search_path
+    - if can? :create, Dci
+      %li
+        = link_to "DCI", dcis_path
+        %span.add_record= link_to "+", new_dci_path
+    %li= link_to "Fiches", fiches_path if can? :create, Fiche
+    %li
+      = link_to "Classes", classe_therapeutiques_path
+      - if can? :create, ClasseTherapeutique
+        %span.add_record= link_to "+", new_classe_therapeutique_path
+    %li= link_to "Spécialités", specialites_path
+    - if can? :read, User
+      %li= link_to "Demandes", demandes_path
+      %li= link_to("Admin", "#", :class => "anchorclass", :rel => "admin_menu")
+    %li= link_to("A propos", "#", :class => "anchorclass", :rel => "pages_menu")
+
+= render 'layouts/anylinkcss_menu'

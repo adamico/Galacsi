@@ -10,7 +10,8 @@
   %table#list
     %thead
       %tr
-        %th DCI
+        %th.time= sort_link @search, :updated_at, "Dernière modif."
+        %th= sort_link @search, :dci_stripped_name, "DCI"
         %th Distinction
         %th Validation
         %th Créateur
@@ -18,12 +19,15 @@
     %tbody
       - @fiches.each do |fiche|
         %tr{:class => "#{cycle('odd', 'even')}"}
+          %td.time= l fiche.updated_at.to_date
           %td= fiche.dci_name 
           %td= fiche.full_distinction
           %td{:class => "#{fiche.state}"}= fiche.state.humanize
           %td= fiche.createur if fiche.user
           %td
             - actions_buttons(fiche)
+  %p= link_to "Exporter en fichier .csv", fiches_path(:format => :csv,
+      :search => params[:search])
 
 - else
   %h3 Pas de résultats

@@ -1,0 +1,9 @@
+- title @page.title_or_permalink, false
+
+%h1.float_left= @page.title_or_permalink
+
+- actions_buttons(@page)
+
+.clear
+
+= textilize @page.content

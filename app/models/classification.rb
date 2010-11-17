@@ -7,14 +7,16 @@ end
 
 
 
+
 # == Schema Information
+# Schema version: 20101021093522
 #
 # Table name: classifications
 #
-#  id                      :integer         not null, primary key
+#  id                      :integer         primary key
 #  dci_id                  :integer
 #  classe_therapeutique_id :integer
-#  created_at              :datetime
-#  updated_at              :datetime
+#  created_at              :timestamp
+#  updated_at              :timestamp
 #
 

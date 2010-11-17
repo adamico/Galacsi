@@ -1,7 +1,7 @@
-%h1= link_to @dci.name.humanize, @dci
+- title "#{@dci.name.humanize} - #{@fiche.full_distinction}", false
 
-%h2= "(#{@dci.commercial_names})" unless @dci.commercial_names.blank?
+%h1.dci_title= link_to @dci.name.humanize, @dci
 
-%h2= "Classes thérapeutiques : #{@dci.classes_therapeutiques}" unless @dci.classes_therapeutiques.blank?
+= render 'shared/associations_links', :dci => @dci
 
 = render @fiche

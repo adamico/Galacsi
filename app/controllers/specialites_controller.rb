@@ -4,18 +4,18 @@ class SpecialitesController < ApplicationController
   def index
     @specialites = Specialite.includes(:dcis).order("LOWER(name) ASC")
   end
-  
-  def names
-    @thespecialites = Specialite.where(:name =~ "%#{params[:term]}%")
+
+  def stripped_names
+    @thespecialites = Specialite.where(:stripped_name =~ "%#{params[:term]}%")
     @thespecialites.reject! { |sp| sp.dcis.with_valid_fiches.empty? } unless current_user
   end
 
   def show
   end
-  
+
   def new
   end
-  
+
   def create
     if @specialite.save
       flash[:notice] = "Successfully created specialite."
@@ -24,10 +24,10 @@ class SpecialitesController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
   end
-  
+
   def update
     if @specialite.update_attributes(params[:specialite])
       flash[:notice] = "Successfully updated specialite."
@@ -36,7 +36,7 @@ class SpecialitesController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @specialite.destroy
     flash[:notice] = "Successfully destroyed specialite."

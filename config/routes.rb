@@ -1,34 +1,28 @@
-GalacsiRails3::Application.routes.draw do
+Galacsi::Application.routes.draw do
   devise_for :users
-  resources :decisions, :demandes, :distinctions, :sources, :users
+  resources :classe_therapeutiques, :decisions, :demandes, :distinctions, :users, :fiches, :pages
 
-  resources :classe_therapeutiques do
+  resources :specialites do
     get :stripped_names, :on => :collection
   end
 
-  resources :specialites do
+  resources :sources do
     get :names, :on => :collection
   end
 
   resources :dcis do
-    resources :fiches do
-      member do
-        put :initialiser, :valider, :invalider, :maj_date
-      end
-    end
-
-    collection do
-      get :search, :stripped_names
-    end
+    get :stripped_names, :on => :collection
+    resources :fiches
   end
 
-  resources :fiches
+  root :to => "pages#show", :permalink => 'home'
 
-  match '/search' => 'dcis#search'
-  match '/admin'  => 'welcome#admin'
-  match '/about'  => 'welcome#about'
+  match '/search' => "fiches#search"
 
-  root :to => "welcome#index"
+  match '/:permalink' => "pages#show", :as => :home
+  #in rails2 this was :
+  #map.home ':permalink', :controller => 'pages', :action => 'show'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -81,8 +75,4 @@ GalacsiRails3::Application.routes.draw do
   # root :to => "welcome#index"
 
   # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
 end

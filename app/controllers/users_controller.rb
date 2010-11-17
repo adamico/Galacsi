@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.includes(:fiches)
+    @users = User.all(:include => :fiches)
   end
 
   def new

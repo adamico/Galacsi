@@ -17,16 +17,32 @@ describe Fiche do
       subject.alternatives.should == alts
     end
   end
+
   describe "#full_distinction" do
     it "should exist" do
       subject.should respond_to(:full_distinction)
     end
+    context "when #distinction is nil" do
+      it "should return #distinction_name only" do
+        subject.distinction_id = nil
+        subject.distinction_name = "dn1"
+        subject.full_distinction.should == "Dn1"
+      end
+    end
+    context "when #distinction_name is blank" do
+      it "should return #distinction.name" do
+        distinction = Factory(:distinction, :name => "dist1")
+        subject.distinction_name = ""
+        subject.distinction = distinction
+        subject.full_distinction.should == "Dist1"
+      end
+    end
     it "should return distinction label and name joined by ':'" do
-      dist = "d_label"
-      dist_name = "d_name"
+      dist = "dlabel"
+      dist_name = "dname"
       subject.distinction = Factory(:distinction, :name => dist)
       subject.distinction_name = dist_name
-      subject.full_distinction.should == dist + " : " + dist_name
+      subject.full_distinction.should == "Dlabel : Dname"
     end
   end
 
@@ -34,30 +50,31 @@ describe Fiche do
     it "should exist" do
       subject.should respond_to(:createur)
     end
-    it "should return the name of user who created the current fiche" do
+    it "should return the fiche's creator username" do
       user = Factory(:user)
       subject.user = user
       subject.createur.should == user.username
     end
   end
+
   describe "#alternative_names" do
     it "should exist" do
       subject.should respond_to(:alternative_names)
     end
-    it "should return names of alternatives for current fiche" do
-      alts = []
-      3.times do |i|
-        alts << Factory(:dci, :name => "name#{i}")
+    it "should return names of alternatives joined by ', '" do
+      2.times do |n|
+        subject.alternatives << Factory(:dci, :name => "dci#{n+1}")
       end
-      subject.alternatives = alts
-      subject.alternative_names.should == "name0, name1, name2"
+      subject.alternative_names.should == "dci1, dci2"
     end
   end
+  #
+  # scopes
   describe ".expired" do
-    it "should return fiches with #revalider_le <= today" do
-      exp1 = Factory(:fiche, :revalider_le => (Time.now.to_date - 1))
-      exp2 = Factory(:fiche, :revalider_le => (Time.now.to_date - 1))
-      Fiche.recent.all.should == [exp1, exp2]
+    it "should return expired fiches" do
+      Factory(:fiche, :revalider_le => 2.months.from_now)
+      exp_fiche = Factory(:fiche_expiree)
+      Fiche.expired.should == [exp_fiche]
     end
   end
   describe ".valide" do
@@ -75,33 +92,43 @@ describe Fiche do
       Fiche.non_valide.all.should == [brou, aval, enat]
     end
   end
+
   describe ".recent" do
-    it "should return fiches with validation_date >= 2 weeks ago" do
-      rec1 = Factory(:fiche, :validation_date => 2.weeks.ago)
-      rec2 = Factory(:fiche, :validation_date => 1.weeks.ago)
-      rec3 = Factory(:fiche, :validation_date => Time.now.to_date)
-      nrec = Factory(:fiche, :validation_date => 3.weeks.ago)
-      Fiche.recent.all.should == [rec1, rec2, rec3]
+    it "should return recently validated fiches only" do
+      Factory(:fiche, :published_at => 3.weeks.ago)
+      recent_fiche = Factory(:fiche_recente)
+      Fiche.recent.should == [recent_fiche]
+    end
+  end
+  # workflow state machine callbacks
+  describe "#valider" do
+    subject {Factory(:fiche_a_valider)}
+    it "should set #published_at to today" do
+      subject.valider!
+      subject.reload
+      subject.published_at.should == Time.now.to_date
+    end
+    it "should set #revalider_le to 3 months in future" do
+      subject.revalider_le = nil
+      subject.valider!
+      subject.reload
+      subject.revalider_le.should == 3.months.from_now.to_date
+    end
+  end
+  describe "#mettre_en_attente" do
+    subject {Factory(:fiche_valide)}
+    it "should set #published_at to nil" do
+      subject.mettre_en_attente!
+      subject.reload
+      subject.published_at.should == nil
+    end
+    it "should set #revalider_le to nil" do
+      subject.mettre_en_attente!
+      subject.reload
+      subject.revalider_le.should == nil
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # == Schema Information

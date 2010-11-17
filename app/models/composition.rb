@@ -4,14 +4,16 @@ class Composition < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
+# Schema version: 20101021093522
 #
 # Table name: compositions
 #
-#  id            :integer         not null, primary key
+#  id            :integer         primary key
 #  dci_id        :integer
 #  specialite_id :integer
-#  created_at    :datetime
-#  updated_at    :datetime
+#  created_at    :timestamp
+#  updated_at    :timestamp
 #
 

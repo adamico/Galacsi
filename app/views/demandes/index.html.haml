@@ -7,16 +7,16 @@
     %thead
       %tr
         %th Type
-        %th Libellé
+        %th Libéllé
         %th Contexte
         %th Demandeur
         %th &nbsp;
-    - @demandes.each do ||
+    - @demandes.each do |demande|
       %tr{:class => "#{cycle('odd', 'even')}"}
-        %td= demande.nature
-        %td= demande.name
-        %td= demande.contexte
-        %td= demande.demandeur
+        %td= h demande.nature
+        %td= h demande.name
+        %td= h demande.contexte
+        %td= h demande.demandeur
         %td
           - actions_buttons(demande)
 

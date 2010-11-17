@@ -7,8 +7,7 @@ Feature: manage users and roles
     Given I am logged in as a valideur
 
   Scenario: create user
-    When I go to the users page
-      And I follow "Nouvel utilisateur"
+    When I go to the new user page
       And I fill in the following:
         | Nom d'utilisateur         | pinco         |
         | Email                     | pinco@ad.com  |

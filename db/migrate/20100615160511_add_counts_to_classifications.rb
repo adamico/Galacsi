@@ -4,11 +4,11 @@ class AddCountsToClassifications < ActiveRecord::Migration
     add_column :dcis, :classifications_count, :integer, :default => 0
     ClasseTherapeutique.reset_column_information
     ClasseTherapeutique.all.each do |ct|
-      ClasseTherapeutique.update_counters ct.id, :classifications_count => ct.classifications.length
+      ClasseTherapeutique.update_counters ct.id, :classifications_count => ct.dcis.length
     end
     Dci.reset_column_information
     Dci.all.each do |dci|
-      Dci.update_counters dci.id, :classifications_count => dci.classifications.length
+      Dci.update_counters dci.id, :classifications_count => dci.classe_therapeutiques.length
     end
   end
 

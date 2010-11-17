@@ -1,5 +1,20 @@
-# encoding: utf-8
+#encoding: utf-8
 class Fiche < ActiveRecord::Base
+  attr_reader :createur
+  attr_writer :alternative_names
+
+  # constants
+  SUIVIS = %w[oui non]
+  DIPR = ["DMAP", "dose pédiatrique"]
+  PASSAGE = ["dose dépendant", "inconnu", "faible"]
+  RLP = ["<1", ">1"]
+  STATES = [["brouillon", "brouillon"], ["à valider", "a_valider"], ["valide", "valide"], ["en attente", "en_attente"]]
+
+  # automatically parse text fields with redcloth
+  acts_as_sanitiled :commentaire, :ei, :conditions,
+    :surveillance, :arg_autre, :ei_theoriques, :articles
+
+  # associations
   belongs_to :decision
   belongs_to :dci, :counter_cache => true
   belongs_to :distinction
@@ -7,18 +22,86 @@ class Fiche < ActiveRecord::Base
 
   has_many :alternativeships, :dependent => :destroy
   has_many :alternatives, :through => :alternativeships
-  has_and_belongs_to_many :sources, :join_table => "fiches_sources"
-  accepts_nested_attributes_for :sources,
-    :reject_if => proc { |attrs| attrs[:name].blank? },
+
+  has_many :sourcings, :dependent => :destroy
+  has_many :sources, :through => :sourcings
+
+  accepts_nested_attributes_for :sourcings,
+    :reject_if => proc { |attrs| attrs[:source_name].blank? },
     :allow_destroy => true
 
+  # delegations
   delegate :name, :to => :dci, :allow_nil => true, :prefix => true
 
-  attr_protected :state_event
-  attr_reader :createur
-  attr_writer :alternative_names
+  # scopes
+  scope :expired,    where("revalider_le <= ?", Time.now.to_date)
+  scope :valide,     where("state = ?", "valide")
+  scope :non_valide, where("state != ?", "valide")
+  scope :recent,     where("published_at >= ?", 02.weeks.ago)
 
+  # callbacks
   after_save :assign_alternatives
+
+  # state machines
+  ### default state machine 'state'
+  state_machine :initial => :brouillon do
+
+    after_transition any => :valide do |fiche, transition|
+      fiche.publish!
+    end
+
+    after_transition any => :en_attente do |fiche, transition|
+      fiche.revoke!
+    end
+
+    event :initialiser do
+      transition :brouillon => :a_valider
+    end
+
+    event :valider do
+      transition [:a_valider, :en_attente] => :valide
+    end
+
+    event :mettre_en_attente do
+      transition :valide => :en_attente
+    end
+  end
+
+  ### 'published_at' state machine
+  state_machine :published_at, :initial => :unpublished do
+    event :publish do
+      transition all => :published
+    end
+    event :revoke do
+      transition all => :unpublished
+    end
+    state :unpublished, :value => nil
+    state :published,
+      :if => lambda {|value| !value.nil?},
+      :value => lambda {Time.now.to_date}
+    before_transition any => :published do |fiche, transition|
+      fiche.revalider_le = 3.months.from_now.to_date
+    end
+    before_transition any => :unpublished do |fiche, transition|
+      fiche.revalider_le = nil
+    end
+  end
+
+  # comma CSV support
+  comma do
+    dci :name => "DCI"
+    full_distinction 'Distinction'
+    decision :name => "Décision"
+    state 'Validation'
+    createur
+  end
+
+  # custom methods
+  def expired?
+    unless published_at.nil?
+      revalider_le <= Time.now.to_date
+    end
+  end
 
   def full_distinction
     dist = []
@@ -35,33 +118,6 @@ class Fiche < ActiveRecord::Base
     @alternative_names || alternatives.map(&:name).join(', ')
   end
 
-  SUIVIS = %w[oui non]
-  DIPR = ["DMAP", "dose pédiatrique"]
-  PASSAGE = ["dose dépendant", "inconnu", "faible"]
-  RLP = ["<1", ">1"]
-
-  scope :expired,    where("revalider_le <= ?", Time.now.to_date)
-  scope :valide,     where("state = ?", "valide")
-  scope :non_valide, where("state != ?", "valide")
-  scope :recent,     where("validation_date >= ?", 02.weeks.ago)
-
-  # state machine stuff
-  STATES = [["brouillon", "brouillon"], ["à valider", "a_valider"], ["valide", "valide"], ["en attente", "en_attente"]]
-  state_machine :initial => :brouillon do
-
-    event :initialiser do
-      transition :brouillon => :a_valider
-    end
-
-    event :valider do
-      transition [:a_valider, :en_attente] => :valide
-    end
-
-    event :invalider do
-      transition :valide => :en_attente
-    end
-  end
-
   private
 
   def assign_alternatives
@@ -75,7 +131,10 @@ end
 
 
 
+
+
 # == Schema Information
+# Schema version: 20101110112900
 #
 # Table name: fiches
 #
@@ -116,5 +175,7 @@ end
 #  pic_lacte             :string(255)
 #  poso_pedia_dose       :string(255)
 #  user_id               :integer
+#  articles              :text
+#  published_at          :date
 #
 

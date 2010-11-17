@@ -12,9 +12,14 @@ config/database.yml
 db/*.sqlite3
 db/*.sqlite3-journal
 rerun.txt
+coverage.data
+coverage/*
 vendor/gems/
 vendor/gems/gems/*
 vendor/gems/specifications/*
 vendor/gems/doc*
 vendor/gems/environment.rb
 rails/
+lib/tasks/rcov.rake
+lib/tasks/rspec.rake
+lib/tasks/cucumber.rake

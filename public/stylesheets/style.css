@@ -99,11 +99,8 @@ ul#nav {
   background: white; }
 
 ul {
-  padding: 0;
-  margin: 0; }
-
-li {
-  list-style-type: none; }
+  padding-top: 0;
+  margin-top: 0; }
 
 .clear {
   clear: both;
@@ -151,6 +148,9 @@ li {
       list-style: disc; }
 
 /* My personalizations */
+form.state_form {
+  display: inline; }
+
 h1.dci_title {
   float: left;
   margin-bottom: 0; }
@@ -202,6 +202,11 @@ form p.inline-hints {
 abbr {
   cursor: help; }
 
+ul.plain {
+  margin: 0;
+  padding: 0;
+  list-style: inside; }
+
 ul.edit_actions {
   width: auto;
   float: right;
@@ -209,7 +214,7 @@ ul.edit_actions {
   background: black;
   color: white; }
   ul.edit_actions li {
-    float: left; }
+    display: inline; }
   ul.edit_actions a {
     color: white;
     padding-left: 0.5em;
@@ -218,10 +223,30 @@ ul.edit_actions {
       color: black;
       background: white; }
 
+ul.inline {
+  margin: 0;
+  padding: 0; }
+  ul.inline li {
+    list-style-type: none; }
+
 div#fiches {
   clear: both; }
 div.fiche {
   margin: 5px 0; }
+  div.fiche h3 {
+    clear: both;
+    margin: 0 0.5em 0 0;
+    padding: 0; }
+  div.fiche h4 {
+    clear: both;
+    margin: 0;
+    margin-top: 2px;
+    margin-left: 1em; }
+  div.fiche .alert {
+    color: red;
+    font-size: small; }
+  div.fiche h4.inline {
+    display: inline; }
   div.fiche div.fiche_footer {
     background: black;
     color: white;
@@ -238,15 +263,6 @@ div.fiche {
   div.fiche div.resume {
     padding: 0 0.5em;
     margin: 0; }
-    div.fiche div.resume h3 {
-      clear: both;
-      margin: 0 0.5em 0 0;
-      padding: 0; }
-    div.fiche div.resume h4 {
-      clear: both;
-      margin: 0;
-      margin-top: 2px;
-      margin-left: 1em; }
     div.fiche div.resume p {
       margin: 0;
       margin-left: 2em;
@@ -255,12 +271,9 @@ div.fiche {
         font-size: small;
         color: #777777;
         font-weight: bold; }
-      div.fiche div.resume p.retrait {
-        margin-left: 1em; }
-      div.fiche div.resume p.alert {
-        margin-left: 0;
-        color: red;
-        font-size: small; }
+      div.fiche div.resume p.inline {
+        margin: 0;
+        display: inline; }
     div.fiche div.resume ul {
       margin-left: 2em; }
     div.fiche div.resume a {
@@ -286,6 +299,8 @@ div.fiche.non_valide {
     color: #0099ff; }
   div.fiche.non_valide div.resume {
     background: #552222; }
+  div.fiche.non_valide div.argumentaire table td {
+    color: black; }
   div.fiche.non_valide div.fiche_footer {
     background: white;
     color: black; }
@@ -374,6 +389,9 @@ table#list {
   table#list td.sub {
     border-top: 1px solid black;
     border-bottom: 1px solid black; }
+  table#list th.time, table#list td.time {
+    font-size: 0.8em;
+    width: 5em; }
 
 ul.inline li {
   float: left;
@@ -422,3 +440,10 @@ input.destroy_button {
   border-top-color: red;
   border-bottom-color: #990000;
   border-right-color: #990000; }
+
+.retrait {
+  margin-left: 1em; }
+  .retrait p {
+    margin: 0;
+    margin-left: 2em;
+    margin-top: 2px; }

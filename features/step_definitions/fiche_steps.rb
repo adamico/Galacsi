@@ -1,3 +1,4 @@
+#encoding: utf-8
 def today
   Time.now.to_date
 end
@@ -27,4 +28,26 @@ end
 Then(/^I should see fiches table$/) do |table|
   # table is a Cucumber::Ast::Table
   table.diff!(tableish('table#fiches tr', 'td,th'))
+end
+
+Then(/^I should see the following search results:$/) do |expected_table|
+  actual_table = table(tableish('table#list tr', 'th,td'))
+  expected_table.diff!(actual_table)
+end
+
+When(/^I validate the fiche$/) do
+  fiche = Fiche.first
+  fiche.initialiser!
+  fiche.valider!
+  fiche.state.should == "valide"
+end
+
+Then(/^I should see the "([^"]*)" button$/) do |button_label|
+   page.should have_button(button_label)
+end
+
+When(/^I should see today as the publication date$/) do
+  steps %Q{
+    Then I should see "Dernière MAJ : #{Time.now.to_date.strftime('%d/%m/%Y')}"
+  }
 end

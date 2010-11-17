@@ -1,3 +1,4 @@
+//encoding: utf-8
 html
   margin: 0
   padding: 0
@@ -100,11 +101,8 @@ ul#nav
   background: #fff
 
 ul
-  padding: 0
-  margin: 0
-
-li
-  list-style-type: none
+  padding-top: 0
+  margin-top: 0
 
 .clear
   clear: both
@@ -152,6 +150,9 @@ li
       list-style: disc
 
 /* My personalizations
+
+form.state_form
+  display: inline
 
 h1.dci_title
   float: left
@@ -207,6 +208,11 @@ form p.inline-hints
 abbr
   cursor: help
 
+ul.plain
+  margin: 0
+  padding: 0
+  list-style: inside
+
 ul.edit_actions
   width: auto
   float: right
@@ -214,7 +220,7 @@ ul.edit_actions
   background: black
   color: white
   li
-    float: left
+    display: inline
   a
     color: white
     padding-left: .5em
@@ -223,11 +229,34 @@ ul.edit_actions
       color: black
       background: white
 
+ul.inline
+  margin: 0
+  padding: 0
+  li
+    list-style-type: none
+
 div
   &#fiches
     clear: both
   &.fiche
     margin: 5px 0
+    h3
+      clear: both
+      margin: 0 .5em 0 0
+      padding: 0
+    h4
+      clear: both
+      margin: 0
+      margin-top: 2px
+      margin-left: 1em
+
+    .alert
+      color: red
+      font-size: small
+
+    h4.inline
+      display: inline
+
     div.fiche_footer
       background: black
       color: white
@@ -244,15 +273,6 @@ div
     div.resume
       padding: 0 0.5em
       margin: 0
-      h3
-        clear: both
-        margin: 0 .5em 0 0
-        padding: 0
-      h4
-        clear: both
-        margin: 0
-        margin-top: 2px
-        margin-left: 1em
       p
         margin: 0
         margin-left: 2em
@@ -261,12 +281,10 @@ div
           font-size: small
           color: #777
           font-weight: bold
-        &.retrait
-          margin-left: 1em
-        &.alert
-          margin-left: 0
-          color: red
-          font-size: small
+        &.inline
+          margin: 0
+          display: inline
+
       ul
         margin-left: 2em
       a
@@ -293,6 +311,10 @@ div
       color: #09F
     div.resume
       background: #522
+    div.argumentaire
+      table td
+        color: black
+
     div.fiche_footer
       background: white
       color: black
@@ -387,7 +409,9 @@ table#list
   td.sub
     border-top: 1px solid black
     border-bottom: 1px solid black
-
+  th.time, td.time
+    font-size: 0.8em
+    width: 5em
 ul
   &.inline
     li
@@ -451,3 +475,9 @@ input.destroy_button
     right:
       color: #900
 
+.retrait
+  margin-left: 1em
+  p
+    margin: 0
+    margin-left: 2em
+    margin-top: 2px

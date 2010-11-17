@@ -7,12 +7,6 @@ Feature: contribute fiches
     Given I am logged in as a contributeur
       And a dci exists
 
-  Scenario: a contributeur owns fiches he creates
-    When I go to the dci page
-      And I follow "Rajouter une fiche"
-      And I submit
-    Then a fiche should exist with user: the contributeur
-
   Scenario: a contributeur can only edit his own fiches
     Given another contributeur exists
       And a fiche exists with dci: the dci, user: the 2nd contributeur
@@ -33,7 +27,7 @@ Feature: contribute fiches
   Scenario: push "brouillon" to "à_valider"
     Given a fiche exists with dci: the dci, user: the contributeur, state: "brouillon"
     When I go to the dci's fiche page
-    Then I should see "Initialiser"
+    Then I should see the "Initialiser" button
 
   Scenario Outline: contributeurs shouldn't see "valider" or "invalider" link
     Given a fiche exists with dci: the dci, state: "<state>"

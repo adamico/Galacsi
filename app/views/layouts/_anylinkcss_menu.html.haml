@@ -1,0 +1,13 @@
+.anylinkcss#admin_menu
+  %ul
+    %li= link_to "Décisions", decisions_path
+    %li= link_to "Distinctions", distinctions_path
+    %li= link_to "Utilisateurs", users_path
+    %li= link_to "Sources", sources_path
+    %li= link_to "Pages", pages_path
+
+.anylinkcss#pages_menu
+  %ul
+    - pages = Page.all.reject {|p| p.permalink == 'home'}
+    - pages.each do |page|
+      %li= link_to page.title_or_permalink, home_path(page.permalink)

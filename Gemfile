@@ -1,24 +1,25 @@
 # galacsi rails3 Gemfile
-source :gemcutter
+source :rubygems
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.1'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'pg', :group => :production
 
 gem "haml"
 gem "RedCloth"
 gem "meta_search"
 gem "meta_where"
+gem 'acts_as_sanitiled', :git => "https://github.com/kevinansfield/acts_as_sanitiled.git"
 gem "state_machine"
-gem 'devise', '1.1.rc1'
+gem 'devise'
 gem 'cancan'
-gem 'formtastic'
+gem 'formtastic', "1.1.0"
 gem "activesupport"
 gem "friendly_id", '~> 3.0'
 gem 'will_paginate', '3.0.pre'
 gem 'pickle'
 gem 'recaptcha'
+gem 'comma'
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
@@ -29,21 +30,21 @@ group :development do
   gem "hirb"
   gem 'annotate-models', '1.0.4'
   gem 'faker', '0.3.1'
+  gem "hpricot"
+  gem "ruby_parser"
 end
 
 
 group :test, :development do
-  gem "rspec-rails", ">= 2.0.0.beta.20"
-  gem "webrat"
+  gem 'rspec-rails', "~> 2.0.1"
+  gem 'rcov'
 end
 
 group :test do
   gem 'factory_girl_rails'
-  gem "ZenTest"
-  gem "autotest-notification"
-  gem "autotest-rails"
+  gem "autotest"
   gem 'spork'
-  gem "webrat"
+  gem 'capybara'
 end
 
 group :cucumber do
@@ -51,8 +52,9 @@ group :cucumber do
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec-rails', ">= 2.0.0.beta.20"
+  gem 'rspec-rails', "~> 2.0.1"
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
+  gem 'pickle'
   gem 'factory_girl_rails'
 end

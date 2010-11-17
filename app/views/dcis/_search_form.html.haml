@@ -1,6 +1,0 @@
-= semantic_form_for @search, :url => { :action => "search" } do |f|
-  = f.inputs do
-    = f.input :stripped_name_contains, :label => "Par principe actif"
-    = f.input :classe_therapeutiques_stripped_name_contains, :label => "Par classe"
-    = f.input :specialites_name_contains, :label => "Par spécialité"
-    = f.commit_button 'OK'

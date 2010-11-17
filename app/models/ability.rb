@@ -6,47 +6,52 @@ class Ability
     guest = User.new
     guest.role = ""
     user ||= guest
-    
+
     # guest abilities
-    can :read, Specialite
+    can :show, Page
+    can :index, Specialite
+    can :show, Specialite do |sp|
+      !sp.dcis.with_valid_fiches.empty?
+    end
     can :index, ClasseTherapeutique
     can :show, ClasseTherapeutique do |ct|
-      ct && !ct.dcis.empty?
+      !ct.dcis.with_valid_fiches.empty?
     end
 
-    can :search, Dci
     can :show, Dci do |dci|
-      dci && !dci.fiches.valide.empty?
+      !dci.fiches.valide.empty?
     end
-    can :stripped_names, [Dci, ClasseTherapeutique]
-    can :names, Specialite
+
+    can :stripped_names, [Dci, Specialite]
 
     can :read, Fiche, :state => "valide"
+    can :search, Fiche
 
     can :create, Demande
 
     # admin abilities
     if user.admin?
       can :manage, :all
+      can :search, [Fiche, Dci]
+      can :stripped_names, [Dci, Specialite]
+      #
     # other roles abilities
     else
       case user.role
       when "contributeur"
-        can :read, [Dci, ClasseTherapeutique, Fiche]
+        can :search, [Fiche, Dci]
+        can :read, [Page, Dci, ClasseTherapeutique, Fiche, Demande, Source]
+        can :names, Source
         can :create, Fiche
         can :update, Fiche,
           :state => ["brouillon", "a_valider"],
           :user_id => user.id
-        can :initialiser, Fiche,
-          :state => "brouillon",
-          :user_id => user.id
       when "valideur"
-        can :manage, User do |action, object_class|
-          action != :destroy
-        end
-        can :manage, [Dci, Fiche, Demande, Specialite, Decision, Distinction, Source, ClasseTherapeutique]
-        can :valider, Fiche, :state => ["en_attente", "a_valider"]
-        can [:invalider, :maj_date], Fiche, :state => ["valide"]
+        can :search, [Fiche, Dci]
+        can :manage, :all
+        cannot :destroy, User, :id => user.id
+        can :names, Source
+        can :stripped_names, [Dci, Specialite]
       end
     end
   end

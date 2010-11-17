@@ -1,8 +1,8 @@
 # Be sure to restart your server when you modify this file.
 
-GalacsiRails3::Application.config.session_store :cookie_store, :key => '_galacsi-rails3_session'
+Galacsi::Application.config.session_store :cookie_store, :key => '_galacsi_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rake db:sessions:create")
-# GalacsiRails3::Application.config.session_store :active_record_store
+# Galacsi::Application.config.session_store :active_record_store

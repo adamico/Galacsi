@@ -5,20 +5,26 @@ class Demande < ActiveRecord::Base
 
   NATURES = [
     ["Nouvelle DCI", "DCI"],
-    ["Nouvelle spécialité", "SPECIALITE"],
+    ["Nouvelle spécialité", "specialite"],
+    ["Nouvelle classe", "classe therapeutique"],
     ["Nouvelle fiche", "fiche"]
   ]
 end
 
 
+
+
 # == Schema Information
+# Schema version: 20101021093522
 #
 # Table name: demandes
 #
-#  id         :integer         not null, primary key
+#  id         :integer         primary key
 #  nature     :string(255)
 #  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :timestamp
+#  updated_at :timestamp
+#  contexte   :text
+#  demandeur  :string(255)
 #
 
