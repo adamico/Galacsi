@@ -16,7 +16,7 @@ gem 'cancan'
 gem 'formtastic', "1.1.0"
 gem "activesupport"
 gem "friendly_id", '~> 3.0'
-gem 'will_paginate', '3.0.pre'
+gem 'will_paginate', '3.0.pre2'
 gem 'pickle'
 gem 'recaptcha'
 gem 'comma'
@@ -38,12 +38,13 @@ end
 group :test, :development do
   gem 'rspec-rails', "~> 2.0.1"
   gem 'rcov'
+  gem 'ruby-debug19'
 end
 
 group :test do
   gem 'factory_girl_rails'
   gem "autotest"
-  gem 'spork'
+  gem 'spork', '0.9.0.rc2'
   gem 'capybara'
 end
 
@@ -53,7 +54,7 @@ group :cucumber do
   gem 'cucumber-rails'
   gem 'cucumber'
   gem 'rspec-rails', "~> 2.0.1"
-  gem 'spork'
+  gem 'spork', '0.9.0.rc2'
   gem 'launchy'    # So you can do Then show me the page
   gem 'pickle'
   gem 'factory_girl_rails'
