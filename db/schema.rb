@@ -12,67 +12,67 @@
 ActiveRecord::Schema.define(:version => 20101110112900) do
 
   create_table "alternativeships", :force => true do |t|
-    t.integer   "fiche_id"
-    t.integer   "alternative_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "fiche_id"
+    t.integer  "alternative_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "classe_therapeutiques", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "stripped_name"
-    t.integer   "classifications_count", :default => 0
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "stripped_name"
+    t.integer  "classifications_count", :default => 0
   end
 
   create_table "classifications", :force => true do |t|
-    t.integer   "dci_id"
-    t.integer   "classe_therapeutique_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "dci_id"
+    t.integer  "classe_therapeutique_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "compositions", :force => true do |t|
-    t.integer   "dci_id"
-    t.integer   "specialite_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "dci_id"
+    t.integer  "specialite_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "dcis", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "stripped_name"
-    t.string    "cached_slug"
-    t.integer   "classifications_count", :default => 0
-    t.integer   "fiches_count",          :default => 0
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "stripped_name"
+    t.string   "cached_slug"
+    t.integer  "classifications_count", :default => 0
+    t.integer  "fiches_count",          :default => 0
   end
 
   add_index "dcis", ["cached_slug"], :name => "index_dcis_on_cached_slug"
 
   create_table "decisions", :force => true do |t|
-    t.string    "name"
-    t.text      "description"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "abbr"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "abbr"
   end
 
   create_table "demandes", :force => true do |t|
-    t.string    "nature"
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.text      "contexte"
-    t.string    "demandeur"
+    t.string   "nature"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "contexte"
+    t.string   "demandeur"
   end
 
   create_table "distinctions", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "fiches", :force => true do |t|
@@ -118,67 +118,62 @@ ActiveRecord::Schema.define(:version => 20101110112900) do
 
   add_index "fiches", ["decision_id"], :name => "index_produits_on_decision_id"
 
-  create_table "fiches_sources", :id => false, :force => true do |t|
-    t.integer "fiche_id"
-    t.integer "source_id"
-  end
-
   create_table "pages", :force => true do |t|
-    t.string    "permalink"
-    t.text      "content"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "title"
+    t.string   "permalink"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
   end
 
   create_table "slugs", :force => true do |t|
-    t.string    "name"
-    t.integer   "sluggable_id"
-    t.integer   "sequence",                     :default => 1, :null => false
-    t.string    "sluggable_type", :limit => 40
-    t.string    "scope"
-    t.timestamp "created_at"
+    t.string   "name"
+    t.integer  "sluggable_id"
+    t.integer  "sequence",                     :default => 1, :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.string   "scope"
+    t.datetime "created_at"
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "sources", :force => true do |t|
-    t.string    "name"
-    t.string    "nature"
-    t.string    "url"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.string   "nature"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sourcings", :force => true do |t|
-    t.integer   "fiche_id"
-    t.integer   "source_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "fiche_id"
+    t.integer  "source_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "specialites", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "stripped_name"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "stripped_name"
   end
 
   create_table "users", :force => true do |t|
-    t.string    "email",                             :default => "", :null => false
-    t.string    "encrypted_password", :limit => 128, :default => "", :null => false
-    t.string    "password_salt",                     :default => "", :null => false
-    t.integer   "sign_in_count",                     :default => 0
-    t.timestamp "current_sign_in_at"
-    t.timestamp "last_sign_in_at"
-    t.string    "current_sign_in_ip"
-    t.string    "last_sign_in_ip"
-    t.string    "username"
-    t.string    "role"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "admin"
+    t.string   "email",                             :default => "", :null => false
+    t.string   "encrypted_password", :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                     :default => "", :null => false
+    t.integer  "sign_in_count",                     :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "username"
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "admin"
   end
 
 end
