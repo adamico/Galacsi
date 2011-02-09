@@ -5,7 +5,7 @@ source :rubygems
 gem 'pg', :group => :production
 
 group :development do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'sqlite3'
   gem "wirble"
   gem "hirb"
   gem 'annotate-models', '1.0.4'
@@ -28,7 +28,7 @@ group :cucumber do
   gem 'factory_girl'
 end
 
-gem 'rails', '2.3.10'
+gem 'rails', '2.3.11'
 gem 'haml', '3.0.18'
 gem 'RedCloth'
 gem 'acts_as_sanitiled'
