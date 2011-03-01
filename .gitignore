@@ -21,3 +21,5 @@ rails/
 lib/tasks/rcov.rake
 lib/tasks/rspec.rake
 lib/tasks/cucumber.rake
+vendor/ruby
+vendor/cache
