@@ -15,5 +15,5 @@
       %tbody
         - @fiches.each do |fiche|
           %tr
-            %td= link_to h(fiche.dci_name.humanize), dci_path(fiche.dci)
+            %td= link_to h(fiche.dci_name.humanize), [fiche.dci, fiche]
             %td= fiche.full_distinction

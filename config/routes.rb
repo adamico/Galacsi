@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :dcis do |dci|
     dci.resources :fiches,
-      :member => { 
+      :member => {
         :initialiser => :put,
         :valider => :put,
         :invalider => :put,
