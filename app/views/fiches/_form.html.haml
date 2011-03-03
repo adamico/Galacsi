@@ -1,5 +1,4 @@
--# coding: utf-8
-- semantic_form_for([@fiche.dci, @fiche]) do |f|
+- semantic_form_for([fiche.dci, fiche]) do |f|
   - if current_user.admin?
     - f.inputs do
       = f.input :user, :label => "Créateur"

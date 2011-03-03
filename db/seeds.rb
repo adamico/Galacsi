@@ -7,3 +7,8 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
 #
+
+decision_names = ["Contre-indiqué", "A discuter", "Compatible", "Compatible 2e intention"]
+decision_names.each do |name|
+  Decision.create(:name => name)
+end

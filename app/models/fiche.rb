@@ -26,7 +26,9 @@ class Fiche < ActiveRecord::Base
     createur
   end
 
+  # delegations
   delegate :name, :to => :dci, :allow_nil => true, :prefix => true
+  delegate :name, :abbr, :to => :decision, :allow_nil => true, :prefix => true
 
   alias_scope :valide, lambda { state_is("valide")}
 

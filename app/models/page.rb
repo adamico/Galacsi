@@ -2,6 +2,12 @@ class Page < ActiveRecord::Base
   def title_or_permalink
     title.nil? ? permalink : title
   end
+
+  def self.without_home
+    if Page.exists?(:permalink => 'home')
+      find(:all).reject {|page| page.permalink == 'home'}
+    end
+  end
 end
 
 # == Schema Information

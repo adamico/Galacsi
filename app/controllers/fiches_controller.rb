@@ -1,11 +1,11 @@
 # encoding: utf-8
 class FichesController < ApplicationController
-
+  before_filter :find_fiches, :only => [:index, :search]
+  before_filter :find_dci, :only => [:new, :create]
   load_and_authorize_resource :fiche
 
   def index
-    @search = Fiche.search(params[:search])
-    @fiches = @search.all(:include => [:distinction, :user, :dci])
+    # @fiches are loaded in before_filter
     respond_to do |format|
       format.html
       format.csv { render :csv => @fiches}
@@ -13,22 +13,22 @@ class FichesController < ApplicationController
   end
 
   def search
-    @search = Fiche.search(params[:search])
-    @fiches = @search.all(:include => [:distinction, :dci])
+    # @fiches are loaded in before_filter
     @fiches.reject! { |fiche| fiche.state != "valide" } unless current_user
   end
 
   def show
+    # @fiche is loaded in before_filter with load_and_authorize_resource :fiche
     @dci = @fiche.dci
   end
 
   def new
-    @dci = Dci.find(params[:dci_id])
+    # @dci is loaded in before_filter
     @fiche = @dci.fiches.build
   end
-  
+
   def create
-    @dci = Dci.find(params[:dci_id])
+    # @dci is loaded in before_filter
     @fiche = @dci.fiches.build(params[:fiche])
     @fiche.user = current_user
     if @fiche.save
@@ -38,14 +38,13 @@ class FichesController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
-    @fiche = Fiche.find(params[:id])
-    @dci = @fiche.dci
+    # @fiche is loaded in before_filter with load_and_authorize_resource :fiche
   end
-  
+
   def update
-    @fiche = Fiche.find(params[:id])
+    # @fiche is loaded in before_filter with load_and_authorize_resource :fiche
     if @fiche.update_attributes(params[:fiche])
       flash[:notice] = "La fiche a été modifiée."
       redirect_to @fiche.dci
@@ -53,12 +52,22 @@ class FichesController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
-    @fiche = Fiche.find(params[:id])
+    # @fiche is loaded in before_filter with load_and_authorize_resource :fiche
     @fiche.destroy
     flash[:notice] = "La fiche a été détruite."
     redirect_to dci_url(@fiche.dci)
   end
-  
+
+  private
+
+  def find_fiches
+    @search = Fiche.search(params[:search])
+    @fiches = @search.all(:include => [:distinction, :user, :dci])
+  end
+
+  def find_dci
+    @dci = Dci.find(params[:dci_id])
+  end
 end

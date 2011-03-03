@@ -1,6 +1,5 @@
 - title "Modification d'une source"
 
-= render :partial => 'form'
+= render 'form', :source => @source
 
-%p
-  = link_to "Annuler", sources_path
+%p= link_to "Annuler", sources_path

@@ -1,5 +1,5 @@
 - title "Nouvelle Décision"
 
-= render :partial => 'form'
+= render 'form', :decision => @decision
 
 %p= link_to "Retour à la liste", decisions_path

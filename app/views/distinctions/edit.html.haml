@@ -1,6 +1,5 @@
 - title "Modifier une distinction"
 
-= render :partial => 'form'
+= render 'form', :distinction => @distinction
 
-%p
-  = link_to "Annuler", distinctions_path
+%p= link_to "Annuler", distinctions_path

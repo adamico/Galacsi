@@ -5,5 +5,5 @@
       %b Attention: tant que les champs "Spécialités" ou "Classes thérapeutiques" sont vides la dci n'est pas prise en compte par le moteur de recherche
     = f.input :name, :label => "Nom"
     = f.input :commercial_names, :label => "Spécialités", :as => :string
-    = f.input :classe_therapeutiques, :label => "Classes thérapeutiques", :hint => "Ce champ est multi-choix, maintenir enfoncé la touche Ctrl pour sélectionner plusieurs classes", :collection => ClasseTherapeutique.all(:order => "name ASC")
+    = f.input :classe_therapeutiques, :label => "Classes thérapeutiques", :hint => "Ce champ est multi-choix, maintenir enfoncé la touche Ctrl pour sélectionner plusieurs classes", :collection => classe_therapeutiques
     = f.commit_button "Enregistrer"

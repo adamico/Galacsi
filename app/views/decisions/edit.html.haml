@@ -1,6 +1,6 @@
 - title "Modification d'une décision"
 
-= render :partial => 'form'
+= render 'form', :decision => @decision
 
 %p
   = link_to "Annuler", decisions_path
