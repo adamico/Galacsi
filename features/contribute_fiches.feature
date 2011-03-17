@@ -7,6 +7,12 @@ Feature: contribute fiches
     Given I am logged in as a contributeur
       And a dci exists
 
+  Scenario: a contributeur owns fiches he creates
+    When I go to the dci page
+      And I follow "Rajouter une fiche"
+      And I submit
+    Then a fiche should exist with user: the contributeur
+
   Scenario: a contributeur can only edit his own fiches
     Given another contributeur exists
       And a fiche exists with dci: the dci, user: the 2nd contributeur
