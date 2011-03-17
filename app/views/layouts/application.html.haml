@@ -24,7 +24,7 @@
       #right
         .box
           - user_navlinks
-        = render 'layouts/news' unless Dci.with_recent_fiches.empty?
+        = render 'layouts/news', :dcis_with_recent_fiches => @dcis_with_recent_fiches if @dcis_with_recent_fiches.any?
         = render 'layouts/verif_fiches', :expired_fiches => @expired_fiches
         .box
           %p Vous n'avez pas trouvé ce que vous cherchiez ?
