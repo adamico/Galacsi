@@ -1,6 +1,7 @@
 class DcisController < ApplicationController
-
   load_and_authorize_resource
+
+  before_filter :find_classes_therapeutiques, :only => [:new, :edit]
 
   def index
     @dcis = Dci.includes(
@@ -51,5 +52,11 @@ class DcisController < ApplicationController
     @dci.destroy
     flash[:notice] = "Successfully destroyed dci."
     redirect_to dcis_url
+  end
+
+  private
+
+  def find_classes_therapeutiques
+    @classe_therapeutiques = ClasseTherapeutique.all
   end
 end

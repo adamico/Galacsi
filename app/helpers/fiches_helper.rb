@@ -15,8 +15,8 @@ module FichesHelper
         haml_tag :p, :class => "float_right" do
           haml_tag :span, "Décision allaitement : ",
             :<, :class => "strong"
-          haml_tag :span, h(fiche.decision.name),
-            :<, {:class => "decision", :id => "#{fiche.decision.abbr}"}
+          haml_tag :span, h(fiche.decision_name),
+            :<, {:class => "decision", :id => "#{fiche.decision_abbr}"}
         end
       end
       haml_tag :div, :class => "clear"

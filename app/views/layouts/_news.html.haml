@@ -1,7 +1,7 @@
 .box.news
   %strong Dernières MAJ :
   %ul
-    - Dci.with_recent_fiches.each do |dci|
+    - dcis_with_recent_fiches.each do |dci|
       - if can?(:show, dci)
         %li
           = link_to dci.name, dci_path(dci)

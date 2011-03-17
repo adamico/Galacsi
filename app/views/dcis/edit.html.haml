@@ -1,6 +1,6 @@
 - title "Modification de la DCI : #{@dci.name}"
 
-= render 'form', :dci => @dci
+= render 'form', :dci => @dci, :classe_therapeutiques => @classe_therapeutiques
 
 %p
   = link_to "Annuler", dci_path(@dci)

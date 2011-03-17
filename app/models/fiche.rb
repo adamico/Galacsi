@@ -32,6 +32,7 @@ class Fiche < ActiveRecord::Base
 
   # delegations
   delegate :name, :to => :dci, :allow_nil => true, :prefix => true
+  delegate :name, :abbr, :to => :decision, :allow_nil => true, :prefix => true
 
   # scopes
   scope :expired,    where("revalider_le <= ?", Time.now.to_date)

@@ -64,5 +64,5 @@ Feature: searching dcis
     And I press "OK"
     Then I should see "2 résultats"
       And I should see the following search results:
-        | Dci 1 | Voie : Orale |
-        | Dci 3 | Dosage : Haut|
+        | Dci 1 Voie : Orale |
+        | Dci 3 Dosage : Haut|

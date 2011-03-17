@@ -3,9 +3,8 @@ class PagesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @pages = Page.all
   end
-  
+
   def show
     if params[:permalink]
       @page = Page.find_by_permalink(params[:permalink])
@@ -14,11 +13,11 @@ class PagesController < ApplicationController
       @page = Page.find(params[:id])
     end
   end
-  
+
   def new
     @page = Page.new
   end
-  
+
   def create
     @page = Page.new(params[:page])
     if @page.save
@@ -28,13 +27,11 @@ class PagesController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
-    @page = Page.find(params[:id])
   end
-  
+
   def update
-    @page = Page.find(params[:id])
     if @page.update_attributes(params[:page])
       flash[:notice] = "Successfully updated page."
       redirect_to @page
@@ -42,9 +39,8 @@ class PagesController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
-    @page = Page.find(params[:id])
     @page.destroy
     flash[:notice] = "Successfully destroyed page."
     redirect_to pages_url

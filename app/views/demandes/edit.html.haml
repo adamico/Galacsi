@@ -1,8 +1,8 @@
 - title "Edit Demande"
 
-= render :partial => 'form'
+= render 'form', :demande => @demande
 
 %p
-  = link_to "Show", demande_path(@demande)
+  = link_to "Annuler", demande_path(@demande)
   |
-  = link_to "View All", demandes_path
+  = link_to "Retour à la liste", demandes_path

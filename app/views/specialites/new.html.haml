@@ -1,5 +1,5 @@
 - title "Nouvelle Spécialite"
 
-= render :partial => 'form'
+= render 'form', :specialite => @specialite
 
 %p= link_to "Annuler", specialites_path

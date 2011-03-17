@@ -1,6 +1,5 @@
 - title "Modification d'une spécialite"
 
-= render 'form'
+= render 'form', :specialite => @specialite
 
-%p
-  = link_to "Annuler", specialite_path(@specialite)
+%p= link_to "Annuler", specialite_path(@specialite)
