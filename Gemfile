@@ -1,7 +1,7 @@
 # galacsi rails3 Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.5'
 gem "haml"
 gem "RedCloth"
 gem "meta_search"
@@ -36,7 +36,6 @@ end
 group :test, :development do
   gem 'rspec-rails', "~> 2.1"
   gem 'rcov'
-  gem 'ruby-debug19'
 end
 
 group :test do
