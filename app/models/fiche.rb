@@ -10,10 +10,6 @@ class Fiche < ActiveRecord::Base
   RLP = ["<1", ">1"]
   STATES = [["brouillon", "brouillon"], ["à valider", "a_valider"], ["valide", "valide"], ["en attente", "en_attente"]]
 
-  # automatically parse text fields with redcloth
-  acts_as_sanitiled :commentaire, :ei, :conditions,
-    :surveillance, :arg_autre, :ei_theoriques, :articles
-
   # associations
   belongs_to :decision
   belongs_to :dci, :counter_cache => true

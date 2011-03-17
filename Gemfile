@@ -6,7 +6,6 @@ gem "haml"
 gem "RedCloth"
 gem "meta_search"
 gem "meta_where"
-gem 'acts_as_sanitiled', :git => "https://github.com/kevinansfield/acts_as_sanitiled.git"
 gem "state_machine"
 gem 'devise'
 gem 'cancan'
