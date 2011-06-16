@@ -16,7 +16,10 @@ gem 'will_paginate', '3.0.pre2'
 gem 'recaptcha'
 gem 'comma'
 
-gem 'pg', :group => :production
+group :production do
+  gem 'pg'
+  gem 'rack-google_analytics', :require => "rack/google_analytics"
+end
 
 group :development do
   gem 'sqlite3'
