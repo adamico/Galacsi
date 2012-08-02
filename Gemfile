@@ -1,9 +1,9 @@
 # galacsi rails3 Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.16'
 gem "haml"
-gem "RedCloth"
+gem "RedCloth", "~> 4.2.9"
 gem "meta_search"
 gem "meta_where"
 gem "state_machine"
@@ -28,7 +28,7 @@ group :development do
   gem "haml-rails"
   gem "wirble"
   gem "hirb"
-  gem 'annotate-models', '1.0.4'
+  gem 'annotate'
   gem 'faker', '0.3.1'
   gem "hpricot"
   gem "ruby_parser"
