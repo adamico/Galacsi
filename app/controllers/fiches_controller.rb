@@ -40,10 +40,12 @@ class FichesController < ApplicationController
 
   def edit
     # @fiche is loaded in before_filter with load_and_authorize_resource :fiche
+    @dci = @fiche.dci
   end
 
   def update
     # @fiche is loaded in before_filter with load_and_authorize_resource :fiche
+    @dci = @fiche.dci
     if @fiche.update_attributes(params[:fiche])
       flash[:notice] = "La fiche a été modifiée."
       redirect_to @fiche.dci
