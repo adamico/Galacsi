@@ -1,7 +1,7 @@
 # galacsi rails3 Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.16'
+gem 'rails', '3.0.20'
 gem "haml"
 gem "RedCloth", "~> 4.2.9"
 gem "meta_search"
