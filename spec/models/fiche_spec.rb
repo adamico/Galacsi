@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Fiche do
-  let(:dci) {Factory(:dci)}
+  let(:dci) {FactoryGirl.create(:dci)}
   subject { dci.fiches.build}
 
   it { should be_valid }
@@ -31,7 +31,7 @@ describe Fiche do
     end
     context "when #distinction_name is blank" do
       it "should return #distinction.name" do
-        distinction = Factory(:distinction, :name => "dist1")
+        distinction = FactoryGirl.create(:distinction, :name => "dist1")
         subject.distinction_name = ""
         subject.distinction = distinction
         subject.full_distinction.should == "Dist1"
@@ -40,7 +40,7 @@ describe Fiche do
     it "should return distinction label and name joined by ':'" do
       dist = "dlabel"
       dist_name = "dname"
-      subject.distinction = Factory(:distinction, :name => dist)
+      subject.distinction = FactoryGirl.create(:distinction, :name => dist)
       subject.distinction_name = dist_name
       subject.full_distinction.should == "Dlabel : Dname"
     end
@@ -51,7 +51,7 @@ describe Fiche do
       subject.should respond_to(:createur)
     end
     it "should return the fiche's creator username" do
-      user = Factory(:user)
+      user = FactoryGirl.create(:user)
       subject.user = user
       subject.createur.should == user.username
     end
@@ -63,7 +63,7 @@ describe Fiche do
     end
     it "should return names of alternatives joined by ', '" do
       2.times do |n|
-        subject.alternatives << Factory(:dci, :name => "dci#{n+1}")
+        subject.alternatives << FactoryGirl.create(:dci, :name => "dci#{n+1}")
       end
       subject.alternative_names.should == "dci1, dci2"
     end
@@ -72,37 +72,37 @@ describe Fiche do
   # scopes
   describe ".expired" do
     it "should return expired fiches" do
-      Factory(:fiche, :revalider_le => 2.months.from_now)
-      exp_fiche = Factory(:fiche_expiree)
+      FactoryGirl.create(:fiche, :revalider_le => 2.months.from_now)
+      exp_fiche = FactoryGirl.create(:fiche_expiree)
       Fiche.expired.should == [exp_fiche]
     end
   end
   describe ".valide" do
     it "should return fiches with valide state" do
-      val1 = Factory(:fiche_valide)
-      val2 = Factory(:fiche_valide)
+      val1 = FactoryGirl.create(:fiche_valide)
+      val2 = FactoryGirl.create(:fiche_valide)
       Fiche.valide.all.should == [val1, val2]
     end
   end
   describe ".non_valide" do
     it "should return fiches with state other than 'valide'" do
-      brou = Factory(:fiche)
-      aval = Factory(:fiche_a_valider)
-      enat = Factory(:fiche_en_attente)
+      brou = FactoryGirl.create(:fiche)
+      aval = FactoryGirl.create(:fiche_a_valider)
+      enat = FactoryGirl.create(:fiche_en_attente)
       Fiche.non_valide.all.should == [brou, aval, enat]
     end
   end
 
   describe ".recent" do
     it "should return recently validated fiches only" do
-      Factory(:fiche, :published_at => 3.weeks.ago)
-      recent_fiche = Factory(:fiche_recente)
+      FactoryGirl.create(:fiche, :published_at => 3.weeks.ago)
+      recent_fiche = FactoryGirl.create(:fiche_recente)
       Fiche.recent.should == [recent_fiche]
     end
   end
   # workflow state machine callbacks
   describe "#valider" do
-    subject {Factory(:fiche_a_valider)}
+    subject {FactoryGirl.create(:fiche_a_valider)}
     it "should set #published_at to today" do
       subject.valider!
       subject.reload
@@ -116,7 +116,7 @@ describe Fiche do
     end
   end
   describe "#mettre_en_attente" do
-    subject {Factory(:fiche_valide)}
+    subject {FactoryGirl.create(:fiche_valide)}
     it "should set #published_at to nil" do
       subject.mettre_en_attente!
       subject.reload
