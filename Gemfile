@@ -2,6 +2,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
+gem 'pg'
 
 gem "haml"
 gem "RedCloth"
@@ -18,25 +19,26 @@ gem 'recaptcha'
 gem 'comma'
 
 group :production do
-  gem 'pg'
   gem 'rack-google_analytics', :require => "rack/google_analytics"
 end
 
 group :development do
-  gem 'sqlite3'
   gem "haml-rails"
 end
 
+group :test do
+  gem 'factory_girl_rails'
+end
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'simplecov'
 end
 
 group :cucumber do
   gem 'cucumber-rails'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
   gem 'pickle'
