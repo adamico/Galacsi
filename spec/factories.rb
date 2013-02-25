@@ -1,85 +1,87 @@
-Factory.define :page do |f|
-  f.sequence(:permalink) {|n| "permalink#{n}"}
-  f.title "a title"
-  f.content "a content"
-end
+FactoryGirl.define do
+  factory :page do
+    sequence(:permalink) {|n| "permalink#{n}"}
+    title "a title"
+    content "a content"
+  end
 
-Factory.define :home_page, :parent => :page do |f|
-  f.permalink "home"
-end
+  factory :home_page, :parent => :page do
+    permalink "home"
+  end
 
-Factory.define :fiche do |f|
-  f.commentaire 'blabla'
-  f.distinction_name 'hta'
-  f.suivi 'oui'
-  f.state 'brouillon'
-end
+  factory :fiche do
+    commentaire 'blabla'
+    distinction_name 'hta'
+    suivi 'oui'
+    state 'brouillon'
+  end
 
-Factory.define :fiche_a_valider, :parent => :fiche do |f|
-  f.state "a_valider"
-end
+	factory :fiche_a_valider, :parent => :fiche do
+  	state "a_valider"
+  end
 
-Factory.define :fiche_valide, :parent => :fiche do |f|
-  f.state "valide"
-  f.published_at Time.now.to_date
-  f.revalider_le 3.months.from_now.to_date
-end
+	factory :fiche_valide, :parent => :fiche do
+  	state "valide"
+  	published_at Time.now.to_date
+  	revalider_le 3.months.from_now.to_date
+  end
 
-Factory.define :fiche_en_attente, :parent => :fiche do |f|
-  f.state "en_attente"
-  f.published_at nil
-end
+	factory :fiche_en_attente, :parent => :fiche do
+  	state "en_attente"
+  	published_at nil
+  end
 
-Factory.define :fiche_expiree, :parent => :fiche_valide do |f|
-  f.revalider_le 1.day.ago.to_date
-end
+	factory :fiche_expiree, :parent => :fiche_valide do
+  	revalider_le 1.day.ago.to_date
+	end
 
-Factory.define :fiche_recente, :parent => :fiche do |f|
-  f.state "valide"
-  f.published_at Time.now.to_date
-end
+	factory :fiche_recente, :parent => :fiche do
+  	state "valide"
+  	published_at Time.now.to_date
+	end
 
-Factory.define(:distinction) do |f|
-  f.sequence(:name) {|n| "dist#{n}"}
-end
+	factory(:distinction) do
+  	sequence(:name) {|n| "dist#{n}"}
+	end
 
-Factory.define :dci do |f|
-  f.sequence(:name) {|n| "dci#{n}" }
-end
+	factory :dci do
+  	sequence(:name) {|n| "dci#{n}" }
+	end
 
-Factory.define :decision do |f|
-  f.name "Compatible"
-end
+	factory :decision do
+  	name "Compatible"
+	end
 
-Factory.define :composition do |f|
-  f.association :specialite
-  f.association :dci
-end
+	factory :composition do
+  	association :specialite
+  	association :dci
+	end
 
-Factory.define :classification do |f|
-  f.association :classe_therapeutique
-  f.association :dci
-end
+	factory :classification do
+  	association :classe_therapeutique
+  	association :dci
+	end
 
-Factory.define :specialite  do |f|
-  f.sequence(:name) {|n| "specialite#{n}"}
-end
+	factory :specialite  do
+  	sequence(:name) {|n| "specialite#{n}"}
+	end
 
-Factory.define :classe_therapeutique do |f|
-  f.sequence(:name) { |n| "classe#{n}" }
-end
+	factory :classe_therapeutique do
+  	sequence(:name) { |n| "classe#{n}" }
+	end
 
-Factory.define :user do |f|
-  f.sequence(:username) {|n| "username#{n}"}
-  f.email { |a| "#{a.username}@example.com".downcase }
-  f.password "password"
-  f.password_confirmation { |user| user.password }
-end
+	factory :user do
+  	sequence(:username) {|n| "username#{n}"}
+  	email { |a| "#{a.username}@example.com".downcase }
+  	password "password"
+  	password_confirmation { |user| user.password }
+	end
 
-Factory.define :valideur, :parent => :user do |f|
-  f.role "valideur"
-end
+	factory :valideur, :parent => :user do
+  	role "valideur"
+	end
 
-Factory.define :contributeur, :parent => :user do |f|
-  f.role "contributeur"
+	factory :contributeur, :parent => :user do
+  	role "contributeur"
+	end
 end
