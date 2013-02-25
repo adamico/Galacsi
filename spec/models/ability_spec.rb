@@ -3,41 +3,41 @@ require 'cancan/matchers'
 
 describe Ability do
   context "for a guest user:" do
-    user = Factory.build :user
+    user = FactoryGirl.build :user
     subject { Ability.new(user) }
-    it { should be_able_to(:show, Factory(:home_page))}
+    it { should be_able_to(:show, FactoryGirl.create(:home_page))}
     it { should be_able_to(:index, Specialite.new) }
     it "should not be able to :show a Specialite with dcis without valid fiches" do
-      specialite = Factory(:specialite)
-      dci = Factory(:dci)
-      fiche = Factory(:fiche, :dci => dci)
-      comp = Factory(:composition, :specialite  => specialite, :dci => dci)
+      specialite = FactoryGirl.create(:specialite)
+      dci = FactoryGirl.create(:dci)
+      fiche = FactoryGirl.create(:fiche, :dci => dci)
+      comp = FactoryGirl.create(:composition, :specialite  => specialite, :dci => dci)
       subject.should_not be_able_to(:show, specialite)
     end
     it { should be_able_to(:index, ClasseTherapeutique.new) }
     it "should not be able to :show a C.T. with dcis without valid fiches" do
-      classe_therapeutique = Factory(:classe_therapeutique)
-      dci = Factory(:dci)
-      fiche = Factory(:fiche, :dci => dci)
-      classification = Factory(:classification, :classe_therapeutique  => classe_therapeutique, :dci => dci)
+      classe_therapeutique = FactoryGirl.create(:classe_therapeutique)
+      dci = FactoryGirl.create(:dci)
+      fiche = FactoryGirl.create(:fiche, :dci => dci)
+      classification = FactoryGirl.create(:classification, :classe_therapeutique  => classe_therapeutique, :dci => dci)
       subject.should_not be_able_to(:show, classe_therapeutique)
     end
     it "should not be able to :show a Dci without valid fiches" do
-      dci = Factory(:dci)
-      fiche = Factory(:fiche, :dci => dci)
+      dci = FactoryGirl.create(:dci)
+      fiche = FactoryGirl.create(:fiche, :dci => dci)
       subject.should_not be_able_to(:show, dci)
     end
     it { should be_able_to(:stripped_names, Dci.new)}
     it { should be_able_to(:stripped_names, Specialite.new)}
-    it { should be_able_to(:read, Factory(:fiche_valide)) }
-    it { should_not be_able_to(:read, Factory(:fiche)) }
-    it { should_not be_able_to(:read, Factory(:fiche_a_valider)) }
-    it { should_not be_able_to(:read, Factory(:fiche_en_attente)) }
-    it { should be_able_to(:search, Factory(:fiche))}
+    it { should be_able_to(:read, FactoryGirl.create(:fiche_valide)) }
+    it { should_not be_able_to(:read, FactoryGirl.create(:fiche)) }
+    it { should_not be_able_to(:read, FactoryGirl.create(:fiche_a_valider)) }
+    it { should_not be_able_to(:read, FactoryGirl.create(:fiche_en_attente)) }
+    it { should be_able_to(:search, FactoryGirl.create(:fiche))}
     it { should be_able_to(:create, Demande)}
   end
   context "for an admin:" do
-    admin = Factory.build :user
+    admin = FactoryGirl.build :user
     admin.admin = true
     subject { Ability.new(admin) }
     it "should be able to manage c.t." do
@@ -69,7 +69,7 @@ describe Ability do
     end
   end
   context "for a contributeur:" do
-    contrib = Factory.build :contributeur
+    contrib = FactoryGirl.build :contributeur
     subject { Ability.new(contrib) }
     it { should be_able_to(:search, Fiche)}
     it { should be_able_to(:search, Dci)}
@@ -81,10 +81,10 @@ describe Ability do
     it { should be_able_to(:read, Fiche)}
     it { should be_able_to(:read, Demande)}
     it { should be_able_to(:create, Fiche)}
-    it { should be_able_to(:update, Factory(:fiche, :user => contrib))}
-    it { should be_able_to(:update, Factory(:fiche_a_valider, :user => contrib))}
-    it { should_not be_able_to(:update, Factory(:fiche_valide, :user => contrib))}
-    it { should_not be_able_to(:update, Factory(:fiche_en_attente, :user => contrib))}
+    it { should be_able_to(:update, FactoryGirl.create(:fiche, :user => contrib))}
+    it { should be_able_to(:update, FactoryGirl.create(:fiche_a_valider, :user => contrib))}
+    it { should_not be_able_to(:update, FactoryGirl.create(:fiche_valide, :user => contrib))}
+    it { should_not be_able_to(:update, FactoryGirl.create(:fiche_en_attente, :user => contrib))}
     it { should_not be_able_to(:update, Fiche.new) }
     it { should_not be_able_to(:create, Dci)}
     it { should_not be_able_to(:modify, Dci.new)}
@@ -94,7 +94,7 @@ describe Ability do
     it { should_not be_able_to(:modify, ClasseTherapeutique.new)}
   end
   context "for a valideur:" do
-    let(:valideur) {Factory :valideur}
+    let(:valideur) {FactoryGirl.create(:valideur)}
     subject { Ability.new(valideur) }
     it { should be_able_to(:search, Fiche)}
     it { should be_able_to(:search, Dci)}
