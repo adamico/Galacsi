@@ -1,11 +1,9 @@
 class Dci < ActiveRecord::Base
+  extend FriendlyId
   require 'active_support'
   validates :name, :presence => true, :uniqueness => true
 
-  # use the "name" column as the basis of the friendly_id, and use slugs
-  has_friendly_id :name, :use_slug => true,
-    # remove accents and other diacritics from Western characters
-    :approximate_ascii => true
+  friendly_id :name, use: :slugged
 
   has_many :fiches, :dependent => :destroy
   has_many :classifications, :dependent => :destroy
