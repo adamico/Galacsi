@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe Dci do
-  subject {Factory.build(:dci)}
+  subject {FactoryGirl.build(:dci)}
   it {should be_valid}
 
   describe "#commercial_names" do
@@ -10,8 +10,8 @@ describe Dci do
       subject.should respond_to(:commercial_names)
     end
     it "should list the associated specialites names" do
-      spec1 = Factory(:specialite, :name => "spec1")
-      spec2 = Factory(:specialite, :name => "spec2")
+      spec1 = FactoryGirl.create(:specialite, :name => "spec1")
+      spec2 = FactoryGirl.create(:specialite, :name => "spec2")
       subject.specialites = [spec1, spec2]
       subject.commercial_names.should == "Spec1, Spec2"
     end
@@ -39,7 +39,7 @@ describe Dci do
     it "should list the associated c.t." do
       cts = []
       3.times do |i|
-        cts << Factory(:classe_therapeutique, :name => "ct#{i}")
+        cts << FactoryGirl.create(:classe_therapeutique, :name => "ct#{i}")
       end
       subject.classe_therapeutiques = cts
       subject.classes_therapeutiques.should == "Ct0, Ct1, Ct2"
@@ -48,9 +48,9 @@ describe Dci do
 
   describe ".with_recent_fiches" do
     it "should return dcis with recently validated fiches" do
-      dci1 = Factory(:dci)
-      dci2 = Factory(:dci)
-      dci3 = Factory(:dci)
+      dci1 = FactoryGirl.create(:dci)
+      dci2 = FactoryGirl.create(:dci)
+      dci3 = FactoryGirl.create(:dci)
       subject.save!
       subject.fiches.create(:published_at => Time.now.to_date)
       dci1.fiches.create(:published_at => 1.week.ago)
@@ -61,9 +61,9 @@ describe Dci do
   end
   describe ".with_valid_fiches" do
     it "should return dcis with valide state fiches only" do
-      dci1 = Factory(:dci)
-      dci2 = Factory(:dci)
-      dci3 = Factory(:dci)
+      dci1 = FactoryGirl.create(:dci)
+      dci2 = FactoryGirl.create(:dci)
+      dci3 = FactoryGirl.create(:dci)
       subject.save!
       subject.fiches.create(:state => "valide")
       dci1.fiches.create(:state => "valide")
@@ -74,8 +74,8 @@ describe Dci do
   end
   describe "when saved" do
     it "should assign existing specialites or create them" do
-      Factory(:specialite, :name => "spec1")
-      Factory(:specialite, :name => "spec2")
+      FactoryGirl.create(:specialite, :name => "spec1")
+      FactoryGirl.create(:specialite, :name => "spec2")
       subject.commercial_names = "spec1, spec2"
       subject.save!
       subject.reload
