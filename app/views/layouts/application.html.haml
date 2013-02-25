@@ -4,9 +4,8 @@
     %title= yield(:title) || "Untitled"
     %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}/
     = csrf_meta_tag
-    = render 'layouts/stylesheets'
-    = javascript_include_tag :defaults
-    = javascript_include_tag 'jquery.selectboxes.min'
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
     = render 'layouts/anylinkcssmenu_script'
 
     = yield(:head)
