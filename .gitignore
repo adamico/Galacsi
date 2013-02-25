@@ -22,3 +22,4 @@ lib/tasks/rspec.rake
 lib/tasks/cucumber.rake
 vendor/ruby
 *.dump
+.sass-cache/
