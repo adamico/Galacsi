@@ -2,13 +2,13 @@
 require 'spec_helper'
 
 describe ClasseTherapeutique do
-  let(:classe_therapeutique) { Factory.build(:classe_therapeutique)}
+  let(:classe_therapeutique) { FactoryGirl.build(:classe_therapeutique)}
   subject {classe_therapeutique}
 
   it {should be_valid}
 
   it "should require a unique name" do
-    other_ct = Factory(:classe_therapeutique, :name => subject.name)
+    other_ct = FactoryGirl.create(:classe_therapeutique, :name => subject.name)
     subject.should_not be_valid
   end
 

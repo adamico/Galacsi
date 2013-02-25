@@ -16,6 +16,10 @@ FactoryGirl.define do
     state 'brouillon'
   end
 
+  factory :source do
+  	sequence(:name) {|n| "source#{n}" }
+  end
+
 	factory :fiche_a_valider, :parent => :fiche do
   	state "a_valider"
   end

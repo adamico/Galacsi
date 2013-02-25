@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Source do
-  let(:source) {Factory(:source)}
+  let(:source) {FactoryGirl.create(:source)}
   subject {source}
 
   it {should be_valid}
