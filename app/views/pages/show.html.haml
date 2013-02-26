@@ -1,7 +1,8 @@
 = content_for :page_title do
   = @page.title_or_permalink
 
-= actions_buttons(@page)
+.actions-buttons
+  = actions_buttons(@page)
 = content_for :title do
   = @page.title_or_permalink
 

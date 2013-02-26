@@ -3,7 +3,7 @@
 - if @dcis.empty?
   Aucune DCI dans la base.
 - else
-  %table#list
+  %table.table.table-condensed.table-striped.table-bordered
     %thead
       %tr
         %th DCI
@@ -12,7 +12,7 @@
         %th Fiche(s)
     %tbody
       - @dcis.each do |dci|
-        %tr{:class => "#{cycle('odd', 'even')}"}
+        %tr
           %td= link_to dci.name.humanize, dci
           %td
             - links_to_associations(dci, "specialites")

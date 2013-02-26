@@ -28,7 +28,7 @@ module ApplicationHelper
     buttons.push link_to("Modifier", edit_polymorphic_path(object), class: "btn btn-warning") if can? :update, object
     buttons.push link_to("Détruire", polymorphic_path(object), confirm: 'Etes-vous sûr ?', method: :delete, class: "btn btn-danger ") if can? :destroy, object
     content = buttons.join("\n").html_safe
-    content_tag :div, content, class: "btn-group actions-buttons"
+    content_tag :div, content, class: "btn-group"
   end
 
   def unfructuous_search
