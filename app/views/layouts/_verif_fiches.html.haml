@@ -1,6 +1,7 @@
 - if expired_fiches.count > 0 && can?(:valider, Fiche)
   .box.news
-    %strong= "Attention vous avez #{pluralize(expired_fiches.count, 'fiche')} à vérifier : "
+    %strong
+      Attention vous avez #{pluralize(expired_fiches.count, 'fiche')} à vérifier&nbsp;:
     %ul
       - expired_fiches.each do |fiche|
         %li
