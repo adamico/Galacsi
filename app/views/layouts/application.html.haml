@@ -6,7 +6,7 @@
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
     %meta{:content => "Site d'information sur l'allaitement maternel et les médicaments", :name => "description"}
     %meta{:content => "Andrea D'Amico", :name => "author"}
-    %title= yield(:title) || "GalacSI"
+    %title= yield(:page_title) || "GalacSI"
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tag
@@ -17,23 +17,24 @@
         .container
           = render 'layouts/navigation', :pages => @pages_without_home
 
-    %section
-      #content
-        #left
-          = render :partial => 'shared/flash'
+    .main-wrap{role: "main"}
+      .container-fluid
+        .row-fluid
+          .span9
+            .content-wrap
+              = render 'shared/flash'
+              %h1= yield(:title)
+              = yield
 
-          %h1= yield(:title) if show_title?
+          .span3.sidebar-nav
+            .box
+              - user_navlinks
+            = render 'layouts/news', dcis_with_recent_fiches: @dcis_with_recent_fiches if @dcis_with_recent_fiches.any?
+            = render 'layouts/verif_fiches', :expired_fiches => @expired_fiches
 
-          = yield
+            .box
+              %p Vous n'avez pas trouvé ce que vous cherchiez ?
+              %p= link_to "Demander une création", new_demande_path
 
-        #right
-          .box
-            - user_navlinks
-          = render 'layouts/news', :dcis_with_recent_fiches => @dcis_with_recent_fiches if @dcis_with_recent_fiches.any?
-          = render 'layouts/verif_fiches', :expired_fiches => @expired_fiches
-
-          .box
-            %p Vous n'avez pas trouvé ce que vous cherchiez ?
-            %p= link_to "Demander une création", new_demande_path
-
-    = render 'layouts/footer'
+    .container-fluid
+      = render 'layouts/footer'

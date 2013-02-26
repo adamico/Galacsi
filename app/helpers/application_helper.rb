@@ -19,31 +19,16 @@ module ApplicationHelper
   end
 
   def actions_buttons(object)
-    haml_tag('ul.actions.inline') do
-      if can? :show, object and [Fiche, Demande].include?(object.class)
-        path = case object.class
-               when Fiche; [object.dci, object]
-               else object;
-               end
-        haml_tag :li do
-          haml_concat(button_to("Voir", polymorphic_path(path),
-                                :method => :get,
-                                :class => "go_button"))
-        end
-      end
-      if can? :update, object
-        haml_tag :li do
-          haml_concat(button_to("Modifier", edit_polymorphic_path(object), :method => :get, :class => "edit_button"))
-        end
-      end
-      if can? :destroy, object
-        haml_tag :li do
-          haml_concat(button_to("Détruire", polymorphic_path(object), :confirm => 'Etes-vous sûr ?', :method => :delete, :class => "destroy_button"))
-        end
-      end
-    end
-    haml_tag('div.clear_both') do
-    end
+    buttons = []
+    path = case object.class
+           when Fiche; [object.dci, object]
+           else object;
+           end
+    buttons.push link_to("Voir", polymorphic_path(path), class: "btn btn-success") if can? :show, object and [Fiche, Demande].include?(object.class)
+    buttons.push link_to("Modifier", edit_polymorphic_path(object), class: "btn btn-warning") if can? :update, object
+    buttons.push link_to("Détruire", polymorphic_path(object), confirm: 'Etes-vous sûr ?', method: :delete, class: "btn btn-danger ") if can? :destroy, object
+    content = buttons.join("\n").html_safe
+    content_tag :div, content, class: "btn-group actions-buttons"
   end
 
   def unfructuous_search

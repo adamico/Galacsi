@@ -1,9 +1,8 @@
-- title @page.title_or_permalink, false
+= content_for :page_title do
+  = @page.title_or_permalink
 
-%h1.float_left= @page.title_or_permalink
-
-- actions_buttons(@page)
-
-.clear
+= actions_buttons(@page)
+= content_for :title do
+  = @page.title_or_permalink
 
 = raw textilize @page.content
