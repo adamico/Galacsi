@@ -1,0 +1,50 @@
+= link_to "GalacSI", root_path, class: "brand"
+%ul.nav{role: "navigation"}
+  %li= link_to "Recherche", search_path
+  - if can? :create, Dci
+    %li.dropdown
+      = link_to dcis_path, id: "dcis", role: "button", class: "dropdown-toggle", data: {toggle: "dropdown"} do
+        DCI
+        %b.caret
+      %ul.dropdown-menu{role: "menu", aria: {labelledby: "dcis"}}
+        %li= link_to "Voir la liste", dcis_path
+        %li= link_to "Nouvelle DCI", new_dci_path
+  %li= link_to "Fiches", fiches_path if can? :create, Fiche
+  - html_options = {}
+  - li_ct_class = nil
+  - if can? :create, ClasseTherapeutique
+    - li_ct_class = "dropdown"
+    - html_options = {class: "dropdown-toggle", id: "cts",
+      role: "button",
+      "data-toggle" => "dropdown"}
+  %li{class: li_ct_class}
+    = link_to classe_therapeutiques_path, html_options do
+      Classes
+      = content_tag :b, nil, class: "caret" if can? :create, ClasseTherapeutique
+    - if can? :create, ClasseTherapeutique
+      %ul.dropdown-menu{role: "menu", aria: {labelledby: "cts"}}
+        %li= link_to "Voir la liste", classe_therapeutiques_path
+        %li= link_to "Nouvelle Classe", new_classe_therapeutique_path
+  %li= link_to "Spécialités", specialites_path
+  - if can? :read, User
+    %li.divider-vertical
+    %li= link_to "Demandes", demandes_path
+    %li.dropdown
+      = link_to "#", id: "admin", role: "button", class: "dropdown-toggle", data: {toggle: "dropdown"} do
+        Admin
+        %b.caret
+      %ul.dropdown-menu{role: "menu", aria: {labelledby: "admin"}}
+        %li= link_to "Décisions", decisions_path
+        %li= link_to "Distinctions", distinctions_path
+        %li= link_to "Utilisateurs", users_path
+        %li= link_to "Sources", sources_path
+        %li= link_to "Pages", pages_path
+
+  %li.divider-vertical
+  %li.dropdown
+    = link_to "#", id: "about", role: "button", class: "dropdown-toggle", data: {toggle: "dropdown"} do
+      A propos
+      %b.caret
+    %ul.dropdown-menu{role: "menu", aria: {labelledby: "about"}}
+      - pages.each do |page|
+        %li= link_to page.title_or_permalink, home_path(page.permalink)
