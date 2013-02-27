@@ -25,8 +25,9 @@ gem 'simple_form'
 gem "activesupport"
 gem "friendly_id"
 gem 'will_paginate'
-gem 'recaptcha'
+gem 'humanizer'
 gem 'comma'
+gem "cocoon", "~> 1.1.2"
 
 group :production do
   gem 'rack-google_analytics', :require => "rack/google_analytics"
