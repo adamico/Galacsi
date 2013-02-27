@@ -21,7 +21,6 @@ gem "RedCloth"
 gem "state_machine"
 gem 'devise'
 gem 'cancan'
-gem 'formtastic'
 gem 'simple_form'
 gem "activesupport"
 gem "friendly_id"

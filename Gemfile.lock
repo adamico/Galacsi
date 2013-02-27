@@ -83,8 +83,6 @@ GEM
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
     ffi (1.4.0)
-    formtastic (2.2.1)
-      actionpack (>= 3.0)
     friendly_id (4.0.9)
     gherkin (2.11.6)
       json (>= 1.7.6)
@@ -232,7 +230,6 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails
-  formtastic
   friendly_id
   haml
   haml-rails
