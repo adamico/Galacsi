@@ -1,5 +1,5 @@
 - if can?(:read, fiche)
-  %div{:class => ["fiche", (fiche.state == "valide") ? "valide" : "non_valide"]}
+  %div{class: ["fiche", (fiche.state == "valide") ? "fiche-valide" : "fiche-non_valide"]}
     - fiche_header(fiche)
 
     .resume
@@ -29,7 +29,7 @@
       - if fiche.surveillance?
         %h4 Surveillance :
         = raw textilize fiche.surveillance
-        %p.surveillance
+        %p.text-error
           La poursuite du traitement ou de l'allaitement doit être reconsidérée et le CRPV prévenu si l'un des troubles cités est observé
 
       - unless fiche.alternatives.blank?
@@ -46,8 +46,8 @@
         = raw textilize fiche.arg_autre
 
       - if fiche.suivi == "oui"
-        %h4.inline.alert Attention :
-        %p.inline.alert
+        %p.text-warning
+          %strong Attention :
           pour cette molécule un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur ou
           %u mieux de la patiente concernée.
 
@@ -123,7 +123,7 @@
               = form_for [fiche.dci, fiche], html: {class: "form-inline"} do |f|
                 = f.label :state_event do
                   Etat de validation :
-                  %span{class: "#{fiche.state}"}= fiche.state.humanize
+                  %span{class: "state state-#{fiche.state}"}= fiche.state.humanize
                   = "=> "
                 = f.collection_select :state_event,
                   fiche.state_transitions, :event, :human_to_name, {},
@@ -159,11 +159,9 @@
               = "#{fiche.createur} (#{fiche.user.role})"
 
         .span6
-          .column
-            %ul.edit_actions.inline
-              %li= link_to("Modifier cette fiche",
-                edit_dci_fiche_path(fiche.dci, fiche)) if can? :update, fiche
-              %li= link_to("Détruire cette fiche", [fiche.dci, fiche],
-                {:confirm => 'Etes-vous sûr ?', :method => :delete}) if can? :destroy, fiche
-
-      .clear
+          .column.pull-right
+            .btn-group
+              = link_to("Modifier Fiche",
+                edit_dci_fiche_path(fiche.dci, fiche), class: "btn btn-mini") if can? :update, fiche
+              = link_to("Détruire Fiche", [fiche.dci, fiche],
+                confirm: 'Etes-vous sûr ?', method: :delete, class: "btn btn-mini") if can? :destroy, fiche

@@ -16,7 +16,7 @@ module FichesHelper
           haml_tag :span, "Décision allaitement : ",
             :<, :class => "strong"
           haml_tag :span, h(fiche.decision_name),
-            :<, {:class => "decision", :id => "#{fiche.decision_abbr}"}
+            :<, {:class => "decision #{fiche.decision_abbr}"}
         end
       end
       haml_tag :div, :class => "clear"
