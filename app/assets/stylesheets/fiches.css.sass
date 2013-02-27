@@ -1,0 +1,163 @@
+#fiches
+  clear: both
+
+.fiche
+  margin: 5px 0
+  h3
+    clear: both
+    margin: 0 .5em 0 0
+    padding: 0
+  h4
+    clear: both
+    margin: 0
+    margin-top: 2px
+    margin-left: 1em
+
+  .alert
+    color: red
+    font-size: small
+
+  h4.inline
+    display: inline
+
+  .fiche_footer
+    font-size: 85%
+    overflow: auto
+    background: black
+    color: white
+    padding: 0
+    margin: 0
+    .column
+      padding: 1em
+      padding-bottom: 0
+    form
+      margin-bottom: 0
+    label
+      font-size: inherit
+
+  .argumentaire
+    font-size: 85%
+    table
+      border-collapse: collapse
+      td
+        padding: 0 1em
+
+  .resume
+    padding: 0 0.5em
+    margin: 0
+    p
+      margin: 0
+      margin-left: 2em
+      margin-top: 2px
+      &.surveillance
+        font-size: small
+        color: #777
+        font-weight: bold
+      &.inline
+        margin: 0
+        display: inline
+
+    ul
+      margin-left: 2em
+    a
+      color: #036DA7
+      &:hover
+        text-decoration: underline
+
+.fiche.valide
+  background-color: #fff
+  color: black
+  border: solid 2px #0066B3
+  .resume
+    background: #ddf0ee
+  .fiche_footer
+    background: black
+    color: white
+    .validation
+      a
+        color: #0FE
+
+.fiche.non_valide
+  background: #000
+  color: white
+  border: solid 2px #B30000
+  a
+    color: #09F
+  .resume
+    background: #522
+  .argumentaire
+    td
+      color: black
+
+  .fiche_footer
+    background: white
+    color: black
+
+.fiche_header
+  overflow: auto
+  clear: both
+  margin: 0
+  p
+    margin: 0.5em
+
+.safe
+  font-weight: bold
+  color: green
+
+.strong, .distinction, .decision
+  font-weight: bolder
+.distinction
+  font-size: large
+.decision
+  color: black
+  font-size: large
+  text-transform: uppercase
+  padding: .25em
+  border: 2px solid
+
+
+.brouillon
+  background: yellow
+.a_valider
+  background: rgb(255, 153, 51)
+.valide
+  background: rgb(0, 176, 80)
+.en_attente
+  background: red
+
+/** decisions
+
+#ci
+  background: #ffa880
+  border-color: red
+
+/* contre-indiqué
+
+#ad
+  background: #ffc860
+  border-color: rgb(255, 153, 51)
+
+/* à discuter
+
+#comp
+  background: rgb(215, 228, 189)
+  border-color: rgb(0, 176, 80)
+
+/* compatible
+
+#sc
+  background: rgb(255, 255, 153)
+  border-color: yellow
+
+/* sous conditions
+
+.fields
+  border: 1px solid black
+
+.argumentaire
+  td
+    vertical-align: top
+    background: #f0f0f0
+  th
+    vertical-align: top
+    text-align: right

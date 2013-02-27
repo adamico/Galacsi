@@ -14,13 +14,6 @@ body
 
 /* My personalizations
 
-form.state_form
-  display: inline
-
-h1.dci_title
-  float: left
-  margin-bottom: 0
-
 .news, .small
   font-size: smaller
   ul li ul
@@ -92,183 +85,12 @@ ul.inline
   li
     list-style-type: none
 
-div
-  &#fiches
-    clear: both
-  &.fiche
-    margin: 5px 0
-    h3
-      clear: both
-      margin: 0 .5em 0 0
-      padding: 0
-    h4
-      clear: both
-      margin: 0
-      margin-top: 2px
-      margin-left: 1em
-
-    .alert
-      color: red
-      font-size: small
-
-    h4.inline
-      display: inline
-
-    div.fiche_footer
-      background: black
-      color: white
-      padding: 0
-      margin: 0
-      div.validation
-        font-size: 90%
-    div.argumentaire
-      font-size: 85%
-      table
-        border-collapse: collapse
-        td
-          padding: 0 1em
-    div.resume
-      padding: 0 0.5em
-      margin: 0
-      p
-        margin: 0
-        margin-left: 2em
-        margin-top: 2px
-        &.surveillance
-          font-size: small
-          color: #777
-          font-weight: bold
-        &.inline
-          margin: 0
-          display: inline
-
-      ul
-        margin-left: 2em
-      a
-        color: #036DA7
-        &:hover
-          text-decoration: underline
-  &.fiche.valide
-    background-color: #fff
-    color: black
-    border: solid 2px #0066B3
-    div.resume
-      background: #ddf0ee
-    div.fiche_footer
-      background: black
-      color: white
-      div.validation
-        a
-          color: #0FE
-  &.fiche.non_valide
-    background: #000
-    color: white
-    border: solid 2px #B30000
-    a
-      color: #09F
-    div.resume
-      background: #522
-    div.argumentaire
-      table td
-        color: black
-
-    div.fiche_footer
-      background: white
-      color: black
-      div.validation
-        a
-          color: #08F
-  &.fiche_header
-    clear: both
-    margin: 0
-    p
-      margin: 0.5em
-
-span
-  &.safe
-    font-weight: bold
-    color: green
-  &.strong, &.distinction, &.decision
-    font-weight: bolder
-  &.distinction
-    font-size: large
-  &.decision
-    color: black
-    font-size: large
-    text-transform: uppercase
-    padding: .25em
-    border: 2px solid
-
-/** fiche states
-.brouillon
-  background: yellow
-.a_valider
-  background: rgb(255, 153, 51)
-.valide
-  background: rgb(0, 176, 80)
-.en_attente
-  background: red
-
-/** decisions
-
-#ci
-  background: #ffa880
-  border-color: red
-
-/* contre-indiqué
-
-#ad
-  background: #ffc860
-  border-color: rgb(255, 153, 51)
-
-/* à discuter
-
-#comp
-  background: rgb(215, 228, 189)
-  border-color: rgb(0, 176, 80)
-
-/* compatible
-
-#sc
-  background: rgb(255, 255, 153)
-  border-color: yellow
-
-/* sous conditions
-
-.fields
-  border: 1px solid black
-
 table
   border-collapse: collapse
 
-table th
+th
   padding: 0 1em
 
-.argumentaire table
-  td
-    vertical-align: top
-    background: #f0f0f0
-  th
-    vertical-align: top
-    text-align: right
-
-
-table#list
-  border-collapse: collapse
-  th
-    border-bottom: 1px solid black
-  th, td
-    padding: 0 0.5em
-  tr.even
-    background: #DDD
-  tr.odd
-    background: #EEE
-  td.sub
-    border-top: 1px solid black
-    border-bottom: 1px solid black
-  th.time, td.time
-    font-size: 0.8em
-    width: 5em
 ul
   &.inline
     li
@@ -295,7 +117,7 @@ ul
       margin: 1px
       font-weight: bold
 
-input.edit_button
+.edit_button
   background: #fd0
   border:
     left:
@@ -306,7 +128,7 @@ input.edit_button
       color: #f90
     right:
       color: #f90
-input.go_button
+.go_button
   background: green
   color: white
   border:
@@ -318,7 +140,7 @@ input.go_button
       color: #090
     :right
       color: #090
-input.destroy_button
+.destroy_button
   background: #c00
   color: white
   padding: 0

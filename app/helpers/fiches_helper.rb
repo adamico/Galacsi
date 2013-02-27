@@ -4,7 +4,7 @@ module FichesHelper
   def fiche_header(fiche)
     haml_tag :div, :class => "fiche_header" do
       if fiche.distinction_id?
-        haml_tag :p, :class => "float_left" do
+        haml_tag :p, :class => "pull-left" do
           haml_tag :span, fiche.distinction.name.humanize,
             :<, :class => "strong"
           haml_tag :span, " : #{fiche.distinction_name.humanize}",
@@ -12,7 +12,7 @@ module FichesHelper
         end
       end
       unless fiche.decision.blank?
-        haml_tag :p, :class => "float_right" do
+        haml_tag :p, :class => "pull-right" do
           haml_tag :span, "Décision allaitement : ",
             :<, :class => "strong"
           haml_tag :span, h(fiche.decision_name),

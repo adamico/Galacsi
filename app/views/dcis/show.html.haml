@@ -1,13 +1,7 @@
-- title @dci.name.humanize, false
+- title @dci.name.humanize
 
-%h1.dci_title= @dci.name.humanize
-
-%ul.edit_actions.inline
-  - if can? :edit, @dci
-    %li= link_to "Modifier cette DCI", edit_dci_path(@dci)
-  - if can? :delete, @dci
-    %li= link_to "Détruire cette DCI", @dci,
-      :confirm => 'Etes-vous sûr ?', :method => :delete
+.actions-buttons
+  = actions_buttons(@dci)
 
 = render 'shared/associations_links', :dci => @dci
 
