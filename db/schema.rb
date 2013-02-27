@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225131104) do
+ActiveRecord::Schema.define(:version => 20130227154211) do
 
   create_table "alternativeships", :force => true do |t|
     t.integer  "fiche_id"
@@ -126,12 +126,14 @@ ActiveRecord::Schema.define(:version => 20130225131104) do
   end
 
   create_table "pages", :force => true do |t|
-    t.string   "permalink"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
+    t.string   "slug"
   end
+
+  add_index "pages", ["slug"], :name => "index_pages_on_slug"
 
   create_table "slugs", :force => true do |t|
     t.string   "name"

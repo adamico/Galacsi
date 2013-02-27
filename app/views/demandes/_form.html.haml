@@ -1,15 +1,15 @@
-= semantic_form_for demande do |f|
-  = f.error_messages
-  = f.inputs do
-    = f.input :nature,
-      :label => "Nature de la demande",
-      :as => :select,
-      :collection => Demande::NATURES
-    = f.input :name, :label => "Libéllé à créer"
-    = f.input :contexte,
-      :label => "Contexte de la création",
-      :as => :string,
-      :hint => "numéro d'appel, distinction d'une fiche à créer (voie, indication, etc.), etc."
-    = f.input :demandeur, :label => "Votre nom"
-    = raw recaptcha_tags(:display => {:theme => "white", :lang => "fr"})
-    = f.commit_button "Enregistrer"
+= simple_form_for demande, html: {class: "form-horizontal"} do |f|
+  = f.input :nature,
+    label: "Nature de la demande",
+    as: :select,
+    collection: Demande::NATURES
+  = f.input :name, label: "Libéllé à créer"
+  = f.input :contexte,
+    label: "Contexte de la création",
+    as: :string,
+    hint: "numéro d'appel, distinction d'une fiche à créer (voie, indication, etc.), etc."
+  = f.input :demandeur, label: "Votre nom"
+  = f.input :humanizer_answer, label: demande.humanizer_question
+  = f.input :humanizer_question_id, as: :hidden
+  .form-actions
+    = f.button :submit, "Enregistrer"

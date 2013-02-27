@@ -1,6 +1,6 @@
-= semantic_form_for source do |f|
-  = f.inputs do
-    = f.input :name, :label => "Nom"
-    = f.input :nature, :label => "Type"
-    = f.input :url
-    = f.commit_button "Sauvegarder"
+= simple_form_for source, html: {class: "form-horizontal"} do |f|
+  = f.input :name, :label => "Nom"
+  = f.input :nature, :label => "Type"
+  = f.input :url
+  .form-actions
+    = f.button :submit, "Sauvegarder"

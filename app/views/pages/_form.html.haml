@@ -1,16 +1,5 @@
-= form_for page do |f|
-  = f.error_messages
-  %p
-    = f.label :permalink
-    %br
-    = f.text_field :permalink
-  %p
-    = f.label :title
-    %br
-    = f.text_field :title
-  %p
-    = f.label :content
-    %br
-    = f.text_area :content
-  %p
-    = f.submit
+= simple_form_for page, html: {class: "form-horizontal"} do |f|
+  = f.input :title, label: "Titre", input_html: {class: "input-xxlarge"}
+  = f.input :content, label: "Contenu", input_html: {rows: 8, class: "input-xxlarge"}
+  .form-actions
+    = f.button :submit

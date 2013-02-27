@@ -19,7 +19,7 @@ Galacsi::Application.routes.draw do
 
   match '/search' => "fiches#search"
 
-  match '/:permalink' => "pages#show", :as => :home
+  match '/:id' => "pages#show", :as => :home
   #in rails2 this was :
   #map.home ':permalink', :controller => 'pages', :action => 'show'
 

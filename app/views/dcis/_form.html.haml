@@ -1,10 +1,8 @@
-= semantic_form_for dci do |f|
-  = f.error_messages
-  = f.inputs do
-    %p
-      %b Attention: tant que les champs "Spécialités" ou "Classes thérapeutiques" sont vides la DCI n'est pas prise en compte par le moteur de recherche
-    = f.input :name, :label => "Nom"
-    = f.input :commercial_names, :label => "Spécialités", :as => :string
-    = f.input :classe_therapeutiques, :label => "Classes thérapeutiques",
-      :hint => "Ce champ est multi-choix, maintenir enfoncée la touche Ctrl pour sélectionner plusieurs classes", :collection => @classe_therapeutiques
-    = f.commit_button "Enregistrer"
+= simple_form_for dci, html: {class: "form-horizontal"} do |f|
+  %p.text-error Attention: tant que les champs "Spécialités" ou "Classes thérapeutiques" sont vides la DCI n'est pas prise en compte par le moteur de recherche
+  = f.input :name, label: "Nom"
+  = f.input :commercial_names, label: "Spécialités", as: :string
+  = f.association :classe_therapeutiques, label: "Classes thérapeutiques",
+    hint: "Ce champ est multi-choix, maintenir enfoncée la touche Ctrl pour sélectionner plusieurs classes", collection: @classe_therapeutiques
+  .form-actions
+    = f.button :submit, "Enregistrer"

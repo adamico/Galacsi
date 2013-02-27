@@ -1,16 +1,16 @@
 - title "Pages"
 
-%table
-  %tr
-    %th Nom (lien)
-    %th Titre
-    %th Contenu
-  - for page in @pages
+%table.table.table-condensed.table-striped.table-bordered
+  %thead
     %tr
-      %td= link_to h(page.permalink), page
-      %td= h page.title
-      %td= truncate h(page.content)
-      %td
-        - actions_buttons(page)
+      %th Nom (lien)
+      %th Contenu
+      %th Actions
+  %tbody
+    - for page in @pages
+      %tr
+        %td= link_to h(page.title), page
+        %td= truncate h(page.content)
+        %td= actions_buttons(page)
 
 %p= link_to "Nouvelle Page", new_page_path

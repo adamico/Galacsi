@@ -1,10 +1,8 @@
-= semantic_form_for(user) do |f|
-  = f.inputs do
-    = f.input :username, :label => "Nom d'utilisateur"
-    = f.input :email
-    = f.input :password, :label => (f.object.new_record? ? "Mot de passe" : "Changer le mot de passe")
-    = f.input :password_confirmation, :label => "Confirmer le mot de passe"
-    %li.select.optional  
-      = f.label :role, "Role"
-      = f.collection_select :role, User::ROLES, :to_s, :to_s
-    = f.commit_button 'Sauvegarder'
+= simple_form_for user, html: {class: "form-horizontal"} do |f|
+  = f.input :username, label: "Nom d'utilisateur"
+  = f.input :email
+  = f.input :password, label: (f.object.new_record? ? "Mot de passe" : "Changer le mot de passe")
+  = f.input :password_confirmation, label: "Confirmer le mot de passe"
+  = f.input :role, as: :select, collection: User::ROLES
+  .form-actions
+    = f.button :submit, 'Sauvegarder'

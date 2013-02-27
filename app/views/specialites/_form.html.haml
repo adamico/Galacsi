@@ -1,4 +1,4 @@
-= semantic_form_for specialite do |f|
-  = f.inputs do
-    = f.input :name, :label => "Nom"
-    = f.commit_button 'Enregistrer'
+= form_for specialite, html: {class: "form-inline"} do |f|
+  = f.label :name, "Nom"
+  = f.text_field :name
+  = f.submit 'Enregistrer', class: "btn"

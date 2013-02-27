@@ -47,4 +47,4 @@
       %b.caret
     %ul.dropdown-menu{role: "menu", aria: {labelledby: "about"}}
       - pages.each do |page|
-        %li= link_to page.title_or_permalink, home_path(page.permalink)
+        %li= link_to page.title, home_path(page)

@@ -6,12 +6,7 @@ class PagesController < ApplicationController
   end
 
   def show
-    if params[:permalink]
-      @page = Page.find_by_permalink(params[:permalink])
-      raise ActiveRecord::RecordNotFound, "Page non trouvée" if @page.nil?
-    else
-      @page = Page.find(params[:id])
-    end
+    @page = Page.find(params[:id])
   end
 
   def new

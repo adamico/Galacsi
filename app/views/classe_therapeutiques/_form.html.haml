@@ -1,6 +1,4 @@
-= semantic_form_for classe_therapeutique do |f|
-  = f.error_messages
-  = f.inputs do
-    = f.input :name, :label => "Nom"
-  = f.buttons do
-    = f.commit_button 'Sauvegarder'
+= form_for classe_therapeutique, html: {class: "form-inline"} do |f|
+  = f.label :name, "Nom"
+  = f.text_field :name
+  = f.submit 'Sauvegarder', class: "btn"
