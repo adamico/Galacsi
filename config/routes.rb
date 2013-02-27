@@ -20,8 +20,6 @@ Galacsi::Application.routes.draw do
   match '/search' => "fiches#search"
 
   match '/:id' => "pages#show", :as => :home
-  #in rails2 this was :
-  #map.home ':permalink', :controller => 'pages', :action => 'show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
