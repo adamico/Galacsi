@@ -31,7 +31,7 @@ module FichesHelper
   end
 
   def unfructuous_search
-    pars = params[:search].delete_if {|k, v| v.blank?}
+    pars = params[:q].delete_if {|k, v| v.blank?}
     pars = pars.to_a
     string = []
     pars.each do |item|

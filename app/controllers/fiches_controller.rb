@@ -12,8 +12,6 @@ class FichesController < ApplicationController
   end
 
   def search
-    @search = Fiche.search(params[:search])
-    @fiches = @search.includes(:distinction, :dci)
     @fiches.reject! { |fiche| fiche.state != "valide" } unless current_user
   end
 
@@ -64,8 +62,8 @@ class FichesController < ApplicationController
   private
 
   def find_fiches
-    @search = Fiche.search(params[:search])
-    @fiches = @search.includes(:distinction, :user, :dci)
+    @search = Fiche.search(params[:q])
+    @fiches = @search.result(distinct: true)
   end
 
   def find_dci

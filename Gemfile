@@ -16,8 +16,7 @@ gem 'jquery-rails'
 
 gem "haml"
 gem "RedCloth"
-#gem "meta_search"
-#gem "meta_where"
+gem "ransack"
 gem "state_machine"
 gem 'devise'
 gem 'cancan'

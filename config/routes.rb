@@ -17,7 +17,7 @@ Galacsi::Application.routes.draw do
 
   root :to => "pages#show", :permalink => 'home'
 
-  match '/search' => "fiches#search"
+  match '/search' => "fiches#search", as: :search
 
   match '/:id' => "pages#show", :as => :home
 
