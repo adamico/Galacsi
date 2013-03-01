@@ -2,12 +2,12 @@
 
 = search_form_for @search, url: search_path, html: {class: "form-horizontal"} do |f|
   .control-group
-    = f.label :dci_slug_eq, "Par principe actif", class: "control-label"
+    = f.label :dci_name_eq, "Par principe actif", class: "control-label"
     .controls
-      = f.text_field :dci_slug_eq
+      = f.text_field :dci_name_eq, data: {provide: "typeahead"}, autocomplete: "off"
   .control-group
-    = f.label :dci_specialites_stripped_name_eq, "Par spécialité", class: "control-label"
-    .controls= f.text_field :dci_specialites_stripped_name_eq
+    = f.label :dci_specialites_name_eq, "Par spécialité", class: "control-label"
+    .controls= f.text_field :dci_specialites_name_eq, data: {provide: "typeahead"}, autocomplete: "off"
   .form-actions
     = f.submit 'OK', class: "btn"
 
@@ -16,7 +16,7 @@
     - unfructuous_search
   - else
     %h2= pluralize(@fiches.size, "résultat")
-    %table#list
+    %table.table.table-condensed.table-striped
       %tbody
         - @fiches.each do |fiche|
           %tr

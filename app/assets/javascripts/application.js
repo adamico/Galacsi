@@ -5,4 +5,5 @@
 //= require jquery.selectboxes.min
 //= require cocoon
 //= require common
+//= require search
 //= require_tree .

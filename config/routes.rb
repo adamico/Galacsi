@@ -1,21 +1,16 @@
 Galacsi::Application.routes.draw do
   devise_for :users
-  resources :classe_therapeutiques, :decisions, :demandes, :distinctions, :users, :fiches, :pages
-
-  resources :specialites do
-    get :stripped_names, :on => :collection
-  end
+  resources :classe_therapeutiques, :decisions, :demandes, :distinctions, :users, :fiches, :pages, :specialites
 
   resources :sources do
     get :names, :on => :collection
   end
 
   resources :dcis do
-    get :stripped_names, :on => :collection
     resources :fiches
   end
 
-  root :to => "pages#show", :permalink => 'home'
+  root :to => "pages#show", :id => 'bienvenue'
 
   match '/search' => "fiches#search", as: :search
 
