@@ -13,6 +13,10 @@ class FichesController < ApplicationController
 
   def search
     @fiches.reject! { |fiche| fiche.state != "valide" } unless current_user
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

@@ -1,6 +1,6 @@
 - title "Rechercher des fiches"
 
-= search_form_for @search, url: search_path, html: {class: "form-horizontal"} do |f|
+= search_form_for @search, url: search_path, html: {class: "form-horizontal"}, remote: true do |f|
   .control-group
     = f.label :dci_name_eq, "Par principe actif", class: "control-label"
     .controls
@@ -11,13 +11,14 @@
   .form-actions
     = f.submit 'OK', class: "btn"
 
-- if params[:q]
-  - if @fiches.empty?
-    - unfructuous_search
-  - else
-    %h2= pluralize(@fiches.size, "résultat")
-    %table.table.table-condensed.table-striped
-      %tbody
-        - @fiches.each do |fiche|
-          %tr
-            %td= link_to "#{h(fiche.dci_name.humanize)} #{fiche.full_distinction}", [fiche.dci, fiche]
+.search_results
+  - if params[:q]
+    - if @fiches.empty?
+      - unfructuous_search
+    - else
+      %h2= pluralize(@fiches.size, "résultat")
+      %table.table.table-condensed.table-striped
+        %tbody
+          - @fiches.each do |fiche|
+            %tr
+              %td= link_to "#{h(fiche.dci_name.humanize)} #{fiche.full_distinction}", [fiche.dci, fiche]

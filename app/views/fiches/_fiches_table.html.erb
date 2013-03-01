@@ -1,0 +1,10 @@
+<h2><%= pluralize(@fiches.size, "résultat") %></h2>
+<table class="table table-condensed table-striped">
+  <tbody>
+    <% @fiches.each do |fiche| %>
+      <tr>
+        <td><%= link_to "#{fiche.dci_name.humanize} #{fiche.full_distinction}", [fiche.dci, fiche] %></td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
