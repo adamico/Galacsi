@@ -1,9 +1,9 @@
 = content_for :page_title do
-  = @page.title_or_permalink
+  = @page.title
 
 .actions-buttons
   = actions_buttons(@page)
 = content_for :title do
-  = @page.title_or_permalink
+  = @page.title
 
 = raw textilize @page.content
