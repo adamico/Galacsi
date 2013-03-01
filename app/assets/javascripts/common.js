@@ -1,15 +1,3 @@
-function remove_fields(link) {
-  $(link).prev("input[type=hidden]").val("1");
-  $(link).closest(".fields").hide();
-}
-
-function add_fields(link, association, content) {
-  var new_id = new Date().getTime();
-  var regexp = new RegExp("new_" + association, "g");
-  $(link).parent().before(content.replace(regexp, new_id));
-  source_autocomplete();
-}
-
 function toggle_div(id) {
   $(id).toggle('fold','',500);
 };
@@ -37,23 +25,4 @@ $(function() {
   $("#demande_name").val(nom_demande);
   var type_demande = $.getUrlVar('type_demande')
   $("#demande_nature").selectOptions(type_demande);
-});
-
-var source_autocomplete = function() {
-  $(".source_autocomplete").autocomplete({
-    source: '/sources/names.js',
-    minLength: 2
-  });
-};
-
-$(function() {
-  source_autocomplete();
-  $("#search_dci_stripped_name_equals").autocomplete({
-    source: '/dcis/stripped_names.js',
-    minLength: 2
-  });
-  $("#search_dci_specialites_stripped_name_equals").autocomplete({
-    source: '/specialites/stripped_names.js',
-    minLength: 2
-  });
 });
