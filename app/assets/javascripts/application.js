@@ -6,4 +6,5 @@
 //= require cocoon
 //= require common
 //= require search
+//= require classe_therapeutiques
 //= require_tree .

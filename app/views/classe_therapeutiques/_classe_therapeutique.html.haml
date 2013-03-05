@@ -1,0 +1,9 @@
+- if !classe_therapeutique.dcis.with_valid_fiches.empty? || can?(:create, ClasseTherapeutique)
+  = content_tag_for :tr, classe_therapeutique do
+    %td= link_to classe_therapeutique.name, classe_therapeutique
+    - if can?(:create, ClasseTherapeutique)
+      %td= pluralize(classe_therapeutique.classifications.size, 'dci')
+      %td
+        .btn-group
+          = link_to("<i class='icon-pencil icon-white'></i>".html_safe, edit_classe_therapeutique_path(classe_therapeutique), class: "btn btn-warning", id: "edit_ct_#{classe_therapeutique.id}_link", remote: true) if can? :update, classe_therapeutique
+          = link_to("<i class='icon-remove icon-white'></i>".html_safe, classe_therapeutique, method: :delete, data: {confirm: "Etes-vous sûr ?"}, class: "btn btn-danger", remote: true) if can? :destroy, classe_therapeutique

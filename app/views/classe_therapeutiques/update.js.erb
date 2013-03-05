@@ -1,0 +1,3 @@
+$("#edit_ct_<%= @classe_therapeutique.id %>_link").removeClass("disabled");
+$("#classe_therapeutique_<%= @classe_therapeutique.id %> td:first-child form").remove();
+$("#classe_therapeutique_<%= @classe_therapeutique.id %> td:first-child a").show().text('<%= @classe_therapeutique.name %>');

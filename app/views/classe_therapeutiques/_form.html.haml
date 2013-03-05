@@ -1,4 +1,3 @@
-= form_for classe_therapeutique, html: {class: "form-inline"} do |f|
-  = f.label :name, "Nom"
-  = f.text_field :name
+= form_for classe_therapeutique, html: {class: "form-inline"}, remote: true do |f|
+  = f.text_field :name, placeholder: "Nom"
   = f.submit 'Sauvegarder', class: "btn"
