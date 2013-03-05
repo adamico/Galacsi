@@ -4,7 +4,7 @@ class ClasseTherapeutiquesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @classe_therapeutiques = ClasseTherapeutique.includes(:classifications)
+    @classe_therapeutiques = ClasseTherapeutique.includes(:classifications).page(params[:page])
   end
 
   def stripped_names

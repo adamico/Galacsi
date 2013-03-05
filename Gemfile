@@ -23,7 +23,7 @@ gem 'cancan'
 gem 'simple_form'
 gem "activesupport"
 gem "friendly_id"
-gem 'will_paginate'
+gem "kaminari"
 gem 'humanizer'
 gem 'comma'
 gem "cocoon", "~> 1.1.2"

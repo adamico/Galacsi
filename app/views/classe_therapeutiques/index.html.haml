@@ -4,4 +4,6 @@
   %tbody.classe_therapeutiques
     = render @classe_therapeutiques
 
+= paginate @classe_therapeutiques, theme: "bootstrap"
+
 %p= link_to "Nouvelle Classe", new_classe_therapeutique_path, class: "btn btn-success new_ct_link", remote: true

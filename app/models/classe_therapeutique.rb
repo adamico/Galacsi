@@ -2,6 +2,7 @@ class ClasseTherapeutique < ActiveRecord::Base
   require 'active_support'
   validates_presence_of :name
   validates_uniqueness_of :name
+  paginates_per 10
 
   has_many :classifications, :dependent => :destroy
   has_many :dcis, :through => :classifications
