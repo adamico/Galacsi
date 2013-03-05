@@ -1,6 +1,14 @@
 # encoding: utf-8
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    direction_class = sort_direction == "asc" ? "icon-arrow-up" : "icon-arrow-down"
+    css_class = column == sort_column ? "current" : nil
+    direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+    link_to (title + " " + content_tag(:i, nil, class: direction_class)).html_safe, {sort: column, direction: direction}, {class: css_class}
+  end
+
   def link_to_toggle_div(name, id)
     link_to_function(name, "toggle_div(\"##{id}\")").html_safe
   end

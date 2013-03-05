@@ -1,10 +1,11 @@
 #encoding: utf-8
 class ClasseTherapeutiquesController < ApplicationController
+  helper_method :sort_column, :sort_direction
 
   load_and_authorize_resource
 
   def index
-    @classe_therapeutiques = ClasseTherapeutique.includes(:classifications).page(params[:page])
+    @classe_therapeutiques = ClasseTherapeutique.includes(:classifications).order(sort_column + " " + sort_direction).page(params[:page])
   end
 
   def stripped_names
@@ -63,5 +64,15 @@ class ClasseTherapeutiquesController < ApplicationController
         notice: "Successfully destroyed classe therapeutique."}
       format.js
     end
+  end
+
+  private
+
+  def sort_column
+    ClasseTherapeutique.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

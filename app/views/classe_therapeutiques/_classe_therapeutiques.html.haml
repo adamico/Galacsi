@@ -1,0 +1,8 @@
+%table.table.table-condensed.table-striped.table-bordered
+  %thead
+    %th= sortable "name", "Nom"
+    %th Nb. DCIs
+    %th Actions
+  %tbody.classe_therapeutiques
+    - @classe_therapeutiques.each do |classe_therapeutique|
+      = render 'classe_therapeutique', classe_therapeutique: classe_therapeutique

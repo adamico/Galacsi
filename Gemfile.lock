@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: 314043cbf1ca8478add536e590eeddaa70a1fd82
+  specs:
+    jquery-datatables-rails (1.11.1)
+      jquery-rails
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -244,6 +251,7 @@ DEPENDENCIES
   haml
   haml-rails
   humanizer
+  jquery-datatables-rails!
   jquery-rails
   jquery-ui-rails
   kaminari

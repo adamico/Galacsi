@@ -1,0 +1,2 @@
+$('#classe_therapeutiques').html('<%= j render("classe_therapeutiques") %>');
+$('#paginator').html('<%= j paginate(@classe_therapeutiques, remote: true, theme: "bootstrap").to_s %>');

@@ -1,4 +1,6 @@
 $ = jQuery
 
 $ ->
-  #console.log $(".classe_therapeutiques label, .classe_therapeutiques input").hide()
+  $("#classe_therapeutiques").on 'click', 'th a', ->
+    $.getScript(@href)
+    return false
