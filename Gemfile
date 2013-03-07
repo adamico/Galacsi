@@ -27,6 +27,8 @@ gem "kaminari"
 gem 'humanizer'
 gem 'comma'
 gem "cocoon", "~> 1.1.2"
+gem "turbolinks"
+gem "jquery-turbolinks"
 
 group :production do
   gem 'rack-google_analytics', :require => "rack/google_analytics"

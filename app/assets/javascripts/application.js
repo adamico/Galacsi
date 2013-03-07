@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require bootstrap
@@ -7,4 +8,5 @@
 //= require common
 //= require search
 //= require classe_therapeutiques
+//= require turbolinks
 //= require_tree .
