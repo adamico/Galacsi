@@ -1,0 +1,28 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<table class="table table-condensed table-striped">
+  <thead>
+    <tr>
+      <th><%= sortable "updated_at", "Dernière modif." %></th>
+      <th>DCI</th>
+      <th>Distinction</th>
+      <th>Validation</th>
+      <th>Créateur</th>
+      <th>Actions</th>
+    </tr>
+  <tbody>
+    <% @fiches.each do |fiche| %>
+      <tr>
+        <td><%= l fiche.updated_at.to_date %></td>
+        <td><%= fiche.dci_name %></td>
+        <td><%= fiche.full_distinction %></td>
+        <td class="<%= fiche.state %>"><%= fiche.state.humanize %></td>
+        <td><%= fiche.createur if fiche.user %></td>
+        <td><%= actions_buttons(fiche, false) %></td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
+<p><%= link_to "Exporter en fichier .csv", fiches_path(:format => :csv, :search => params[:search]) %></p>
+<div id="paginator"><%= paginate @fiches, theme: "bootstrap", remote: true %></div>

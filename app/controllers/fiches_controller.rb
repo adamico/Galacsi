@@ -1,13 +1,16 @@
 # encoding: utf-8
 class FichesController < ApplicationController
-  before_filter :find_fiches, :only => [:index, :search]
-  before_filter :find_dci, :only => [:new, :create]
+  helper_method :sort_column, :sort_direction
+  before_filter :find_fiches, only: [:index, :search]
+  before_filter :find_dci, only: [:new, :create]
   load_and_authorize_resource :fiche
 
   def index
+    @fiches = @fiches.includes(:dci).order(sort_column + " " + sort_direction)
     respond_to do |format|
-      format.html
-      format.csv { render :csv => @fiches}
+      format.html {@fiches = @fiches.page(params[:page])}
+      format.js {@fiches = @fiches.page(params[:page])}
+      format.csv { render csv: @fiches}
     end
   end
 
@@ -72,5 +75,13 @@ class FichesController < ApplicationController
 
   def find_dci
     @dci = Dci.find(params[:dci_id])
+  end
+
+  def sort_column
+    Fiche.column_names.include?(params[:sort]) ? params[:sort] : "updated_at"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

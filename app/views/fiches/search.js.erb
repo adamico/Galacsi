@@ -1,7 +1,7 @@
 <% if @fiches.empty? %>
   <% search_results = unfructuous_search %>
 <% else %>
-  <% search_results = render "fiches_table" %>
+  <% search_results = render "results" %>
 <% end %>
 $(".search_results").html(
   "<%= j search_results %>"

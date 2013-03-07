@@ -16,9 +16,4 @@
     - if @fiches.empty?
       - unfructuous_search
     - else
-      %h2= pluralize(@fiches.size, "résultat")
-      %table.table.table-condensed.table-striped
-        %tbody
-          - @fiches.each do |fiche|
-            %tr
-              %td= link_to "#{h(fiche.dci_name.humanize)} #{fiche.full_distinction}", [fiche.dci, fiche]
+      = render "results"

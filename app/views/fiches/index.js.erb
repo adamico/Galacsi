@@ -1,0 +1,2 @@
+$('#fiches').html('<%= j render("fiches") %>');
+$('#paginator').html('<%= j paginate(@fiches, remote: true, theme: "bootstrap").to_s %>');
