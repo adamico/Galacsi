@@ -1,17 +1,16 @@
 class DcisController < ApplicationController
+  helper_method :sort_column, :sort_direction
   load_and_authorize_resource
 
   before_filter :find_classes_therapeutiques, :only => [:new, :edit]
 
   def index
-    @dcis = Dci.includes(
-      :classifications,
-      :specialites,
-      :fiches => [:distinction, :user])
     respond_to do |format|
+      @dcis = Dci.includes(:classifications, :specialites, fiches: [:distinction, :user]).order(sort_column + " " + sort_direction).page(params[:page])
       format.html
+      format.js
       format.json do
-        @dcis = @dcis.with_slug(params[:q])
+        @dcis = Dci.includes(:classifications, :specialites, fiches: [:distinction, :user]).with_slug(params[:q])
         @dcis.reject! { |dci| dci.fiches.valide.empty? } unless current_user
         render json: @dcis.map(&:name_and_name)
       end
@@ -61,5 +60,13 @@ class DcisController < ApplicationController
 
   def find_classes_therapeutiques
     @classe_therapeutiques = ClasseTherapeutique.all
+  end
+
+  def sort_column
+    Dci.column_names.include?(params[:sort]) ? params[:sort] : "slug"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

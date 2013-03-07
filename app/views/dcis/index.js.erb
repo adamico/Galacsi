@@ -1,0 +1,2 @@
+$('#dcis').html('<%= j render("dcis") %>');
+$('#paginator').html('<%= j paginate(@dcis, remote: true, theme: "bootstrap").to_s %>');

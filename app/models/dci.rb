@@ -3,14 +3,15 @@ class Dci < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   #attr_accessible
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, presence: true, uniqueness: true
+  paginates_per 10
 
 
-  has_many :fiches, :dependent => :destroy
-  has_many :classifications, :dependent => :destroy
-  has_many :classe_therapeutiques, :through => :classifications
-  has_many :compositions, :dependent => :destroy
-  has_many :specialites, :through => :compositions
+  has_many :fiches, dependent: :destroy
+  has_many :classifications, dependent: :destroy
+  has_many :classe_therapeutiques, through: :classifications
+  has_many :compositions, dependent: :destroy
+  has_many :specialites, through: :compositions
 
   attr_writer :commercial_names
   after_save :assign_commercial_names
@@ -46,5 +47,4 @@ class Dci < ActiveRecord::Base
       end
     end
   end
-
 end

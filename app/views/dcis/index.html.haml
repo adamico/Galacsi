@@ -1,23 +1,7 @@
 - title "Liste complète des DCIs"
 
-- if @dcis.empty?
-  Aucune DCI dans la base.
-- else
-  %table.table.table-condensed.table-striped.table-bordered
-    %thead
-      %tr
-        %th DCI
-        %th Spécialité(s)
-        %th Classe(s) Thérapeutique(s)
-        %th Fiche(s)
-    %tbody
-      - @dcis.each do |dci|
-        %tr
-          %td= link_to dci.name.humanize, dci
-          %td
-            - links_to_associations(dci, "specialites")
-          %td
-            - links_to_associations(dci, "classe_therapeutiques")
-          %td
-            = dci.fiches.size
-            = "(" + pluralize(dci.fiches.non_valide.size, 'non validée') + ")" unless dci.fiches.non_valide.size == 0
+#dcis= render 'dcis'
+
+#paginator= paginate @dcis, theme: "bootstrap", remote: true
+
+%p= link_to "Nouvelle DCI", new_dci_path, class: "btn btn-success new_dci_link"

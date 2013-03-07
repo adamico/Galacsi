@@ -1,0 +1,11 @@
+%table.table.table-condensed.table-striped.table-bordered
+  %thead
+    %tr
+      %th= sortable "slug", "DCI"
+      %th Spécialité(s)
+      %th Classe(s) Thérapeutique(s)
+      %th Fiche(s)
+      %th Actions
+  %tbody.dcis
+    - @dcis.each do |dci|
+      = render 'dci', dci: dci

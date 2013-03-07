@@ -3,10 +3,10 @@
   %li= link_to "Recherche", search_path
   - if can? :create, Dci
     %li.dropdown
-      = link_to dcis_path, id: "dcis", role: "button", class: "dropdown-toggle", data: {toggle: "dropdown"} do
+      = link_to dcis_path, id: "dcis_menu", role: "button", class: "dropdown-toggle", data: {toggle: "dropdown"} do
         DCI
         %b.caret
-      %ul.dropdown-menu{role: "menu", aria: {labelledby: "dcis"}}
+      %ul.dropdown-menu{role: "menu", aria: {labelledby: "dcis_menu"}}
         %li= link_to "Voir la liste", dcis_path
         %li= link_to "Nouvelle DCI", new_dci_path
   %li= link_to "Fiches", fiches_path if can? :create, Fiche
