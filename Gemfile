@@ -25,7 +25,6 @@ gem "activesupport"
 gem "friendly_id"
 gem "kaminari"
 gem 'humanizer'
-gem 'comma'
 gem "cocoon", "~> 1.1.2"
 gem "turbolinks"
 gem "jquery-turbolinks"

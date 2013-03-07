@@ -98,13 +98,13 @@ class Fiche < ActiveRecord::Base
   end
 
   # comma CSV support
-  comma do
-    dci :name => "DCI"
-    full_distinction 'Distinction'
-    decision :name => "Décision"
-    state 'Validation'
-    createur
-  end
+  #comma do
+    #dci :name => "DCI"
+    #full_distinction 'Distinction'
+    #decision :name => "Décision"
+    #state 'Validation'
+    #createur
+  #end
 
   # custom methods
   def expired?
