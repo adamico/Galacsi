@@ -1,2 +1,6 @@
 $("#edit_ct_<%= @classe_therapeutique.id %>_link").addClass("disabled");
-$("#classe_therapeutique_<%= @classe_therapeutique.id %> td:first-child a").hide().before('<%= j render("form", classe_therapeutique: @classe_therapeutique) %>');
+ct_link = $("#classe_therapeutique_<%= @classe_therapeutique.id %> td:first-child a");
+if(ct_link.next("form").length == 0) {
+  ct_link.hide();
+  ct_link.after('<%= j render("form", classe_therapeutique: @classe_therapeutique) %>');
+}
