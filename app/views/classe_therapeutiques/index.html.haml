@@ -1,9 +1,7 @@
 - title "Liste des Classes Thérapeutiques"
 
-%table.table.table-condensed.table-striped.table-bordered
-  %tbody.classe_therapeutiques
-    = render @classe_therapeutiques
+#classe_therapeutiques= render 'classe_therapeutiques'
 
-= paginate @classe_therapeutiques, theme: "bootstrap"
+#paginator= paginate @classe_therapeutiques, theme: "bootstrap", remote: true
 
 %p= link_to "Nouvelle Classe", new_classe_therapeutique_path, class: "btn btn-success new_ct_link", remote: true
