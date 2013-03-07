@@ -1,9 +1,9 @@
-- title @dci.name.humanize
+- title @dci.name
 
 .actions-buttons
   = actions_buttons(@dci)
 
-= render 'shared/associations_links', :dci => @dci
+= render 'shared/associations_links', dci: @dci
 
 #fiches
   - if !@dci.fiches.valide.empty?
