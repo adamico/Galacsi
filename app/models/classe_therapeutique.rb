@@ -7,5 +7,5 @@ class ClasseTherapeutique < ActiveRecord::Base
   paginates_per 10
 
   has_many :classifications, dependent: :destroy
-  has_many :dcis, through: :classifications
+  has_many :dcis, through: :classifications, order: :slug
 end
