@@ -8,12 +8,6 @@ class ClasseTherapeutiquesController < ApplicationController
     @classe_therapeutiques = ClasseTherapeutique.includes(:classifications).order(sort_column + " " + sort_direction).page(params[:page])
   end
 
-  def stripped_names
-    @theclasses = ClasseTherapeutique.where(:stripped_name =~ "%#{params[:term]}%")
-    @theclasses.reject! { |ct| ct.classifications.empty?}
-    @theclasses.reject! { |ct| ct.dcis.with_valid_fiches.empty?} unless current_user
-  end
-
   def show
   end
 
