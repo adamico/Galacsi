@@ -10,7 +10,7 @@ class FichesController < ApplicationController
     respond_to do |format|
       format.html {@fiches = @fiches.page(params[:page])}
       format.js {@fiches = @fiches.page(params[:page])}
-      format.csv { render csv: @fiches}
+      format.xls
     end
   end
 

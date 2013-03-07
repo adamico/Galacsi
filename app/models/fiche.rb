@@ -97,15 +97,6 @@ class Fiche < ActiveRecord::Base
     end
   end
 
-  # comma CSV support
-  #comma do
-    #dci :name => "DCI"
-    #full_distinction 'Distinction'
-    #decision :name => "Décision"
-    #state 'Validation'
-    #createur
-  #end
-
   # custom methods
   def expired?
     unless published_at.nil?

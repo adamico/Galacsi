@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">DCI</Data></Cell>
+        <Cell><Data ss:Type="String">Distinction</Data></Cell>
+        <Cell><Data ss:Type="String">Décision</Data></Cell>
+        <Cell><Data ss:Type="String">Validation</Data></Cell>
+        <Cell><Data ss:Type="String">Créateur</Data></Cell>
+      </Row>
+    <% @fiches.each do |fiche| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= fiche.dci_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= fiche.full_distinction %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= fiche.decision_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= fiche.state %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= fiche.createur %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
