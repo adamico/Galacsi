@@ -1,4 +1,5 @@
 class Sourcing < ActiveRecord::Base
+  attr_accessible :fiche_id, :source_id
   belongs_to :fiche
   belongs_to :source
 
@@ -9,16 +10,3 @@ class Sourcing < ActiveRecord::Base
     self.source = Source.find_or_create_by_name(name) unless name.blank?
   end
 end
-
-# == Schema Information
-# Schema version: 20101021093522
-#
-# Table name: sourcings
-#
-#  id         :integer         primary key
-#  fiche_id   :integer
-#  source_id  :integer
-#  created_at :timestamp
-#  updated_at :timestamp
-#
-

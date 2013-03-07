@@ -1,5 +1,7 @@
 #encoding: utf-8
 class Fiche < ActiveRecord::Base
+  attr_accessible :name, :state, :decision_id, :validation_date, :commentaire, :distinction_name, :dci_id, :suvi, :revalider_le, :ei, :conditions, :surveillance, :biodisponibilite, :dose_par_rapport_dp, :dose_par_rapport_dmap, :liaison_pp, :vol_dist, :tmax, :thalf, :pm, :passage_lait, :rapport_lp, :has_poso_pedia, :metabolites_actifs, :risque_accumulation, :risque_dim_lactation, :poso_pedia_dose, :arg_autre, :distinction_id, :ei_theoriques, :de_choix, :pic_lacte, :poso_pedia_des, :user_id, :articles, :published_at
+
   attr_reader :createur
   attr_writer :alternative_names
 
@@ -12,29 +14,40 @@ class Fiche < ActiveRecord::Base
 
   # associations
   belongs_to :decision
-  belongs_to :dci, :counter_cache => true
+  belongs_to :dci, counter_cache: true
   belongs_to :distinction
   belongs_to :user
 
-  has_many :alternativeships, :dependent => :destroy
-  has_many :alternatives, :through => :alternativeships
+  has_many :alternativeships, dependent: :destroy
+  has_many :alternatives, through: :alternativeships
 
-  has_many :sourcings, :dependent => :destroy
-  has_many :sources, :through => :sourcings
+  has_many :sourcings, dependent: :destroy
+  has_many :sources, through: :sourcings
 
   accepts_nested_attributes_for :sourcings,
-    :reject_if => proc { |attrs| attrs[:source_name].blank? },
-    :allow_destroy => true
+    reject_if: proc { |attrs| attrs[:source_name].blank? },
+    allow_destroy: true
 
   # delegations
-  delegate :name, :to => :dci, :allow_nil => true, :prefix => true
-  delegate :name, :abbr, :to => :decision, :allow_nil => true, :prefix => true
+  delegate :name, to: :dci, allow_nil: true, prefix: true
+  delegate :name, :abbr, to: :decision, allow_nil: true, prefix: true
 
   # scopes
-  scope :expired,    where("revalider_le <= ?", Time.now.to_date)
-  scope :valide,     where("state = ?", "valide")
-  scope :non_valide, where("state != ?", "valide")
-  scope :recent,     where("published_at >= ?", 02.weeks.ago)
+  def self.expired
+    where("revalider_le <= ?", Time.now.to_date)
+  end
+
+  def self.valide
+    where(state: "valide")
+  end
+
+  def self.non_valide
+    where("state != ?", "valide")
+  end
+
+  def self.recent
+    where("published_at >= ?", 02.weeks.ago)
+  end
 
   # callbacks
   after_save :assign_alternatives
@@ -125,54 +138,3 @@ class Fiche < ActiveRecord::Base
     end
   end
 end
-
-
-
-
-
-# == Schema Information
-# Schema version: 20101110112900
-#
-# Table name: fiches
-#
-#  id                    :integer         not null, primary key
-#  name                  :string(255)
-#  created_at            :datetime
-#  updated_at            :datetime
-#  state                 :string(255)
-#  decision_id           :integer
-#  validation_date       :date
-#  commentaire           :text
-#  distinction_name      :text
-#  dci_id                :integer
-#  suivi                 :string(255)
-#  revalider_le          :date
-#  ei                    :text
-#  conditions            :text
-#  surveillance          :text
-#  biodisponibilite      :string(255)
-#  dose_par_rapport_dmap :string(255)
-#  dose_par_rapport_dp   :string(255)
-#  liaison_pp            :string(255)
-#  vol_dist              :string(255)
-#  tmax                  :string(255)
-#  thalf                 :string(255)
-#  pm                    :string(255)
-#  passage_lait          :string(255)
-#  rapport_lp            :string(255)
-#  has_poso_pedia        :boolean
-#  metabolites_actifs    :boolean
-#  risque_accumulation   :boolean
-#  risque_dim_lactation  :boolean
-#  poso_pedia_des        :string(255)
-#  arg_autre             :text
-#  distinction_id        :integer
-#  ei_theoriques         :text
-#  de_choix              :boolean
-#  pic_lacte             :string(255)
-#  poso_pedia_dose       :string(255)
-#  user_id               :integer
-#  articles              :text
-#  published_at          :date
-#
-

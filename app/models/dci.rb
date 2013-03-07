@@ -2,10 +2,9 @@ class Dci < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  #attr_accessible
+  attr_accessible :name, :commercial_names, :classe_therapeutique_ids, :slug
   validates :name, presence: true, uniqueness: true
   paginates_per 10
-
 
   has_many :fiches, dependent: :destroy
   has_many :classifications, dependent: :destroy
