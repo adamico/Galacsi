@@ -1,0 +1,8 @@
+- if !specialite.dcis.with_valid_fiches.empty? || can?(:create, Specialite)
+  = content_tag_for :tr, specialite do
+    %td= link_to h(specialite.name), specialite
+    - if can?(:create, Specialite)
+      %td
+        .btn-group
+          = link_to("<i class='icon-pencil icon-white'></i>".html_safe, edit_specialite_path(specialite), class: "btn btn-warning", id: "edit_specialite_#{specialite.id}_link", remote: true) if can? :update, specialite
+          = link_to("<i class='icon-remove icon-white'></i>".html_safe, specialite, method: :delete, data: {confirm: "Etes-vous sûr ?"}, class: "btn btn-danger", remote: true) if can? :destroy, specialite

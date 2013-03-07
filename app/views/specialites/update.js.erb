@@ -1,0 +1,5 @@
+$("#edit_specialite_<%= @specialite.id %>_link").removeClass("disabled").attr("href", "<%= edit_specialite_path(@specialite) %>");
+$("#specialite_<%= @specialite.id %> td:first-child form").remove();
+sp_link = $("#specialite_<%= @specialite.id %> td:first-child a").show()
+sp_link.text('<%= @specialite.name %>');
+sp_link.attr("href", "<%= specialite_path(@specialite) %>");

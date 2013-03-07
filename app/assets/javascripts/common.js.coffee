@@ -21,3 +21,9 @@ $ ->
   $("#demande_name").val(decodeURIComponent(nom_demande))
   type_demande = $.getUrlVar('type_demande')
   $("#demande_nature").selectOptions(type_demande)
+
+  $(".content-wrap").on 'click', ".cancel-edit", (e) ->
+    e.preventDefault()
+    $(@).parents("tr").find(".disabled").removeClass("disabled")
+    $(@).parents("td").find("a:first-child").show()
+    $(@).parent("form").remove()

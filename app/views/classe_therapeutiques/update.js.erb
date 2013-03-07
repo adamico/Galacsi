@@ -1,3 +1,5 @@
-$("#edit_ct_<%= @classe_therapeutique.id %>_link").removeClass("disabled");
+$("#edit_ct_<%= @classe_therapeutique.id %>_link").removeClass("disabled").attr("href", "<%= edit_classe_therapeutique_path(@classe_therapeutique) %>");
 $("#classe_therapeutique_<%= @classe_therapeutique.id %> td:first-child form").remove();
-$("#classe_therapeutique_<%= @classe_therapeutique.id %> td:first-child a").show().text('<%= @classe_therapeutique.name %>');
+ct_link = $("#classe_therapeutique_<%= @classe_therapeutique.id %> td:first-child a").show()
+ct_link.text("<%= @classe_therapeutique.name %>");
+ct_link.attr("href", "<%= classe_therapeutique_path(@classe_therapeutique) %>");

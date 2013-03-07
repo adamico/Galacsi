@@ -1,10 +1,5 @@
 - title "Liste des Spécialités"
 
-%table#list
-  - @specialites.each do |specialite|
-    - if !specialite.dcis.with_valid_fiches.empty? || can?(:create, Specialite)
-      %tr{:class => "#{cycle('odd', 'even')}"}
-        %td= link_to h(specialite.name), specialite
-        - if can?(:create, ClasseTherapeutique)
-          %td
-            - actions_buttons(specialite)
+#specialites= render 'specialites'
+
+#paginator= paginate @specialites, theme: "bootstrap", remote: true

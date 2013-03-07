@@ -1,0 +1,5 @@
+$("#edit_specialite_<%= @specialite.id %>_link").addClass("disabled");
+specialite_link = $("#specialite_<%= @specialite.id %> td:first-child a");
+if(specialite_link.next("form").length == 0) {
+  specialite_link.hide().after('<%= j render("form", specialite: @specialite) %>');
+}

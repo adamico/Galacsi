@@ -1,12 +1,14 @@
+#encoding: utf-8
 class SpecialitesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @specialites = Specialite.includes(:dcis).order("slug ASC")
+    @specialites = Specialite.includes(:dcis).order(:slug).page(params[:page])
     respond_to do |format|
       format.html
+      format.js
       format.json do
-        @specialites = @specialites.with_slug(params[:q])
+        @specialites = Specialite.with_slug(params[:q])
         @specialites.reject! { |sp| sp.dcis.with_valid_fiches.empty? } unless current_user
         render json: @specialites.map(&:name_and_name)
       end
@@ -21,10 +23,9 @@ class SpecialitesController < ApplicationController
 
   def create
     if @specialite.save
-      flash[:notice] = "Successfully created specialite."
-      redirect_to @specialite
+      redirect_to specialites_path, notice: "Spécialité créée avec succès."
     else
-      render :action => 'new'
+      render :new
     end
   end
 
@@ -32,17 +33,22 @@ class SpecialitesController < ApplicationController
   end
 
   def update
-    if @specialite.update_attributes(params[:specialite])
-      flash[:notice] = "Successfully updated specialite."
-      redirect_to @specialite
-    else
-      render :action => 'edit'
+    respond_to do |format|
+      if @specialite.update_attributes(params[:specialite])
+        format.html {redirect_to specialites_path, notice: "Spécialité: #{@specialite.name} mise à jour."}
+        format.js
+      else
+        format.html {render :edit}
+        format.js
+      end
     end
   end
 
   def destroy
     @specialite.destroy
-    flash[:notice] = "Successfully destroyed specialite."
-    redirect_to specialites_url
+    respond_to do |format|
+      format.html {redirect_to specialites_url, notice: "Spécialité détruite avec succès."}
+      format.js
+    end
   end
 end

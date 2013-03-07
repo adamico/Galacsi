@@ -1,0 +1,4 @@
+%table.table.table-condensed.table-striped.table-bordered
+  %tbody.specialites
+  - @specialites.each do |specialite|
+    = render 'specialite', specialite: specialite

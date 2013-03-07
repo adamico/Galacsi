@@ -1,4 +1,4 @@
-= form_for specialite, html: {class: "form-inline"} do |f|
-  = f.label :name, "Nom"
-  = f.text_field :name
-  = f.submit 'Enregistrer', class: "btn"
+= form_for specialite, html: {class: "form-inline"}, remote: true do |f|
+  = f.text_field :name, placeholder: "Nom"
+  = f.submit 'Sauvegarder', class: "btn"
+  = link_to "Annuler", "#", class: "btn btn-danger cancel-edit"
