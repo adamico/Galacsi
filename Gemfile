@@ -1,14 +1,14 @@
 source 'http://rubygems.org'
 ruby '2.2.0'
 
-gem 'rails', '3.1.12'
+gem 'rails', '3.2.21'
 
 gem 'RedCloth',      '~> 4.2.9'
 gem 'activesupport'
 gem 'cancancan',     '~> 1.10'
 gem 'comma'
 gem 'devise'
-gem 'formtastic',    '1.1.0'
+gem 'formtastic',    '~> 3.0'
 gem 'friendly_id',   '~> 3.0'
 gem 'haml'
 gem 'jquery-rails'
@@ -21,8 +21,8 @@ gem 'state_machine'
 gem 'will_paginate', '3.0.pre2'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.1.7'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier',     '>= 1.0.3'
 end
 

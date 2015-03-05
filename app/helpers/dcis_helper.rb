@@ -1,7 +1,6 @@
-#encoding: utf-8
 module DcisHelper
   def links_to_associations(dci, association)
-    unless dci.send(association).empty?
+    if dci.send(association).any?
       links = []
       dci.send(association).each do |item|
         links << link_to(h(item.name.humanize), polymorphic_path(item))
