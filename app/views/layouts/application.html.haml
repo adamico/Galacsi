@@ -1,12 +1,13 @@
-!!! 5
-%html
+!!!
+%html{lang: 'fr'}
   %head
-    %title= yield(:title) || "Untitled"
-    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}/
+    %title
+      GalacSI -
+      = yield(:title)
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tag
-    = render 'layouts/stylesheets'
-    = javascript_include_tag :defaults
-    = javascript_include_tag 'jquery.selectboxes.min'
     = render 'layouts/anylinkcssmenu_script'
 
     = yield(:head)
