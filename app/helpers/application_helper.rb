@@ -1,4 +1,3 @@
-# encoding: utf-8
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
@@ -12,10 +11,6 @@ module ApplicationHelper
       render(association.to_s.singularize + "_fields", :f => builder)
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")").html_safe
-  end
-
-  def link_to_toggle_div(name, id)
-    link_to_function(name, "toggle_div(\"##{id}\")").html_safe
   end
 
   def actions_buttons(object)

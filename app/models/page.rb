@@ -5,7 +5,7 @@ class Page < ActiveRecord::Base
 
   def self.without_home
     if Page.exists?(:permalink => 'home')
-      find(:all).reject {|page| page.permalink == 'home'}
+      all.reject {|page| page.permalink == 'home'}
     end
   end
 end

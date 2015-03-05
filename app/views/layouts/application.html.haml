@@ -14,13 +14,11 @@
 
   %body
     %header
-      #header
-        %h1= link_to "GalacSI", root_path
-        = render 'layouts/navmenu', :pages => @pages_without_home
+      = render 'nav'
 
-    %section
-      #content
-        #left
+    .container
+      .row
+        .col-sm-8.main
           - flash.each do |name, msg|
             = content_tag :div, msg, :id => "flash_#{name}"
 
@@ -28,13 +26,16 @@
 
           = yield
 
-        #right
-          .box
+        .col-sm-3.col-sm-offset-1.sidebar
+          .sidebar-module
             - user_navlinks
-          = render 'layouts/news', :dcis_with_recent_fiches => @dcis_with_recent_fiches if @dcis_with_recent_fiches.any?
-          = render 'layouts/verif_fiches', :expired_fiches => @expired_fiches
+          .sidebar-module
+            - if @dcis_with_recent_fiches.any?
+              = render 'layouts/news',
+                dcis_with_recent_fiches: @dcis_with_recent_fiches
+            = render 'layouts/verif_fiches', expired_fiches: @expired_fiches
 
-          .box
+          .sidebar-module
             %p Vous n'avez pas trouvé ce que vous cherchiez ?
             %p= link_to "Demander une création", new_demande_path
 

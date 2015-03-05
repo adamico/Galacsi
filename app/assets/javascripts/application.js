@@ -7,5 +7,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.selectboxes.min
-//= rquire anylinkcssmenu
+//= require bootstrap-sprockets
 //= require common

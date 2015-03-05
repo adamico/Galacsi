@@ -8,7 +8,7 @@ class ClasseTherapeutique < ActiveRecord::Base
 
   before_validation :set_unicode_stripped_name
 
-  default_scope order("name ASC")
+  default_scope { order("name ASC") }
 
   def set_unicode_stripped_name
     self.stripped_name ||= strip_unicode(self.name) if self.name

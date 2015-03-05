@@ -51,10 +51,11 @@
           pour cette molécule un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur ou
           %u mieux de la patiente concernée.
 
-    %p= link_to_toggle_div "Montrer/Cacher les informations détaillées",
-      "argumentaire_#{fiche.id}"
+    %p
+      = link_to "Montrer/Cacher les informations détaillées", '#',
+      data: { target: "argumentaire_#{fiche.id}" }
 
-    .argumentaire{:id => "argumentaire_#{fiche.id}", :style => "display: none;"}
+    .argumentaire{id: "argumentaire_#{fiche.id}", style: "display: none;"}
       %h3 Données détaillées
       %table
         %tr
@@ -95,7 +96,7 @@
               = "à partir de #{fiche.poso_pedia_des}" if fiche.poso_pedia_des?
 
     - unless fiche.sources.empty? && fiche.articles.blank?
-      %p= link_to_toggle_div "Montrer/Cacher les sources", "sources_#{fiche.id}"
+      %p= link_to "Montrer/Cacher les sources", '#', data: { target: "sources_#{fiche.id}" }
 
       .sources{:id => "sources_#{fiche.id}", :style => "display: none;"}
         - unless fiche.sources.empty?

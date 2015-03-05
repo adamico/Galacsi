@@ -1,0 +1,87 @@
+@import bootstrap-sprockets
+@import bootstrap
+
+$bgDefault      : #428bca
+$bgHighlight    : #428bca
+$colDefault     : #ceddeb
+$colHighlight   : #ffffff
+$dropDown       : false
+
+.navbar
+  min-height: 40px
+
+.navbar-brand
+  height: auto
+  padding: 10px
+
+.navbar-custom
+  box-shadow: inset 0 -2px 5px rgba(0,0,0,.1)
+  background-color: $bgDefault
+  border-color: $bgHighlight
+  .navbar-brand
+    color: $colDefault
+    &:hover, &:focus
+      color: $colHighlight
+  .navbar-text
+    color: $colDefault
+  .navbar-nav
+    > li
+      > a
+        padding: 10px
+        color: $colDefault
+        &:hover, &:focus
+          color: $colHighlight
+          background-color: $bgHighlight
+      @if $dropDown
+        > .dropdown-menu
+          background-color: $bgDefault
+          > li > a
+            color: $colDefault
+            &:hover, &:focus
+              color: $colHighlight
+              background-color: $bgHighlight
+          .divider
+            background-color: $bgHighlight
+    > .active
+      color: $colHighlight
+      > a, > a:hover, > a:focus
+        background-color: $bgHighlight
+      &:after
+        position: absolute
+        bottom: -1px
+        left: 50%
+        width: 0
+        height: 0
+        margin-left: -5px
+        vertical-align: middle
+        content: " "
+        border-right: 5px solid transparent
+        border-bottom: 5px solid
+        border-left: 5px solid transparent
+    > .open
+      > a, > a:hover, > a:focus
+        color: $colHighlight
+        background-color: $bgHighlight
+  .navbar-toggle
+    border-color: $bgHighlight
+    &:hover, &:focus
+      background-color: $bgHighlight
+    .icon-bar
+      background-color: $colDefault
+  .navbar-collapse,
+  .navbar-form
+    border-color: $colDefault
+  .navbar-link
+    color: $colDefault
+    &:hover
+      color: $colHighlight
+@media (max-width: 767px)
+  .navbar-custom .navbar-nav .open .dropdown-menu
+    > li > a
+      color: $colDefault
+      &:hover, &:focus
+        color: $colHighlight
+    > .active
+      > a, > a:hover, > a:focus,
+        color: $colHighlight
+        background-color: $bgHighlight
