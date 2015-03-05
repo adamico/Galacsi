@@ -1,20 +1,29 @@
-# galacsi rails3 Gemfile
 source 'http://rubygems.org'
+ruby '2.2.0'
 
-gem 'rails', '3.0.20'
-gem "haml"
-gem "RedCloth", "~> 4.2.9"
-gem "meta_search"
-gem "meta_where"
-gem "state_machine"
-gem 'devise'
-gem 'cancan'
-gem 'formtastic', "1.1.0"
-gem "activesupport"
-gem "friendly_id", '~> 3.0'
-gem 'will_paginate', '3.0.pre2'
-gem 'recaptcha'
+gem 'rails', '3.1.12'
+
+gem 'RedCloth',      '~> 4.2.9'
+gem 'activesupport'
+gem 'cancancan',     '~> 1.10'
 gem 'comma'
+gem 'devise'
+gem 'formtastic',    '1.1.0'
+gem 'friendly_id',   '~> 3.0'
+gem 'haml'
+gem 'jquery-rails'
+#gem 'meta_search'
+#gem 'meta_where'
+gem 'puma'
+gem 'recaptcha'
+gem 'state_machine'
+gem 'will_paginate', '3.0.pre2'
+
+group :assets do
+  gem 'sass-rails',   '~> 3.1.7'
+  gem 'coffee-rails', '~> 3.1.1'
+  gem 'uglifier',     '>= 1.0.3'
+end
 
 group :production do
   gem 'pg'
@@ -37,14 +46,14 @@ end
 
 group :test, :development do
   gem 'rspec-rails', "~> 2.1"
-  gem 'rcov'
+  #gem 'rcov'
 end
 
 group :cucumber do
   gem 'cucumber-rails'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'factory_girl_rails', '1.0.1'
+  gem 'factory_girl_rails'
   gem 'spork', '~> 0.9.0.rc4'
   gem 'launchy'    # So you can do Then show me the page
   gem 'pickle'

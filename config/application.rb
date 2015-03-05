@@ -43,5 +43,8 @@ module Galacsi
     if Rails.env.production?
       config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-20156445-3")
     end
+
+    config.assets.enabled = true
+    config.assets.version = '1.0'
   end
 end
