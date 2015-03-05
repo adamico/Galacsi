@@ -18,7 +18,7 @@ gem 'pg'
 gem 'puma'
 gem 'recaptcha'
 gem 'state_machine'
-gem 'will_paginate', '3.0.pre2'
+gem 'will_paginate', '~> 3.0.6'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
