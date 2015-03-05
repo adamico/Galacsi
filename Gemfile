@@ -14,6 +14,7 @@ gem 'haml'
 gem 'jquery-rails'
 #gem 'meta_search'
 #gem 'meta_where'
+gem 'pg'
 gem 'puma'
 gem 'recaptcha'
 gem 'state_machine'
@@ -26,8 +27,8 @@ group :assets do
 end
 
 group :production do
-  gem 'pg'
   gem 'rack-google_analytics', :require => "rack/google_analytics"
+  gem 'rails_12factor'
 end
 
 group :development do
