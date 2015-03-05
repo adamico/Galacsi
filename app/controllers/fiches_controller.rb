@@ -1,4 +1,3 @@
-# encoding: utf-8
 class FichesController < ApplicationController
   before_filter :find_fiches, :only => [:index, :search]
   before_filter :find_dci, :only => [:new, :create]
@@ -12,8 +11,8 @@ class FichesController < ApplicationController
   end
 
   def search
-    @search = Fiche.search(params[:search])
-    @fiches = @search.includes(:distinction, :dci)
+    @q = Fiche.ransack(params[:q])
+    @fiches = @q.result(distinct: true).includes(:distinction, :dci)
     @fiches.reject! { |fiche| fiche.state != "valide" } unless current_user
   end
 
@@ -64,8 +63,8 @@ class FichesController < ApplicationController
   private
 
   def find_fiches
-    @search = Fiche.search(params[:search])
-    @fiches = @search.includes(:distinction, :user, :dci)
+    @q = Fiche.ransack(params[:q])
+    @fiches = @q.result(distinct: true).includes(:distinction, :user, :dci)
   end
 
   def find_dci

@@ -31,10 +31,10 @@ class Fiche < ActiveRecord::Base
   delegate :name, :abbr, :to => :decision, :allow_nil => true, :prefix => true
 
   # scopes
-  scope :expired,    where("revalider_le <= ?", Time.now.to_date)
-  scope :valide,     where("state = ?", "valide")
-  scope :non_valide, where("state != ?", "valide")
-  scope :recent,     where("published_at >= ?", 02.weeks.ago)
+  scope :expired,    -> { where("revalider_le <= ?", Time.now.to_date) }
+  scope :valide,     -> { where("state = ?", "valide") }
+  scope :non_valide, -> { where("state != ?", "valide") }
+  scope :recent,     -> { where("published_at >= ?", 02.weeks.ago) }
 
   # callbacks
   after_save :assign_alternatives

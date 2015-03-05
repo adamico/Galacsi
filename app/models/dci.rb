@@ -18,11 +18,9 @@ class Dci < ActiveRecord::Base
 
   before_validation :set_unicode_stripped_name
 
-  scope :with_recent_fiches,
-    joins(:fiches).merge(Fiche.recent)
+  scope :with_recent_fiches, -> { joins(:fiches).merge(Fiche.recent) }
 
-  scope :with_valid_fiches,
-    joins(:fiches).merge(Fiche.valide)
+  scope :with_valid_fiches, -> { joins(:fiches).merge(Fiche.valide) }
 
   delegate :stripped_name, :to => :dci, :prefix => true
 

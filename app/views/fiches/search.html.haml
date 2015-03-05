@@ -1,12 +1,17 @@
 - title "Rechercher des fiches"
 
-= semantic_form_for @search , :url => { :action => "search" } do |f|
-  = f.inputs do
-    = f.input :dci_stripped_name_equals, :label => "Par principe actif"
-    = f.input :dci_specialites_stripped_name_equals, :label => "Par spécialité"
-    = f.commit_button 'OK'
+= search_form_for @q , url: { action: "search" } do |f|
+  = f.label :dci_stripped_name_start, "Par principe actif"
+  = f.search_field :dci_stripped_name_start
 
-- if params[:search]
+  %br
+
+  = f.label :dci_specialites_stripped_name_start, "Par spécialité"
+  = f.search_field :dci_specialites_stripped_name_start
+
+  = f.submit 'OK'
+
+- if params[:q]
   - if @fiches.empty?
     - unfructuous_search
   - else

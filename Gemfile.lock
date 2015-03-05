@@ -99,6 +99,8 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.3)
+      railties (>= 3.2.16)
     json (1.8.2)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -117,6 +119,10 @@ GEM
     pickle (0.5.1)
       cucumber (>= 0.8)
       rake
+    polyamorous (1.1.0)
+      activerecord (>= 3.0)
+    protected_attributes (1.0.8)
+      activemodel (>= 4.0.1, < 5.0)
     puma (2.11.1)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
@@ -145,6 +151,12 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    ransack (1.6.3)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      i18n
+      polyamorous (~> 1.1)
     recaptcha (0.3.6)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
@@ -221,15 +233,18 @@ DEPENDENCIES
   hirb
   hpricot
   jquery-rails
+  jquery-ui-rails
   launchy
   nifty-generators
   pg
   pickle
+  protected_attributes
   puma
   rack-google_analytics
   rails (= 4.0.12)
   rails3-generators
   rails_12factor
+  ransack
   recaptcha
   rspec-rails (~> 2.1)
   ruby_parser
