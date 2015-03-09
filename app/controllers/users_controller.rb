@@ -1,4 +1,3 @@
-# encoding: utf-8
 class UsersController < ApplicationController
   load_and_authorize_resource
 
@@ -8,7 +7,6 @@ class UsersController < ApplicationController
 
   def new
   end
-  
 
   def create
     if @user.save
@@ -18,10 +16,10 @@ class UsersController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
   end
-  
+
   def update
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated profile."

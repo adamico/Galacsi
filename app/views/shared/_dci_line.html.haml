@@ -1,5 +1,5 @@
 - if can? :show, dci
-  %tr{:class => "#{cycle('odd', 'even')}"}
-    %td= link_to h(dci.name), dci_path(dci)
+  %tr
+    %td= link_to dci.name, dci_path(dci)
     %td
-      - actions_buttons(dci)
+      .pull-right= actions_buttons(dci)

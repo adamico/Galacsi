@@ -1,4 +1,3 @@
-#encoding: utf-8
 class PagesController < ApplicationController
   load_and_authorize_resource
 
@@ -21,10 +20,10 @@ class PagesController < ApplicationController
   def create
     @page = Page.new(params[:page])
     if @page.save
-      flash[:notice] = "Successfully created page."
+      flash[:notice] = "Page '#{@page.title}' créée avec succès."
       redirect_to @page
     else
-      render :action => 'new'
+      render :new
     end
   end
 
@@ -33,16 +32,16 @@ class PagesController < ApplicationController
 
   def update
     if @page.update_attributes(params[:page])
-      flash[:notice] = "Successfully updated page."
+      flash[:notice] = "Page '#{@page.title}' mise à jour avec succès."
       redirect_to @page
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 
   def destroy
     @page.destroy
-    flash[:notice] = "Successfully destroyed page."
+    flash[:notice] = "Page '#{@page.title}' détruite avec succès."
     redirect_to pages_url
   end
 end

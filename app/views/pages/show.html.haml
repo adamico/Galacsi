@@ -1,9 +1,6 @@
-- title @page.title_or_permalink, false
+- title @page.title_or_permalink, actions_buttons(@page)
 
-%h1.float_left= @page.title_or_permalink
+= simple_format @page.content
 
-- actions_buttons(@page)
-
-.clear
-
-= raw textilize @page.content
+- if current_user
+  = link_to 'Liste des pages', pages_path, class: 'btn btn-primary'

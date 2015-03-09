@@ -1,7 +1,14 @@
 class Specialite < ActiveRecord::Base
+  attr_accessible :name, :striped_name
+
   has_many :compositions, :dependent => :destroy
   has_many :dcis, :through => :compositions
+
+  validates_presence_of :name
+  validates_uniqueness_of :name
+
   before_validation :set_unicode_stripped_name
+
   private
 
   def set_unicode_stripped_name

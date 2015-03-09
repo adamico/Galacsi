@@ -8,7 +8,6 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tag
-    = render 'layouts/anylinkcssmenu_script'
 
     = yield(:head)
 
@@ -17,18 +16,24 @@
       = render 'nav'
 
     .container
+      - flash.each do |name, msg|
+        - if msg.is_a?(String)
+          %div{class: "alert alert-#{name == "notice" ? "success" : "danger"}"}
+            = button_tag '&times;'.html_safe, class: 'close',
+              'aria-hidden' => 'true',
+              'data-dismiss' => 'alert',
+              type: 'button'
+            = content_tag :div, msg, id: "flash_#{name}"
       .row
         .col-sm-8.main
-          - flash.each do |name, msg|
-            = content_tag :div, msg, :id => "flash_#{name}"
 
-          %h1= yield(:title) if show_title?
+          %h1
+            = yield(:title)
+            %small=yield(:subtitle)
 
           = yield
 
         .col-sm-3.col-sm-offset-1.sidebar
-          .sidebar-module
-            - user_navlinks
           .sidebar-module
             - if @dcis_with_recent_fiches.any?
               = render 'layouts/news',

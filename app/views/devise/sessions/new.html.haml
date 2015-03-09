@@ -1,7 +1,13 @@
 - title "Connexion"
 
-= semantic_form_for resource, :as => resource_name, :url => session_path(resource_name) do |f|
-  = f.inputs do
-    = f.input :username
-    = f.input :password
-    = f.commit_button "Connexion"
+= simple_form_for resource, as: resource_name, url: session_path(resource_name),
+  html: { class: 'form-horizontal', role: 'form' }, wrapper: :horizontal_form,
+  wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean } do |f|
+
+  = f.input :username
+  = f.input :password
+
+  = f.button :submit, 'Se connecter', class: 'btn-primary pull-right'

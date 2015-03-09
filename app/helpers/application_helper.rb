@@ -13,34 +13,6 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")").html_safe
   end
 
-  def actions_buttons(object)
-    haml_tag('ul.actions.inline') do
-      if can? :show, object and [Fiche, Demande].include?(object.class)
-        path = case object.class
-               when Fiche; [object.dci, object]
-               else object;
-               end
-        haml_tag :li do
-          haml_concat(button_to("Voir", polymorphic_path(path),
-                                :method => :get,
-                                :class => "go_button"))
-        end
-      end
-      if can? :update, object
-        haml_tag :li do
-          haml_concat(button_to("Modifier", edit_polymorphic_path(object), :method => :get, :class => "edit_button"))
-        end
-      end
-      if can? :destroy, object
-        haml_tag :li do
-          haml_concat(button_to("Détruire", polymorphic_path(object), :confirm => 'Etes-vous sûr ?', :method => :delete, :class => "destroy_button"))
-        end
-      end
-    end
-    haml_tag('div.clear_both') do
-    end
-  end
-
   def unfructuous_search
     pars = params[:search].delete_if {|k, v| v.blank?}
     pars = pars.to_a
@@ -68,5 +40,26 @@ module ApplicationHelper
           :type_demande => field)
       end
     end
+  end
+
+  def actions_buttons(object)
+    content_tag :ul, buttons_for(object), class: 'list-inline'
+  end
+
+  private
+
+  def buttons_for(object)
+    result = [].tap do |list|
+      list << content_tag(:li,
+                          link_to('Modifier',
+                          edit_polymorphic_path(object),
+                          class: 'btn btn-default')) if can? :update, object
+      list << content_tag(:li,
+                          link_to('Détruire', polymorphic_path(object),
+                                  'data-confirm': t('confirm'),
+                                  method: :delete,
+                                  class: 'btn btn-default')) if can? :destroy, object
+    end
+    result.join("\n").html_safe
   end
 end

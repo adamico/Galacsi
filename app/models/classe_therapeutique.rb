@@ -1,5 +1,7 @@
 class ClasseTherapeutique < ActiveRecord::Base
   require 'active_support'
+  attr_accessible :name, :striped_name
+
   validates_presence_of :name
   validates_uniqueness_of :name
 

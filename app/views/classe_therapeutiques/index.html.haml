@@ -1,11 +1,15 @@
-- title "Liste des Classes Thérapeutiques"
+- title 'Liste des Classes Thérapeutiques'
 
-%table#list
+= content_for :subtitle do
+  = link_to 'Création', new_classe_therapeutique_path,
+    class: 'btn btn-default' if can?(:create, ClasseTherapeutique)
+
+%table.table.table-condensed.table-striped
   - @classe_therapeutiques.each do |classe_therapeutique|
     - if !classe_therapeutique.dcis.with_valid_fiches.empty? || can?(:create, ClasseTherapeutique)
-      %tr{:class => "#{cycle('odd', 'even')}"}
+      %tr
         %td= link_to h(classe_therapeutique.name), classe_therapeutique
-        - if can?(:create, ClasseTherapeutique)
+        - if current_user
           %td= pluralize(classe_therapeutique.classifications.size, 'dci')
           %td
-            - actions_buttons(classe_therapeutique)
+            .pull-right= actions_buttons(classe_therapeutique)

@@ -1,16 +1,8 @@
-= form_for page do |f|
-  = f.error_messages
-  %p
-    = f.label :permalink
-    %br
-    = f.text_field :permalink
-  %p
-    = f.label :title
-    %br
-    = f.text_field :title
-  %p
-    = f.label :content
-    %br
-    = f.text_area :content
-  %p
-    = f.submit
+= simple_form_for page, html: { role: 'form' }  do |f|
+  = f.input :permalink
+  = f.input :title
+  = f.input :content, input_html: { rows: 10 }
+  .pull-right
+    = link_to 'Annuler', :back, class: 'btn btn-link',
+      'data-confirm': t('confirm')
+    = f.button :submit

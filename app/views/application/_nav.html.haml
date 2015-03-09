@@ -11,19 +11,9 @@
     .collapse.navbar-collapse#galacsi-navbar-collapse
       %ul.nav.navbar-nav
         %li= link_to "Recherche", search_path
-        - if can? :create, Dci
-          %li
-            = link_to "DCI", dcis_path
-            %span.add_record= link_to "+", new_dci_path
-        - if can? :create, Fiche
-          %li= link_to "Fiches", fiches_path
-        %li
-          = link_to "Classes", classe_therapeutiques_path
-          - if can? :create, ClasseTherapeutique
-            %span.add_record= link_to "+", new_classe_therapeutique_path
+        %li= link_to "Classes", classe_therapeutiques_path
         %li= link_to "Spécialités", specialites_path
         - if can? :read, User
-          %li= link_to "Demandes", demandes_path
           %li.dropdown
             = link_to "#", class: 'dropdown-toggle', 'data-toggle': 'dropdown',
               role: 'button', 'aria-expanded': false do
@@ -31,8 +21,11 @@
               %span.caret
 
             %ul.dropdown-menu{role: 'menu'}
+              %li= link_to "DCI", dcis_path
               %li= link_to "Décisions", decisions_path
+              %li= link_to "Demandes", demandes_path
               %li= link_to "Distinctions", distinctions_path
+              %li= link_to "Fiches", fiches_path
               %li= link_to "Utilisateurs", users_path
               %li= link_to "Sources", sources_path
               %li= link_to "Pages", pages_path
@@ -46,3 +39,11 @@
           %ul.dropdown-menu{role: 'menu'}
             - @pages_without_home.each do |page|
               %li= link_to page.title_or_permalink, home_path(page.permalink)
+      %p.navbar-text.navbar-right
+        - if current_user
+          %b= current_user.username
+          \-
+          = link_to 'Déconnexion', destroy_user_session_path,
+            method: :delete, class: 'navbar-link'
+        - else
+          = link_to 'Connexion', new_user_session_path, class: 'navbar-link'

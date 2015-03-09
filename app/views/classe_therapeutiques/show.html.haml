@@ -1,19 +1,15 @@
-- title @classe_therapeutique.name, false
+- title @classe_therapeutique.name, actions_buttons(@classe_therapeutique)
 
-%h1.float_left= @classe_therapeutique.name
-
-- actions_buttons(@classe_therapeutique)
-
-.clear
-
-.clear
-
-- if !@classe_therapeutique.dcis.blank?
-  %table#list
-    %tr
-      %th Liste des DCIs
-      %th &nbsp;
-    - @classe_therapeutique.dcis.each do |dci|
-      = render 'shared/dci_line', :dci => dci
+- if @classe_therapeutique.dcis.any?
+  %table.table.table-striped.table-condensed
+    %thead
+      %tr
+        %th &nbsp;
+    %tbody
+      - @classe_therapeutique.dcis.each do |dci|
+        = render 'shared/dci_line', dci: dci
 - else
   Aucune DCI pour cette classe
+
+= link_to 'Retour à la liste', classe_therapeutiques_path,
+  class: 'btn btn-primary'

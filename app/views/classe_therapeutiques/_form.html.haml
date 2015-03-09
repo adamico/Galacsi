@@ -1,6 +1,6 @@
-= semantic_form_for classe_therapeutique do |f|
-  = f.error_messages
-  = f.inputs do
-    = f.input :name, :label => "Nom"
-  = f.buttons do
-    = f.commit_button 'Sauvegarder'
+= simple_form_for classe_therapeutique, html: { role: 'form' } do |f|
+  = f.input :name
+  .pull-right
+    = link_to 'Annuler', :back, class: 'btn btn-link',
+      'data-confirm': t('confirm')
+    = f.button :submit

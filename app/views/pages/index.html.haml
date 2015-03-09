@@ -1,16 +1,14 @@
-- title "Pages"
+- title 'Liste des Pages'
 
-%table
+%table.table.table-striped
   %tr
     %th Nom (lien)
     %th Titre
-    %th Contenu
-  - for page in @pages
+    %th Actions
+  - @pages.each do |page|
     %tr
-      %td= link_to h(page.permalink), page
-      %td= h page.title
-      %td= truncate h(page.content)
-      %td
-        - actions_buttons(page)
+      %td= link_to page.permalink, page
+      %td= page.title
+      %td= actions_buttons(page)
 
-%p= link_to "Nouvelle Page", new_page_path
+= link_to "Créer une Page", new_page_path, class: 'btn btn-primary'

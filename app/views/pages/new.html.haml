@@ -1,5 +1,3 @@
-- title "New Page"
+- title 'Nouvelle Page'
 
-= render :partial => 'form'
-
-%p= link_to "Back to List", pages_path
+= render 'form', page: @page

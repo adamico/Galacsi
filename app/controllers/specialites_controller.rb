@@ -18,10 +18,10 @@ class SpecialitesController < ApplicationController
 
   def create
     if @specialite.save
-      flash[:notice] = "Successfully created specialite."
+      flash[:notice] = "Spécialité '#{@specialite}' créée avec succès."
       redirect_to @specialite
     else
-      render :action => 'new'
+      render :new
     end
   end
 
@@ -30,16 +30,16 @@ class SpecialitesController < ApplicationController
 
   def update
     if @specialite.update_attributes(params[:specialite])
-      flash[:notice] = "Successfully updated specialite."
+      flash[:notice] = "Spécialité '#{@specialite}' mise à jour avec succès."
       redirect_to @specialite
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 
   def destroy
     @specialite.destroy
-    flash[:notice] = "Successfully destroyed specialite."
+    flash[:notice] = "Spécialité '#{@specialite}' détruite avec succès."
     redirect_to specialites_url
   end
 end
