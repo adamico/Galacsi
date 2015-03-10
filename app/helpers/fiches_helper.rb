@@ -1,33 +1,24 @@
-# encoding: utf-8
 module FichesHelper
   require 'active_support'
   def fiche_header(fiche)
-    haml_tag :div, :class => "fiche_header" do
-      if fiche.distinction_id?
-        haml_tag :p, :class => "float_left" do
-          haml_tag :span, fiche.distinction.name.humanize,
-            :<, :class => "strong"
-          haml_tag :span, " : #{fiche.distinction_name.humanize}",
-            :<, :class => "distinction"
-        end
-      end
-      unless fiche.decision.blank?
-        haml_tag :p, :class => "float_right" do
-          haml_tag :span, "Décision allaitement : ",
-            :<, :class => "strong"
-          haml_tag :span, h(fiche.decision_name),
-            :<, {:class => "decision", :id => "#{fiche.decision_abbr}"}
-        end
-      end
-      haml_tag :div, :class => "clear"
-      if fiche.de_choix?
-        haml_tag :p do
-          haml_tag :span, {:class => "safe"} do
-            haml_concat "Molécule de choix pendant l'allaitement"
-          end
-        end
-      end
+    result = ActiveSupport::SafeBuffer.new
+    if fiche.distinction_id?
+      result << content_tag(:div,
+        content_tag(:strong, fiche.distinction.name.humanize) +
+        content_tag(:span, " : #{fiche.distinction_name.humanize}",
+                    class: 'distinction'))
     end
+    unless fiche.decision.blank?
+      result << content_tag(:div,
+         content_tag(:strong, 'Décision allaitement : ') +
+         content_tag(:span, fiche.decision_name,
+                     class: 'decision', id: fiche.decision_abbr))
+    end
+    if fiche.de_choix?
+      result << content_tag(:p,
+        content_tag(:span, "Molécule de choix pendant l'allaitement", class: 'safe'))
+    end
+    content_tag :div, result, class: 'panel-heading'
   end
 
   def unfructuous_search

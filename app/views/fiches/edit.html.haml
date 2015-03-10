@@ -1,5 +1,3 @@
 - title "Modification de la fiche pour #{@dci.name}"
 
-= render 'form', :fiche => @fiche
-
-%p= link_to "Retour", dci_path(@fiche.dci)
+= render 'form', fiche: @fiche

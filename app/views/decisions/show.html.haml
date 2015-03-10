@@ -1,15 +1,9 @@
-- title "Decision"
+- title "Decision", actions_buttons(@decision)
 
-%p
-  %strong Name:
-  =h @decision.name
-%p
-  %strong Description:
-  =h @decision.description
+%dl.dl-horizontal
+  %dt Libéllé :
+  %dd= @decision.name
+  %dt Description :
+  %dd= @decision.description
 
-%p
-  = link_to "Edit", edit_decision_path(@decision)
-  |
-  = link_to "Destroy", @decision, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", decisions_path
+= link_to 'Retour à la liste', decisions_path, class: 'btn btn-primary'

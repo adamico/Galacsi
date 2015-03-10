@@ -1,13 +1,10 @@
-- title "Liste des distinctions"
+- title 'Liste des distinctions'
 
-%table
-  - for distinction in @distinctions
+%table.table.table-striped
+  - @distinctions.each do |distinction|
     %tr
-      %td= h distinction.name
-      - if can? :update, Distinction
-        %td= link_to 'Modifier', edit_distinction_path(distinction)
-      - if can? :delete, Distinction
-        %td= link_to 'Détruire', distinction, :confirm => 'Are you sure?', :method => :delete
+      %td= distinction.name
+      %td
+        .pull-right= actions_buttons(distinction)
 
-- if can? :create, Distinction
-  %p= link_to "Rajouter une distinction", new_distinction_path
+= link_to "Rajouter une distinction", new_distinction_path, class: 'btn btn-primary' if can? :create, Distinction

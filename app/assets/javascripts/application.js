@@ -6,6 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.selectboxes.min
 //= require bootstrap-sprockets
+//= require cocoon
 //= require common

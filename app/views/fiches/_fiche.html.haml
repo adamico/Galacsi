@@ -1,8 +1,8 @@
 - if can?(:read, fiche)
-  %div{:class => ["fiche", (fiche.state == "valide") ? "valide" : "non_valide"]}
-    - fiche_header(fiche)
+  %div{class: ['fiche', 'panel', (fiche.state == 'valide') ? 'panel-primary' : 'panel-danger']}
+    = fiche_header(fiche)
 
-    .resume
+    .panel-body
       %h3 Résumé
 
       - unless fiche.passage_lait.blank?
@@ -40,7 +40,6 @@
             %li
               = link_to link, dci_path(a)
 
-      .clear
       - unless fiche.arg_autre.blank?
         %h4 Autres argumentaires :
         = raw textilize fiche.arg_autre
@@ -51,107 +50,117 @@
           pour cette molécule un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur ou
           %u mieux de la patiente concernée.
 
-    %p
-      = link_to "Montrer/Cacher les informations détaillées", '#',
-      data: { target: "argumentaire_#{fiche.id}" }
+      = content_tag :div, class: 'panel-group',
+        id: "fiche-#{fiche.id}-accordion",
+        role: 'tablist', 'aria-multiselectable': true do
+        .panel.panel-default
+          .panel-heading{id: "argumentaire-heading-#{fiche.id}"}
+            %h4.panel-title
+              = link_to 'Informations détaillées',
+                "#argumentaire_#{fiche.id}", 'aria-expanded': "false",
+                'aria-controls': "argumentaire_#{fiche.id}",
+                data: { toggle: 'collapse', parent: "fiche-#{fiche.id}-accordion" }
+          = content_tag :div, class: 'panel-collapse collapse argumentaire',
+            id: "argumentaire_#{fiche.id}", role: 'tabpanel',
+            'aria-labelledby': "argumentaire-heading-#{fiche.id}" do
+            %table.table.table-condensed
+              %tr
+                %th Biodisponibilité
+                %td= fiche.biodisponibilite unless fiche.biodisponibilite.blank?
+                %th Vd
+                %td= fiche.vol_dist unless fiche.vol_dist.blank?
+                %th Liaison aux PP
+                %td= fiche.liaison_pp unless fiche.liaison_pp.blank?
+                %th T1/2
+                %td{style: 'width: 7%'}= fiche.thalf unless fiche.thalf.blank?
+              %tr
+                %th Métabolites actifs
+                %td= fiche.metabolites_actifs? ? "Oui" : "Non" unless fiche.metabolites_actifs.blank?
+                %th Rapport lait/plasma
+                %td= fiche.rapport_lp unless fiche.rapport_lp.blank?
+                %th Pic lacté
+                %td= fiche.pic_lacte unless fiche.pic_lacte.blank?
+                %th &nbsp;
+                %th &nbsp;
+              %tr
+                %th Dose estimée ingérée par l'enfant
+                %td
+                  - unless fiche.dose_par_rapport_dmap.blank? && fiche.dose_par_rapport_dp.blank?
+                    %ul.list-unstyled
+                      %li= "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
+                      - if fiche.dose_par_rapport_dp?
+                        %li= "#{fiche.dose_par_rapport_dp} de la posologie pédiatrique"
+                %th Posologie pédiatrique
+                %td
+                  - unless fiche.poso_pedia_dose.blank? and fiche.poso_pedia_des.blank?
+                    = fiche.poso_pedia_dose
+                    = "à partir de #{fiche.poso_pedia_des}" if fiche.poso_pedia_des?
+                %th &nbsp;
+                %th &nbsp;
+                %th &nbsp;
+                %th &nbsp;
 
-    .argumentaire{id: "argumentaire_#{fiche.id}", style: "display: none;"}
-      %h3 Données détaillées
-      %table
-        %tr
-          - unless fiche.biodisponibilite.blank?
-            %th Biodisponibilité
-            %td= fiche.biodisponibilite
-          - unless fiche.vol_dist.blank?
-            %th Vd
-            %td= fiche.vol_dist
-          - unless fiche.liaison_pp.blank?
-            %th Liaison aux PP
-            %td= fiche.liaison_pp
-          - unless fiche.thalf.blank?
-            %th T1/2
-            %td= fiche.thalf
-        %tr
-          - unless fiche.metabolites_actifs.blank?
-            %th Métabolites actifs
-            %td= fiche.metabolites_actifs? ? "Oui" : "Non"
-          - unless fiche.rapport_lp.blank?
-            %th Rapport lait/plasma
-            %td= fiche.rapport_lp
-          - unless fiche.pic_lacte.blank?
-            %th Pic lacté
-            %td= fiche.pic_lacte
-        %tr
-          - unless fiche.dose_par_rapport_dmap.blank? && fiche.dose_par_rapport_dp.blank?
-            %th Dose estimée ingérée par l'enfant
-            %td
-              %ul.plain
-                %li= "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
-                - if fiche.dose_par_rapport_dp?
-                  %li= "#{fiche.dose_par_rapport_dp} de la posologie pédiatrique"
-          - unless fiche.poso_pedia_dose.blank? and fiche.poso_pedia_des.blank?
-            %th Posologie pédiatrique
-            %td
-              = fiche.poso_pedia_dose
-              = "à partir de #{fiche.poso_pedia_des}" if fiche.poso_pedia_des?
+        - unless fiche.sources.empty? && fiche.articles.blank?
+          .panel.panel-default
+            .panel-heading{id: "sources-heading-#{fiche.id}"}
+              %h4.panel-title
+                = link_to 'Sources', "#sources_#{fiche.id}",
+                  'aria-expanded': 'false', 'aria-controls': "sources_#{fiche.id}",
+                  data: { toggle: 'collapse', parent: "fiche-#{fiche.id}-accordion" }
 
-    - unless fiche.sources.empty? && fiche.articles.blank?
-      %p= link_to "Montrer/Cacher les sources", '#', data: { target: "sources_#{fiche.id}" }
+            = content_tag :div, class: 'panel-collapse collapse sources',
+              id: "sources_#{fiche.id}", role: 'tabpanel',
+              'aria-labelledby': "sources-heading-#{fiche.id}" do
+              .panel-body
+                - unless fiche.sources.empty?
+                  %h4 Sources :
+                  .retrait
+                    = fiche.sources.map(&:name).join(', ')
+                - unless fiche.articles.blank?
+                  %h4 Articles :
+                  .retrait
+                    = raw textilize fiche.articles
 
-      .sources{:id => "sources_#{fiche.id}", :style => "display: none;"}
-        - unless fiche.sources.empty?
-          %h4 Sources :
-          .retrait
-            = fiche.sources.map(&:name).join(', ')
-        - unless fiche.articles.blank?
-          %h4 Articles :
-          .retrait
-            = raw textilize fiche.articles
-
-    .fiche_footer
+    .panel-footer
       - if can? :create, Fiche
         .validation
-          %table{:style => "width:100%;"}
-            %tr
-              %td
-                %b Etat de validation :
-                %span{:class => "#{fiche.state}"}= fiche.state.humanize
-                = form_for [fiche.dci, fiche], :html => {:class => "state_form"} do |f|
-                  = f.label "=> "
-                  = f.collection_select :state_event,
-                    fiche.state_transitions, :event, :human_to_name, {},
-                    { :style => "display: none;"}
-                  = f.submit fiche.state_transitions.first.event.to_s.humanize
-
-              - unless fiche.published_at.nil?
+          %table.table
+            %thead
+              %tr
+                %th Etat de validation :
+                %th Dernière MAJ :
+                %th Crée par :
+            %tbody
+              %tr
                 %td
-                  %b Dernière MAJ :
-                  = l(fiche.published_at)
-                  %br/
-                  - if fiche.expired?
-                    %b Fiche expirée !
-                    - if can?(:edit, Fiche)
-                      = form_for [fiche.dci, fiche],
-                        :html => {:class => "state_form"} do |f|
-                        = f.label "=> "
-                        = f.select :published_at_event,
-                          [["published", "publish"]], {},
-                          {:style => "display:none;"}
-                        = f.submit "Revalider"
-                  %b À revalider le :
-                  = l(fiche.revalider_le)
+                  = form_for [fiche.dci, fiche], html: {class: 'state_form'} do |f|
+                    = f.label :state_event, "#{fiche.state.humanize} => "
+                    = f.collection_select :state_event,
+                      fiche.state_transitions, :event, :human_to_name, {},
+                      { :style => "display: none;"}
+                    = f.submit fiche.state_transitions.first.event.to_s.humanize,
+                      class: 'btn btn-xs btn-default'
 
-              - if fiche.user_id?
+                - unless fiche.published_at.nil?
+                  %td
+                    = l(fiche.published_at)
+                    %br/
+                    - if fiche.expired?
+                      %b Fiche expirée !
+                      - if can?(:edit, Fiche)
+                        = form_for [fiche.dci, fiche],
+                          :html => {:class => "state_form"} do |f|
+                          = f.label "=> "
+                          = f.select :published_at_event,
+                            [["published", "publish"]], {},
+                            {:style => "display:none;"}
+                          = f.submit "Revalider", class: 'btn btn-xs btn-default'
+                    %br
+                    %b À revalider le :
+                    = l(fiche.revalider_le)
+
                 %td
-                  %b Fiche crée par :
-                  = "#{fiche.createur} (#{fiche.user.role})"
+                  = "#{fiche.createur} (#{fiche.user.role})" if fiche.user_id?
 
-      .clear
-
-      %ul.edit_actions.inline
-        %li= link_to("Modifier cette fiche",
-          edit_dci_fiche_path(fiche.dci, fiche)) if can? :update, fiche
-        %li= link_to("Détruire cette fiche", [fiche.dci, fiche],
-          {:confirm => 'Etes-vous sûr ?', :method => :delete}) if can? :destroy, fiche
-
-      .clear
+      .pull-right= actions_buttons(fiche)
+      .clearfix

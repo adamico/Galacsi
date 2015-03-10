@@ -1,4 +1,4 @@
-.fields
+.nested-fields
   = f.label :source_name, "Nom de la source (existante)"
   = f.text_field :source_name, :class => "source_autocomplete"
-  = link_to_remove_fields "Effacer", f
+  = link_to_remove_association "Effacer", f

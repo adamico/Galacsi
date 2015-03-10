@@ -12,7 +12,7 @@ class FichesController < ApplicationController
 
   def search
     @q = Fiche.ransack(params[:q])
-    @fiches = @q.result(distinct: true).includes(:distinction, :dci)
+    @fiches = @q.result.includes(:distinction, :dci)
     @fiches.reject! { |fiche| fiche.state != "valide" } unless current_user
   end
 
@@ -64,7 +64,7 @@ class FichesController < ApplicationController
 
   def find_fiches
     @q = Fiche.ransack(params[:q])
-    @fiches = @q.result(distinct: true).includes(:distinction, :user, :dci)
+    @fiches = @q.result.includes(:distinction, :user, :dci)
   end
 
   def find_dci

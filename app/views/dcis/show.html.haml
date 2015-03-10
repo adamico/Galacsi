@@ -1,18 +1,9 @@
-- title @dci.name.humanize, false
+- title @dci.name.humanize, actions_buttons(@dci)
 
-%h1.dci_title= @dci.name.humanize
-
-%ul.edit_actions.inline
-  - if can? :edit, @dci
-    %li= link_to "Modifier cette DCI", edit_dci_path(@dci)
-  - if can? :delete, @dci
-    %li= link_to "Détruire cette DCI", @dci,
-      :confirm => 'Etes-vous sûr ?', :method => :delete
-
-= render 'shared/associations_links', :dci => @dci
+= render 'shared/associations_links', dci: @dci
 
 #fiches
-  - if !@dci.fiches.valide.empty?
+  - if @dci.fiches.valide.any?
     = render @dci.fiches.valide
   - else
     - if can?(:create, Fiche)
@@ -24,4 +15,7 @@
     #fiches_non_validees{:style => "display: none;"}
       = render @dci.fiches.non_valide
 
-%p= link_to "Rajouter une fiche", new_dci_fiche_path(@dci) if can? :create, Fiche
+- if can? :create, Fiche
+  %p
+    = link_to "Rajouter une fiche",
+      new_dci_fiche_path(@dci), class: 'btn btn-warning'

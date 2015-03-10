@@ -1,18 +1,17 @@
 - title "Sources"
 
-%table
+%table.table.table-striped
   %tr
     %th Name
     %th Type
     %th Url
+    %th &nbsp;
   - for source in @sources
     %tr
-      %td= h source.name
-      %td= h source.nature
-      %td= h source.url
-      - if can? :update, Source
-        %td= link_to 'Modifier', edit_source_path(source)
-      - if can? :delete, Source
-        %td= link_to 'Détruire', source, :confirm => 'Are you sure?', :method => :delete
+      %td= source.name
+      %td= source.nature
+      %td= source.url
+      %td
+        .pull-right= actions_buttons(source)
 
-%p= link_to "Nouvelle Source", new_source_path if can? :create, Source
+%p= link_to "Nouvelle Source", new_source_path, class: 'btn btn-primary' if can? :create, Source

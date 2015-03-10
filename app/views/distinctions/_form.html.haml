@@ -1,4 +1,5 @@
-= semantic_form_for distinction do |f|
-  = f.inputs do
-    = f.input :name, :label => "Nom"
-    = f.commit_button "Sauvegarder"
+= simple_form_for distinction, html: { role: 'form' } do |f|
+  = f.input :name
+  .pull-right
+    = link_to 'Annuler', :back, 'data-confirm': t('confirm'), class: 'btn btn-link'
+    = f.button :submit

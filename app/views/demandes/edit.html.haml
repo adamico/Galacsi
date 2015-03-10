@@ -1,8 +1,3 @@
-- title "Edit Demande"
+- title "Modification d'une Demande"
 
-= render 'form', :demande => @demande
-
-%p
-  = link_to "Annuler", demande_path(@demande)
-  |
-  = link_to "Retour à la liste", demandes_path
+= render 'form', demande: @demande

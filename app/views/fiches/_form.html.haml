@@ -1,55 +1,67 @@
-= semantic_form_for([fiche.dci, fiche]) do |f|
-  - if current_user.admin?
-    = f.inputs do
-      = f.input :user, :label => "Créateur"
+= simple_form_for [fiche.dci, fiche], html: { role: 'form' } do |f|
+  = f.association :user, label: 'Créateur' if current_user.admin?
+
   %h4 Sources
-  = f.fields_for :sourcings do |sourcing|
-    = render 'sourcing_fields', :f => sourcing
-  %p.add_fields= link_to_add_fields "Rajouter une source", f, :sourcings
-  = f.inputs do
-    = f.input :articles, :input_html => {:rows => "4x50"}
-  = f.inputs do
-    %li.select
-      = f.label :revalider_le, "Informations à revalider dans"
-      = f.select(:revalider_le, [['3 mois', 3.months.from_now.to_date], ['6 mois', 6.months.from_now.to_date], ['1 an', 1.year.from_now.to_date]])
-    = f.input :distinction, :label => "Sous-type fiche"
-    = f.input :distinction_name, :as => :string, :label => "Libéllé distinction"
-    %h4 Informations sur la décision, surveillance, alternatives
-    = f.input :de_choix, :label => "Molécule de choix pour l'allaitement ?"
-    = f.input :decision
-    = f.input :conditions, :input_html => {:rows => "2x50"}
-    = f.input :surveillance, :input_html => {:rows => "2x50"}
-    %li.textfield.optional#fiche_alternative_names_input
-      = f.label :alternative_names, "Alternatives"
-      = f.text_field :alternative_names, :size => "50"
-    %li.select.optional#fiche_suivi_input
-      = f.label :suivi, "Suivi"
-      = f.select(:suivi, Fiche::SUIVIS, {:include_blank => true})
-    %h4 EI observés ou théoriques
-    = f.input :ei, :label => "Suivis publiés", :input_html => {:rows => "4x50"}, :hint => "indiquer le nombre et le type d'EI observés (ou absent) sur le nombre approximatif de suivis publiés"
-    = f.input :ei_theoriques, :label => "EI théoriques", :input_html => {:rows => "4x50"}
-    %li.select.optional#fiche_passage_lait_input
-      = f.label :passage_lait, "Passage dans le lait"
-      = f.select(:passage_lait, Fiche::PASSAGE, {:include_blank => true})
-    = f.input :risque_accumulation, :label => "Risque d'accumulation dans le lait"
-    = f.input :risque_dim_lactation, :label => "Risque théorique de diminution de la lactation"
-    %h4 Dose ingérée par le BB par rapport à :
-    = f.input :dose_par_rapport_dmap, :label => "dose maternelle au poids"
-    = f.input :dose_par_rapport_dp, :label => "dose pédiatrique"
-    %h4 Données pharmacologiques
-    = f.input :biodisponibilite, :label => "Biodisponibilité par voie orale"
-    = f.input :metabolites_actifs, :label => "Présence de métabolites actifs"
-    = f.input :liaison_pp, :label => "Liaison aux protéines plasmatiques"
-    = f.input :vol_dist, :label => "Volume de distribution"
-    = f.input :thalf, :label => "T1/2"
-    = f.input :pic_lacte, :label => "Pic lacté"
-    = f.input :rapport_lp, :label => "Rapport Lait/Plasma"
-    %h4 Existe-t-il une posologie pédiatrique ?
-    = f.input :has_poso_pedia, :label => "Oui"
-    = f.input :poso_pedia_dose, :label => "laquelle ?"
-    = f.input :poso_pedia_des, :label => "à partir de", :hint => "indiquer un âge ou une classe d'âge"
-    %h4 Autres argumentaires
-    = f.input :arg_autre, :label => "Autres", :input_html => {:rows => "2x50"}
-    %h4 Commentaire générale sur la fiche
-    = f.input :commentaire, :hint => "attention le commentaire n'apparait pas dans la page de visualisation de la fiche",:input_html => {:rows => "3x50"}
-    = f.commit_button "Enregistrer"
+  #sources
+    = f.simple_fields_for :sourcings do |sourcing|
+      = render 'sourcing_fields', f: sourcing
+    .add_fields
+      = link_to_add_association 'Rajouter une source', f, :sourcings,
+        class: 'btn btn-sm btn-default'
+
+  = f.input :articles, input_html: { rows: "4x50" }
+  = f.input :revalider_le, label: 'Informations à revalider dans',
+    collection: Fiche::REVALIDER
+  = f.association :distinction, label: 'Sous-type fiche'
+  = f.input :distinction_name, label: 'Libéllé distinction'
+
+  %h4 Informations sur la décision, surveillance, alternatives
+  = f.input :de_choix, label: "Molécule de choix pour l'allaitement ?"
+  = f.association :decision
+  = f.input :conditions, input_html: { rows: "2x50" }
+  = f.input :surveillance, input_html: { rows: "2x50" }
+
+  = f.input :alternative_names, label: 'Alternatives'
+  = f.input :suivi, collection: Fiche::SUIVIS, input_html: { include_blank: true }
+
+  %h4 EI observés ou théoriques
+  = f.input :ei, label: "Suivis publiés",
+    input_html: { rows: "4x50" },
+    hint: "indiquer le nombre et le type d'EI observés (ou absent) sur le nombre approximatif de suivis publiés"
+  = f.input :ei_theoriques, label: "EI théoriques", input_html: { rows: '4x50' }
+  = f.input :passage_lait, label: 'Passage dans le lait',
+    collection: Fiche::PASSAGE, input_html: { include_blank: true }
+  = f.input :risque_accumulation, label: "Risque d'accumulation dans le lait"
+  = f.input :risque_dim_lactation, label: 'Risque théorique de diminution de la lactation'
+
+  %h4 Dose ingérée par le BB par rapport à :
+  = f.input :dose_par_rapport_dmap, label: 'dose maternelle au poids'
+  = f.input :dose_par_rapport_dp, label: 'dose pédiatrique'
+
+  %h4 Données pharmacologiques
+  = f.input :biodisponibilite, label: 'Biodisponibilité par voie orale'
+  = f.input :metabolites_actifs, label: 'Présence de métabolites actifs'
+  = f.input :liaison_pp, label: 'Liaison aux protéines plasmatiques'
+  = f.input :vol_dist, label: 'Volume de distribution'
+  = f.input :thalf, label: 'T1/2'
+  = f.input :pic_lacte, label: 'Pic lacté'
+  = f.input :rapport_lp, label: 'Rapport Lait/Plasma'
+
+  %h4 Existe-t-il une posologie pédiatrique ?
+  = f.input :has_poso_pedia, label: 'Oui'
+  = f.input :poso_pedia_dose, label: 'laquelle ?'
+  = f.input :poso_pedia_des, label: 'à partir de',
+    hint: "indiquer un âge ou une classe d'âge"
+
+  %h4 Autres argumentaires
+  = f.input :arg_autre, label: "Autres", input_html: { rows: "3x50" }
+
+  %h4 Commentaire générale sur la fiche
+  = f.input :commentaire,
+    hint: "attention le commentaire n'apparait pas dans la page de visualisation de la fiche",
+    input_html: { rows: "3x50" }
+
+  .pull-right
+    = link_to 'Annuler', :back, 'data-confirm': t('confirm'),
+      class: 'btn btn-link'
+    = f.button :submit

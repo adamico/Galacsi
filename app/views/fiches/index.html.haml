@@ -1,33 +1,34 @@
 - title "Liste complète des fiches"
 
 %h2 Filtrer par:
-= form_for @search, :url => fiches_path, :html => {:method => :get} do |f|
-  = f.label :state_eq, "Etat de validation"
-  = f.select :state_eq, Fiche::STATES, :include_blank => true 
-  = f.submit "OK"
+= search_form_for @q, html: { class: 'form-inline' } do |f|
+  .form-group
+    = f.label :state_eq, "Etat de validation"
+    = f.select :state_eq, Fiche::STATES, include_blank: true, class: 'form-control'
+  = f.submit "OK", class: 'btn btn-xs btn-primary'
 
-- if !@fiches.empty?
-  %table#list
+- if @fiches.any?
+  %table.table.table-striped
     %thead
       %tr
-        %th.time= sort_link @search, :updated_at, "Dernière modif."
-        %th= sort_link @search, :dci_stripped_name, "DCI"
+        %th.time= sort_link @q, :updated_at, "Dernière modif."
+        %th= sort_link @q, 'dci_stripped_name', "DCI"
         %th Distinction
         %th Validation
         %th Créateur
         %th &nbsp;
     %tbody
       - @fiches.each do |fiche|
-        %tr{:class => "#{cycle('odd', 'even')}"}
+        %tr
           %td.time= l fiche.updated_at.to_date
           %td= fiche.dci_name 
           %td= fiche.full_distinction
-          %td{:class => "#{fiche.state}"}= fiche.state.humanize
+          %td{class: "#{fiche.state}"}= fiche.state.humanize
           %td= fiche.createur if fiche.user
           %td
             - actions_buttons(fiche)
-  %p= link_to "Exporter en fichier .csv", fiches_path(:format => :csv,
-      :search => params[:search])
+  %p= link_to "Exporter en fichier .csv", fiches_path(format: :csv,
+      search: params[:q])
 
 - else
   %h3 Pas de résultats

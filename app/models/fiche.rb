@@ -1,4 +1,3 @@
-#encoding: utf-8
 class Fiche < ActiveRecord::Base
   attr_reader :createur
   attr_writer :alternative_names
@@ -9,22 +8,25 @@ class Fiche < ActiveRecord::Base
   PASSAGE = ["dose dépendant", "inconnu", "faible"]
   RLP = ["<1", ">1"]
   STATES = [["brouillon", "brouillon"], ["à valider", "a_valider"], ["valide", "valide"], ["en attente", "en_attente"]]
+  REVALIDER =
+    [['3 mois', 3.months.from_now.to_date],
+     ['6 mois', 6.months.from_now.to_date],
+     ['1 an', 1.year.from_now.to_date]]
 
   # associations
   belongs_to :decision
-  belongs_to :dci, :counter_cache => true
+  belongs_to :dci, counter_cache: true
   belongs_to :distinction
   belongs_to :user
 
-  has_many :alternativeships, :dependent => :destroy
-  has_many :alternatives, :through => :alternativeships
+  has_many :alternativeships, dependent: :destroy
+  has_many :alternatives, through: :alternativeships
 
-  has_many :sourcings, :dependent => :destroy
-  has_many :sources, :through => :sourcings
+  has_many :sourcings, dependent: :destroy
+  has_many :sources, through: :sourcings
 
   accepts_nested_attributes_for :sourcings,
-    :reject_if => proc { |attrs| attrs[:source_name].blank? },
-    :allow_destroy => true
+    reject_if: :all_blank, allow_destroy: true
 
   # delegations
   delegate :name, :to => :dci, :allow_nil => true, :prefix => true

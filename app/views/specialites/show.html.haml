@@ -1,15 +1,11 @@
-- title @specialite.name, false
+- title @specialite.name, actions_buttons(@specialite)
 
-%h1.float_left= @specialite.name
-
-- actions_buttons(@specialite)
-
-.clear
-
-- if !@specialite.dcis.blank?
-  %h2 Composition :
+- if @specialite.dcis.any?
+  %h2 DCI :
   %table#list
     - @specialite.dcis.each do |dci|
-      = render 'shared/dci_line', :dci => dci
+      = render 'shared/dci_line', dci: dci
 - else
   Cette possibilité ne doit pas exister... pas de spécialités sans DCI normalement
+
+= link_to 'Retour à la liste', specialites_path, class: 'btn btn-primary'

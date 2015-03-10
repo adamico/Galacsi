@@ -2,7 +2,7 @@
 
 = content_for :subtitle do
   = link_to 'Création', new_classe_therapeutique_path,
-    class: 'btn btn-default' if can?(:create, ClasseTherapeutique)
+    class: 'btn btn-warning' if can?(:create, ClasseTherapeutique)
 
 %table.table.table-condensed.table-striped
   - @classe_therapeutiques.each do |classe_therapeutique|

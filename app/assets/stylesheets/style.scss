@@ -87,3 +87,24 @@ h6, .h6 {
 h1 small ul {
   display: inline;
 }
+
+.argumentaire {
+  font-size: 80%;
+  table td {
+    background: #f0f0f0;
+  }
+}
+
+.fiche {
+  .panel-heading {
+    display: flex;
+    justify-content: space-around;
+  }
+  .panel-footer {
+    font-size: 80%;
+  }
+}
+
+form.state_form {
+  display: inline;
+}

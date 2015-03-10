@@ -2,7 +2,7 @@
 
 = content_for :subtitle do
   = link_to 'Création', new_specialite_path,
-    class: 'btn btn-default' if can?(:create, Specialite)
+    class: 'btn btn-warning' if can?(:create, Specialite)
 
 %table.table.table-condensed.table-striped
   - @specialites.each do |specialite|
