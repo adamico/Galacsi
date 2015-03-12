@@ -8,11 +8,14 @@ class DcisController < ApplicationController
       :classifications,
       :specialites,
       :fiches => [:distinction, :user])
-  end
-
-  def stripped_names
-    @thedcis = Dci.where(:stripped_name =~ "%#{params[:term]}%")
-    @thedcis.reject! { |dci| dci.fiches.valide.empty? } unless current_user
+    respond_to do |format|
+      format.html
+      format.json do
+        dcis = @dcis.with_name(params[:q])
+        dcis = dcis.reject! { |dci| dci.fiches.valide.empty? } unless current_user
+        render json: dcis.map(&:id_and_name)
+      end
+    end
   end
 
   def show

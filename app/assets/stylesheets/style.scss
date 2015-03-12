@@ -108,3 +108,16 @@ h1 small ul {
 form.state_form {
   display: inline;
 }
+
+
+.fiches-search {
+  margin-bottom: 1em;
+  .form-group {
+    width: 85%;
+    margin-right: 0.3em;
+  }
+
+  .form-control {
+    width: 100%;
+  }
+}

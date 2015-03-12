@@ -24,12 +24,20 @@ class Dci < ActiveRecord::Base
 
   delegate :stripped_name, :to => :dci, :prefix => true
 
+  def self.with_name(name)
+    where('stripped_name LIKE ?', "%#{name}%")
+  end
+
   def classes_therapeutiques
     @classes_therapeutiques || classe_therapeutiques.map(&:name).map(&:humanize).join(', ')
   end
 
   def commercial_names
     @commercial_names || specialites.map(&:name).map(&:humanize).join(', ')
+  end
+
+  def id_and_name
+    { name: name }
   end
 
   private

@@ -9,6 +9,14 @@ class Specialite < ActiveRecord::Base
 
   before_validation :set_unicode_stripped_name
 
+  def id_and_name
+    { name: name }
+  end
+
+  def self.with_name(name)
+    where('stripped_name LIKE ?', "%#{name}%")
+  end
+
   private
 
   def set_unicode_stripped_name
