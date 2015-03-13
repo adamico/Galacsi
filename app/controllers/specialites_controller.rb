@@ -2,7 +2,7 @@ class SpecialitesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @specialites = @specialites.includes(:dcis).order("LOWER(name) ASC")
+    @specialites = @specialites.by_name
     respond_to do |format|
       format.html
       format.json do

@@ -1,8 +1,8 @@
 class Specialite < ActiveRecord::Base
-  attr_accessible :name, :striped_name
+  attr_accessible :name, :stripped_name
 
-  has_many :compositions, :dependent => :destroy
-  has_many :dcis, :through => :compositions
+  has_many :compositions, dependent: :destroy
+  has_many :dcis, through: :compositions
 
   validates_presence_of :name
   validates_uniqueness_of :name
@@ -14,11 +14,11 @@ class Specialite < ActiveRecord::Base
   end
 
   def self.with_name(name)
-    where('stripped_name LIKE ?', "%#{name}%")
+    where('specialites.stripped_name LIKE ?', "%#{name}%")
   end
 
-  def self.with_dcis_having_valid_fiches
-    joins(dcis: :fiches).merge(Fiche.valide)#where(dcis: {fiches: {state: 'valide'}})
+  def self.by_name
+    order("LOWER(specialites.stripped_name) ASC")
   end
 
   private

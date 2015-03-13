@@ -10,24 +10,16 @@ class Ability
     # guest abilities
     can :show, Page
 
-    can :index, Specialite, Specialite.with_dcis_having_valid_fiches do |sp|
-      sp.dcis.with_valid_fiches.any?
-    end
-    can :show, Specialite do |sp|
-      sp.dcis.with_valid_fiches.any?
-    end
+    can :read, Specialite, dcis: { fiches: { state: 'valide' } }
 
     can :index, ClasseTherapeutique
     can :show, ClasseTherapeutique do |ct|
       ct.dcis.with_valid_fiches.any?
     end
 
-    can :index, Dci
-    can :show, Dci do |dci|
-      dci.fiches.valide.any?
-    end
+    can :read, Dci, fiches: { state: 'valide' }
 
-    can :read, Fiche, state: "valide"
+    can :read, Fiche, state: 'valide'
     can :search, Fiche
 
     can :create, Demande

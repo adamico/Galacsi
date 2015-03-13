@@ -5,7 +5,7 @@
   .form-group
     = f.label :dci_stripped_name_start, 'Par principe actif :', class: 'sr-only'
     = f.search_field :dci_stripped_name_start, class: 'form-control',
-      placeholder: 'par principe actif'
+      placeholder: 'par principe actif', autofocus: true
   = f.submit 'OK', class: 'btn btn-primary'
 
 = search_form_for @q , url: { action: 'search' },

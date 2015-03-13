@@ -4,10 +4,11 @@ class DcisController < ApplicationController
   before_filter :find_classes_therapeutiques, :only => [:new, :edit]
 
   def index
-    @dcis = @dcis.includes(
-      :classifications,
-      :specialites,
-      :fiches => [:distinction, :user])
+    @dcis = @dcis.by_name
+    #.includes(
+      #:classifications,
+      #:specialites,
+      #:fiches => [:distinction, :user])
     respond_to do |format|
       format.html
       format.json do

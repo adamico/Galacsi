@@ -24,6 +24,10 @@ class Dci < ActiveRecord::Base
 
   delegate :stripped_name, :to => :dci, :prefix => true
 
+  def self.by_name
+    order("LOWER(dcis.stripped_name) ASC")
+  end
+
   def self.with_name(name)
     where('stripped_name LIKE ?', "%#{name}%")
   end

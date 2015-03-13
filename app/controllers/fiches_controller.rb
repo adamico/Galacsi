@@ -13,7 +13,6 @@ class FichesController < ApplicationController
   def search
     @q = Fiche.ransack(params[:q])
     @fiches = @q.result.includes(:distinction, :dci)
-    @fiches = @fiches.where.not(state: 'valide') unless current_user
   end
 
   def show
