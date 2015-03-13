@@ -1,17 +1,17 @@
 class Dci < ActiveRecord::Base
+  attr_accessible :name, :commercial_names, :classe_therapeutique_ids
   extend FriendlyId
 
   require 'active_support'
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, presence: true, uniqueness: true
 
-  # use the "name" column as the basis of the friendly_id, and use slugs
   friendly_id :name, use: [:slugged, :finders]
 
-  has_many :fiches, :dependent => :destroy
-  has_many :classifications, :dependent => :destroy
-  has_many :classe_therapeutiques, :through => :classifications
-  has_many :compositions, :dependent => :destroy
-  has_many :specialites, :through => :compositions
+  has_many :fiches, dependent: :destroy
+  has_many :classifications, dependent: :destroy
+  has_many :classe_therapeutiques, through: :classifications
+  has_many :compositions, dependent: :destroy
+  has_many :specialites, through: :compositions
 
   attr_writer :commercial_names
   after_save :assign_commercial_names
@@ -66,25 +66,4 @@ class Dci < ActiveRecord::Base
       end
     end
   end
-
 end
-
-
-
-
-
-# == Schema Information
-# Schema version: 20101021093522
-#
-# Table name: dcis
-#
-#  id                    :integer         primary key
-#  name                  :string(255)
-#  created_at            :timestamp
-#  updated_at            :timestamp
-#  stripped_name         :string(255)
-#  cached_slug           :string(255)
-#  classifications_count :integer         default(0)
-#  fiches_count          :integer         default(0)
-#
-

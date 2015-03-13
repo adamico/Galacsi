@@ -1,26 +1,16 @@
 class Source < ActiveRecord::Base
-  has_many :fiches, :through => :sourcings
-  has_many :sourcings, :dependent => :destroy
+  attr_accessible :name, :nature, :url
 
-  validates :name, :presence => true
+  has_many :fiches, through: :sourcings
+  has_many :sourcings, dependent: :destroy
 
-  #url_regex = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
-  #validates :url, :format => { :with => url_regex }
+  validates :name, presence: true
+
+  def self.by_name
+    order("LOWER(sources.name) ASC")
+  end
+
+  def self.with_name(name)
+    where('name LIKE ?', "%#{name}%")
+  end
 end
-
-
-
-
-# == Schema Information
-# Schema version: 20101021093522
-#
-# Table name: sources
-#
-#  id         :integer         primary key
-#  name       :string(255)
-#  nature     :string(255)
-#  url        :string(255)
-#  created_at :timestamp
-#  updated_at :timestamp
-#
-

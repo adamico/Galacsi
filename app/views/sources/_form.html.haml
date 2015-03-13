@@ -1,6 +1,8 @@
-= semantic_form_for source do |f|
-  = f.inputs do
-    = f.input :name, :label => "Nom"
-    = f.input :nature, :label => "Type"
-    = f.input :url
-    = f.commit_button "Sauvegarder"
+= simple_form_for source, html: { role: 'form' } do |f|
+  = f.input :name, label: 'Nom'
+  = f.input :nature, label: 'Type'
+  = f.input :url
+  .pull-right
+    = link_to 'Annuler', :back, class: 'btn btn-link',
+      'data-confirm': t('confirm')
+    = f.button :submit

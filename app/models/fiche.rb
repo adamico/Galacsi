@@ -1,4 +1,12 @@
 class Fiche < ActiveRecord::Base
+  attr_accessible :articles, :revalider_le, :distinction_id, :distinction_name,
+    :de_choix, :decision_id, :conditions, :surveillance, :alternative_names,
+    :suivi, :ei, :ei_theoriques, :passage_lait, :risque_accumulation,
+    :risque_dim_lactation, :dose_par_rapport_dmap, :dose_par_rapport_dp,
+    :biodisponibilite, :metabolites_actifs, :liaison_pp, :vol_dist, :thalf,
+    :pic_lacte, :rapport_lp, :has_poso_pedia, :poso_pedia_dose, :poso_pedia_des,
+    :arg_autre, :commentaire
+
   attr_reader :createur
   attr_writer :alternative_names
 
@@ -29,17 +37,25 @@ class Fiche < ActiveRecord::Base
     reject_if: :all_blank, allow_destroy: true
 
   # delegations
-  delegate :name, :to => :dci, :allow_nil => true, :prefix => true
-  delegate :name, :abbr, :to => :decision, :allow_nil => true, :prefix => true
+  delegate :name, to: :dci, allow_nil: true, prefix: true
+  delegate :name, :abbr, to: :decision, allow_nil: true, prefix: true
 
   # scopes
   def self.expired
     includes(:distinction, :dci).where("revalider_le <= ?", Time.now.to_date)
   end
 
-  scope :valide,     -> { where("state = ?", "valide") }
-  scope :non_valide, -> { where("state != ?", "valide") }
-  scope :recent,     -> { where("published_at >= ?", 02.weeks.ago) }
+  def self.valide
+    where(state: 'valide')
+  end
+
+  def self.non_valide
+    where.not(state: 'valide')
+  end
+
+  def self.recent
+    where('published_at >= ?', 2.weeks.ago)
+  end
 
   # callbacks
   after_save :assign_alternatives
@@ -134,54 +150,3 @@ class Fiche < ActiveRecord::Base
     end
   end
 end
-
-
-
-
-
-# == Schema Information
-# Schema version: 20101110112900
-#
-# Table name: fiches
-#
-#  id                    :integer         not null, primary key
-#  name                  :string(255)
-#  created_at            :datetime
-#  updated_at            :datetime
-#  state                 :string(255)
-#  decision_id           :integer
-#  validation_date       :date
-#  commentaire           :text
-#  distinction_name      :text
-#  dci_id                :integer
-#  suivi                 :string(255)
-#  revalider_le          :date
-#  ei                    :text
-#  conditions            :text
-#  surveillance          :text
-#  biodisponibilite      :string(255)
-#  dose_par_rapport_dmap :string(255)
-#  dose_par_rapport_dp   :string(255)
-#  liaison_pp            :string(255)
-#  vol_dist              :string(255)
-#  tmax                  :string(255)
-#  thalf                 :string(255)
-#  pm                    :string(255)
-#  passage_lait          :string(255)
-#  rapport_lp            :string(255)
-#  has_poso_pedia        :boolean
-#  metabolites_actifs    :boolean
-#  risque_accumulation   :boolean
-#  risque_dim_lactation  :boolean
-#  poso_pedia_des        :string(255)
-#  arg_autre             :text
-#  distinction_id        :integer
-#  ei_theoriques         :text
-#  de_choix              :boolean
-#  pic_lacte             :string(255)
-#  poso_pedia_dose       :string(255)
-#  user_id               :integer
-#  articles              :text
-#  published_at          :date
-#
-

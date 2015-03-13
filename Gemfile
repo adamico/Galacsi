@@ -33,8 +33,11 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'better_errors',         '~> 2.1'
+  gem 'binding_of_caller'
   gem 'bullet'
   gem 'faker', '0.3.1'
+  gem 'quiet_assets',          '~> 1.1'
   gem 'spring'
 end
 

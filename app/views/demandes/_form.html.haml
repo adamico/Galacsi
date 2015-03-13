@@ -4,8 +4,9 @@
   = f.input :contexte, label: "Contexte de la création",
     hint: "numéro d'appel, distinction d'une fiche à créer (voie, indication, etc.), etc."
   = f.input :demandeur, label: "Votre nom"
-  %h5 Prouvez-nous que vous n'êtes pas un robot spammeur :
-  = raw recaptcha_tags(display: { theme: "white", lang: "fr" })
+  - if demande.new_record?
+    %h5 Prouvez-nous que vous n'êtes pas un robot spammeur :
+    = raw recaptcha_tags(display: { theme: "white", lang: "fr" })
   .pull-right
     = link_to 'Annuler', :back, 'data-confirm': t('confirm'), class: 'btn btn-link'
     = f.button :submit

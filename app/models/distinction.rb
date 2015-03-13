@@ -1,19 +1,6 @@
 class Distinction < ActiveRecord::Base
-  validates_presence_of :name
+  attr_accessible :name
+
   has_many :fiches
+  validates_presence_of :name
 end
-
-
-
-
-# == Schema Information
-# Schema version: 20101021093522
-#
-# Table name: distinctions
-#
-#  id         :integer         primary key
-#  name       :string(255)
-#  created_at :timestamp
-#  updated_at :timestamp
-#
-

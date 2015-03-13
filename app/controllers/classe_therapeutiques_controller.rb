@@ -1,8 +1,8 @@
 class ClasseTherapeutiquesController < ApplicationController
-
   load_and_authorize_resource
 
   def index
+    @classe_therapeutiques = @classe_therapeutiques.by_name
   end
 
   def show
