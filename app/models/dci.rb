@@ -22,8 +22,6 @@ class Dci < ActiveRecord::Base
 
   scope :with_valid_fiches, -> { joins(:fiches).merge(Fiche.valide) }
 
-  delegate :stripped_name, :to => :dci, :prefix => true
-
   def self.by_name
     order("LOWER(dcis.stripped_name) ASC")
   end
@@ -32,12 +30,16 @@ class Dci < ActiveRecord::Base
     where('stripped_name LIKE ?', "%#{name}%")
   end
 
+  def self.with_classes_and_specialites
+    includes(:classe_therapeutiques, :specialites)
+  end
+
   def classes_therapeutiques
-    @classes_therapeutiques || classe_therapeutiques.map(&:name).map(&:humanize).join(', ')
+    @classes_therapeutiques ||= classe_therapeutiques.map(&:name).map(&:humanize).join(', ')
   end
 
   def commercial_names
-    @commercial_names || specialites.map(&:name).map(&:humanize).join(', ')
+    @commercial_names ||= specialites.map(&:name).map(&:humanize).join(', ')
   end
 
   def id_and_name

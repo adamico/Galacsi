@@ -33,6 +33,7 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'bullet'
   gem 'faker', '0.3.1'
   gem 'spring'
 end

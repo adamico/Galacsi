@@ -5,12 +5,16 @@ class ClasseTherapeutique < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  has_many :classifications, :dependent => :destroy
-  has_many :dcis, :through => :classifications
+  has_many :classifications, dependent: :destroy
+  has_many :dcis, through: :classifications
 
   before_validation :set_unicode_stripped_name
 
   default_scope { order("name ASC") }
+
+  def dcis_with_fiches
+    dcis.includes(:fiches)
+  end
 
   def set_unicode_stripped_name
     self.stripped_name ||= strip_unicode(self.name) if self.name

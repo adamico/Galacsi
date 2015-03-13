@@ -3,16 +3,16 @@
 = search_form_for @q , url: { action: 'search' },
   html: { class: 'form-inline fiches-search' } do |f|
   .form-group
-    = f.label :dci_stripped_name_start, 'Par principe actif :', class: 'sr-only'
-    = f.search_field :dci_stripped_name_start, class: 'form-control',
+    = f.label :dci_name_start, 'Par principe actif :', class: 'sr-only'
+    = f.search_field :dci_name_start, class: 'form-control',
       placeholder: 'par principe actif', autofocus: true
   = f.submit 'OK', class: 'btn btn-primary'
 
 = search_form_for @q , url: { action: 'search' },
   html: { class: 'form-inline fiches-search' } do |f|
   .form-group
-    = f.label :dci_specialites_stripped_name_start, 'Par spécialité :', class: 'sr-only'
-    = f.search_field :dci_specialites_stripped_name_start, class: 'form-control',
+    = f.label :dci_specialites_name_start, 'Par spécialité :', class: 'sr-only'
+    = f.search_field :dci_specialites_name_start, class: 'form-control',
       placeholder: 'par spécialité'
   = f.submit 'OK', class: 'btn btn-primary'
 

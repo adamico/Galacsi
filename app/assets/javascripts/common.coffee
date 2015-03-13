@@ -12,7 +12,7 @@ attachDciTypeahead = () ->
 
   dcis.initialize()
 
-  $('#q_dci_stripped_name_start').typeahead null,
+  $('#q_dci_name_start').typeahead null,
     displayKey: 'name'
     source: dcis.ttAdapter()
 
@@ -24,6 +24,6 @@ attachSpecialiteTypeahead = () ->
 
   specialites.initialize()
 
-  $('#q_dci_specialites_stripped_name_start').typeahead null,
+  $('#q_dci_specialites_name_start').typeahead null,
     displayKey: 'name'
     source: specialites.ttAdapter()

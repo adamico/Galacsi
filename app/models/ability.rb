@@ -12,10 +12,7 @@ class Ability
 
     can :read, Specialite, dcis: { fiches: { state: 'valide' } }
 
-    can :index, ClasseTherapeutique
-    can :show, ClasseTherapeutique do |ct|
-      ct.dcis.with_valid_fiches.any?
-    end
+    can :read, ClasseTherapeutique, dcis: { fiches: { state: 'valide' } }
 
     can :read, Dci, fiches: { state: 'valide' }
 

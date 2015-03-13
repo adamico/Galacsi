@@ -20,7 +20,7 @@ class Fiche < ActiveRecord::Base
   belongs_to :user
 
   has_many :alternativeships, dependent: :destroy
-  has_many :alternatives, through: :alternativeships
+  has_many :alternatives, -> { includes(:specialites) }, through: :alternativeships
 
   has_many :sourcings, dependent: :destroy
   has_many :sources, through: :sourcings
@@ -93,6 +93,10 @@ class Fiche < ActiveRecord::Base
     decision :name => "Décision"
     state 'Validation'
     createur
+  end
+
+  def self.with_distinction_and_dci
+    includes(:distinction, :dci)
   end
 
   # custom methods

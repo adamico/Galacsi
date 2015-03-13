@@ -6,7 +6,7 @@
       %tr
         %th &nbsp;
     %tbody
-      - @classe_therapeutique.dcis.each do |dci|
+      - @classe_therapeutique.dcis_with_fiches.each do |dci|
         = render 'shared/dci_line', dci: dci
 - else
   Aucune DCI pour cette classe

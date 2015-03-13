@@ -5,12 +5,10 @@ class DcisController < ApplicationController
 
   def index
     @dcis = @dcis.by_name
-    #.includes(
-      #:classifications,
-      #:specialites,
-      #:fiches => [:distinction, :user])
     respond_to do |format|
-      format.html
+      format.html do
+        @dcis = @dcis.with_classes_and_specialites
+      end
       format.json do
         dcis = @dcis.with_name(params[:q])
         render json: dcis.map(&:id_and_name)
@@ -19,7 +17,6 @@ class DcisController < ApplicationController
   end
 
   def show
-    # @dci is loaded in before_filter
   end
 
   def new
@@ -37,11 +34,9 @@ class DcisController < ApplicationController
   end
 
   def edit
-    # @dci is loaded in before_filter
   end
 
   def update
-    # @dci is loaded in before_filter
     if @dci.update_attributes(params[:dci])
       flash[:notice] = "Successfully updated dci."
       redirect_to @dci
@@ -51,7 +46,6 @@ class DcisController < ApplicationController
   end
 
   def destroy
-    # @dci is loaded in before_filter
     @dci.destroy
     flash[:notice] = "Successfully destroyed dci."
     redirect_to dcis_url
