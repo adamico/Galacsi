@@ -25,20 +25,3 @@ class ClasseTherapeutique < ActiveRecord::Base
     mb_string.normalize(:kd).gsub(/[^\x00-\x7F]/,'').to_s
   end
 end
-
-
-
-
-# == Schema Information
-# Schema version: 20101021093522
-#
-# Table name: classe_therapeutiques
-#
-#  id                    :integer         primary key
-#  name                  :string(255)
-#  created_at            :timestamp
-#  updated_at            :timestamp
-#  stripped_name         :string(255)
-#  classifications_count :integer         default(0)
-#
-
