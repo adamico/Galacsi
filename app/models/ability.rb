@@ -9,22 +9,25 @@ class Ability
 
     # guest abilities
     can :show, Page
-    can :index, Specialite
-    can :show, Specialite do |sp|
-      !sp.dcis.with_valid_fiches.empty?
+
+    can :index, Specialite, Specialite.with_dcis_having_valid_fiches do |sp|
+      sp.dcis.with_valid_fiches.any?
     end
+    can :show, Specialite do |sp|
+      sp.dcis.with_valid_fiches.any?
+    end
+
     can :index, ClasseTherapeutique
     can :show, ClasseTherapeutique do |ct|
-      !ct.dcis.with_valid_fiches.empty?
+      ct.dcis.with_valid_fiches.any?
     end
 
+    can :index, Dci
     can :show, Dci do |dci|
-      !dci.fiches.valide.empty?
+      dci.fiches.valide.any?
     end
 
-    can :stripped_names, [Dci, Specialite]
-
-    can :read, Fiche, :state => "valide"
+    can :read, Fiche, state: "valide"
     can :search, Fiche
 
     can :create, Demande
@@ -32,9 +35,8 @@ class Ability
     # admin abilities
     if user.admin?
       can :manage, :all
-      can :search, [Fiche, Dci]
-      can :stripped_names, [Dci, Specialite]
-      #
+      cannot :destroy, user
+
     # other roles abilities
     else
       case user.role

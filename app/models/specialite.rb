@@ -17,6 +17,10 @@ class Specialite < ActiveRecord::Base
     where('stripped_name LIKE ?', "%#{name}%")
   end
 
+  def self.with_dcis_having_valid_fiches
+    joins(dcis: :fiches).merge(Fiche.valide)#where(dcis: {fiches: {state: 'valide'}})
+  end
+
   private
 
   def set_unicode_stripped_name

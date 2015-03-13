@@ -36,12 +36,15 @@
         .col-sm-3.col-sm-offset-1.sidebar
           .sidebar-module
             - if @dcis_with_recent_fiches.any?
-              = render 'layouts/news',
+              = render 'news',
                 dcis_with_recent_fiches: @dcis_with_recent_fiches
-            = render 'layouts/verif_fiches', expired_fiches: @expired_fiches
+
+          .sidebar-module.sidebar-module-inset
+            %p Vous n'avez pas trouvé ce que vous cherchiez ?
+            %p= link_to 'Demander une création', new_demande_path
 
           .sidebar-module
-            %p Vous n'avez pas trouvé ce que vous cherchiez ?
-            %p= link_to "Demander une création", new_demande_path
+            = render 'verif_fiches', expired_fiches: @expired_fiches
 
-    = render 'layouts/footer'
+    %footer.page-footer
+      = render 'footer'

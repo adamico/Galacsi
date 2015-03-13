@@ -2,12 +2,11 @@ class SpecialitesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @specialites = Specialite.includes(:dcis).order("LOWER(name) ASC")
+    @specialites = @specialites.includes(:dcis).order("LOWER(name) ASC")
     respond_to do |format|
       format.html
       format.json do
         specialites = @specialites.with_name(params[:q])
-        specialites = specialites.reject! { |sp| sp.dcis.with_valid_fiches.empty? } unless current_user
         render json: specialites.map(&:id_and_name)
       end
     end

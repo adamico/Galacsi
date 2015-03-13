@@ -1,14 +1,11 @@
-- title "Utilisateurs"
+- title 'Utilisateurs'
 
 %table.table.table-striped
-  - @users.each do |u|
+  - @users.each do |user|
     %tr
-      %td= u.username
-      %td= u.admin? ? "admin" : u.role
-      %td= link_to "Modifier", edit_user_path(u)
+      %td= user.username
+      %td= user.admin? ? "admin" : user.role
       %td
-        = link_to "Détruire", u,
-          'data-confirm': t('confirm'),
-          method: :delete if (can? :destroy, u) and ( current_user != u )
+        .pull-right= actions_buttons(user)
 
 %p= link_to "Nouvel utilisateur", new_user_path, class: 'btn btn-primary' if can?(:create, User)

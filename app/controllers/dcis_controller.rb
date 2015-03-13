@@ -4,7 +4,7 @@ class DcisController < ApplicationController
   before_filter :find_classes_therapeutiques, :only => [:new, :edit]
 
   def index
-    @dcis = Dci.includes(
+    @dcis = @dcis.includes(
       :classifications,
       :specialites,
       :fiches => [:distinction, :user])
@@ -12,7 +12,6 @@ class DcisController < ApplicationController
       format.html
       format.json do
         dcis = @dcis.with_name(params[:q])
-        dcis = dcis.reject! { |dci| dci.fiches.valide.empty? } unless current_user
         render json: dcis.map(&:id_and_name)
       end
     end

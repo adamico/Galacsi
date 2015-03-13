@@ -6,14 +6,14 @@ class FichesController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.csv { render :csv => @fiches}
+      format.csv { render csv: @fiches }
     end
   end
 
   def search
     @q = Fiche.ransack(params[:q])
     @fiches = @q.result.includes(:distinction, :dci)
-    @fiches.reject! { |fiche| fiche.state != "valide" } unless current_user
+    @fiches = @fiches.where.not(state: 'valide') unless current_user
   end
 
   def show
