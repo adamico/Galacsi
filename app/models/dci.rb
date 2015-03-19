@@ -36,6 +36,14 @@ class Dci < ActiveRecord::Base
     includes(:classe_therapeutiques, :specialites)
   end
 
+  def fiches_valides
+    fiches.includes(:decision, :alternatives, :sources, :user, :distinction).valide
+  end
+
+  def fiches_non_valides
+    fiches.includes(:decision, :alternatives, :sources, :user, :distinction).non_valide
+  end
+
   def classes_therapeutiques
     @classes_therapeutiques ||= classe_therapeutiques.map(&:name).map(&:humanize).join(', ')
   end

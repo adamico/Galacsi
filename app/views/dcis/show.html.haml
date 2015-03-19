@@ -3,19 +3,24 @@
 = render 'shared/associations_links', dci: @dci
 
 #fiches
-  - if @dci.fiches.valide.any?
-    = render @dci.fiches.valide
+  - if @dci.fiches_valides.any?
+    = render @dci.fiches_valides
   - else
     - if can?(:create, Fiche)
       %br/
       %h2 Aucune fiche validée pour cette DCI
-  - if can?(:create, Fiche) && !@dci.fiches.non_valide.empty?
-    %p= link_to_toggle_div "Montrer/Cacher les fiches non validées",
-      "fiches_non_validees"
-    #fiches_non_validees{:style => "display: none;"}
-      = render @dci.fiches.non_valide
+  - if can?(:create, Fiche) && @dci.fiches_non_valides.any?
+    = link_to 'Fiches non validées', '#fiches-non-validees',
+      class: 'btn btn-danger btn-block',
+      'aria-expanded': false, 'aria-controls': 'fiches-non-validees',
+      data: { toggle: 'collapse' }
 
-- if can? :create, Fiche
-  %p
-    = link_to "Rajouter une fiche",
-      new_dci_fiche_path(@dci), class: 'btn btn-warning'
+    %br
+
+    = content_tag :div, class: 'collapse', id: 'fiches-non-validees' do
+      = render @dci.fiches_non_valides
+
+  - if can?(:create, Fiche)
+    .pull-right
+      = link_to 'Nouvelle fiche',
+        new_dci_fiche_path(@dci), class: 'btn btn-warning'

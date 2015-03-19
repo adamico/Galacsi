@@ -5,7 +5,7 @@ class Fiche < ActiveRecord::Base
     :risque_dim_lactation, :dose_par_rapport_dmap, :dose_par_rapport_dp,
     :biodisponibilite, :metabolites_actifs, :liaison_pp, :vol_dist, :thalf,
     :pic_lacte, :rapport_lp, :has_poso_pedia, :poso_pedia_dose, :poso_pedia_des,
-    :arg_autre, :commentaire
+    :arg_autre, :commentaire, :state_event
 
   attr_reader :createur
   attr_writer :alternative_names
@@ -145,7 +145,7 @@ class Fiche < ActiveRecord::Base
   def assign_alternatives
     if @alternative_names
       self.alternatives = @alternative_names.split(', ').map do |name|
-        Dci.find_or_create_by_name(name)
+        Dci.find_or_create_by(name: name)
       end
     end
   end
