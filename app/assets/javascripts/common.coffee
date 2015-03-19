@@ -3,6 +3,10 @@ $ = jQuery
 $ ->
   attachDciTypeahead()
   attachSpecialiteTypeahead()
+  attachSourceTypeahead()
+
+  $('#sources').on 'cocoon:after-insert', ->
+    attachSourceTypeahead()
 
 attachDciTypeahead = () ->
   dcis = new Bloodhound
@@ -27,3 +31,15 @@ attachSpecialiteTypeahead = () ->
   $('#q_dci_specialites_name_start').typeahead null,
     displayKey: 'name'
     source: specialites.ttAdapter()
+
+attachSourceTypeahead = () ->
+  sources = new Bloodhound
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name')
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    remote: '/sources.json?q=%QUERY'
+
+  sources.initialize()
+
+  $('.source-typeahead').typeahead null,
+    displayKey: 'name'
+    source: sources.ttAdapter()

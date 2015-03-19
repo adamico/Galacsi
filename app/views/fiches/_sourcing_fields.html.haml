@@ -1,4 +1,4 @@
 .nested-fields
-  = f.label :source_name, "Nom de la source (existante)"
-  = f.text_field :source_name, :class => "source_autocomplete"
-  = link_to_remove_association "Effacer", f
+  = f.input :source_name, label: 'Nom de la source (existante)',
+    input_html: { class: 'source-typeahead' }
+  = link_to_remove_association 'Effacer', f, class: 'btn btn-xs btn-default'

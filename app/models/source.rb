@@ -11,6 +11,10 @@ class Source < ActiveRecord::Base
   end
 
   def self.with_name(name)
-    where('name LIKE ?', "%#{name}%")
+    where('LOWER(name) LIKE ?', "%#{name}%")
+  end
+
+  def id_and_name
+    { name: name }
   end
 end
