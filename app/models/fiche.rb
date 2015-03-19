@@ -133,11 +133,11 @@ class Fiche < ActiveRecord::Base
   end
 
   def createur
-    @createur || User.find(user_id).username
+    @createur ||= User.find(user_id).username
   end
 
   def alternative_names
-    @alternative_names || alternatives.map(&:name).join(', ')
+    @alternative_names ||= alternatives.map(&:name).join(', ')
   end
 
   private

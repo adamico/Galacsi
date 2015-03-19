@@ -54,11 +54,11 @@ module ApplicationHelper
                           link_to('Détruire', polymorphic_path(object),
                                   'data-confirm': t('confirm'),
                                   method: :delete,
-                                  class: 'btn btn-warning')) if can? :destroy, object
+                                  class: 'btn btn-sm btn-warning')) if can? :destroy, object
       list << content_tag(:li,
                           link_to('Modifier',
                           edit_polymorphic_path(object),
-                          class: 'btn btn-warning')) if can? :update, object
+                          class: 'btn btn-sm btn-warning')) if can? :update, object
     end
     result.join("\n").html_safe
   end

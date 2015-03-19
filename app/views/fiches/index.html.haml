@@ -27,8 +27,9 @@
           %td= fiche.createur if fiche.user
           %td
             - actions_buttons(fiche)
-  %p= link_to "Exporter en fichier .csv", fiches_path(format: :csv,
-      search: params[:q])
+  .pull-right
+    = link_to "Exporter en fichier .csv",
+      fiches_path(format: :csv, search: params[:q]), class: 'btn btn-warning'
 
 - else
   %h3 Pas de résultats
