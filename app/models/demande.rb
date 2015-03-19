@@ -1,5 +1,6 @@
 class Demande < ActiveRecord::Base
   attr_accessible :nature, :name, :contexte, :demandeur
+
   validates :name, presence: true, uniqueness: true
   validates :demandeur, presence: true
 

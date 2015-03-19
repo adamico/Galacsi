@@ -26,7 +26,7 @@ class Dci < ActiveRecord::Base
   end
 
   def self.with_name(name)
-    where('slug LIKE ?', "%#{name}%")
+    where('slug LIKE ?', "#{name}%")
   end
 
   def self.with_classes_and_specialites

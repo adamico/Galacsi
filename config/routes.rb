@@ -1,6 +1,8 @@
 Galacsi::Application.routes.draw do
   devise_for :users
-  resources :classe_therapeutiques, :decisions, :demandes, :distinctions,
+
+  resources :classe_therapeutiques, path: 'classes'
+  resources :decisions, :demandes, :distinctions,
             :users, :fiches, :pages, :specialites, :sources
 
   resources :dcis do

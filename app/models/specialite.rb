@@ -10,7 +10,7 @@ class Specialite < ActiveRecord::Base
   has_many :dcis, through: :compositions
 
   def self.with_name(name)
-    where('specialites.slug LIKE ?', "%#{name}%")
+    where('specialites.slug LIKE ?', "#{name}%")
   end
 
   def self.by_name
