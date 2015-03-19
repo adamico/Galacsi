@@ -42,7 +42,6 @@ class Ability
         can :manage, :all
         cannot :destroy, User, :id => user.id
         can :names, Source
-        can :stripped_names, [Dci, Specialite]
       end
     end
   end

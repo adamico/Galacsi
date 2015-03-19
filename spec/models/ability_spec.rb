@@ -27,8 +27,6 @@ describe Ability do
       fiche = Factory(:fiche, :dci => dci)
       subject.should_not be_able_to(:show, dci)
     end
-    it { should be_able_to(:stripped_names, Dci.new)}
-    it { should be_able_to(:stripped_names, Specialite.new)}
     it { should be_able_to(:read, Factory(:fiche_valide)) }
     it { should_not be_able_to(:read, Factory(:fiche)) }
     it { should_not be_able_to(:read, Factory(:fiche_a_valider)) }

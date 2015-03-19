@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305144036) do
+ActiveRecord::Schema.define(version: 20150319155340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +27,11 @@ ActiveRecord::Schema.define(version: 20150305144036) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "stripped_name"
     t.integer  "classifications_count", default: 0
+    t.string   "slug"
   end
+
+  add_index "classe_therapeutiques", ["slug"], name: "index_classe_therapeutiques_on_slug", unique: true, using: :btree
 
   create_table "classifications", force: true do |t|
     t.integer  "dci_id"
@@ -48,11 +51,11 @@ ActiveRecord::Schema.define(version: 20150305144036) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "stripped_name"
     t.string   "cached_slug"
     t.integer  "classifications_count", default: 0
     t.integer  "fiches_count",          default: 0
     t.string   "slug"
+    t.integer  "compositions_count",    default: 0
   end
 
   add_index "dcis", ["cached_slug"], name: "index_dcis_on_cached_slug", using: :btree
@@ -181,8 +184,11 @@ ActiveRecord::Schema.define(version: 20150305144036) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "stripped_name"
+    t.integer  "compositions_count"
+    t.string   "slug"
   end
+
+  add_index "specialites", ["slug"], name: "index_specialites_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                          default: "", null: false

@@ -9,6 +9,7 @@ $ ->
     attachSourceTypeahead()
 
   attachAlternativeTokenizer()
+  attachSpecialiteTokenizer()
 
 attachDciTypeahead = () ->
   dcis = new Bloodhound
@@ -56,3 +57,14 @@ attachAlternativeTokenizer = () ->
 
   $('#fiche_alternative_names').tokenfield
     typeahead: [null, { displayKey: 'name', source: alternatives.ttAdapter() }]
+
+attachSpecialiteTokenizer = () ->
+  specialites = new Bloodhound
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name')
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    remote: '/specialites.json?q=%QUERY'
+
+  specialites.initialize()
+
+  $('#dci_commercial_names').tokenfield
+    typeahead: [null, { displayKey: 'name', source: specialites.ttAdapter() }]
