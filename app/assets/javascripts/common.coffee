@@ -8,6 +8,8 @@ $ ->
   $('#sources').on 'cocoon:after-insert', ->
     attachSourceTypeahead()
 
+  attachAlternativeTokenizer()
+
 attachDciTypeahead = () ->
   dcis = new Bloodhound
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name')
@@ -43,3 +45,14 @@ attachSourceTypeahead = () ->
   $('.source-typeahead').typeahead null,
     displayKey: 'name'
     source: sources.ttAdapter()
+
+attachAlternativeTokenizer = () ->
+  alternatives = new Bloodhound
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name')
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    remote: '/dcis.json?q=%QUERY'
+
+  alternatives.initialize()
+
+  $('#fiche_alternative_names').tokenfield
+    typeahead: [null, { displayKey: 'name', source: alternatives.ttAdapter() }]

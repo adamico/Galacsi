@@ -45,6 +45,7 @@ GEM
     bootstrap-sass (3.3.3)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    bootstrap_tokenfield_rails (0.0.7)
     builder (3.2.2)
     bullet (4.14.4)
       activesupport (>= 3.0.0)
@@ -195,6 +196,7 @@ DEPENDENCIES
   better_errors (~> 2.1)
   binding_of_caller
   bootstrap-sass (~> 3.3.3)
+  bootstrap_tokenfield_rails
   bullet
   cancancan (~> 1.10)
   cocoon
