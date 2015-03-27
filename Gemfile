@@ -38,6 +38,11 @@ group :development do
   gem 'binding_of_caller'
   gem 'bullet'
   gem 'faker', '0.3.1'
+  gem 'figaro'
+  gem 'guard-brakeman'
+  gem 'guard-bundler',         '~> 2.1.0'
+  gem 'guard-livereload',      '~> 2.4.0'
+  gem 'guard-rails',           '~> 0.7.1'
   gem 'quiet_assets',          '~> 1.1'
   gem 'spring'
 end

@@ -25,8 +25,7 @@ class FichesController < ApplicationController
     @fiche = @dci.fiches.build(params[:fiche])
     @fiche.user = current_user
     if @fiche.save
-      flash[:notice] = "La fiche a été créée."
-      redirect_to @fiche.dci
+      redirect_to @dci, notice: "La fiche a été créée."
     else
       render :new
     end

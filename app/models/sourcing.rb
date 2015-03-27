@@ -1,4 +1,6 @@
 class Sourcing < ActiveRecord::Base
+  attr_accessible :fiche_id, :source_id
+
   belongs_to :fiche
   belongs_to :source
 

@@ -22,3 +22,6 @@ lib/tasks/rspec.rake
 lib/tasks/cucumber.rake
 vendor/ruby
 *.dump
+
+# Ignore application configuration
+/config/application.yml
