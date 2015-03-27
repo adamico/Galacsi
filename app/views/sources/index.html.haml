@@ -14,4 +14,5 @@
       %td
         .pull-right= actions_buttons(source)
 
-%p= link_to "Nouvelle Source", new_source_path, class: 'btn btn-primary' if can? :create, Source
+%p= link_to 'Nouvelle SOURCE', new_source_path,
+  class: 'btn btn-warning' if can? :create, Source

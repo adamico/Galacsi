@@ -1,7 +1,7 @@
 - title 'Liste complète des DCIs'
 
 = content_for :subtitle do
-  = link_to 'Création', new_dci_path,
+  = link_to "Nouvelle DCI", new_dci_path,
     class: 'btn btn-warning' if can?(:create, Dci)
 
 - if @dcis.empty?
@@ -14,6 +14,7 @@
         %th Spécialité(s)
         %th Classe(s) Thérapeutique(s)
         %th Fiche(s)
+        %th &nbsp;
     %tbody
       - @dcis.each do |dci|
         %tr
@@ -23,3 +24,5 @@
           %td
             = dci.fiches.size
             = "(" + pluralize(dci.fiches.non_valide.size, 'non validée') + ")" unless dci.fiches.non_valide.size == 0
+          %td
+            .pull_right= actions_buttons(dci)

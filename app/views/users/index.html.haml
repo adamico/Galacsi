@@ -6,6 +6,7 @@
       %td= user.username
       %td= user.admin? ? "admin" : user.role
       %td
-        .pull-right= actions_buttons(user)
+        .pull-right= actions_buttons(user, 'utilisateur')
 
-%p= link_to "Nouvel utilisateur", new_user_path, class: 'btn btn-primary' if can?(:create, User)
+%p= link_to "Nouvel UTILISATEUR", new_user_path,
+  class: 'btn btn-warning' if can?(:create, User)

@@ -1,6 +1,3 @@
 - title @page.title_or_permalink, actions_buttons(@page)
 
 = simple_format @page.content
-
-- if current_user
-  = link_to 'Liste des pages', pages_path, class: 'btn btn-warning'

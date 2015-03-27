@@ -42,23 +42,26 @@ module ApplicationHelper
     end
   end
 
-  def actions_buttons(object)
-    content_tag :ul, buttons_for(object), class: 'list-inline'
+  def actions_buttons(object, klass_name = nil)
+    klass_name = object.class.name unless klass_name
+    content_tag :ul, buttons_for(object, klass_name.upcase), class: 'list-inline'
   end
 
   private
 
-  def buttons_for(object)
+  def buttons_for(object, klass_name)
     result = [].tap do |list|
       list << content_tag(:li,
-                          link_to('Détruire', polymorphic_path(object),
-                                  'data-confirm': t('confirm'),
-                                  method: :delete,
-                                  class: 'btn btn-sm btn-warning')) if can? :destroy, object
+                          link_to("Détruire #{klass_name}",
+                                  polymorphic_path(object),
+                                  'data-confirm': t('confirm'), method: :delete,
+                                  class: 'btn btn-sm btn-warning')
+                        ) if can? :destroy, object
       list << content_tag(:li,
-                          link_to('Modifier',
+                          link_to("Modifier #{klass_name}",
                           edit_polymorphic_path(object),
-                          class: 'btn btn-sm btn-warning')) if can? :update, object
+                          class: 'btn btn-sm btn-warning')
+                         ) if can? :update, object
     end
     result.join("\n").html_safe
   end

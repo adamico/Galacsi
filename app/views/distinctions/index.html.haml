@@ -7,4 +7,5 @@
       %td
         .pull-right= actions_buttons(distinction)
 
-= link_to "Rajouter une distinction", new_distinction_path, class: 'btn btn-primary' if can? :create, Distinction
+= link_to "Nouvelle DISTINCTION", new_distinction_path,
+  class: 'btn btn-warning' if can? :create, Distinction
