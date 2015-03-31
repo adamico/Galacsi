@@ -1,12 +1,4 @@
 class Fiche < ActiveRecord::Base
-  attr_accessible :articles, :revalider_le, :distinction_id, :distinction_name,
-    :de_choix, :decision_id, :conditions, :surveillance, :alternative_names,
-    :suivi, :ei, :ei_theoriques, :passage_lait, :risque_accumulation,
-    :risque_dim_lactation, :dose_par_rapport_dmap, :dose_par_rapport_dp,
-    :biodisponibilite, :metabolites_actifs, :liaison_pp, :vol_dist, :thalf,
-    :pic_lacte, :rapport_lp, :has_poso_pedia, :poso_pedia_dose, :poso_pedia_des,
-    :arg_autre, :commentaire, :state_event
-
   attr_reader :createur
   attr_writer :alternative_names
 

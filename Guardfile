@@ -23,7 +23,7 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-guard 'brakeman', :run_on_start => true do
+guard 'brakeman', :run_on_start => true, cli: 'brakeman -qA4 --no-assume-routes'  do
   watch(%r{^app/.+\.(erb|haml|rhtml|rb)$})
   watch(%r{^config/.+\.rb$})
   watch(%r{^lib/.+\.rb$})

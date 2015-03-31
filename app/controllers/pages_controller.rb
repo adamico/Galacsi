@@ -1,37 +1,25 @@
 class PagesController < ApplicationController
+  before_action :load_page, only: :show
   load_and_authorize_resource
 
-  def index
-  end
-
-  def show
-    if params[:permalink]
-      @page = Page.find_by_permalink(params[:permalink])
-      raise ActiveRecord::RecordNotFound, "Page non trouvée" if @page.nil?
-    else
-      @page = Page.find(params[:id])
-    end
-  end
-
-  def new
-  end
+  def edit; end
+  def index; end
+  def new; end
+  def show; end
 
   def create
     if @page.save
-      flash[:notice] = "Page '#{@page.title}' créée avec succès."
-      redirect_to @page
+      redirect_to pages_url,
+                  notice: "Page '#{@page}' créée avec succès."
     else
       render :new
     end
   end
 
-  def edit
-  end
-
   def update
-    if @page.update_attributes(params[:page])
-      flash[:notice] = "Page '#{@page.title}' mise à jour avec succès."
-      redirect_to @page
+    if @page.update_attributes(page_params)
+      redirect_to pages_url,
+                  notice: "Page '#{@page}' mise à jour avec succès."
     else
       render :edit
     end
@@ -39,7 +27,25 @@ class PagesController < ApplicationController
 
   def destroy
     @page.destroy
-    flash[:notice] = "Page '#{@page.title}' détruite avec succès."
-    redirect_to pages_url
+    redirect_to pages_url,
+                notice: "Page '#{@page}' détruite avec succès."
+  end
+
+  private
+
+  def find_page
+    begin
+      @page = if params[:permalink]
+                Page.find_by_permalink(params[:permalink])
+              else
+                Page.find(params[:id])
+              end
+    rescue ActiveRecord::RecordNotFound
+      render_404
+    end
+  end
+
+  def page_params
+    params.require(:page).permit(:content, :permalink, :title)
   end
 end

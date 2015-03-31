@@ -28,4 +28,9 @@ class ApplicationController < ActionController::Base
   def find_dcis_with_recent_fiches
     @dcis_with_recent_fiches = Dci.with_recent_fiches
   end
+
+  def render_404
+    render file: "#{Rails.root}/public/404", formats: [:html],
+           status: 404, layout: false
+  end
 end

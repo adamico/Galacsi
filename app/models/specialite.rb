@@ -1,6 +1,5 @@
 class Specialite < ActiveRecord::Base
   extend FriendlyId
-  attr_accessible :name
 
   validates :name, presence: true, uniqueness: true
 

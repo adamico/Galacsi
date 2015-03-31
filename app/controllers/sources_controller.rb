@@ -1,6 +1,10 @@
 class SourcesController < ApplicationController
   load_and_authorize_resource
 
+  def edit; end
+  def new; end
+  def show; end
+
   def index
     @sources = @sources.by_name
     respond_to do |format|
@@ -12,28 +16,19 @@ class SourcesController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def new
-  end
-
   def create
     if @source.save
-      flash[:notice] = "Successfully created source."
-      redirect_to @source
+      redirect_to sources_url,
+                  notice: "Source '#{@source}' créée avec succès."
     else
       render :new
     end
   end
 
-  def edit
-  end
-
   def update
-    if @source.update_attributes(params[:source])
-      flash[:notice] = "Successfully updated source."
-      redirect_to @source
+    if @source.update_attributes(source_params)
+      redirect_to sources_url,
+                  notice: "Source '#{@source}' mise à jour avec succès."
     else
       render :edit
     end
@@ -41,7 +36,13 @@ class SourcesController < ApplicationController
 
   def destroy
     @source.destroy
-    flash[:notice] = "Successfully destroyed source."
-    redirect_to sources_url
+    redirect_to sources_url,
+                notice: "Source '#{@source}' détruite avec succès."
+  end
+
+  private
+
+  def source_params
+    params.require(:source).permit(:name, :nature, :url)
   end
 end

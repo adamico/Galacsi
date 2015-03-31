@@ -1,6 +1,5 @@
 class ClasseTherapeutique < ActiveRecord::Base
   extend FriendlyId
-  attr_accessible :name
 
   friendly_id :name, use: [:slugged, :finders]
 

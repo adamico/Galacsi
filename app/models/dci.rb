@@ -1,6 +1,5 @@
 class Dci < ActiveRecord::Base
   extend FriendlyId
-  attr_accessible :name, :commercial_names, :classe_therapeutique_ids
 
   validates :name, presence: true, uniqueness: true
 
@@ -15,22 +14,24 @@ class Dci < ActiveRecord::Base
   attr_writer :commercial_names
   after_save :assign_commercial_names
 
-  def self.with_recent_fiches
-    joins(:fiches).merge(Fiche.recent)
-  end
-
-  scope :with_valid_fiches, -> { joins(:fiches).merge(Fiche.valide) }
-
   def self.by_name
     order('dcis.slug ASC')
+  end
+
+  def self.with_classes_and_specialites
+    includes(:classe_therapeutiques, :specialites)
   end
 
   def self.with_name(name)
     where('slug LIKE ?', "#{name}%")
   end
 
-  def self.with_classes_and_specialites
-    includes(:classe_therapeutiques, :specialites)
+  def self.with_recent_fiches
+    joins(:fiches).merge(Fiche.recent)
+  end
+
+  def self.with_valid_fiches
+    joins(:fiches).merge(Fiche.valide)
   end
 
   def fiches_with_inclusions

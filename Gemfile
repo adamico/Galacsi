@@ -12,11 +12,11 @@ gem 'cocoon'
 gem 'coffee-rails',            '~> 4.0.0'
 gem 'comma'
 gem 'devise'
+gem 'font-awesome-rails'
 gem 'friendly_id',             '~> 5.1'
 gem 'haml'
 gem 'jquery-rails'
 gem 'pg'
-gem 'protected_attributes'
 gem 'puma'
 gem 'ransack'
 gem 'recaptcha'
@@ -33,7 +33,6 @@ group :production do
 end
 
 group :development do
-  gem 'annotate'
   gem 'better_errors',         '~> 2.1'
   gem 'binding_of_caller'
   gem 'bullet'

@@ -1,31 +1,24 @@
 class DecisionsController < ApplicationController
   load_and_authorize_resource
 
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
+  def edit; end
+  def index; end
+  def new; end
+  def show; end
 
   def create
     if @decision.save
-      flash[:notice] = "Successfully created decision."
-      redirect_to @decision
+      redirect_to decisions_url,
+                  notice: "Décision '#{@decision}' créee avec succès."
     else
       render :new
     end
   end
 
-  def edit
-  end
-
   def update
-    if @decision.update_attributes(params[:decision])
-      flash[:notice] = "Successfully updated decision."
-      redirect_to @decision
+    if @decision.update_attributes(decision_params)
+      redirect_to decisions_url,
+                  notice: "Décision '#{@decision}' mise à jour avec succès."
     else
       render :edit
     end
@@ -33,7 +26,11 @@ class DecisionsController < ApplicationController
 
   def destroy
     @decision.destroy
-    flash[:notice] = "Successfully destroyed decision."
-    redirect_to decisions_url
+    redirect_to decisions_url,
+                notice: "Décision '#{@decision}' détruite avec succès."
+  end
+
+  def decision_params
+    params.require(:decision).permit(:name, :abbr, :description)
   end
 end

@@ -1,31 +1,24 @@
 class DemandesController < ApplicationController
   load_and_authorize_resource
 
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
+  def edit; end
+  def index; end
+  def new; end
+  def show; end
 
   def create
-    if verify_recaptcha(model: @demande, message: "Veuillez recopier les 2 mots dans le champ de vérification") && @demande.save
-      flash[:notice] = "La demande a été enregistrée."
-      redirect_to root_path
+    if verify_recaptcha(model: @demande,
+                        message: "Veuillez recopier les 2 mots dans le champ de vérification") && @demande.save
+      redirect_to root_path, notice: "La demande a été enregistrée."
     else
       render :new
     end
   end
 
-  def edit
-  end
-
   def update
-    if @demande.update_attributes(params[:demande])
-      flash[:notice] = "Successfully updated demande."
-      redirect_to demandes_path
+    if @demande.update_attributes(demande_params)
+      redirect_to demandes_path,
+                  notice: 'Votre demande a bien été prise en compte. Nous vous en remercions.'
     else
       render :edit
     end
@@ -33,7 +26,11 @@ class DemandesController < ApplicationController
 
   def destroy
     @demande.destroy
-    flash[:notice] = "Successfully destroyed demande."
-    redirect_to demandes_path
+    redirect_to demandes_path,
+                notice: 'Demande détruite avec succès.'
+  end
+
+  def demande_params
+    params.require(:demande).permit(:contexte, :demandeur, :name, :nature)
   end
 end

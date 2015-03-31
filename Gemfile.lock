@@ -28,9 +28,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    annotate (2.6.5)
-      activerecord (>= 2.3.0)
-      rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
     autoprefixer-rails (5.1.7)
       execjs
@@ -94,6 +91,8 @@ GEM
     ffi (1.9.8)
     figaro (1.1.0)
       thor (~> 0.14)
+    font-awesome-rails (4.3.0.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
@@ -151,8 +150,6 @@ GEM
     pg (0.18.1)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
-    protected_attributes (1.0.8)
-      activemodel (>= 4.0.1, < 5.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -268,7 +265,6 @@ PLATFORMS
 DEPENDENCIES
   RedCloth (~> 4.2.9)
   activesupport
-  annotate
   better_errors (~> 2.1)
   binding_of_caller
   bootstrap-sass (~> 3.3.3)
@@ -281,6 +277,7 @@ DEPENDENCIES
   devise
   faker (= 0.3.1)
   figaro
+  font-awesome-rails
   friendly_id (~> 5.1)
   guard-brakeman
   guard-bundler (~> 2.1.0)
@@ -289,7 +286,6 @@ DEPENDENCIES
   haml
   jquery-rails
   pg
-  protected_attributes
   puma
   quiet_assets (~> 1.1)
   rack-google_analytics

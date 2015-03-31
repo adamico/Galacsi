@@ -22,10 +22,10 @@ class FichesController < ApplicationController
   end
 
   def create
-    @fiche = @dci.fiches.build(params[:fiche])
+    @fiche = @dci.fiches.build(fiche_params)
     @fiche.user = current_user
     if @fiche.save
-      redirect_to @dci, notice: "La fiche a été créée."
+      redirect_to @dci, notice: "La fiche a été créée avec succès."
     else
       render :new
     end
@@ -37,9 +37,9 @@ class FichesController < ApplicationController
 
   def update
     @dci = @fiche.dci
-    if @fiche.update_attributes(params[:fiche])
-      flash[:notice] = "La fiche a été modifiée."
-      redirect_to @fiche.dci
+    if @fiche.update_attributes(fiche_params)
+      redirect_to dci_url(@fiche.dci),
+                  notice: "La fiche a été mise à jour avec succès."
     else
       render :edit
     end
@@ -47,18 +47,33 @@ class FichesController < ApplicationController
 
   def destroy
     @fiche.destroy
-    flash[:notice] = "La fiche a été détruite."
-    redirect_to dci_url(@fiche.dci)
+    redirect_to dci_url(@fiche.dci),
+                notice: "La fiche a été détruite avec succès."
   end
 
   private
+
+  def find_dci
+    @dci = Dci.find(params[:dci_id])
+  end
 
   def find_fiches
     @q = Fiche.ransack(params[:q])
     @fiches = @q.result.with_distinction_and_dci
   end
 
-  def find_dci
-    @dci = Dci.find(params[:dci_id])
+  def fiche_params
+    params.require(:fiche).permit(:alternative_names, :arg_autre, :articles,
+                                  :biodisponibilite, :commentaire, :conditions,
+                                  :de_choix, :decision_id, :distinction_id,
+                                  :distinction_name, :dose_par_rapport_dmap,
+                                  :dose_par_rapport_dp, :ei, :ei_theoriques,
+                                  :has_poso_pedia, :liaison_pp,
+                                  :metabolites_actifs, :passage_lait,
+                                  :pic_lacte, :poso_pedia_des,
+                                  :poso_pedia_dose, :rapport_lp, :revalider_le,
+                                  :risque_accumulation, :risque_dim_lactation,
+                                  :state_event, :suivi, :surveillance, :thalf,
+                                  :vol_dist)
   end
 end

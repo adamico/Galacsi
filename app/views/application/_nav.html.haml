@@ -6,7 +6,9 @@
         %span.sr-only Menu
         - 3.times do
           %span.icon-bar
-      = link_to 'Accueil', root_path, class: 'navbar-brand'
+      = link_to root_path, class: 'navbar-brand' do
+        GalacSI
+        = fa_icon 'home'
 
     .collapse.navbar-collapse#galacsi-navbar-collapse
       %ul.nav.navbar-nav

@@ -1,7 +1,10 @@
 class DcisController < ApplicationController
+  before_filter :find_classes_therapeutiques, only: [:new, :edit]
   load_and_authorize_resource
 
-  before_filter :find_classes_therapeutiques, :only => [:new, :edit]
+  def edit; end
+  def new; end
+  def show; end
 
   def index
     @dcis = @dcis.by_name
@@ -16,44 +19,35 @@ class DcisController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def new
-    @dci = Dci.new
-  end
-
   def create
-    @dci = Dci.new(params[:dci])
     if @dci.save
-      flash[:notice] = "Successfully created dci."
-      redirect_to @dci
+      redirect_to @dci, notice: "DCI '#{@dci}' créée avec succès."
     else
-      render :action => 'new'
+      render :new
     end
   end
 
-  def edit
-  end
-
   def update
-    if @dci.update_attributes(params[:dci])
-      flash[:notice] = "Successfully updated dci."
-      redirect_to @dci
+    if @dci.update_attributes(dci_params)
+      redirect_to @dci, notice: "DCI '#{@dci}' mise à jour avec succès."
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 
   def destroy
     @dci.destroy
-    flash[:notice] = "Successfully destroyed dci."
-    redirect_to dcis_url
+    redirect_to dcis_url, notice: "DCI '#{@dci}' détruite avec succès."
   end
 
   private
 
   def find_classes_therapeutiques
     @classe_therapeutiques = ClasseTherapeutique.all
+  end
+
+  def dci_params
+    params.require(:dci).permit(:classe_therapeutique_ids, :commercial_names,
+                                :name)
   end
 end

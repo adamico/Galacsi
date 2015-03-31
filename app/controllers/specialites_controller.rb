@@ -1,6 +1,10 @@
 class SpecialitesController < ApplicationController
   load_and_authorize_resource
 
+  def edit; end
+  def new; end
+  def show; end
+
   def index
     @specialites = @specialites.by_name
     respond_to do |format|
@@ -12,28 +16,19 @@ class SpecialitesController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def new
-  end
-
   def create
     if @specialite.save
-      flash[:notice] = "Spécialité '#{@specialite}' créée avec succès."
-      redirect_to @specialite
+      redirect_to specialites_url,
+                  notice: "Spécialité '#{@specialite}' créée avec succès."
     else
       render :new
     end
   end
 
-  def edit
-  end
-
   def update
-    if @specialite.update_attributes(params[:specialite])
-      flash[:notice] = "Spécialité '#{@specialite}' mise à jour avec succès."
-      redirect_to @specialite
+    if @specialite.update_attributes(specialite_params)
+      redirect_to specialites_url,
+                  notice: "Spécialité '#{@specialite}' mise à jour avec succès."
     else
       render :edit
     end
@@ -41,7 +36,13 @@ class SpecialitesController < ApplicationController
 
   def destroy
     @specialite.destroy
-    flash[:notice] = "Spécialité '#{@specialite}' détruite avec succès."
-    redirect_to specialites_url
+    redirect_to specialites_url,
+                notice: "Spécialité '#{@specialite}' mise à jour avec succès."
+  end
+
+  private
+
+  def specialite_params
+    params.require(:specialite).permit(:name)
   end
 end

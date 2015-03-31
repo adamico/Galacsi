@@ -1,41 +1,38 @@
 class DistinctionsController < ApplicationController
   load_and_authorize_resource
-  def index
-    @distinctions = Distinction.all
-  end
-  
-  def show
-  end
-  
-  def new
-    @distinction = Distinction.new
-  end
-  
+
+  def edit; end
+  def index; end
+  def new; end
+  def show; end
+
   def create
-    @distinction = Distinction.new(params[:distinction])
     if @distinction.save
-      flash[:notice] = "Successfully created distinction."
-      redirect_to distinctions_url
+      redirect_to distinctions_url,
+                  notice: "Distinction '#{@distinction}' créée avec succès."
     else
-      render :action => 'new'
+      render :new
     end
   end
-  
-  def edit
-  end
-  
+
   def update
-    if @distinction.update_attributes(params[:distinction])
-      flash[:notice] = "Successfully updated distinction."
-      redirect_to distinctions_url
+    if @distinction.update_attributes(distinction_params)
+      redirect_to distinctions_url,
+                  notice: "Distinction '#{@distinction}' mise à jour avec succès."
     else
-      render :action => 'edit'
+      render :edit
     end
   end
-  
+
   def destroy
     @distinction.destroy
-    flash[:notice] = "Successfully destroyed distinction."
-    redirect_to distinctions_url
+    redirect_to distinctions_url,
+                notice: "Distinction '#{@distinction}' détruite avec succès."
+  end
+
+  private
+
+  def distinction_params
+    params.require(:distinction).permit(:name)
   end
 end
