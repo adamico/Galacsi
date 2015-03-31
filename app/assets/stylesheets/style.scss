@@ -121,3 +121,13 @@ form.state_form {
     width: 100%;
   }
 }
+
+.console-toggle {
+  position: fixed;
+  bottom: 160px;
+  left: 10px;
+}
+
+#console {
+  @extend .collapse
+}

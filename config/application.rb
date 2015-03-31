@@ -27,12 +27,13 @@ module Galacsi
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
+
     if Rails.env.production?
       config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-20156445-3")
     end
 
-    config.i18n.default_locale = :fr 
-
-    config.assets.initialize_on_precompile = false
+    config.i18n.default_locale = :fr
   end
 end

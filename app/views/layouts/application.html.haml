@@ -48,3 +48,8 @@
 
     %footer.page-footer
       = render 'footer'
+    - if Rails.env.development?
+      = link_to fa_icon('terminal'), '#console',
+        'data-toggle': 'collapse', 'aria-expanded': false,
+        'aria-controls': 'console', class: 'btn btn-xs btn-default console-toggle'
+      = console

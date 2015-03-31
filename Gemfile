@@ -1,10 +1,9 @@
 source 'http://rubygems.org'
 ruby '2.2.0'
 
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.1'
 
 gem 'RedCloth',                '~> 4.2.9'
-gem 'activesupport'
 gem 'bootstrap-sass',          '~> 3.3.3'
 gem 'bootstrap_tokenfield_rails'
 gem 'cancancan',               '~> 1.10'
@@ -44,6 +43,7 @@ group :development do
   gem 'guard-rails',           '~> 0.7.1'
   gem 'quiet_assets',          '~> 1.1'
   gem 'spring'
+  gem 'web-console',           '~> 2.0'
 end
 
 
