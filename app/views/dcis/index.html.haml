@@ -22,7 +22,10 @@
           %td= links_to_associations(dci, 'specialites')
           %td= links_to_associations(dci, 'classe_therapeutiques')
           %td
-            = dci.fiches.size
-            = "(" + pluralize(dci.fiches.non_valide.size, 'non validée') + ")" unless dci.fiches.non_valide.size == 0
+            - if current_user
+              = dci.fiches.size
+              = "(" + pluralize(dci.fiches_non_valides.size, 'non validée') + ")" unless dci.fiches_non_valides.none?
+            - else
+              = dci.fiches_valides.size
           %td
             .pull_right= actions_buttons(dci)

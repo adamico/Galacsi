@@ -1,7 +1,7 @@
 - title "Rechercher des fiches"
 
 = search_form_for @q , url: { action: 'search' },
-  html: { class: 'form-inline fiches-search' } do |f|
+  html: { class: 'form-inline fiches-search', id: 'fiche_dcis_search' } do |f|
   .form-group
     = f.label :dci_name_start, 'Par principe actif :', class: 'sr-only'
     = f.search_field :dci_name_start, class: 'form-control',
@@ -9,7 +9,7 @@
   = f.submit 'OK', class: 'btn btn-primary'
 
 = search_form_for @q , url: { action: 'search' },
-  html: { class: 'form-inline fiches-search' } do |f|
+  html: { class: 'form-inline fiches-search', id: 'fiche_specialites_search' } do |f|
   .form-group
     = f.label :dci_specialites_name_start, 'Par spécialité :', class: 'sr-only'
     = f.search_field :dci_specialites_name_start, class: 'form-control',
@@ -20,9 +20,12 @@
   - if @fiches.empty?
     - unfructuous_search
   - else
-    %h2= pluralize(@fiches.size, "résultat")
-    %table#list
+    %h2 Résultats de la récherche
+    %table.table.table-striped#search-results
       %tbody
         - @fiches.each do |fiche|
+          - next unless can?(:read, fiche)
           %tr
-            %td= link_to "#{h(fiche.dci_name.humanize)} #{fiche.full_distinction}", [fiche.dci, fiche]
+            %td
+              = link_to fiche.dci_name.humanize, [fiche.dci, fiche]
+              %label.label.label-info= fiche.full_distinction
