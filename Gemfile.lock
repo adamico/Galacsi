@@ -1,3 +1,20 @@
+GIT
+  remote: git://github.com/jkrmr/jazz_hands.git
+  revision: 5d672e52772d9abf4064260186556fa963a75604
+  specs:
+    jazz_hands (1.0.0)
+      awesome_print (~> 1.2)
+      hirb (~> 0.7)
+      pry (~> 0.10)
+      pry-byebug (~> 2.0)
+      pry-coolline (~> 0.2)
+      pry-doc (~> 0.4)
+      pry-git (~> 0.2)
+      pry-rails (~> 0.3)
+      pry-remote (~> 0.1)
+      pry-stack_explorer (~> 0.4)
+      railties (>= 3.0, < 5.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -41,6 +58,7 @@ GEM
     autoprefixer-rails (5.1.8)
       execjs
       json
+    awesome_print (1.6.1)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -66,6 +84,10 @@ GEM
     bullet (4.14.4)
       activesupport (>= 3.0.0)
       uniform_notifier (>= 1.6.0)
+    byebug (3.5.1)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+      slop (~> 3.6)
     cancancan (1.10.1)
     celluloid (0.16.0)
       timers (~> 4.0.0)
@@ -78,9 +100,13 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1)
+    columnize (0.9.0)
     comma (3.2.2)
       activesupport (>= 3.0.0)
+    coolline (0.5.0)
+      unicode_utils (~> 1.4)
     debug_inspector (0.0.2)
+    debugger-linecache (1.2.0)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -89,6 +115,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    diffy (3.0.7)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -107,6 +134,9 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    grit (2.0.0)
+      diff-lcs (>= 1.1.2)
+      mime-types (>= 1.15)
     guard (2.12.5)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -135,9 +165,12 @@ GEM
       tilt
     highline (1.6.21)
     hike (1.2.3)
+    hirb (0.7.3)
     hitimes (1.2.2)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
+    immigrant (0.3.1)
+      activerecord (>= 3.0)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -171,6 +204,26 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (2.0.0)
+      byebug (~> 3.4)
+      pry (~> 0.10)
+    pry-coolline (0.2.5)
+      coolline (~> 0.5)
+    pry-doc (0.6.0)
+      pry (~> 0.9)
+      yard (~> 0.8)
+    pry-git (0.2.3)
+      diffy
+      grit
+      pry (>= 0.9.8)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
+    pry-remote (0.1.8)
+      pry (~> 0.9)
+      slop (~> 3.0)
+    pry-stack_explorer (0.4.9.2)
+      binding_of_caller (>= 0.7)
+      pry (>= 0.9.11)
     puma (2.11.1)
       rack (>= 1.1, < 2.0)
     quiet_assets (1.1.0)
@@ -280,6 +333,7 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicode_utils (1.4.0)
     uniform_notifier (1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
@@ -289,6 +343,7 @@ GEM
       railties (~> 4.0)
       sprockets-rails (>= 2.0, < 4.0)
     will_paginate (3.0.7)
+    yard (0.8.7.6)
 
 PLATFORMS
   ruby
@@ -300,6 +355,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.3)
   bootstrap_tokenfield_rails
   bullet
+  byebug (~> 3.5.1)
   cancancan (~> 1.10)
   cocoon
   coffee-rails (~> 4.0.0)
@@ -314,8 +370,11 @@ DEPENDENCIES
   guard-livereload (~> 2.4.0)
   guard-rails (~> 0.7.1)
   haml
+  immigrant
+  jazz_hands!
   jquery-rails
   pg
+  pry-byebug (~> 2.0.0)
   puma
   quiet_assets (~> 1.1)
   rack-google_analytics
