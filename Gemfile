@@ -42,8 +42,13 @@ group :development do
   gem 'guard-bundler',         '~> 2.1.0'
   gem 'guard-livereload',      '~> 2.4.0'
   gem 'guard-rails',           '~> 0.7.1'
+  gem 'guard-rspec',           '~> 4.5.0'
   gem 'quiet_assets',          '~> 1.1'
+  gem 'rb-fchange',            require: false
+  gem 'rb-fsevent',            require: false
+  gem 'rb-inotify',            require: false
   gem 'spring'
+  gem 'spring-commands-rspec', '~> 1.0.4'
   gem 'web-console',           '~> 2.0'
 end
 
@@ -51,5 +56,11 @@ group :test, :development do
   gem 'byebug',      '~> 3.5.1'
   gem 'jazz_hands',  github: 'jkrmr/jazz_hands'
   gem 'pry-byebug',  '~> 2.0.0'
-  gem 'rspec-rails', "~> 2.1"
+  gem 'rspec-rails',           '~> 3.1.0'
+end
+
+group :test do
+  gem 'capybara',         '~> 2.1'
+  gem 'database_cleaner', '1.3'
+  gem 'simplecov',        require: false
 end
