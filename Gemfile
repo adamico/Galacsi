@@ -52,15 +52,18 @@ group :development do
   gem 'web-console',           '~> 2.0'
 end
 
-group :test, :development do
-  gem 'byebug',      '~> 3.5.1'
-  gem 'jazz_hands',  github: 'jkrmr/jazz_hands'
-  gem 'pry-byebug',  '~> 2.0.0'
-  gem 'rspec-rails',           '~> 3.1.0'
-end
-
 group :test do
   gem 'capybara',         '~> 2.1'
   gem 'database_cleaner', '1.3'
   gem 'simplecov',        require: false
+end
+
+group :development, :test do
+  gem 'byebug',      '~> 3.5.1'
+  gem 'capybara-webkit'
+  gem 'growl'
+  gem 'factory_girl_rails'
+  gem 'jazz_hands',  github: 'jkrmr/jazz_hands'
+  gem 'pry-byebug',  '~> 2.0.0'
+  gem 'rspec-rails',           '~> 3.1.0'
 end

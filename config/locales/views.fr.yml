@@ -1,2 +1,10 @@
 fr:
   confirm: Etes-vous sûr ?
+  application:
+    nav:
+      login: Connexion
+      logout: Déconnexion
+  devise:
+    sessions:
+      new:
+        submit: Se connecter

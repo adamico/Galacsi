@@ -33,19 +33,20 @@
               %li= link_to "Pages", pages_path
 
 
-        %li.dropdown
-          = link_to "#", class: "dropdown-toggle", 'data-toggle': 'dropdown',
-            role: 'button', 'aria-expanded': false do
-            A propos
-            %span.caret
-          %ul.dropdown-menu{role: 'menu'}
-            - @pages_without_home.each do |page|
-              %li= link_to page.title_or_permalink, home_path(page.permalink)
+        - if @pages_without_home
+          %li.dropdown
+            = link_to "#", class: "dropdown-toggle", 'data-toggle': 'dropdown',
+              role: 'button', 'aria-expanded': false do
+              A propos
+              %span.caret
+            %ul.dropdown-menu{role: 'menu'}
+              - @pages_without_home.each do |page|
+                %li= link_to page.title_or_permalink, home_path(page.permalink)
       %p.navbar-text.navbar-right
         - if current_user
           %b= current_user.username
           \-
-          = link_to 'Déconnexion', destroy_user_session_path,
+          = link_to t('.logout'), destroy_user_session_path,
             method: :delete, class: 'navbar-link'
         - else
           = link_to 'Connexion', new_user_session_path, class: 'navbar-link'

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :load_page, only: :show
+  before_action :find_page, only: :show
   load_and_authorize_resource
 
   def edit; end

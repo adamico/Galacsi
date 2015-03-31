@@ -1,20 +1,16 @@
 fr:
-  errors:
-    messages:
-      not_found: "non trouvé"
-      already_confirmed: "est déjà confirmé"
-      not_locked: "n'est pas verrouillé"
-
   devise:
     failure:
+      already_authenticated: "Déjà connecté."
+      inactive: 'Votre compte est inactif.'
+      invalid: "%{authentication_keys} ou mot de passe invalide."
+      locked: 'Votre compte est bloqué.'
+      not_found_in_database: "%{authentication_keys} ou mot de passe invalide."
+      timeout: 'Votre session a expiré, connectez vous pour continuer.'
       unauthenticated: 'Vous devez vous connecter ou vous enregistrer pour continuer.'
       unconfirmed: 'Vous devez confirmer votre compte pour pouvoir continuer.'
-      locked: 'Votre compte est bloqué.'
-      invalid: 'Email ou mot de passe invalide.'
-      invalid_token: 'Authentication token invalide.'
-      timeout: 'Votre session a expiré, connectez vous pour continuer.'
-      inactive: 'Votre compte est inactif.'
     sessions:
+      already_signed_out: 'Déconnexion effectuée avec succès.'
       signed_in: 'Connexion effectuée avec succès.'
       signed_out: 'Déconnexion effectuée avec succès.'
     passwords:
@@ -37,4 +33,8 @@ fr:
         subject: 'Instructions pour modifier votre mot de passe'
       unlock_instructions:
         subject: 'Instructions pour débloquer votre compte'
-
+  errors:
+    messages:
+      not_found: "non trouvé"
+      already_confirmed: "est déjà confirmé"
+      not_locked: "n'est pas verrouillé"
