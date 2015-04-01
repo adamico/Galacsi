@@ -1,10 +1,18 @@
 fr:
-  confirm: Etes-vous sûr ?
   application:
     nav:
       login: Connexion
       logout: Déconnexion
+  confirm: Etes-vous sûr ?
+  destroy: Détruire %{model}
+  edit: Modifier %{model}
+  dcis:
+    index:
+      create: Nouvelle DCI
+    show:
+      create_fiche: Nouvelle FICHE
   devise:
     sessions:
       new:
         submit: Se connecter
+

@@ -1,7 +1,7 @@
 - title 'Liste complète des DCIs'
 
 = content_for :subtitle do
-  = link_to "Nouvelle DCI", new_dci_path,
+  = link_to t('.create'), new_dci_path,
     class: 'btn btn-warning' if can?(:create, Dci)
 
 - if @dcis.empty?

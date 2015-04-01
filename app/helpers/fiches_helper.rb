@@ -53,4 +53,35 @@ module FichesHelper
     end
     haml_tag 'div.clear' do end;
   end
+
+  def label_for_state(fiche)
+    content_tag(:label, fiche.state.humanize,
+                class: "label #{state_class_for(fiche)}")
+  end
+
+  def change_state_for(fiche, user)
+    if (transitions = allowed_state_transitions_for(user, fiche)).any?
+      form_for([fiche.dci, fiche], html: {class: 'state_form'}) do |f|
+        f.label(:state_event, "=> ") +
+        f.collection_select(:state_event, transitions, :event,
+                            :human_to_name, {}, { style: 'display: none;'}) +
+        f.submit(transitions.first.event.to_s.humanize,
+                 class: 'btn btn-xs btn-default')
+      end
+    end
+  end
+
+  private
+
+  def state_class_for(fiche)
+    fiche.valide? ? 'label-primary' : 'label-danger'
+  end
+
+  def allowed_state_transitions_for(user, fiche)
+    transitions = fiche.state_transitions
+    transitions.reject! do |transition|
+      [:valider, :mettre_en_attente].include?(transition.event) && user.role == 'contributeur'
+    end
+    transitions
+  end
 end

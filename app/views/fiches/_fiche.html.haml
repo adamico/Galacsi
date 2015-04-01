@@ -133,29 +133,25 @@
             %tbody
               %tr
                 %td
-                  = form_for [fiche.dci, fiche], html: {class: 'state_form'} do |f|
-                    = f.label :state_event, "#{fiche.state.humanize} => "
-                    = f.collection_select :state_event,
-                      fiche.state_transitions, :event, :human_to_name, {},
-                      { :style => "display: none;"}
-                    = f.submit fiche.state_transitions.first.event.to_s.humanize,
-                      class: 'btn btn-xs btn-default'
+                  = label_for_state(fiche)
+                  = change_state_for(fiche, current_user)
 
-                - unless fiche.published_at.nil?
-                  %td
+                %td
+                  - if fiche.published_at.nil?
+                    %small.text-muted fiche non publiée
+                  - else
                     = l(fiche.published_at)
-                    %br/
-                    - if fiche.expired?
-                      %b Fiche expirée !
-                      - if can?(:edit, Fiche)
-                        = form_for [fiche.dci, fiche],
-                          :html => {:class => "state_form"} do |f|
-                          = f.label "=> "
-                          = f.select :published_at_event,
-                            [["published", "publish"]], {},
-                            {:style => "display:none;"}
-                          = f.submit "Revalider", class: 'btn btn-xs btn-default'
-                    %br
+                  %br
+                  - if fiche.expired?
+                    %b Fiche expirée !
+                    - if can?(:edit, Fiche)
+                      = form_for [fiche.dci, fiche],
+                        html: { class: 'state_form' } do |f|
+                        = f.label :published_at_event, '=> '
+                        = f.hidden_field :published_at_event, value: 'publish'
+                        = f.submit "Revalider", class: 'btn btn-xs btn-default'
+                  %br
+                  - if fiche.revalider_le
                     %b À revalider le :
                     = l(fiche.revalider_le)
 

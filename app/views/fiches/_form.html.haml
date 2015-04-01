@@ -1,5 +1,6 @@
 = simple_form_for [fiche.dci, fiche], html: { role: 'form' } do |f|
   = f.association :user, label: 'Créateur' if current_user.admin?
+  = f.hidden_field :state
 
   %h4 Sources
   #sources

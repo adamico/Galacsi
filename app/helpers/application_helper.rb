@@ -52,13 +52,13 @@ module ApplicationHelper
   def buttons_for(object, klass_name)
     result = [].tap do |list|
       list << content_tag(:li,
-                          link_to("Détruire #{klass_name}",
+                          link_to(t('destroy', model: klass_name),
                                   polymorphic_path(object),
                                   'data-confirm': t('confirm'), method: :delete,
                                   class: 'btn btn-sm btn-warning')
                         ) if can? :destroy, object
       list << content_tag(:li,
-                          link_to("Modifier #{klass_name}",
+                          link_to(t('edit', model: klass_name),
                           edit_polymorphic_path(object),
                           class: 'btn btn-sm btn-warning')
                          ) if can? :update, object

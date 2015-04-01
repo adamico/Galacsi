@@ -1,6 +1,7 @@
 class FichesController < ApplicationController
   before_filter :find_fiches, only: [:index, :search]
   before_filter :find_dci, only: [:new, :create]
+  before_filter :build_fiche, only: [:new, :create]
   load_and_authorize_resource
 
   def index
@@ -18,11 +19,9 @@ class FichesController < ApplicationController
   end
 
   def new
-    @fiche = @dci.fiches.build
   end
 
   def create
-    @fiche = @dci.fiches.build(fiche_params)
     @fiche.user = current_user
     if @fiche.save
       redirect_to @dci, notice: "La fiche a été créée avec succès."
@@ -57,6 +56,11 @@ class FichesController < ApplicationController
     @dci = Dci.find(params[:dci_id])
   end
 
+  def build_fiche
+    the_params = fiche_params if params[:fiche].present?
+    @fiche = @dci.fiches.build(the_params)
+  end
+
   def find_fiches
     @q = Fiche.ransack(params[:q])
     @fiches = @q.result.with_distinction_and_dci
@@ -71,7 +75,8 @@ class FichesController < ApplicationController
                                   :has_poso_pedia, :liaison_pp,
                                   :metabolites_actifs, :passage_lait,
                                   :pic_lacte, :poso_pedia_des,
-                                  :poso_pedia_dose, :rapport_lp, :revalider_le,
+                                  :poso_pedia_dose, :published_at_event,
+                                  :rapport_lp, :revalider_le,
                                   :risque_accumulation, :risque_dim_lactation,
                                   :state_event, :suivi, :surveillance, :thalf,
                                   :vol_dist)
