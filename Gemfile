@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.2.0'
+ruby '2.2.1'
 
 gem 'rails', '4.2.1'
 
@@ -59,11 +59,11 @@ group :test do
 end
 
 group :development, :test do
-  gem 'byebug',      '~> 3.5.1'
+  gem 'byebug',          '~> 3.5.1'
   gem 'capybara-webkit'
   gem 'growl'
   gem 'factory_girl_rails'
-  gem 'jazz_hands',  github: 'jkrmr/jazz_hands'
-  gem 'pry-byebug',  '~> 2.0.0'
-  gem 'rspec-rails',           '~> 3.1.0'
+  gem 'jazz_hands',      github: 'jkrmr/jazz_hands'
+  gem 'pry-byebug',      '~> 2.0.0'
+  gem 'rspec-rails',     '~> 3.1.0'
 end

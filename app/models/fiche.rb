@@ -107,7 +107,7 @@ class Fiche < ActiveRecord::Base
   end
 
   def self.with_distinction_and_dci
-    includes(:distinction, :dci)
+    includes(:distinction, :dci).order('dcis.slug')
   end
 
   # custom methods

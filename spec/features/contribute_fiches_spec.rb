@@ -1,25 +1,26 @@
 require 'rails_helper'
 
 feature 'contribute fiches' do
-  delegate :t, to: I18n
   #In order to assess drugs safety during breastfeeding
   #As an authorized user
   #I want to be able to create fiches
-  given(:user) { create(:contributeur) }
+  delegate :t, to: I18n
+  given!(:user) { login create(:contributeur) }
   given!(:dci)  { create(:dci) }
-
-  background do
-    visit new_user_session_path
-    fill_in 'user_username', with: user.username
-    fill_in 'user_password', with: user.password
-    click_on t('devise.sessions.new.submit')
-  end
 
   scenario 'a contributeur owns fiches he creates' do
     visit dci_path(dci)
     click_on t('create_fiche', scope: 'dcis.show')
     click_on t('helpers.submit.create', model: 'Fiche')
     expect(Fiche.exists?(user: user)).to be_truthy
+  end
+
+  scenario 'create a fiche with alternatives' do
+    visit dci_path(dci)
+    click_on t('create_fiche', scope: 'dcis.show')
+    fill_in 'fiche_alternative_names', with: 'desloratadine, cétirizine'
+    click_on t('helpers.submit.create', model: 'Fiche')
+    expect(Fiche.last.alternative_names).to eq('desloratadine, cétirizine')
   end
 
   scenario 'a contributeur can only edit his own fiches' do

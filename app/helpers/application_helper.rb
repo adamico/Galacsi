@@ -1,18 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-
-  def link_to_remove_fields(name, f)
-    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
-  end
-
-  def link_to_add_fields(name, f, association)
-    new_object = f.object.class.reflect_on_association(association).klass.new
-    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
-      render(association.to_s.singularize + "_fields", :f => builder)
-    end
-    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")").html_safe
-  end
-
   def unfructuous_search
     pars = params[:search].delete_if {|k, v| v.blank?}
     pars = pars.to_a
@@ -42,27 +29,35 @@ module ApplicationHelper
     end
   end
 
-  def actions_buttons(object, klass_name = nil)
+  def actions_buttons(object, klass_name = nil, labels = true, &block)
     klass_name = object.class.name unless klass_name
-    content_tag :ul, buttons_for(object, klass_name.upcase), class: 'list-inline'
+    result = []
+    result << link_to(icon_and_label('destroy', klass_name, labels),
+                      polymorphic_path(object),
+                      'data-confirm': t('confirm'), method: :delete,
+                      class: 'btn btn-sm btn-default') if can? :destroy, object
+    result << link_to(icon_and_label('edit', klass_name, labels),
+                      edit_polymorphic_path(object),
+                      class: 'btn btn-sm btn-default') if can? :update, object
+    result << capture(&block) if block_given?
+    result.join("\n").html_safe
   end
 
   private
 
-  def buttons_for(object, klass_name)
-    result = [].tap do |list|
-      list << content_tag(:li,
-                          link_to(t('destroy', model: klass_name),
-                                  polymorphic_path(object),
-                                  'data-confirm': t('confirm'), method: :delete,
-                                  class: 'btn btn-sm btn-warning')
-                        ) if can? :destroy, object
-      list << content_tag(:li,
-                          link_to(t('edit', model: klass_name),
-                          edit_polymorphic_path(object),
-                          class: 'btn btn-sm btn-warning')
-                         ) if can? :update, object
-    end
+  def icon_and_label(action, klass_name, labels)
+    result = []
+    result << fa_icon(icon_for(action))
+    result << t(action, model: klass_name) if labels
     result.join("\n").html_safe
+  end
+
+  def icon_for(action)
+    case action
+    when 'destroy'
+      'trash-o'
+    else
+      'pencil'
+    end
   end
 end

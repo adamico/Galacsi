@@ -2,14 +2,7 @@ require 'rails_helper'
 
 feature 'List dcis' do
   delegate :t, to: I18n
-  given(:user) { create(:contributeur) }
-
-  background do
-    visit new_user_session_path
-    fill_in 'user_username', with: user.username
-    fill_in 'user_password', with: user.password
-    click_on t('devise.sessions.new.submit')
-  end
+  given!(:user) { login create(:contributeur) }
   given(:dci1) { create(:dci, name: 'dci1') }
   given(:dci2) { create(:dci, name: 'dci2') }
   given(:dci3) { create(:dci, name: 'dci3') }
