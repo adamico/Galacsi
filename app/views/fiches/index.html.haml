@@ -1,17 +1,17 @@
 - title "Liste complète des fiches"
 
-%h2 Filtrer par:
 = search_form_for @q, html: { class: 'form-inline' } do |f|
   .form-group
-    = f.label :state_eq, "Etat de validation"
-    = f.select :state_eq, Fiche::STATES, include_blank: true, class: 'form-control'
-  = f.submit "OK", class: 'btn btn-xs btn-primary'
+    = f.label :state_eq, "Filtrer par état :"
+    = f.select :state_eq, Fiche::STATES, {include_blank: true},
+      class: 'form-control input-sm'
+  = f.submit "OK", class: 'btn btn-sm btn-primary'
 
 - if @fiches.any?
   %table.table.table-striped
     %tbody
       - @fiches.each do |fiche|
-        %tr
+        %tr{class: state_class_for(fiche)}
           %td
             = fiche.dci_name
             %small.text-muted= fiche.full_distinction

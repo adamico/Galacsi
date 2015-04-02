@@ -56,7 +56,7 @@ module FichesHelper
 
   def label_for_state(fiche)
     content_tag(:label, fiche.state.humanize,
-                class: "label #{state_class_for(fiche)}")
+                class: "label label-#{state_class_for(fiche)}")
   end
 
   def change_state_for(fiche, user)
@@ -71,11 +71,11 @@ module FichesHelper
     end
   end
 
-  private
-
   def state_class_for(fiche)
-    fiche.valide? ? 'label-primary' : 'label-danger'
+    fiche.valide? ? 'primary' : 'danger'
   end
+
+  private
 
   def allowed_state_transitions_for(user, fiche)
     transitions = fiche.state_transitions
