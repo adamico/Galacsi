@@ -1,5 +1,4 @@
 module FichesHelper
-  require 'active_support'
   def fiche_header(fiche)
     result = ActiveSupport::SafeBuffer.new
     if fiche.distinction_id?
@@ -22,36 +21,32 @@ module FichesHelper
   end
 
   def unfructuous_search
-    pars = params[:q].delete_if {|k, v| v.blank?}
+    pars = params[:q].delete_if {|_k, v| v.blank?}
     pars = pars.to_a
     string = []
-    pars.each do |item|
-      string << [item[1], item[0].gsub(/_like/, "")]
+    pars.each do |param|
+      string << [param[1], param[0]]
     end
-    haml_tag :h3 do
-      haml_concat "Aucun résultat pour"
-      haml_concat "'#{string[0][0]}'"
-      haml_concat "dans les noms de"
+    result = []
+    result << "Aucun résultat pour"
+    result << "'#{string[0][0]}'"
+    result << "dans les noms de"
 
-      field = case string[0][1]
-      when /specialite/; "spécialité"
-      else
-        "DCI"
-      end
-
-      haml_concat field
-      stripped_field = ActiveSupport::Multibyte::Chars.new field
-      stripped_field = stripped_field.normalize(:kd).gsub(/[^\x00-\x7F]/,'').to_s
-
-      haml_tag :br do end;
-      if string[0][0].length > 3
-        haml_concat link_to "Demander la création", new_demande_path(
-          nil,
-          :nom_demande => string[0][0],
-          :type_demande => stripped_field)
-      end
+    field = case string[0][1]
+    when /specialite/
+      'spécialité'
+    else
+      'DCI'
     end
-    haml_tag 'div.clear' do end;
+
+    result << field
+    result << content_tag(:br, nil)
+    if string[0][0].length > 3
+      result << link_to("Demander la création",
+                        new_demande_path(nil, 'demande[name]': string[0][0],
+                                              'demande[nature]': field))
+    end
+    content_tag(:h3, result.join("\n").html_safe)
   end
 
   def label_for_state(fiche)

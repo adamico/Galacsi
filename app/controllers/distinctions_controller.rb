@@ -18,7 +18,8 @@ class DistinctionsController < ApplicationController
   def update
     if @distinction.update_attributes(distinction_params)
       redirect_to distinctions_url,
-                  notice: "Distinction '#{@distinction}' mise à jour avec succès."
+                  notice: "Distinction '#{@distinction}' mise à jour avec
+                           succès."
     else
       render :edit
     end

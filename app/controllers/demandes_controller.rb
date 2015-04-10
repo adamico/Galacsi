@@ -8,7 +8,8 @@ class DemandesController < ApplicationController
 
   def create
     if verify_recaptcha(model: @demande,
-                        message: "Veuillez recopier les 2 mots dans le champ de vérification") && @demande.save
+                        message: "Veuillez recopier les 2 mots dans le champ de
+                                  vérification") && @demande.save
       redirect_to root_path, notice: "La demande a été enregistrée."
     else
       render :new
@@ -18,7 +19,8 @@ class DemandesController < ApplicationController
   def update
     if @demande.update_attributes(demande_params)
       redirect_to demandes_path,
-                  notice: 'Votre demande a bien été prise en compte. Nous vous en remercions.'
+                  notice: 'Votre demande a bien été prise en compte. Nous vous
+                           en remercions.'
     else
       render :edit
     end

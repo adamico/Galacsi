@@ -7,7 +7,6 @@ class Ability
     guest.role = ""
     user ||= guest
 
-    # guest abilities
     can :show, Page
 
     can :read, Specialite, dcis: { fiches: { state: 'valide' } }
@@ -21,29 +20,25 @@ class Ability
 
     can :create, Demande
 
-    # admin abilities
     if user.admin?
       can :manage, :all
-      cannot :destroy, user
 
-    # other roles abilities
+      cannot :destroy, user
     else
       case user.role
-      when "contributeur"
+      when 'contributeur'
         can :search, [Fiche, Dci]
         can :read, [Page, Dci, ClasseTherapeutique, Fiche, Demande, Source]
         can :names, Source
         can :create, Fiche
         can :update, Fiche,
-          :state => ["brouillon", "a_valider"],
-          :user_id => user.id
-      when "valideur"
-        can :search, [Fiche, Dci]
+          state: ['brouillon', 'a_valider'],
+          user_id: user.id
+      when 'valideur'
         can :manage, :all
-        cannot :destroy, User, :id => user.id
-        can :names, Source
+
+        cannot :destroy, user
       end
     end
   end
-
 end

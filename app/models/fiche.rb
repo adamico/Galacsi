@@ -7,7 +7,8 @@ class Fiche < ActiveRecord::Base
   DIPR = ["DMAP", "dose pédiatrique"]
   PASSAGE = ["dose dépendant", "inconnu", "faible"]
   RLP = ["<1", ">1"]
-  STATES = [["brouillon", "brouillon"], ["à valider", "a_valider"], ["valide", "valide"], ["en attente", "en_attente"]]
+  STATES = [["brouillon", "brouillon"], ["à valider", "a_valider"],
+            ["valide", "valide"], ["en attente", "en_attente"]]
   REVALIDER =
     [['3 mois', 3.months.from_now.to_date],
      ['6 mois', 6.months.from_now.to_date],
@@ -20,7 +21,8 @@ class Fiche < ActiveRecord::Base
   belongs_to :user
 
   has_many :alternativeships, dependent: :destroy
-  has_many :alternatives, -> { includes(:specialites) }, through: :alternativeships
+  has_many :alternatives, -> { includes(:specialites) },
+           through: :alternativeships
 
   has_many :sourcings, dependent: :destroy
   has_many :sources, through: :sourcings
