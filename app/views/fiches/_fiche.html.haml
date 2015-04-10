@@ -1,5 +1,8 @@
 - if can?(:read, fiche)
-  %div{class: ['fiche', 'panel', (fiche.state == 'valide') ? 'panel-primary' : 'panel-danger']}
+  = content_tag :div,
+    class: ['fiche', 'panel',
+            (fiche.state == 'valide' ? 'panel-primary' : 'panel-danger')] do
+
     = fiche_header(fiche)
 
     .panel-body
@@ -30,7 +33,8 @@
         %h4 Surveillance :
         = raw textilize fiche.surveillance
         %p.surveillance
-          La poursuite du traitement ou de l'allaitement doit être reconsidérée et le CRPV prévenu si l'un des troubles cités est observé
+          La poursuite du traitement ou de l'allaitement doit être reconsidérée
+          et le CRPV prévenu si l'un des troubles cités est observé
 
       - unless fiche.alternatives.blank?
         %h4 Alternatives :
@@ -47,7 +51,8 @@
       - if fiche.suivi == "oui"
         %h4.inline.alert Attention :
         %p.inline.alert
-          pour cette molécule un suivi sera réalisé par le CRPV, il est donc impératif de demander les coordonnées du demandeur ou
+          pour cette molécule un suivi sera réalisé par le CRPV, il est donc
+          impératif de demander les coordonnées du demandeur ou
           %u mieux de la patiente concernée.
 
       = content_tag :div, class: 'panel-group',
@@ -59,7 +64,8 @@
               = link_to 'Informations détaillées',
                 "#argumentaire_#{fiche.id}", 'aria-expanded': "false",
                 'aria-controls': "argumentaire_#{fiche.id}",
-                data: { toggle: 'collapse', parent: "fiche-#{fiche.id}-accordion" }
+                data: { toggle: 'collapse',
+                        parent: "fiche-#{fiche.id}-accordion" }
           = content_tag :div, class: 'panel-collapse collapse argumentaire',
             id: "argumentaire_#{fiche.id}", role: 'tabpanel',
             'aria-labelledby': "argumentaire-heading-#{fiche.id}" do
@@ -75,7 +81,8 @@
                 %td{style: 'width: 7%'}= fiche.thalf unless fiche.thalf.blank?
               %tr
                 %th Métabolites actifs
-                %td= fiche.metabolites_actifs? ? "Oui" : "Non" unless fiche.metabolites_actifs.blank?
+                - unless fiche.metabolites_actifs.blank?
+                  %td= fiche.metabolites_actifs? ? "Oui" : "Non"
                 %th Rapport lait/plasma
                 %td= fiche.rapport_lp unless fiche.rapport_lp.blank?
                 %th Pic lacté
@@ -87,7 +94,8 @@
                 %td
                   - unless fiche.dose_par_rapport_dmap.blank? && fiche.dose_par_rapport_dp.blank?
                     %ul.list-unstyled
-                      %li= "#{fiche.dose_par_rapport_dmap} de la DMAP" if fiche.dose_par_rapport_dmap?
+                      - if fiche.dose_par_rapport_dmap?
+                        %li= "#{fiche.dose_par_rapport_dmap} de la DMAP"
                       - if fiche.dose_par_rapport_dp?
                         %li= "#{fiche.dose_par_rapport_dp} de la posologie pédiatrique"
                 %th Posologie pédiatrique
@@ -105,8 +113,10 @@
             .panel-heading{id: "sources-heading-#{fiche.id}"}
               %h4.panel-title
                 = link_to 'Sources', "#sources_#{fiche.id}",
-                  'aria-expanded': 'false', 'aria-controls': "sources_#{fiche.id}",
-                  data: { toggle: 'collapse', parent: "fiche-#{fiche.id}-accordion" }
+                  'aria-expanded': 'false',
+                  'aria-controls': "sources_#{fiche.id}",
+                  data: { toggle: 'collapse',
+                          parent: "fiche-#{fiche.id}-accordion" }
 
             = content_tag :div, class: 'panel-collapse collapse sources',
               id: "sources_#{fiche.id}", role: 'tabpanel',

@@ -13,7 +13,7 @@
       - @fiches.each do |fiche|
         %tr{class: state_class_for(fiche)}
           %td
-            = fiche.dci_name
+            = link_to fiche.dci_name, dci_path(fiche.dci)
             %small.text-muted= fiche.full_distinction
           %td
             .pull-right
