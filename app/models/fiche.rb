@@ -39,16 +39,20 @@ class Fiche < ActiveRecord::Base
     includes(:distinction, :dci).where("revalider_le <= ?", Time.now.to_date)
   end
 
-  def self.valide
-    where(state: 'valide')
-  end
-
   def self.non_valide
     where.not(state: 'valide')
   end
 
   def self.recent
     where('published_at >= ?', 2.weeks.ago)
+  end
+
+  def self.valide
+    where(state: 'valide')
+  end
+
+  def self.with_distinction_and_dci
+    includes(:distinction, :dci).order('dcis.slug')
   end
 
   # callbacks
@@ -106,10 +110,6 @@ class Fiche < ActiveRecord::Base
     decision :name => "Décision"
     state 'Validation'
     createur
-  end
-
-  def self.with_distinction_and_dci
-    includes(:distinction, :dci).order('dcis.slug')
   end
 
   # custom methods

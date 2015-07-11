@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150401073109) do
+ActiveRecord::Schema.define(version: 20150711094004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20150401073109) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "alternativeships", ["fiche_id", "alternative_id"], name: "index_alternativeships_on_fiche_id_and_alternative_id", unique: true, using: :btree
 
   create_table "classe_therapeutiques", force: :cascade do |t|
     t.string   "name",                  limit: 255
@@ -40,12 +42,16 @@ ActiveRecord::Schema.define(version: 20150401073109) do
     t.datetime "updated_at"
   end
 
+  add_index "classifications", ["dci_id", "classe_therapeutique_id"], name: "index_classifications_on_dci_id_and_classe_therapeutique_id", unique: true, using: :btree
+
   create_table "compositions", force: :cascade do |t|
     t.integer  "dci_id"
     t.integer  "specialite_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "compositions", ["dci_id", "specialite_id"], name: "index_compositions_on_dci_id_and_specialite_id", unique: true, using: :btree
 
   create_table "dcis", force: :cascade do |t|
     t.string   "name",                  limit: 255
@@ -125,7 +131,13 @@ ActiveRecord::Schema.define(version: 20150401073109) do
     t.date     "published_at"
   end
 
+  add_index "fiches", ["dci_id"], name: "index_fiches_on_dci_id", using: :btree
   add_index "fiches", ["decision_id"], name: "index_produits_on_decision_id", using: :btree
+  add_index "fiches", ["distinction_id"], name: "index_fiches_on_distinction_id", using: :btree
+  add_index "fiches", ["published_at"], name: "index_fiches_on_published_at", using: :btree
+  add_index "fiches", ["revalider_le"], name: "index_fiches_on_revalider_le", using: :btree
+  add_index "fiches", ["state"], name: "index_fiches_on_state", using: :btree
+  add_index "fiches", ["user_id"], name: "index_fiches_on_user_id", using: :btree
 
   create_table "fiches_sources", id: false, force: :cascade do |t|
     t.integer "fiche_id"
@@ -180,6 +192,8 @@ ActiveRecord::Schema.define(version: 20150401073109) do
     t.datetime "updated_at"
   end
 
+  add_index "sourcings", ["fiche_id", "source_id"], name: "index_sourcings_on_fiche_id_and_source_id", unique: true, using: :btree
+
   create_table "specialites", force: :cascade do |t|
     t.string   "name",               limit: 255
     t.datetime "created_at"
@@ -207,7 +221,7 @@ ActiveRecord::Schema.define(version: 20150401073109) do
   end
 
   add_foreign_key "alternativeships", "dcis", column: "alternative_id", name: "alternativeships_alternative_id_fk"
-  add_foreign_key "alternativeships", "fiches", name: "alternativeships_fiche_id_fk"
+  add_foreign_key "alternativeships", "fiches"
   add_foreign_key "classifications", "classe_therapeutiques", name: "classifications_classe_therapeutique_id_fk"
   add_foreign_key "classifications", "dcis", name: "classifications_dci_id_fk"
   add_foreign_key "compositions", "dcis", name: "compositions_dci_id_fk"
