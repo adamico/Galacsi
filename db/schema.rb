@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(version: 20150711094004) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "compositions_count"
-    t.string   "slug",               limit: 255
+    t.string   "slug"
   end
 
   add_index "specialites", ["slug"], name: "index_specialites_on_slug", unique: true, using: :btree
@@ -221,7 +221,7 @@ ActiveRecord::Schema.define(version: 20150711094004) do
   end
 
   add_foreign_key "alternativeships", "dcis", column: "alternative_id", name: "alternativeships_alternative_id_fk"
-  add_foreign_key "alternativeships", "fiches"
+  add_foreign_key "alternativeships", "fiches", name: "alternativeships_fiche_id_fk"
   add_foreign_key "classifications", "classe_therapeutiques", name: "classifications_classe_therapeutique_id_fk"
   add_foreign_key "classifications", "dcis", name: "classifications_dci_id_fk"
   add_foreign_key "compositions", "dcis", name: "compositions_dci_id_fk"
