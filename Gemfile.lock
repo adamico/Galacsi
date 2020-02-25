@@ -120,8 +120,10 @@ GEM
       rails
     method_source (0.8.1)
     mime-types (1.21)
+    mini_portile2 (2.4.0)
     multi_json (1.6.1)
-    nokogiri (1.5.6)
+    nokogiri (1.10.8)
+      mini_portile2 (~> 2.4.0)
     orm_adapter (0.4.0)
     pg (0.14.1)
     pickle (0.4.11)
