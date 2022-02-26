@@ -120,8 +120,11 @@ GEM
       rails
     method_source (0.8.1)
     mime-types (1.21)
+    mini_portile2 (2.8.0)
     multi_json (1.6.1)
-    nokogiri (1.5.6)
+    nokogiri (1.13.3)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     orm_adapter (0.4.0)
     pg (0.14.1)
     pickle (0.4.11)
@@ -138,6 +141,7 @@ GEM
       pry
     quiet_assets (1.0.1)
       railties (~> 3.1)
+    racc (1.6.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
